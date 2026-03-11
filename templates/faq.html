@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="{{if eq .Language "en"}}en{{else}}zh-CN{{end}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{if eq .Language "en"}}FAQ - Singularity Gate Studio{{else}}问答环节 - 奇点之门工作室{{end}}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        /* FAQ Accordion Styles */
+        .faq-accordion {
+            max-width: 900px;
+            margin: 0 auto 3rem;
+        }
+
+        .faq-section {
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--bg-white);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .faq-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .faq-section-header:hover {
+            background: #e9ecef;
+        }
+
+        .faq-section-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .faq-section-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+        }
+
+        .faq-section-icon svg {
+            color: white;
+        }
+
+        .faq-section-header h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        .faq-expand-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding: 0 1.5rem;
+        }
+
+        .faq-content.expanded {
+            max-height: 5000px;
+            padding: 1rem 1.5rem;
+        }
+
+        .faq-item {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 0 0 0.75rem 0;
+        }
+
+        .faq-answer {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .faq-category {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .faq-category:hover {
+            transform: translateY(-3px);
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Flash Messages -->
+    <!-- Flash messages functionality not yet implemented -->
+
+    <!-- Top Header -->
+    <header class="top-header">
+        <!-- Hamburger Menu (Left) -->
+        <div class="menu-container">
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <nav class="dropdown-menu" id="dropdownMenu">
+                <a href="/navigation" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                        <path d="M2 2l7.586 7.586"></path>
+                        <circle cx="11" cy="11" r="2"></circle>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Writing{{else}}写作{{end}}</span>
+                </a>
+                <a href="/faq" class="dropdown-item active">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    <span>{{if eq .Language "en"}}FAQ{{else}}常见问题{{end}}</span>
+                </a>
+                <a href="/descriptions" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Character Profiles{{else}}角色描述{{end}}</span>
+                </a>
+                <a href="/payment" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Payment{{else}}付款{{end}}</span>
+                </a>
+                <a href="/store" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Store{{else}}商店{{end}}</span>
+                </a>
+                {{if .LoggedIn}}
+                <a href="/profile/{{.CurrentUser}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>{{if eq .Language "en"}}My Profile{{else}}我的主页{{end}}</span>
+                </a>
+                {{end}}
+</nav>
+        </div>
+
+        <!-- Logo (Center) -->
+        <a class="logo-container" href="/landing">
+            <div class="logo-icon"></div>
+            <span class="logo-text">{{if eq .Language "en"}}Writer Portal{{else}}写手门户{{end}}</span>
+        </a>
+
+        <!-- Account Menu (Right) -->
+        <div class="account-container">
+            <button class="account-btn" id="accountBtn" aria-label="Account menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </button>
+
+            <!-- Account Dropdown -->
+            <div class="account-dropdown" id="accountDropdown">
+                {{if .LoggedIn}}
+                <div class="account-dropdown-header">
+                    <span class="account-name">{{.CurrentUser}}</span>
+                </div>
+                <a href="/logout" class="account-dropdown-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Logout{{else}}退出{{end}}</span>
+                </a>
+                {{else}}
+                <a href="/login/e" class="account-dropdown-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                        <polyline points="10 17 15 12 10 7"></polyline>
+                        <line x1="15" y1="12" x2="3" y2="12"></line>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Login{{else}}登录{{end}}</span>
+                </a>
+                {{end}}
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>{{if eq .Language "en"}}FAQ Section{{else}}问答环节{{end}}</h1>
+            <p class="hero-tagline">{{if eq .Language "en"}}Comprehensive answers about our project{{else}}关于我们项目的全面解答{{end}}</p>
+            <p class="hero-description">{{if eq .Language "en"}}Questions related to Computer Science, Sociology, Philosophy, Law, Economics, Literature, and Benefits/Work{{else}}计算机学、社会学、哲学、法律学、经济学、文学、待遇/工作相关问题{{end}}</p>
+        </section>
+
+        <!-- FAQ Categories Grid -->
+        <section class="features-grid">
+            <div class="feature-card faq-category" data-category="computer-science">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                </div>
+                <h3>{{if eq .Language "en"}}Computer Science{{else}}计算机学{{end}}</h3>
+                <p>{{if eq .Language "en"}}Tech paths, training methods, data processing{{else}}技术路径、训练方法、数据处理{{end}}</p>
+            </div>
+
+            <div class="feature-card faq-category" data-category="sociology">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                </div>
+                <h3>{{if eq .Language "en"}}Sociology{{else}}社会学{{end}}</h3>
+                <p>{{if eq .Language "en"}}Social impact and ethical considerations{{else}}社会影响和道德考量{{end}}</p>
+            </div>
+
+            <div class="feature-card faq-category" data-category="law-economics">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                </div>
+                <h3>{{if eq .Language "en"}}Law / Economics{{else}}法律学/经济学{{end}}</h3>
+                <p>{{if eq .Language "en"}}Copyright, business models, profit strategies{{else}}版权、商业模式、盈利策略{{end}}</p>
+            </div>
+
+            <div class="feature-card faq-category" data-category="literature">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                    </svg>
+                </div>
+                <h3>{{if eq .Language "en"}}Literature{{else}}文学{{end}}</h3>
+                <p>{{if eq .Language "en"}}Writing, character building, dialogue creation{{else}}写作、角色塑造、对话创作{{end}}</p>
+            </div>
+
+            <div class="feature-card faq-category" data-category="work-benefits">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <h3>{{if eq .Language "en"}}Work / Benefits{{else}}待遇/工作相关{{end}}</h3>
+                <p>{{if eq .Language "en"}}Recruitment, benefits, work requirements{{else}}招募、待遇、工作要求{{end}}</p>
+            </div>
+        </section>
+
+        <!-- FAQ Accordion Sections -->
+        <section class="faq-accordion">
+            <!-- General / About -->
+            <div class="faq-section" id="general-about" style="margin-bottom: 2rem;">
+                <div class="faq-section-header" onclick="toggleFAQSection('general-about')" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px;">
+                    <div class="faq-section-info">
+                        <div class="faq-section-icon" style="background: rgba(255,255,255,0.2); border-radius: 8px; padding: 8px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                        </div>
+                        <h3 style="color: white;">{{if eq .Language "en"}}About This Website{{else}}关于本网站{{end}}</h3>
+                    </div>
+                    <div class="faq-expand-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-content expanded" style="background: linear-gradient(135deg, rgba(102,126,234,0.05) 0%, rgba(118,75,162,0.05) 100%); border-radius: 0 0 12px 12px; border: 1px solid rgba(102,126,234,0.2); border-top: none;">
+                    <div class="faq-item" style="border-left: 4px solid #667eea;">
+                        <h4 class="faq-question">{{if eq .Language "en"}}What is this website, and what is its purpose?{{else}}这个网站是什么？它是做什么的？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}This website serves as a structured data collection platform. Over time, we will progressively add the components and workflows needed for our research and development goals.{{else}}这是一个数据收集网站，我们之后会将所有需要的元素添加到网站上。{{end}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Computer Science -->
+            <div class="faq-section" id="computer-science">
+                <div class="faq-section-header" onclick="toggleFAQSection('computer-science')">
+                    <div class="faq-section-info">
+                        <div class="faq-section-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line>
+                                <line x1="12" y1="17" x2="12" y2="21"></line>
+                            </svg>
+                        </div>
+                        <h3>{{if eq .Language "en"}}Computer Science{{else}}计算机学{{end}}</h3>
+                    </div>
+                    <div class="faq-expand-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-content">
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}Existing roleplay models already perform well in many cases. What gap does this project aim to address?{{else}}现有角色扮演模型已经做的很好了，为什么还会需要你去做这个项目？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}Existing models can appear human-like in short conversations because they have been trained on vast amounts of historical human writing. However, during long-term interaction, clear weaknesses emerge: memory loss, emotional inconsistency, lack of direction, and shallow engagement. These issues stem from fundamental limitations in how current models are trained and structured.{{else}}现有模型能在短期以内非常正确得去聊天，因为它看过所有人类史上的文案。但聊的时间一长，就会有很多的问题；遗忘现象，情感不对齐现象，无目的聊天现象等等。这些都来自于模型自身的缺失。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}What technical approach does this project use?{{else}}技术路径怎么做？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}We rely primarily on large-scale supervised fine-tuning (SFT) using carefully constructed data. The goal is to teach a single model higher-order reasoning, emotional expression during conversation, and structured background knowledge—including what the model should and should not know within complex narrative settings.{{else}}利用SFT（大量数据）去让单一模型学会高阶智慧，体现聊天中会出现的情感，及赋予知识（背景，能力）等模型本身应该/不应该知道的复杂事件。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}Why is Reinforcement Learning (RL) not the primary approach?{{else}}为什么不用RL？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}Reinforcement Learning narrows the output distribution of capabilities a model already possesses. It assumes the model can sometimes generate correct responses on its own. However, current models have rarely encountered data involving detailed character backgrounds paired with extended casual dialogue. Since such data largely does not exist, RL alone cannot produce these behaviors. New, purpose-built data is required first.{{else}}RL是个在已有能力的情况下的分布收拢，前提是模型必须已经有几率自主产生对的问题情况下的反馈。但现有模型的问题是它们在数据中就没见过有着详细背景，详细设定后闲聊的场景。换句话说，拥有这些特征的数据现在市面上不存在，所以当模型需要闲聊的时候，即使在提示词里拥有一切可能需要的内容时，模型依然无法正确的/规划回复到正确的反馈。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}Why not train multiple characters simultaneously?{{else}}为什么不一下做很多角色？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}Training many characters within a single model leads to significant knowledge and behavior leakage between them. More importantly, we do not yet know the minimum data scale required for a model to reliably learn higher-order character reasoning. Our current estimate is around five million samples, but this may change. For now, our strategy is to start with a very large, focused dataset.{{else}}在训练同一模型时，模型知识的交叉程度普遍偏高。更大的问题是，我们目前并不知道在什么数据量级下模型能学会高阶知识问题。目前预训练中我们的猜测是500万数据集可能能让模型学会所有知识与行为，但根据效果这个数据量暂定未来可能会有变动。目前的方案就是"先做一个特别大的数据量"。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}Why not rely on existing online datasets for training?{{else}}为什么不用网上已有数据训练？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}Existing online data—forums, fan fiction, novels, and story collections—each have structural problems. Many prioritize formulaic power fantasies, lack consistent character development, or contain excessive explicit content without narrative depth. These issues make them unsuitable for long-term conversational modeling.{{else}}网上数据类型包括贴吧聊天、同人文、小说、故事集等，但它们都有各自的问题。番茄网："编剧说了，不是爽文直接拒接"。老福特：黄文过多，且故事性缺失。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}Why not use large-scale chat data from platforms like WeChat?{{else}}为什么不跟微信谈用他们的数据？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}Chat data from platforms like WeChat lacks explicit character background and context. Reconstructing consistent personas from such conversations is extremely difficult. Because real-world chat personas are often fragmented and inconsistent, this data does not support coherent long-term dialogue or realistic behavioral progression.{{else}}微信数据中没有角色对话的背景。如果想训练模型学会用有背景说话的内容（例如闲聊），反推背景过于困难。微信中人设杂乱不一，人进行说话时的背景难以被反推，导致当你想要模型对一件事合理得反应时，微信的数据中没有这些数据来支持长时间的对话模式。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}Why not train models using dialogue extracted from novels or books?{{else}}为什么不用书本里的对话进行训练？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}While novels contain rich dialogue, they also require explicit modeling of memory, motivation, and character growth. Building a complete cognitive and behavioral arc for a single character from literary data alone is a massive undertaking. Additionally, the dialogue volume for any individual character may still be insufficient.{{else}}理论上来讲小说/长故事里的内容是最符合对话场景的，但书本中记忆与动机对角色的发展同样需要构建；虽然书本的内容非常充分，但是建立单一角色的记忆曲线，行为逻辑，仍然是个大工程，而且单一角色对话的数据量可能还不达标。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}Why not rely on chain-of-thought or prompt-based augmentation techniques?{{else}}为什么不用简单思维链augmentation做？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}If a model fundamentally struggles with a task, augmentation alone rarely solves the problem. Even with extensive hints embedded in prompts, maintaining coherence and depth across long conversations remains difficult for current models.{{else}}模型自己本身就不能做好的事情，augment了之后仍然很难做好。即使对话当中有很多hints，但长对话仍然对模型是个挑战。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}How does the system address long-term memory and consistency?{{else}}记忆问题怎么解决？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}Memory is embedded directly into character settings through structured components: Values, Experience (E), Subjective Judgment (J), and Abilities (A). These elements are updated regularly to produce genuine cognitive changes in a character's worldview. Temporal facts such as age or birthdays may be stored in experience, though memory length and retention remain open research challenges.{{else}}我们现有记忆模块放在了角色设定上：Values（价值观）、E（经验）、J（主观判断）、A（能力）。其中，记忆模块需要每天更新这些内容，从而达到事实的对角色的世界观进行认知改变。"生日，年龄"这些我们希望在经验里更新，但长度以及记忆程度还有待考量。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}How will multi-modal capabilities be handled, and when could this extend to games?{{else}}多模块的版块打算怎么做？什么时候往游戏上搬？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}Multi-modal challenges are primarily data-driven. Real-time voice is already feasible and will improve naturally as speech models advance. Real-time video generation and screen-based interaction still face latency and capability constraints, though hardware improvements continue to reduce these barriers. Game integration for short-term roleplay is already practical today.{{else}}多模块的难度也同样在于数据的研发。如果要做到实时语音很简单，现有模型在一天天更迭，我们坐着等就会有更好的语音板块。有难度的实时视频生成，实时屏幕反应等任务的模型现在的延迟以及能力都有待提高，而且速度也在用新的芯片更迭。往游戏上搬其实现在如果要对某一特殊场景进行无深度的短期角色扮演其实模型能力都还好；因为不用长期陪伴，所以对人设进行微调之后角色说话就还行。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}Could this system eventually play games with users, assist with writing, send emails, or perform technical design tasks?{{else}}以后能和我一起打游戏，写方案，帮我发邮件，做电机设计么？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}Casual gaming companions are feasible for games with slower real-time requirements and agent-based assistance. Email writing is already achievable. More complex tasks such as proposal writing depend heavily on taste and judgment. Highly technical tasks like motor design would require resources and funding on an entirely different scale.{{else}}游戏 - 理论上这些能力并不难训练；如果游戏没那么难（自走棋，星穷铁道等即时操作性慢并且agentic system可以有辅助的游戏）可能两三个月能做出一个像人一样陪你一起玩的。但一起玩游戏现在很多闲的在家没事干的都能来做做试试。文案 - 一起写方案这个难题在于对于方案的品味及能力。发邮件 - 现在能干到。做电机设计等 - 非常技术的活，我们实验室可能暂时没那个钱，这些都要上十亿的资金了可能。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}Most training data is noisy and low quality. How is data quality ensured?{{else}}普遍数据非常的脏，大部分人写的数据内容质量低下难以用作训练，你打算如何清理数据？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}Our data is created using a predefined structure and format designed for direct training use. Because the structure itself enforces quality constraints, no additional large-scale cleaning is required.{{else}}我们的数据结构本身就是最洁净的处理过后的数据；直接用就行了。{{end}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sociology -->
+            <div class="faq-section" id="sociology">
+                <div class="faq-section-header" onclick="toggleFAQSection('sociology')">
+                    <div class="faq-section-info">
+                        <div class="faq-section-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <h3>{{if eq .Language "en"}}Sociology{{else}}社会学{{end}}</h3>
+                    </div>
+                    <div class="faq-expand-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-content">
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}If the system becomes extremely engaging, could it lead to internet addiction?{{else}}做的太好了以后大家沉迷网络怎么办？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}The project is designed with social responsibility in mind. Its goal is to support individuals who feel isolated, frustrated, or directionless. Rather than encouraging escapism, the system is intended to guide users toward real-world engagement—offering encouragement during anxiety, grounding during nihilistic thinking, and nudges to explore life beyond the screen.{{else}}我们的模型是为了社会公益型而创造出来的。为了那些在新时代受挫，孤立的无用阶级提供出路，走向幸福的AI。我们对沉迷的对策是提供场景让大家走出房门，在思想朝着虚无走去的时候提供勇气。在焦虑的时候拉你一把。在你沉迷的时候怂恿你去发现世界新鲜的内容。大家和AI聊天大部分时间其实是在现实中缺一个知己，而找寻一位知己的阻力又太大。所以我们为了这个陪伴，伴你左右，为你提供勇气，知识去面对，发现，改变，体验这个世界。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}What are the benefits of joining your team? Why should someone work with you?{{else}}加入你团队有什么好处？凭什么给你干活？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}We are an early-stage startup with limited resources. What we offer instead is transparency, intellectual honesty, and a commitment to solving meaningful problems. For people aligned with that mission, this can be a compelling reason to participate.{{else}}我们是初创，没钱没人草台班子。但我希望我们的直率，对解决实质问题的意义能吸引你加入我们。{{end}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Law & Economics -->
+            <div class="faq-section" id="law-economics">
+                <div class="faq-section-header" onclick="toggleFAQSection('law-economics')">
+                    <div class="faq-section-info">
+                        <div class="faq-section-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                                <line x1="1" y1="10" x2="23" y2="10"></line>
+                            </svg>
+                        </div>
+                        <h3>{{if eq .Language "en"}}Law / Economics{{else}}法律学/经济学{{end}}</h3>
+                    </div>
+                    <div class="faq-expand-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-content">
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}What happens if the project faces legal issues related to fan-created content?{{else}}如果做二创被起诉了怎么办？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}Legal concerns become relevant only once a product reaches meaningful impact. At that stage, licensing or royalty agreements are viable options. Additionally, as characters gain depth through expanded settings, only abstract similarities remain. If necessary, names and surface details can be adjusted within the data.{{else}}现在的问题其实是我们的产品不够好。好了，赚钱了才有人关心。到时候给他们版权费，我们又是给他们免费IP广告何乐而不为呢。况且，角色其实如果要做到实质性的现实是需要加非常多的额外设定的，改到最后可能也只有灵魂差不多了（就像大部分人不想当牛头人一样）。如果实在不行那就换个名字，因为设定性问题在数据里改改就行了。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}How can a small team compete with companies like Tencent or miHoYo?{{else}}凭什么你能打过腾讯/米哈游/其他厂商？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}Large companies often focus on short-term engagement metrics rather than long-term character realism and growth. Building datasets that support genuine progression is expensive and risky, which discourages experimentation. Our advantage lies in deeper conceptual understanding and willingness to pursue long-horizon research.{{else}}他们走错了路；"如何讨好用户"及"我怎么把角色的反应做得更好"这种路线在抽离角色背景，实质改变，现实生活的"进展度"中抽离出来的对话注定没有活人味，但做这么个数据集又是个大工程，且不一定能成功。当然，我们实验室有名头了自然他们回来偷数据，偷方法。我们的期望是我们的理解能领先几个维度，在成功后持续性创新维持行业领头地位。而且说实话很多他们投的投机取巧用模型赚快钱的都因为模型能力死光了，所以他们也没那么关注这个行业。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}How does this project generate revenue, and how can it survive an AI market downturn?{{else}}你这东西怎么赚钱？你凭什么能活过马上的AI泡沫危机？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}Revenue paths include subscriptions, game integration, partnerships with studios, and ultimately data licensing. We began as a data-focused lab, and if needed, high-quality datasets themselves remain valuable assets for larger organizations.{{else}}赚钱有几方面：1. 和游戏挂钩/做聊天平台订阅：猫箱等软件的问题在于很多时候他们的用户是中小学生一用就是大几百万，我们想要存活作为小公司必定烧不起钱，所以一开始只能走付费路线。能进游戏更好。2. 和游戏公司合作，做进游戏里：我们是个实验室，做游戏，美术方面没有接触，而新招专业的又太贵。我们的期望是能把作为科学家们的本职工作做好。3. 实在不行；卖数据；我们是以数据公司开始的。实在不行OpenAI啥的想提升点质量也会来干这事的。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}You mentioned analyzing chat behavior to match people socially or romantically. Does this raise privacy concerns?{{else}}你提过"通过聊天来分析人内核，分析完了分配女朋友"，这一点会不会牵扯到隐私问题？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}Participation is voluntary. Individuals actively seeking connection opt in, while others do not. The goal is not invasive profiling but improving interaction quality among people who already want to engage.{{else}}真想找女朋友/男朋友的人都会去的，没主管能动性的人也都不会去找的。我们只需要把大部分想要找的人抽取出来让大家互动的平均多巴胺提升了就行。{{end}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Literature -->
+            <div class="faq-section" id="literature">
+                <div class="faq-section-header" onclick="toggleFAQSection('literature')">
+                    <div class="faq-section-info">
+                        <div class="faq-section-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                            </svg>
+                        </div>
+                        <h3>{{if eq .Language "en"}}Literature{{else}}文学{{end}}</h3>
+                    </div>
+                    <div class="faq-expand-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-content">
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}Playing two roles convincingly is extremely difficult and usually requires professional writers or actors. How can crowdsourced data meet usable standards?{{else}}一人分饰两角这个任务非常难；一般都需要职业的编剧才能做好，职业的演员可能都要一两个月才能做好融入的感觉，你们如何指望众筹的数据能达到可以用的标准？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}We rely on selective recruitment and one-on-one interaction. Contributors are screened through writing samples to ensure baseline quality. While imperfect, this prevents out-of-character behavior that would otherwise degrade data quality and participant trust.{{else}}这是个非常好的问题。现在的期望是能在一两个月时间内找到能有资质的人之后通过他们一对一进行聊天。筛选过程通过写的文案进行评判。虽然这个评判标准不是很准，但是我们不希望见到的是有不能够胜任的人跟大家来聊天OOC，这样数据质量不过关，来聊天的人感到了背叛，且人力物力不合规。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}How can someone produce high-quality dialogue through online chat alone?{{else}}怎么做好聊天？只有网上聊天形式下我怎么构建好的数据？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}Natural conversation matters more than performance. Online chat is inherently intermittent—people respond when engaged and disengage when they are not. Speaking honestly and expressing real thoughts produces the most useful data.{{else}}脑子一关就行了，想到啥说啥。网上说话，有兴趣了聊聊天，没兴趣了不理是常态。大家都知道自己只要一两个知己及一个群体去闲逛，那想到啥说啥展现自己才是正确的聊天方式。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}Character arcs require change. How does the system allow characters to evolve?{{else}}角色弧光一般非常需要改变；你有什么机制能使AI产生变化？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}This largely depends on the writer's skill. Character evolution must be consciously embedded into the dialogue and experiences provided.{{else}}很考虑写手能力了，需要写手自己斟酌。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}How are character outlines defined, and how do characters progress over time?{{else}}你们角色的大纲怎么定的？角色怎么走的？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}Detailed character settings and progression frameworks are documented in the Character Profiles section.{{else}}请参考角色背景部分的详细设定。{{end}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Work & Benefits -->
+            <div class="faq-section" id="work-benefits">
+                <div class="faq-section-header" onclick="toggleFAQSection('work-benefits')">
+                    <div class="faq-section-info">
+                        <div class="faq-section-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                        <h3>{{if eq .Language "en"}}Work / Benefits{{else}}待遇/工作相关{{end}}</h3>
+                    </div>
+                    <div class="faq-expand-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="faq-content">
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}What does the project need right now, and how can someone get involved?{{else}}你们现在具体需要什么？我能干什么？怎么上手？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}We currently need writers and performers who can convincingly inhabit characters. Interested contributors should review the character profiles and writing guidelines to get started.{{else}}我们现在需要写文案的编辑/能融入角色的演员。想要上手的话可以参观角色设定集网站及写作内容须知。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}I'm not a programmer and only write fan fiction. Can I still contribute?{{else}}我不是程序员，只能写同人文，能加入数据组么？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}Programming skills are not required. What matters is lived experience and the ability to reflect real human environments, relationships, and behaviors through writing.{{else}}其实我们不需要写程序的，但我们需要和人说过话的。就像只有真正在物理实验室干过才知道一个CVD坏了要修多久，一个实验室能有什么样的氛围，老师能热情/冷到什么程度，水论文怎么水。又或是工作过才知道关系户的重要性，对待上下班的态度等。虽然现在的角色只有一个物理/化学/计算机博士，一个教授，一个逃犯，但之后我们也在考虑拓展/改变现有角色的安排。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}I'm a therapist. Can I help design the emotional feedback system?{{else}}我是心理咨询师，能帮你们设计"情感反馈机制"么？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}Direct involvement may not be necessary, but individuals with similar backgrounds could potentially help write characters grounded in that experience.{{else}}可能不需要，但你可以看看有多少人能和你有共同背景写一个角色。{{end}}</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">{{if eq .Language "en"}}What is the compensation?{{else}}你们待遇多少？{{end}}</h4>
+                        <p class="faq-answer">{{if eq .Language "en"}}Compensation is currently set at ¥100 per 1,000 words (approximately $14 USD). This may be adjusted based on sustainability and data requirements, with the goal of maintaining long-term project viability.{{else}}暂定待遇是100元1000字，之后有生存问题或数据量问题之后再考虑，一切只为实验室的人们能在生存的基础继续建立。{{end}}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote Section -->
+        <section class="quote-section">
+            <blockquote>
+                {{if eq .Language "en"}}"If I had asked people what they wanted, they would have said faster horses."{{else}}"如果我问人们想要什么，他们会说更快的马。"{{end}}
+            </blockquote>
+            <cite>— {{if eq .Language "en"}}Henry Ford{{else}}亨利·福特{{end}}</cite>
+            <blockquote style="margin-top: 1.5rem;">
+                {{if eq .Language "en"}}"We <strong>will</strong> complete the Turing test."{{else}}"我们<strong>将</strong>打通图灵测试。"{{end}}
+            </blockquote>
+            <cite>— {{if eq .Language "en"}}Singularity Gate Studio{{else}}奇点之门工作室{{end}}</cite>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>{{if eq .Language "en"}}Singularity Gate Studio{{else}}奇点之门工作室 - Singularity Gate Studio{{end}}</p>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+    <script>
+        function toggleFAQSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const content = section.querySelector('.faq-content');
+            const icon = section.querySelector('.faq-expand-icon svg');
+
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                // Close all other sections
+                document.querySelectorAll('.faq-content.expanded').forEach(expandedContent => {
+                    expandedContent.classList.remove('expanded');
+                });
+                document.querySelectorAll('.faq-expand-icon svg').forEach(expandedIcon => {
+                    expandedIcon.style.transform = 'rotate(0deg)';
+                });
+
+                // Open this section
+                content.classList.add('expanded');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Add click handlers for category cards
+        document.querySelectorAll('.faq-category').forEach(card => {
+            card.addEventListener('click', function() {
+                const category = this.dataset.category;
+                const section = document.getElementById(category);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(() => {
+                        toggleFAQSection(category);
+                    }, 500);
+                }
+            });
+        });
+    </script>
+    
+    <script>
+        // Language-aware link updater
+        (function() {
+            const isEnglish = document.documentElement.lang === 'en';
+            if (isEnglish) {
+                document.querySelectorAll('a[href^="/"]').forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href.startsWith('/static/') || href.endsWith('/e') || href.includes('/e#') || href === '/logout') return;
+                    if (href.includes('#')) {
+                        const [path, hash] = href.split('#');
+                        link.setAttribute('href', path + '/e#' + hash);
+                    } else {
+                        link.setAttribute('href', href + '/e');
+                    }
+                });
+            }
+        })();
+    </script>
+    
+{% include "includes/home_button.html" %}
+
+</body>
+</html>

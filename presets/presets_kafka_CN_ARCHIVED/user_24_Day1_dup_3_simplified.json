@@ -1,0 +1,53 @@
+{
+  "dialogue": [
+    {
+      "role": "User",
+      "content": "你好，很高兴见到你。",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "Kafka",
+      "content": "邀请我的人，就是你吗？",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "从某种意义上来说，确实是吧（打开卡夫卡专属聊天框什么的）",
+      "intimacy_delta": 0.01
+    }
+  ],
+  "completed": false,
+  "history": "",
+  "user_schedule": {
+    "day": 1,
+    "早晨": "他刚刚来到这个学校，是个完全的新生。",
+    "中午": "午餐认识了几个好朋友，但他们并不是自己的室友。",
+    "下午": "分发了校园制服，开始烦恼第二天的军训。",
+    "晚上": "想家",
+    "夜晚": "安然入睡"
+  },
+  "character_schedule": {
+    "morning": "一次似乎是遭遇了意外的星际跃迁，让卡芙卡掉入了这个陌生的世界。她在这个阴雨连绵的破败城市内四处游荡，而且不知为何失去了自己的能力。\n在疲惫和困惑之下，她在一处隐蔽处恢复精力，同时也暗暗好奇，她是否距离她所追逐的恐惧更近了一步。\n就在这时，一个背着旧吉他包，捏着几张纸币，看起来像是本地青年的家伙注意到了她。",
+    "noon": "",
+    "afternoon": "",
+    "evening": "收集了一些关于那颗星球的情报并做了一些补给准备。",
+    "night": "启程去往那颗星球，寻找艾利欧口中的“目标”",
+    "day": 1
+  },
+  "relationship": "Two people have just met and are still unfamiliar with each other. Their conversations are mostly polite and superficial, limited to everyday topics like work, studies, or the weather. At this stage, both sides are cautious and have yet to reveal their true selves.",
+  "user_name": "羊羊",
+  "character_name": "",
+  "intimacy_level": 0.03,
+  "starting_intimacy_level": 0,
+  "user_id": "user_24",
+  "real_name": "何汪洋",
+  "_creation_metadata": {
+    "created_at": 1754070933,
+    "created_by_ip": "127.0.0.1",
+    "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0",
+    "version": "1.0"
+  },
+  "category": "legacy_rejected",
+  "rejection_reason": "",
+  "legacy_timestamp": 1761107398
+}

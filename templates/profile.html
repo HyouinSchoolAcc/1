@@ -1,0 +1,505 @@
+﻿<!DOCTYPE html>
+<html lang="{{if eq .Language "en"}}en{{else}}zh-CN{{end}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{if .Profile}}{{.Profile.Username}}{{end}} — Writer Portal</title>
+<link rel="stylesheet" href="/static/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#4f46e5;--accent:#818cf8;--bg:#f3f4f6;--card:#fff;--border:#e5e7eb;--text:#1f2937;--muted:#6b7280;--green:#22c55e;--gold:#fbbf24;--ink:#7c3aed;}
+*{box-sizing:border-box;}
+body{background-color:var(--bg);font-family:'DM Sans',sans-serif;margin:0;min-height:100vh;}
+#bgLayer{display:none;position:fixed;inset:0;z-index:0;background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:scroll;}
+#bgOverlay{display:none;position:fixed;inset:0;z-index:1;background:rgba(0,0,0,.4);pointer-events:none;}
+body.has-bg #bgLayer,body.has-bg #bgOverlay{display:block;}
+.page-content{position:relative;z-index:2;}
+
+/* Nav */
+.pnav{background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:.7rem 1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;position:sticky;top:0;z-index:100;}
+.pnav a{color:var(--muted);text-decoration:none;font-size:.88rem;transition:color .2s;}
+.pnav a:hover{color:var(--primary);}
+.pnav .sep{color:var(--border);}
+.pnav .cur{color:var(--text);font-weight:600;}
+
+.wrap{max-width:900px;margin:0 auto;padding:1.5rem;}
+
+/* ─── PROFILE HEADER / BANNER ─── */
+.p-header{border-radius:20px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.18);margin-bottom:1.25rem;position:relative;}
+.p-banner{width:100%;height:200px;background:linear-gradient(135deg,#4f46e5,#7c3aed,#ec4899);background-size:cover;background-position:center top;position:relative;transition:background-image .4s;}
+.p-banner::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 30%,rgba(0,0,0,.65) 100%);}
+.p-content{background:rgba(255,255,255,.96);backdrop-filter:blur(8px);padding:1.4rem 1.75rem 1.5rem;position:relative;}
+.avatar-row{display:flex;align-items:flex-end;gap:1.25rem;margin-top:-52px;margin-bottom:.9rem;flex-wrap:wrap;}
+.avatar{width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.6rem;font-weight:700;color:#fff;text-transform:uppercase;border:4px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.2);flex-shrink:0;transition:transform .2s,box-shadow .3s;}
+.avatar:hover{transform:scale(1.06);}
+.border-silver{box-shadow:0 0 0 4px #fff,0 0 0 7px #c0c0c0,0 0 16px rgba(192,192,192,.5);}
+.border-gold{box-shadow:0 0 0 4px #fff,0 0 0 7px #fbbf24,0 0 20px rgba(251,191,36,.6);}
+.border-gradient{animation:gradBorder 3s linear infinite;}
+.border-rainbow{animation:rainbowBorder 2s linear infinite;}
+.border-legend{box-shadow:0 0 0 4px #fff,0 0 0 7px #f87171,0 0 24px rgba(248,113,113,.7);}
+@keyframes gradBorder{0%{box-shadow:0 0 0 4px #fff,0 0 0 7px #818cf8,0 0 20px #818cf8;}50%{box-shadow:0 0 0 4px #fff,0 0 0 7px #a78bfa,0 0 20px #a78bfa;}100%{box-shadow:0 0 0 4px #fff,0 0 0 7px #818cf8,0 0 20px #818cf8;}}
+@keyframes rainbowBorder{0%{box-shadow:0 0 0 4px #fff,0 0 0 7px #ef4444,0 0 16px #ef4444;}16%{box-shadow:0 0 0 4px #fff,0 0 0 7px #f97316,0 0 16px #f97316;}33%{box-shadow:0 0 0 4px #fff,0 0 0 7px #fbbf24,0 0 16px #fbbf24;}50%{box-shadow:0 0 0 4px #fff,0 0 0 7px #22c55e,0 0 16px #22c55e;}66%{box-shadow:0 0 0 4px #fff,0 0 0 7px #3b82f6,0 0 16px #3b82f6;}83%{box-shadow:0 0 0 4px #fff,0 0 0 7px #a78bfa,0 0 16px #a78bfa;}100%{box-shadow:0 0 0 4px #fff,0 0 0 7px #ef4444,0 0 16px #ef4444;}}
+
+.avatar-meta{flex:1;padding-bottom:.2rem;min-width:0;}
+.pname{font-family:'Crimson Pro',serif;font-size:1.85rem;font-weight:600;color:var(--text);margin:0 0 .3rem;display:flex;align-items:center;gap:.55rem;flex-wrap:wrap;}
+.role-badge{display:inline-flex;align-items:center;padding:.18rem .65rem;border-radius:20px;font-size:.72rem;font-weight:700;}
+.role-badge.editor{background:#fef3c7;color:#92400e;}
+.role-badge.writer{background:#dbeafe;color:#1d4ed8;}
+.role-badge.new_user{background:#f3f4f6;color:#6b7280;}
+.xp-title-badge{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:.18rem .65rem;border-radius:20px;font-size:.72rem;font-weight:700;}
+.pdisplay{font-size:.88rem;color:var(--muted);margin:0 0 .25rem;}
+.pbio{font-size:.9rem;color:var(--text);margin:.4rem 0;line-height:1.6;max-width:520px;}
+.pbio-empty{font-size:.85rem;color:var(--muted);font-style:italic;}
+.pmeta{display:flex;gap:1rem;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-top:.5rem;}
+.pmeta span{display:flex;align-items:center;gap:.25rem;}
+.header-actions{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin-top:.75rem;}
+.edit-btn{background:var(--primary);color:#fff;border:none;border-radius:10px;padding:.42rem .95rem;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:.35rem;}
+.edit-btn:hover{background:#4338ca;transform:translateY(-1px);}
+.store-link{display:inline-flex;align-items:center;gap:.35rem;background:linear-gradient(135deg,#7c3aed,#ec4899);color:#fff;text-decoration:none;padding:.42rem .9rem;border-radius:10px;font-size:.82rem;font-weight:600;transition:all .2s;}
+.store-link:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(124,58,237,.35);color:#fff;}
+
+/* Dual currency */
+.currency-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem;}
+@media(max-width:620px){.currency-row{grid-template-columns:1fr;}}
+.currency-card{border-radius:20px;padding:1.5rem 1.75rem;color:#fff;box-shadow:0 4px 18px rgba(0,0,0,.15);}
+.currency-card.xp-card{background:linear-gradient(135deg,#2563eb,#06b6d4);}
+.currency-card.ink-card{background:linear-gradient(135deg,#7c3aed,#ec4899);}
+.cc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.75rem;}
+.cc-name{font-size:.8rem;opacity:.85;font-weight:600;letter-spacing:.05em;text-transform:uppercase;}
+.cc-icon{font-size:1.6rem;}
+.cc-amount{font-size:2.6rem;font-weight:700;line-height:1;margin-bottom:.2rem;}
+.cc-sublabel{font-size:.78rem;opacity:.75;}
+.cc-bar-bg{height:8px;background:rgba(255,255,255,.25);border-radius:6px;overflow:hidden;margin:.75rem 0 .4rem;}
+.cc-bar-fill{height:100%;border-radius:6px;background:rgba(255,255,255,.8);transition:width .7s ease;}
+.cc-progress-row{display:flex;justify-content:space-between;font-size:.75rem;opacity:.8;}
+.cc-breakdown{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.85rem;}
+.cc-chip{background:rgba(255,255,255,.15);border-radius:20px;padding:.2rem .55rem;font-size:.72rem;}
+
+/* Stats */
+.stat-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.25rem;}
+@media(max-width:800px){.stat-cards{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.stat-cards{grid-template-columns:1fr;}}
+.sc{background:var(--card);border-radius:16px;padding:1.2rem;box-shadow:0 1px 4px rgba(0,0,0,.06);border:1px solid var(--border);display:flex;flex-direction:column;gap:.3rem;transition:transform .2s,box-shadow .2s;}
+.sc:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.09);}
+.sc .icon{font-size:1.3rem;}.sc .val{font-size:1.7rem;font-weight:700;color:var(--primary);}.sc .lbl{font-size:.78rem;color:var(--muted);}
+.sc.green{background:linear-gradient(135deg,#059669,#10b981);}.sc.green .val,.sc.green .lbl{color:#fff;}
+.sc.blue{background:linear-gradient(135deg,#2563eb,#3b82f6);}.sc.blue .val,.sc.blue .lbl{color:#fff;}
+
+/* Section cards */
+.scard{background:rgba(255,255,255,.97);border-radius:16px;padding:1.5rem;box-shadow:0 1px 4px rgba(0,0,0,.06);border:1px solid var(--border);margin-bottom:1.25rem;}
+.sh{font-family:'Crimson Pro',serif;font-size:1.15rem;font-weight:600;color:var(--primary);margin:0 0 1rem;display:flex;align-items:center;gap:.45rem;}
+
+/* Cosmetics */
+.cosmetics-grid{display:flex;flex-wrap:wrap;gap:.65rem;}
+.cosmetic-chip{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border-radius:12px;padding:.35rem .85rem;font-size:.8rem;font-weight:600;display:flex;align-items:center;gap:.35rem;}
+.cosmetic-chip.locked{background:#f3f4f6;color:var(--muted);border:1px dashed var(--border);}
+
+/* Certs & flairs */
+.cert-grid{display:flex;flex-wrap:wrap;gap:.6rem;}
+.cert-chip{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border-radius:20px;padding:.3rem .85rem;font-size:.8rem;font-weight:600;}
+.flair-list{display:flex;flex-wrap:wrap;gap:.65rem;}
+.flair-chip{border-radius:12px;padding:.35rem .85rem;font-size:.8rem;font-weight:700;display:flex;align-items:center;gap:.35rem;}
+.flair-chip.specialist{background:#dbeafe;color:#1d4ed8;}
+.flair-chip.expert{background:#fef3c7;color:#92400e;}
+.flair-chip.master{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#fff;}
+
+/* Ink history */
+.ih-list{display:flex;flex-direction:column;gap:.55rem;}
+.ih-item{display:flex;align-items:center;gap:.8rem;padding:.65rem 1rem;background:#fafafa;border-radius:10px;border:1px solid var(--border);}
+.ih-amt{font-weight:700;min-width:55px;text-align:right;}
+.ih-amt.pos{color:var(--green);}
+.ih-amt.neg{color:#ef4444;}
+.ih-reason{flex:1;font-size:.85rem;color:var(--text);}
+.ih-date{font-size:.75rem;color:var(--muted);white-space:nowrap;}
+
+/* Award panel */
+.award-panel{background:#fef3c7;border:1px solid #fde68a;border-radius:16px;padding:1.25rem;margin-bottom:1.25rem;}
+.award-panel h3{color:#92400e;margin:0 0 .75rem;font-size:.95rem;font-weight:700;}
+.award-row{display:flex;gap:.65rem;flex-wrap:wrap;align-items:flex-end;}
+.award-row input,.award-row select{padding:.48rem .75rem;border:1.5px solid #fcd34d;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.88rem;outline:none;background:#fff;}
+.btn-award{background:#d97706;color:#fff;border:none;border-radius:8px;padding:.48rem 1rem;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;}
+.btn-award:hover{background:#b45309;}
+
+/* ─── EDIT MODAL ─── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:10000;align-items:center;justify-content:center;padding:1rem;}
+.modal-overlay.active{display:flex;}
+.modal-box{background:var(--card);border-radius:24px;width:100%;max-width:560px;box-shadow:0 24px 60px rgba(0,0,0,.25);overflow:hidden;display:flex;flex-direction:column;max-height:90vh;}
+.modal-header{padding:1.5rem 1.75rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-bottom:.75rem;flex-shrink:0;}
+.modal-title{font-family:'Crimson Pro',serif;font-size:1.4rem;color:var(--primary);margin:0;}
+.modal-close{background:none;border:none;cursor:pointer;font-size:1.3rem;color:var(--muted);padding:.2rem;line-height:1;}
+.modal-close:hover{color:var(--text);}
+/* Tabs */
+.modal-tabs{display:flex;overflow-x:auto;border-bottom:2px solid var(--border);flex-shrink:0;background:#fafafa;}
+.modal-tab{flex:none;padding:.65rem 1.1rem;font-size:.84rem;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;font-family:'DM Sans',sans-serif;white-space:nowrap;transition:all .2s;}
+.modal-tab:hover{color:var(--primary);}
+.modal-tab.active{color:var(--primary);border-bottom-color:var(--primary);background:#fff;}
+/* Tab panels */
+.modal-body{overflow-y:auto;flex:1;}
+.tab-panel{display:none;padding:1.5rem 1.75rem;}
+.tab-panel.active{display:block;}
+/* Form groups */
+.fg{margin-bottom:1rem;}
+.fg label{display:block;font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:.35rem;}
+.fg input,.fg textarea{width:100%;padding:.58rem .8rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s;}
+.fg input:focus,.fg textarea:focus{border-color:var(--primary);}
+.fg textarea{resize:vertical;min-height:80px;}
+/* Color swatches */
+.color-row{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:.45rem;}
+.csw{width:30px;height:30px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:transform .2s,border-color .2s;}
+.csw:hover{transform:scale(1.15);}
+.csw.sel{border-color:#1f2937;transform:scale(1.1);}
+/* Cosmetic picker grid */
+.cosmetic-picker-label{font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:.6rem;display:block;}
+.cosmetic-picker-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.75rem;}
+.cp-item{border-radius:12px;overflow:hidden;border:2.5px solid var(--border);cursor:pointer;transition:border-color .2s,transform .2s;background:var(--card);}
+.cp-item:hover{border-color:var(--primary);transform:translateY(-2px);}
+.cp-item.sel{border-color:var(--primary);box-shadow:0 0 0 3px rgba(79,70,229,.2);}
+.cp-item.none-item{display:flex;align-items:center;justify-content:center;height:72px;border-style:dashed;color:var(--muted);font-size:.82rem;font-weight:600;}
+.cp-item .cp-img{width:100%;height:72px;object-fit:cover;display:block;}
+.cp-item .cp-name{font-size:.75rem;font-weight:600;text-align:center;padding:.3rem;color:var(--text);background:#fafafa;}
+.cp-item.sel .cp-name{background:rgba(79,70,229,.08);color:var(--primary);}
+/* Modal footer */
+.modal-footer{padding:1rem 1.75rem;border-top:1px solid var(--border);display:flex;gap:.7rem;justify-content:flex-end;flex-shrink:0;background:#fafafa;}
+.btn-primary{background:var(--primary);color:#fff;border:none;border-radius:10px;padding:.52rem 1.4rem;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s;}
+.btn-primary:hover{background:#4338ca;transform:translateY(-1px);}
+.btn-ghost{background:transparent;color:var(--muted);border:1.5px solid var(--border);border-radius:10px;padding:.52rem .95rem;font-family:'DM Sans',sans-serif;cursor:pointer;}
+.btn-ghost:hover{border-color:var(--primary);color:var(--primary);}
+.err-msg{color:#ef4444;font-size:.83rem;margin-top:.5rem;display:none;}
+
+@media(max-width:600px){
+  .avatar-row{flex-direction:column;align-items:center;margin-top:-48px;}
+  .avatar-meta{text-align:center;width:100%;}
+  .pname{justify-content:center;}
+  .pmeta{justify-content:center;}
+  .header-actions{justify-content:center;}
+  .p-banner{height:140px;}
+}
+</style>
+</head>
+<body id="pageBody">
+<div id="bgLayer"></div>
+<div id="bgOverlay"></div>
+<div class="page-content">
+<nav class="pnav">
+  <a href="{{langURL .Language "landing"}}">&#8592; {{if eq .Language "en"}}Home{{else}}首页{{end}}</a>
+  <span class="sep">/</span>
+  <span class="cur">{{if .Profile}}{{.Profile.Username}}{{end}}</span>
+  {{if .LoggedIn}}
+  <span class="sep">|</span>
+  <a href="/profile/{{.CurrentUser}}{{if eq .Language "en"}}/e{{end}}">{{if eq .Language "en"}}My Profile{{else}}我的主页{{end}}</a>
+  <a href="{{langURL .Language "payment"}}">{{if eq .Language "en"}}Dashboard{{else}}仪表盘{{end}}</a>
+  <a href="/store">{{if eq .Language "en"}}Store{{else}}商店{{end}}</a>
+  {{end}}
+</nav>
+
+<div class="wrap">
+{{if .Profile}}
+{{$p := .Profile}}
+
+<!-- Header card with banner + info -->
+<div class="p-header">
+  <div class="p-banner" id="bannerEl"{{if $p.ActiveBanner}} style="background-image:url('/static/banners/{{$p.ActiveBanner}}');background-size:cover;background-position:center;"{{end}}></div>
+  <div class="p-content">
+    <div class="avatar-row">
+      <div class="avatar {{$p.XPBorderClass}}" style="background:{{$p.AvatarColor}};" id="profileAvatar">{{slice $p.Username 0 1}}</div>
+      <div class="avatar-meta">
+        <h1 class="pname">
+          {{if $p.DisplayName}}{{$p.DisplayName}}{{else}}{{$p.Username}}{{end}}
+          <span class="role-badge {{$p.Role}}">{{if eq $p.Role "editor"}}⭐ Editor{{else if eq $p.Role "writer"}}✍️ Writer{{else}}👤 Newcomer{{end}}</span>
+          {{if $p.XPTitle}}<span class="xp-title-badge">{{$p.XPTitle}}</span>{{end}}
+        </h1>
+        {{if $p.DisplayName}}<p class="pdisplay">@{{$p.Username}}</p>{{end}}
+        {{if $p.Bio}}<p class="pbio">{{$p.Bio}}</p>{{else if $p.IsOwner}}<p class="pbio-empty">No bio yet — click Edit Profile to add one.</p>{{end}}
+      </div>
+    </div>
+    <div class="pmeta">
+      <span>📅 Joined {{$p.JoinedAt.Format "Jan 2006"}}</span>
+      {{if $p.RealName}}<span>🪪 {{$p.RealName}}</span>{{end}}
+      {{if gt $p.LeaderboardRank 0}}<span>🏆 Rank #{{$p.LeaderboardRank}}</span>{{end}}
+      {{if $p.TutorialCompleted}}<span>🎓 Certified</span>{{end}}
+      {{if gt $p.DaysLoggedIn 0}}<span>📆 {{$p.DaysLoggedIn}} days</span>{{end}}
+    </div>
+    <div class="header-actions">
+      <a href="/store" class="store-link">🛍️ Store</a>
+      {{if $p.IsOwner}}<button class="edit-btn" onclick="openEdit()">✏️ Edit Profile</button>{{end}}
+    </div>
+  </div>
+</div>
+
+<!-- Currencies -->
+<div class="currency-row">
+  <div class="currency-card xp-card">
+    <div class="cc-header"><div><div class="cc-name">⚡ Site XP</div><div class="cc-amount">{{$p.XP}}</div><div class="cc-sublabel">Level {{$p.XPLevel}} — {{$p.XPLevelName}}</div></div><div class="cc-icon">⚡</div></div>
+    <div class="cc-bar-bg"><div class="cc-bar-fill" style="width:{{$p.XPProgressPct}}%;"></div></div>
+    <div class="cc-progress-row"><span>{{$p.XPLevelName}}</span>{{if gt $p.XPToNext 0}}<span>{{$p.XPToNext}} to next</span>{{else}}<span>Max!</span>{{end}}</div>
+    <div class="cc-breakdown"><span class="cc-chip">🔐 Login +5/day</span><span class="cc-chip">📝 Post +10</span><span class="cc-chip">💬 Reply +5</span></div>
+  </div>
+  <div class="currency-card ink-card">
+    <div class="cc-header"><div><div class="cc-name">✒️ Ink Tokens</div><div class="cc-amount">{{$p.InkTokens}}</div><div class="cc-sublabel">{{$p.InkLevelName}} · Redeemable</div></div><div class="cc-icon">✒️</div></div>
+    <div class="cc-bar-bg"><div class="cc-bar-fill" style="width:{{$p.InkProgressPct}}%;"></div></div>
+    <div class="cc-progress-row"><span>{{$p.InkLevelName}}</span>{{if gt $p.InkToNext 0}}<span>{{$p.InkToNext}} to next</span>{{else}}<span>Legendary!</span>{{end}}</div>
+    <div class="cc-breakdown"><span class="cc-chip">✅ Chars÷10</span><span class="cc-chip">🎓 Tutorial +100</span><span class="cc-chip">🏅 Certs +50</span></div>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="stat-cards">
+  <div class="sc green"><span class="icon">✅</span><span class="val">{{$p.ApprovedDialogues}}</span><span class="lbl">Approved</span></div>
+  <div class="sc blue"><span class="icon">📊</span><span class="val">{{$p.TotalDialogues}}</span><span class="lbl">Total</span></div>
+  <div class="sc"><span class="icon">📝</span><span class="val">{{$p.WordsPassed}}</span><span class="lbl">Chars Passed</span></div>
+  <div class="sc"><span class="icon">📈</span><span class="val">{{printf "%.0f" $p.ApprovalRate}}%</span><span class="lbl">Approval Rate</span></div>
+</div>
+
+<!-- Unlocked cosmetics -->
+<div class="scard">
+  <h2 class="sh">🎨 Unlocked Cosmetics</h2>
+  <div class="cosmetics-grid">
+    {{range $p.UnlockedTiers}}
+    <div class="cosmetic-chip"><span>🏷️ {{.Title}}</span></div>
+    {{if ne .BorderClass "border-none"}}<div class="cosmetic-chip"><span>🖼️ {{.Name}} Frame</span></div>{{end}}
+    {{if ne .ChatColor "Default"}}<div class="cosmetic-chip" style="background:none;border:2px solid {{.ChatColorHex}};color:{{.ChatColorHex}};"><span>💬 {{.ChatColor}} Name</span></div>{{end}}
+    {{end}}
+    {{if lt (len $p.UnlockedTiers) 6}}<div class="cosmetic-chip locked">🔒 More at higher XP</div>{{end}}
+  </div>
+</div>
+
+<!-- Character flairs -->
+{{if $p.CharacterFlairs}}
+<div class="scard">
+  <h2 class="sh">🎖️ Character Flairs</h2>
+  <div class="flair-list">
+    {{range $p.CharacterFlairs}}
+    <span class="flair-chip {{.Level | lower}}">{{if eq .Level "Master"}}🏆{{else if eq .Level "Expert"}}⭐{{else}}✍️{{end}} {{.CharacterID}} {{.Level}}</span>
+    {{end}}
+  </div>
+</div>
+{{end}}
+
+<!-- Certifications -->
+<div class="scard">
+  <h2 class="sh">🏅 Certifications</h2>
+  <div class="cert-grid">
+    {{if $p.Certifications}}{{range $p.Certifications}}<span class="cert-chip">{{.CharacterID}}</span>{{end}}
+    {{else}}<span style="color:var(--muted);font-style:italic;font-size:.9rem;">No certifications yet.</span>{{end}}
+  </div>
+</div>
+
+<!-- Ink history -->
+{{if and $p.IsOwner $p.InkHistory}}
+<div class="scard">
+  <h2 class="sh">✒️ Ink Token History</h2>
+  <div class="ih-list">
+    {{range $p.InkHistory}}
+    <div class="ih-item">
+      <span class="ih-amt {{if gt .Amount 0}}pos{{else}}neg{{end}}">{{if gt .Amount 0}}+{{end}}{{.Amount}}</span>
+      <span class="ih-reason">{{.Reason}}</span>
+      <span class="ih-date">{{.CreatedAt.Format "Jan 2, 2006"}}</span>
+    </div>
+    {{end}}
+  </div>
+</div>
+{{end}}
+
+<!-- Editor award panel -->
+{{if eq .UserRole "editor"}}
+<div class="award-panel">
+  <h3>⭐ Award Currency (Editor)</h3>
+  <div class="award-row">
+    <div><label style="font-size:.78rem;color:#92400e;font-weight:600;">Type</label>
+    <select id="awardType"><option value="ink">✒️ Ink Tokens</option><option value="xp">⚡ Site XP</option></select></div>
+    <div><label style="font-size:.78rem;color:#92400e;font-weight:600;">Amount</label>
+    <input type="number" id="awardAmt" placeholder="e.g. 100" style="width:100px;"></div>
+    <div style="flex:1;"><label style="font-size:.78rem;color:#92400e;font-weight:600;">Reason</label>
+    <input type="text" id="awardReason" placeholder="Outstanding quality..."></div>
+    <button class="btn-award" onclick="doAward()">Award</button>
+  </div>
+  <div id="awardMsg" style="margin-top:.5rem;font-size:.83rem;"></div>
+</div>
+{{end}}
+
+{{else}}
+<div style="text-align:center;padding:4rem;color:var(--muted);">
+  <div style="font-size:3rem;">👤</div><p>Profile not found.</p>
+  <a href="/" style="color:var(--primary);">Go home</a>
+</div>
+{{end}}
+</div><!-- /wrap -->
+
+<!-- ─── EDIT MODAL ─── -->
+{{if and .Profile .Profile.IsOwner}}
+<div class="modal-overlay" id="editModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2 class="modal-title">✏️ Edit Profile</h2>
+      <button class="modal-close" onclick="closeEdit()">✕</button>
+    </div>
+    <div class="modal-tabs" id="modalTabs">
+      <button class="modal-tab active" data-tab="identity">👤 Identity</button>
+      <button class="modal-tab" data-tab="avatar">🎨 Avatar</button>
+      <button class="modal-tab" data-tab="banner">🖼️ Banner</button>
+      <button class="modal-tab" data-tab="background">🌄 Background</button>
+    </div>
+    <div class="modal-body">
+      <!-- Identity tab -->
+      <div class="tab-panel active" id="tab-identity">
+        <div class="fg"><label>Display Name</label><input type="text" id="eDN" maxlength="50" value="{{.Profile.DisplayName}}" placeholder="Optional display name"></div>
+        <div class="fg"><label>Bio <span style="color:var(--muted);font-weight:400;">(max 500 chars)</span></label><textarea id="eBio" maxlength="500">{{.Profile.Bio}}</textarea></div>
+      </div>
+      <!-- Avatar tab -->
+      <div class="tab-panel" id="tab-avatar">
+        <div class="fg">
+          <label>Avatar Color</label>
+          <div style="margin-bottom:1rem;">
+            <div class="avatar" id="previewAvatar" style="background:{{.Profile.AvatarColor}};width:72px;height:72px;font-size:2rem;margin:0 auto 1rem;">{{slice .Profile.Username 0 1}}</div>
+          </div>
+          <div class="color-row" id="colorRow"></div>
+        </div>
+      </div>
+      <!-- Banner tab -->
+      <div class="tab-panel" id="tab-banner">
+        <span class="cosmetic-picker-label">Choose a banner (namecard)</span>
+        <div class="cosmetic-picker-grid" id="bannerGrid"></div>
+      </div>
+      <!-- Background tab -->
+      <div class="tab-panel" id="tab-background">
+        <span class="cosmetic-picker-label">Choose a page background</span>
+        <div class="cosmetic-picker-grid" id="bgGrid"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div id="editErr" class="err-msg"></div>
+      <button class="btn-ghost" onclick="closeEdit()">Cancel</button>
+      <button class="btn-primary" onclick="saveProfile()">💾 Save</button>
+    </div>
+  </div>
+</div>
+{{end}}
+</div><!-- /page-content -->
+
+<script>
+const P = {{.ProfileJSON}};
+const COLORS = ['#6366f1','#8b5cf6','#ec4899','#ef4444','#f97316','#eab308','#22c55e','#06b6d4','#3b82f6','#14b8a6','#84cc16','#a78bfa'];
+let selColor = P.avatar_color || '#6366f1';
+let selBanner = P.active_banner || '';
+let selBackground = P.active_background || '';
+
+// Apply bg on load
+function applyBackground(bg){
+  const body = document.getElementById('pageBody');
+  const layer = document.getElementById('bgLayer');
+  if(!layer) return;
+  if(bg){
+    layer.style.backgroundImage = "url('/static/backgrounds/"+bg+"')";
+    body.classList.add('has-bg');
+  } else {
+    layer.style.backgroundImage = '';
+    body.classList.remove('has-bg');
+  }
+}
+applyBackground(P.active_background || '');
+
+// Tabs
+document.getElementById('modalTabs') && document.getElementById('modalTabs').addEventListener('click', e => {
+  const btn = e.target.closest('.modal-tab');
+  if(!btn) return;
+  document.querySelectorAll('.modal-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+});
+
+function openEdit(){
+  document.getElementById('editModal').classList.add('active');
+  // Build color row
+  const row = document.getElementById('colorRow');
+  row.innerHTML = '';
+  COLORS.forEach(c => {
+    const sw = document.createElement('div');
+    sw.className = 'csw'+(c===selColor?' sel':'');
+    sw.style.background = c;
+    sw.onclick = () => {
+      selColor = c;
+      row.querySelectorAll('.csw').forEach(s=>s.classList.remove('sel')); sw.classList.add('sel');
+      document.getElementById('previewAvatar').style.background = c;
+    };
+    row.appendChild(sw);
+  });
+  // Build banner grid
+  buildCosmeticGrid('bannerGrid', P.owned_banners||[], selBanner, 'banner', v => selBanner=v, '/static/banners/');
+  // Build background grid
+  buildCosmeticGrid('bgGrid', P.owned_backgrounds||[], selBackground, 'background', v => { selBackground=v; applyBackground(v); }, '/static/backgrounds/');
+}
+
+function buildCosmeticGrid(gridId, items, current, type, onSelect, pathPrefix){
+  const grid = document.getElementById(gridId);
+  if(!grid) return;
+  const niceLabel = type==='banner'?'Banner':'Background';
+  let html = `<div class="cp-item none-item${current===''?' sel':''}" data-val="">🚫 No ${niceLabel}</div>`;
+  items.forEach(item => {
+    const isSel = item===current;
+    html += `<div class="cp-item${isSel?' sel':''}" data-val="${item}">
+      <img class="cp-img" src="${pathPrefix}${item}" alt="${item}" onerror="this.style.display='none'">
+      <div class="cp-name">${item.replace(/\.[^.]+$/,'').replace(/_/g,' ')}</div>
+    </div>`;
+  });
+  grid.innerHTML = html;
+  grid.querySelectorAll('.cp-item').forEach(el => {
+    el.onclick = () => {
+      grid.querySelectorAll('.cp-item').forEach(e=>e.classList.remove('sel'));
+      el.classList.add('sel');
+      onSelect(el.dataset.val);
+    };
+  });
+}
+
+function closeEdit(){ document.getElementById('editModal').classList.remove('active'); }
+
+async function saveProfile(){
+  const dn = document.getElementById('eDN').value.trim();
+  const bio = document.getElementById('eBio').value.trim();
+  const err = document.getElementById('editErr');
+  err.style.display='none';
+  const payload = {
+    display_name: dn,
+    bio,
+    avatar_color: selColor,
+    active_banner: selBanner || 'none',
+    active_background: selBackground || 'none',
+  };
+  try{
+    const res = await fetch('/api/profile/me',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    const d = await res.json();
+    if(!res.ok||d.error){err.textContent=d.error||'Save failed';err.style.display='block';return;}
+    document.getElementById('profileAvatar').style.background=selColor;
+    // Update banner immediately
+    if(selBanner){
+      document.getElementById('bannerEl').style.backgroundImage = "url('/static/banners/"+selBanner+"')";
+      document.getElementById('bannerEl').style.backgroundSize='cover';
+    } else {
+      document.getElementById('bannerEl').style.backgroundImage='';
+    }
+    closeEdit();
+    window.location.reload();
+  }catch(e){err.textContent='Network error';err.style.display='block';}
+}
+
+async function doAward(){
+  const type = document.getElementById('awardType').value;
+  const amount = parseInt(document.getElementById('awardAmt').value);
+  const reason = document.getElementById('awardReason').value.trim();
+  const msg = document.getElementById('awardMsg');
+  if(!amount||isNaN(amount)){msg.textContent='Enter amount.';return;}
+  try{
+    const res = await fetch('/api/profile/{{if .Profile}}{{.Profile.Username}}{{end}}/award-points',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount,reason,type})});
+    const d = await res.json();
+    if(!res.ok||d.error){msg.style.color='#ef4444';msg.textContent=d.error||'Failed';return;}
+    msg.style.color='#059669';msg.textContent='Awarded '+amount+' '+(type==='xp'?'XP':'Ink')+'! Refreshing...';
+    setTimeout(()=>window.location.reload(),1500);
+  }catch(e){msg.textContent='Network error';}
+}
+
+document.getElementById('editModal') &&
+  document.getElementById('editModal').addEventListener('click',function(e){if(e.target===this)closeEdit();});
+</script>
+</body>
+</html>

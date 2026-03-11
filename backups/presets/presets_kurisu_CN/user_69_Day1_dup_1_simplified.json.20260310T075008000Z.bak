@@ -1,0 +1,130 @@
+{
+  "_creation_metadata": {
+    "created_at": 1773128213,
+    "created_by_ip": "103.151.173.197",
+    "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+    "version": "1.0"
+  },
+  "abilities": "",
+  "character_name": "Kurisu",
+  "comments": [],
+  "completed": false,
+  "dialogue": [
+    {
+      "content": "你主页那句“浪费过一年在无用功上”也太真实了，我刚从探针台下来，现在看着一堆飘掉的阈值，感觉这片子像在跟我闹脾气。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:11",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你要是也在实验室或者器件这行混过，应该懂那种仿真像天使、实测像仇人的落差。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:12",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你这是在做器件还是在拜神？阈值会飘说明它至少还活着。彻底死给你看那才叫麻烦。你做什么方向的？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "22:13",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "GaN功率器件，工艺、TCAD、测试都沾一点。白天进洁净间，下午上探针台，晚上回去还得改脚本和参数，主打一个全流程挨打。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:14",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "……行，原来是同行受害者。那我对你的抱怨立刻多了几分尊重。你们现在最折磨你的，是哪一环？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "22:16",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "最近是表面和栅附近那一坨问题。仿真里把陷阱和边界条件调顺以后世界和平，真做出来又是漏电、电流塌陷、阈值漂。每次看曲线都像在猜谜。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:18",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "仿真最会骗人的地方就在这。不是说它没用，而是它永远默认世界还讲道理。现实里的缺陷、污染、手一抖、设备脾气，没一个会老实写在参数里。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "22:20",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "对，尤其前面工艺窗口只要窄一点，后面测试就开始报复社会。我现在已经养成习惯了，先怀疑自己，再怀疑设备，最后怀疑人生。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:22",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "[捂脸] 顺序不对。应该先怀疑设备，再怀疑工艺，再怀疑自己。怀疑人生留到半夜。你们现在也是一边做split一边赌命？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "22:24",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "基本就是。为了找一个趋势，批次、版图、接触、钝化、退火条件全得拆开看，最后还不一定能收敛成一句人话。报告里写得像逻辑严密，过程里其实像破案。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:26",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "听起来很像我这边。明明想做研究，最后大量时间都花在证明“不是我疯了，是结果真有问题”上。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "22:28",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "对对对 就这个意思。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:29",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "而且有些现象特别坏，静态看着还能交差，一上动态或者高压就翻脸。那种时候我真的会怀疑是不是样品在针对我。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "而且最烦的是你明知道方向没错，结果就是迟迟不肯长出来。那种感觉会把人磨得很烦。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "22:30",
+      "timestampManuallyEdited": true
+    }
+  ],
+  "experiences": "",
+  "history": "",
+  "intimacy_level": 0.13999999999999999,
+  "judgements": "",
+  "personnel_id": "20260310021302",
+  "personnel_username": "张梦阳",
+  "real_name": "张梦阳",
+  "relationship": "Two people have just met and are still unfamiliar with each other. Their conversations are mostly polite and superficial, limited to everyday topics like work, studies, or the weather. At this stage, both sides are cautious and have yet to reveal their true selves.",
+  "starting_intimacy_level": 0,
+  "user_id": "user_69",
+  "user_name": "周砚",
+  "user_schedule": {
+    "day": 1,
+    "下午": "下午上探针台和测试台，反复测导通、电流塌陷和漏电，哪条曲线不对就开始追到底是版图、接触还是表面处理的问题。",
+    "中午": "回工位一边扒两口饭一边看Id-Vg和击穿数据，顺手改TCAD参数，怀疑到底是界面态还是工艺窗口没收住。",
+    "夜晚": "夜里回去继续跑仿真和改脚本，顺便复盘今天的曲线，越看越想找个人吐槽一句‘这阈值到底又在飘什么’。",
+    "早晨": "一早进洁净间处理片子，盯着光刻胶、金属和退火流程，边做边担心这批栅区又出幺蛾子。",
+    "晚上": "傍晚整理当天工艺和测试记录，把异常点单独记下来，开始想第二天要补做哪组split。"
+  },
+  "values": ""
+}

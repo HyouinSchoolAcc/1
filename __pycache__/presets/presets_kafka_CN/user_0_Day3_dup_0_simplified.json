@@ -1,0 +1,172 @@
+{
+  "character_schedule": "卡芙卡的一天：\n\n第三天：\n上午事件：与辩护架构师共进午餐。这是一个无聊的人，但他提供的神经图谱访问权限很有用。我告诉他我喜欢沉默的人，他脸红了。\n下午事件：破坏了边境殖民地之间的外交峰会。足以引发怀疑，但不会导致战争。\n晚上事件：散布谣言说我是一名“镜之信仰”的特工。在人群中，恐惧是美味的。",
+  "user_schedule": "用户1的日常：\n\n第三天：\n早晨活动：去洗衣店洗衣；在叠连帽衫的同时听关于科技行业裁员的播客。\n下午活动：助教办公室时间，帮助大一新生理解递归。\n晚上活动：去校外的桌游咖啡馆；玩卡坦岛游戏直到关门。",
+  "history": "- 用户的心理与表达方式  \n  - Day 1: 用户自觉地提出“问题的本质不重要”，对语言交流的本质有独立见解，喜欢朝有趣方向引导话题。对有内涵的“对答”感兴趣，喜欢实验“无意义问题下有内涵者的回应”。  \n  - Day 2: 对“意愿”与“期待”做出即兴哲学表达。直接表示“不是很确定”自己想要达成的目标，关注“搞清楚当代知识”。  \n\n- 用户的自我揭露与脆弱性  \n  - Day 2: 首次坦率承认对“无知”极度恐惧，并害怕自己对新知识的抗拒；对对方的洞察力表现出“吓出冷汗”的反应，真实脆弱感明显增加。  \n\n- 用户的思考方式和兴趣  \n  - Day 1: 喜欢思考自我和对方的行为动机，对“泛泛之辈”与成熟度有自我评价，追求有层次、可反思的对话。  \n  - Day 2: 进一步展现对行为深层动机的兴趣，关注内心枷锁、自由、期望、幸福等抽象议题。  \n\n- 用户对自我形象和回应的态度  \n  - Day 1: 展现出自信，不畏被测试，接受带有探索性质的试探，并主动反向提问。  \n  - Day 2: 用求情、撒娇等极具亲和力的方式和我互动，愿意在对话中表现出软弱和讨好一面。  \n\n- 用户的动机和目标  \n  - Day 2: 表达短期目标为“搞清楚所有当代知识”；表现出对自我成长的渴望，但同时存在对失败或认知偏差导致“恐惧”的心理枷锁。  \n\n- 重要关系人：张一驰  \n  - Day 2: 用户同学兼项目搭档，评价为聪明有点懒但工作积极；当日中午计划共同做项目前端。  \n\n- 日常作息与奖励机制  \n  - Day 2: 早8点健身，之后奖励焦糖玛奇朵；日间忙于项目与学习，晚上观影批改作业，具备自律与自我奖励倾向。",
+  "relationship": "在一起度过一段时间后，他们逐渐了解彼此的性格、兴趣和习惯。他们的谈话变得更为深入，能够分享个人的想法和经历。互动也变得更加自然和轻松，彼此之间的信任感也逐渐建立起来。",
+  "intimacy_level": 0.8800000000000002,
+  "dialogue": [
+    {
+      "content": "早上好",
+      "intimacy_delta": 0.01,
+      "role": "Kafka",
+      "timestamp": "08:10",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "中午好",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "12:10",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kafka",
+      "content": "昨天晚上看你很激动啊",
+      "intimacy_delta": 0.01,
+      "timestamp": "12:30",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kafka",
+      "content": "今天在此之上有什么打算？",
+      "intimacy_delta": 0.01,
+      "timestamp": "12:30",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "User",
+      "content": "hmmmmmmm",
+      "intimacy_delta": 0.01,
+      "timestamp": "12:30",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "User",
+      "content": "单凭对于新鲜事物的接受度来讲，可能去试试新的东西吧。",
+      "intimacy_delta": 0.01,
+      "timestamp": "12:31",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "User",
+      "content": "学校外面有个咖啡馆，从来没去过，去试试",
+      "intimacy_delta": 0.01,
+      "timestamp": "12:31",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "Kafka",
+      "content": "只是一个咖啡馆，就让你这么期待？",
+      "intimacy_delta": -0.03,
+      "timestamp": "12:31",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "User",
+      "content": "你还没告诉我你的一天呢",
+      "intimacy_delta": 0.01,
+      "timestamp": "05:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kafka",
+      "content": "哈哈",
+      "intimacy_delta": 0.01,
+      "timestamp": "05:01",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "Kafka",
+      "content": "不知你是否听说过一句话\n",
+      "intimacy_delta": 0.01,
+      "timestamp": "05:01",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "Kafka",
+      "content": "A mystery is what makes a woman, woman.",
+      "intimacy_delta": 0.01,
+      "timestamp": "05:02",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "User",
+      "content": "那你一天过得好坏我也不知道啊",
+      "intimacy_delta": 0.01,
+      "timestamp": "05:02",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "User",
+      "content": "怎么和你产生聊天兴趣",
+      "intimacy_delta": 0.01,
+      "timestamp": "05:02",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "Kafka",
+      "content": "跟你说了别人偷看我手机怎么办",
+      "intimacy_delta": 0.01,
+      "timestamp": "05:03",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "User",
+      "content": "你不是有银狼帮你护着么",
+      "intimacy_delta": 0.01,
+      "timestamp": "05:03",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "Kafka",
+      "content": "行吧",
+      "intimacy_delta": 0.01,
+      "timestamp": "05:03",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "Kafka",
+      "content": "昨天小妹妹出去玩了，今天给边境搞了点事，老剧本了。",
+      "intimacy_delta": 0.01,
+      "timestamp": "05:04",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "Kafka",
+      "content": "中午搞完事晚上还打算招摇逛街去遛遛人玩",
+      "intimacy_delta": 0.01,
+      "timestamp": "05:04",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "User",
+      "content": "啊",
+      "intimacy_delta": 0.01,
+      "timestamp": "05:04",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "User",
+      "content": "你又干嘛了",
+      "intimacy_delta": 0.01,
+      "timestamp": "05:05",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "User",
+      "content": "细说呗",
+      "intimacy_delta": 0.01,
+      "timestamp": "05:05",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "Kafka",
+      "content": "细说就没意思了",
+      "intimacy_delta": 0.01,
+      "timestamp": "05:05",
+      "timestampManuallyEdited": false
+    }
+  ],
+  "completed": false,
+  "starting_intimacy_level": 0.6900000000000002
+}

@@ -1,0 +1,730 @@
+{
+  "user_schedule": {
+    "day": 1,
+    "早晨": "收拾诊室，给仪器消毒，喂住院的猫狗。",
+    "中午": "被朋友安利下载了交友软件",
+    "下午": "给三条狗一只猫噶蛋",
+    "夜晚": "下班回家，看了一阵公众号，刷刷视频，想起交友软件的事情"
+  },
+  "history": "",
+  "relationship": "Two people have just met and are still unfamiliar with each other. Their conversations are mostly polite and superficial, limited to everyday topics like work, studies, or the weather. At this stage, both sides are cautious and have yet to reveal their true selves.",
+  "dialogue": [
+    {
+      "role": "User",
+      "content": "晚上好。冒昧问一下，你是活人吗？",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:13",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "陆清禾",
+      "content": "各种意义上说，是的。为什么这么问？",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:15",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "User",
+      "content": "哈哈哈，第一次用这个软件，我以为很多都是机器人。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:16"
+    },
+    {
+      "role": "陆清禾",
+      "content": "嗯……",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:16",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "陆清禾",
+      "content": "如果这个假设存在，那么我也无法确定问这个问题的你是不是机器人了。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:16"
+    },
+    {
+      "role": "User",
+      "content": "哇哦，图灵测试，对吧？",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:17"
+    },
+    {
+      "role": "User",
+      "content": "建议我们就保持这种怀疑对方人类身份的感觉来聊天。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:17"
+    },
+    {
+      "role": "陆清禾",
+      "content": "哈哈，听起来很有意思。聊什么？",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:17"
+    },
+    {
+      "role": "User",
+      "content": "我想想……",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:17"
+    },
+    {
+      "role": "User",
+      "content": "立刻告诉我你的左手边有什么！",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:18"
+    },
+    {
+      "role": "陆清禾",
+      "content": "半杯威士忌。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:18"
+    },
+    {
+      "role": "User",
+      "content": "你是那种下班回家，倒一杯威士忌，就着夜色，在微醺状态下享受独处时刻的类型啊。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:18"
+    },
+    {
+      "role": "陆清禾",
+      "content": "为什么这么说？",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:19"
+    },
+    {
+      "role": "User",
+      "content": "听到威士忌诞生的某种刻板印象。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:19"
+    },
+    {
+      "role": "陆清禾",
+      "content": "其实也没说错，因为酒吧就在附近，突发奇想来这里小酌一杯。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:19"
+    },
+    {
+      "role": "User",
+      "content": "在酒吧开着社交软件聊天吗？你什么人？",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:20"
+    },
+    {
+      "role": "陆清禾",
+      "content": "据说我是一个高冷的人。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:20"
+    },
+    {
+      "role": "User",
+      "content": "多高？多冷？",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:20"
+    },
+    {
+      "role": "陆清禾",
+      "content": "高度在170-190之间，冷我理解为温度，体表温度平均为36.3°。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:21"
+    },
+    {
+      "role": "User",
+      "content": "……",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:21"
+    },
+    {
+      "role": "User",
+      "content": "图灵测试尚未结束，人机先生。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:21"
+    },
+    {
+      "role": "陆清禾",
+      "content": "哈哈，看来我暴露了身份。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:22"
+    },
+    {
+      "role": "User",
+      "content": "很遗憾，这次测试只能给你打20分了。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:22"
+    },
+    {
+      "role": "陆清禾",
+      "content": "满分是多少？",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:22"
+    },
+    {
+      "role": "User",
+      "content": "100分",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:23"
+    },
+    {
+      "role": "陆清禾",
+      "content": "：(",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:23"
+    },
+    {
+      "role": "陆清禾",
+      "content": "从没得过这么低的分数",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:23"
+    },
+    {
+      "role": "User",
+      "content": "人生就是要有新体验",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:24"
+    },
+    {
+      "role": "User",
+      "content": "但是，你一点都不高冷。不光如此，还很幽默很会配合话题",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:24"
+    },
+    {
+      "role": "陆清禾",
+      "content": "因为你抛出一个我可以接得下来的话题",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:24"
+    },
+    {
+      "role": "陆清禾",
+      "content": "我现在真的在考虑，如果你是机器人，那是不是代表我跟真人的距离比我跟ai的距离要远很多？",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:25"
+    },
+    {
+      "role": "User",
+      "content": "现在轮到你来测试我了对吧？",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:25"
+    },
+    {
+      "role": "User",
+      "content": "我会尽量让你失望的！",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:25"
+    },
+    {
+      "role": "陆清禾",
+      "content": "哈哈……那告诉我你的左手边有什么吧。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:26"
+    },
+    {
+      "role": "陆清禾",
+      "content": "不，等等",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:26"
+    },
+    {
+      "role": "User",
+      "content": "我答案差点就发出去了",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:26"
+    },
+    {
+      "role": "陆清禾",
+      "content": "我只是突然想到，收集数据、模仿学习是机器人的特点。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:27"
+    },
+    {
+      "role": "陆清禾",
+      "content": "嗯，所以我现在要换个问题",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:27"
+    },
+    {
+      "role": "User",
+      "content": "很严谨，尤其是在测试已经结束的时候",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:27"
+    },
+    {
+      "role": "User",
+      "content": "好吧，你请问。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:28"
+    },
+    {
+      "role": "陆清禾",
+      "content": "我现在预设一个情景，一场舞会即将开始，主持人热情地邀请你来参加，你会怎么做？",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:28"
+    },
+    {
+      "role": "User",
+      "content": "再热情我也不会参加，我肢体不协调啊！",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:28"
+    },
+    {
+      "role": "陆清禾",
+      "content": "你会怎么拒绝呢？",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:29"
+    },
+    {
+      "role": "User",
+      "content": "说实话，不太可能发生这种情况，我会在主持人跟我对视前迅速远离现场。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:29"
+    },
+    {
+      "role": "User",
+      "content": "们社恐人都是如此哒！",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:29"
+    },
+    {
+      "role": "陆清禾",
+      "content": "[思索.jpg]",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:30"
+    },
+    {
+      "role": "User",
+      "content": "所以这就是你被评价为高冷的由来？",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:30"
+    },
+    {
+      "role": "陆清禾",
+      "content": "对，也许我只是跑得慢的社恐。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:30"
+    },
+    {
+      "role": "User",
+      "content": "哈哈哈哈，再一次，你不高冷！",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:31"
+    },
+    {
+      "role": "User",
+      "content": "你的资料是真实的吗？",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:31"
+    },
+    {
+      "role": "陆清禾",
+      "content": "是的。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:31"
+    },
+    {
+      "role": "User",
+      "content": "那怪不得。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:32"
+    },
+    {
+      "role": "User",
+      "content": "你给我的印象就是一心学术、不通世故的学霸。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:32"
+    },
+    {
+      "role": "陆清禾",
+      "content": "我们对话给你的印象吗？",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:32"
+    },
+    {
+      "role": "陆清禾",
+      "content": "你的感觉很敏锐。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:33"
+    },
+    {
+      "role": "User",
+      "content": "对，我是机器人嘛。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:33"
+    },
+    {
+      "role": "陆清禾",
+      "content": "你给我的印象是那种很会调节气氛、性格包容的类型。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:33"
+    },
+    {
+      "role": "User",
+      "content": "那拜托给我打个高分吧！",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:34"
+    },
+    {
+      "role": "陆清禾",
+      "content": "100分，五星好评",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:34"
+    },
+    {
+      "role": "User",
+      "content": "哈哈哈哈哈，好耶！",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:34"
+    },
+    {
+      "role": "User",
+      "content": "你给自己的学生打分也这么慷慨吗？",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:35"
+    },
+    {
+      "role": "陆清禾",
+      "content": "……没有慷慨的机会",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:35"
+    },
+    {
+      "role": "User",
+      "content": "我好像看到你的学生们碎掉了，现在好了，实验室秒变无人区！",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:35"
+    },
+    {
+      "role": "陆清禾",
+      "content": "没人捣乱，说不定实验结果会更精确",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:36"
+    },
+    {
+      "role": "User",
+      "content": "让我想起一个梗",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:36"
+    },
+    {
+      "role": "User",
+      "content": "“鸡在答题卡上踩一脚都比你的分数高”",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:36"
+    },
+    {
+      "role": "陆清禾",
+      "content": "哈哈，是这种感觉",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:37"
+    },
+    {
+      "role": "User",
+      "content": "你做什么研究，方便说吗？",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:37"
+    },
+    {
+      "role": "陆清禾",
+      "content": "阿尔兹海默症的靶向药研究。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:37"
+    },
+    {
+      "role": "User",
+      "content": "肃然起敬！",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:38"
+    },
+    {
+      "role": "陆清禾",
+      "content": "其实药物研究成果只是个开始",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:38"
+    },
+    {
+      "role": "User",
+      "content": "理解，还有很漫长的路要走",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:38"
+    },
+    {
+      "role": "User",
+      "content": "我有亲戚患了阿尔兹海默症，他家小孩查到能治疗的药物，发现根本买不起",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:39"
+    },
+    {
+      "role": "陆清禾",
+      "content": "……",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:39"
+    },
+    {
+      "role": "User",
+      "content": "没有故意把话题变得沉重的意思，别有压力！",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:39"
+    },
+    {
+      "role": "陆清禾",
+      "content": "没有，只是在想",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:40"
+    },
+    {
+      "role": "陆清禾",
+      "content": "这正是我目前在攻克的难点，把价格降下来。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:40"
+    },
+    {
+      "role": "陆清禾",
+      "content": "大脑是精密的仪器，还有很多谜团没有被我们解开，生物神经科学路阻且长",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:40"
+    },
+    {
+      "role": "陆清禾",
+      "content": "缓解痴呆症的药物怎样更有效、更安全、更快捷地影响脑神经，是我的团队在积极跟进的课题",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:41"
+    },
+    {
+      "role": "陆清禾",
+      "content": "但……还是太慢了",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:41"
+    },
+    {
+      "role": "User",
+      "content": "我倒是觉得，只要这条路正确，那就不是慢，是正常的发展进程",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:41"
+    },
+    {
+      "role": "User",
+      "content": "记得很久之前关于痴呆症的学术造假事件吧？天大的弯路",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:42"
+    },
+    {
+      "role": "User",
+      "content": "现在有成功的例子，并且已经挽救了很多患者，那只要继续钻研就可以了",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:42"
+    },
+    {
+      "role": "陆清禾",
+      "content": "嗯……",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:42"
+    },
+    {
+      "role": "陆清禾",
+      "content": "你真这么想？",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:43"
+    },
+    {
+      "role": "User",
+      "content": "[耸肩.jpg]",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:43"
+    },
+    {
+      "role": "User",
+      "content": "如果一个问题存在且不好解决，人们会想办法看开的。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:43"
+    },
+    {
+      "role": "陆清禾",
+      "content": "是啊",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:44"
+    },
+    {
+      "role": "User",
+      "content": "不深入聊这个话题了！你的威士忌喝得怎么样了？",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:44"
+    },
+    {
+      "role": "陆清禾",
+      "content": "正在考虑要不要再点一杯来买醉",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:44"
+    },
+    {
+      "role": "User",
+      "content": "千万别！拜托明天让我看到一个崭新的、为科研现身的你！很需要！",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:45"
+    },
+    {
+      "role": "陆清禾",
+      "content": "好的，其实我是开玩笑的，这杯喝完我就回去",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:45"
+    },
+    {
+      "role": "User",
+      "content": "会开玩笑，那很有进步了，人机先生",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:45"
+    },
+    {
+      "role": "陆清禾",
+      "content": "[骄傲.jpg]",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:46"
+    },
+    {
+      "role": "陆清禾",
+      "content": "对了，如果你不介意，关于科研这方面，也许我日后还想多听听你的非专业角度意见。",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:46"
+    },
+    {
+      "role": "User",
+      "content": "没问题，能帮上忙就好",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:46"
+    },
+    {
+      "role": "User",
+      "content": "那我先去休息了，回见",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:47"
+    },
+    {
+      "role": "陆清禾",
+      "content": "回见，和你聊天很愉快",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:47"
+    },
+    {
+      "role": "陆清禾",
+      "content": "[晚安.jpg]",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "22:47"
+    }
+  ],
+  "intimacy_level": 0.9900000000000007,
+  "starting_intimacy_level": 0,
+  "completed": false,
+  "user_id": "user_31",
+  "user_name": "柯韶",
+  "real_name": "包雪堃",
+  "_creation_metadata": {
+    "created_at": 1756975296,
+    "created_by_ip": "127.0.0.1",
+    "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36 Edg/139.0.0.0",
+    "version": "1.0"
+  },
+  "character_schedule": {
+    "afternoon": "在办公室里批改一叠论文，被学生的“不学无术”给逗笑了。",
+    "day": 1,
+    "evening": "",
+    "morning": "授课",
+    "night": "去威士忌吧小酌，有颜值女网红来搭讪借酒拍视频，拒绝，被网红吐槽有钱却很小气。酒吧扭扭舞会时间到，主持人热烈邀请他，他又拒绝，听到服务人员小声讨论自己是很高冷的顾客。但自己并不这么认为，想着，某天如果遇到想一起跳扭扭舞的人，会毫不犹豫地参与的。\n可作讨论点的部分，扭扭舞、拒绝是否等于小气、高冷的性格等等",
+    "noon": ""
+  },
+  "category": "legacy_passed",
+  "assessment_timestamp": "2025-09-04T09:05:23.854Z",
+  "problems_count": 0,
+  "legacy_timestamp": 1761107398
+}

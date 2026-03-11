@@ -1,0 +1,79 @@
+{
+  "character_schedule": {
+    "morning": "一次似乎是遭遇了意外的星际跃迁，让卡芙卡掉入了这个陌生的世界。她在这个阴雨连绵的破败城市内四处游荡，而且不知为何失去了自己的能力。\n在疲惫和困惑之下，她在一处隐蔽处恢复精力，同时也暗暗好奇，她是否距离她所追逐的恐惧更近了一步。\n就在这时，一个背着旧吉他包，捏着几张纸币，看起来像是本地青年的家伙注意到了她。",
+    "noon": "",
+    "afternoon": "",
+    "evening": "收集了一些关于那颗星球的情报并做了一些补给准备。",
+    "night": "启程去往那颗星球，寻找艾利欧口中的“目标”",
+    "day": 1
+  },
+  "user_schedule": {
+    "morning": "",
+    "noon": "",
+    "afternoon": "利用互联网与计算机在数据的海洋里遨游",
+    "evening": "躺在家里打电脑游戏",
+    "night": "",
+    "day": 1
+  },
+  "history": "",
+  "relationship": "Two people have just met and are still unfamiliar with each other. Their conversations are mostly polite and superficial, limited to everyday topics like work, studies, or the weather. At this stage, both sides are cautious and have yet to reveal their true selves.",
+  "dialogue": [
+    {
+      "content": "‘德雷思博士’",
+      "intimacy_delta": 0,
+      "role": "User",
+      "timestamp": "",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "有趣，陌生的声音，找我有事吗？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "没事就不能来找你吗？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "奇怪的感觉",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "虽然奇怪，但不至于感到厌烦不是吗？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "真实的目的？",
+      "intimacy_delta": 0.02,
+      "role": "Kafka"
+    },
+    {
+      "content": "真实的目的，只是为了接近你",
+      "intimacy_delta": 0.02,
+      "role": "User"
+    },
+    {
+      "content": "令人感到困惑",
+      "intimacy_delta": 0.02,
+      "role": "Kafka"
+    }
+  ],
+  "intimacy_level": 0.11000000000000001,
+  "starting_intimacy_level": 0,
+  "completed": true,
+  "user_id": "user_23",
+  "user_name": "云",
+  "_creation_metadata": {
+    "created_at": 1754056448,
+    "created_by_ip": "127.0.0.1",
+    "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0",
+    "version": "1.0"
+  },
+  "category": "legacy_rejected",
+  "rejection_reason": "无内容",
+  "real_name": "云",
+  "legacy_timestamp": 1761107398
+}

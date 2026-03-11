@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奇点之门工作室 - Singularity Gate Studio</title>
+    <link rel="stylesheet" href="/static/style.css?v=6">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- One-time redirect for logged-in users (allows back navigation) -->
+    <script>
+        (async function() {
+            // Skip if already redirected this session
+            if (sessionStorage.getItem('redirectedFromLanding')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/current_user');
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.logged_in && (data.role === 'writer' || data.role === 'editor')) {
+                        sessionStorage.setItem('redirectedFromLanding', 'true');
+                        const isEnglish = '{{.Language}}' === 'en';
+                        window.location.href = isEnglish ? '/navigation/e' : '/navigation';
+                    }
+                }
+            } catch (e) {}
+        })();
+    </script>
+    
+    <!-- Tutorial Overlay System -->
+    <div id="tutorial-overlay" class="tutorial-overlay" style="display: none;">
+        <!-- Dark overlay background -->
+        <div class="tutorial-backdrop" onclick="advanceTutorial()"></div>
+        
+        <!-- Highlight box that will be positioned over elements -->
+        <div id="tutorial-highlight" class="tutorial-highlight"></div>
+        
+        <!-- Dialogue Box at bottom -->
+        <div class="tutorial-dialogue-box">
+            <div class="tutorial-dialogue-header">
+                <img id="tutorial-avatar" src="/static/曹操.png" alt="曹操" class="tutorial-avatar">
+                <span class="tutorial-speaker-name">曹操</span>
+                <button class="tutorial-close-btn" onclick="endTutorial()">✕</button>
+            </div>
+            <div class="tutorial-dialogue-content">
+                <div id="tutorial-text" class="tutorial-text"></div>
+                <div id="tutorial-choices" class="tutorial-choices" style="display: none;"></div>
+                <div id="tutorial-conversation-display" class="tutorial-conversation-display" style="display: none;"></div>
+            </div>
+            <div class="tutorial-click-hint" id="tutorial-click-hint">点击继续...</div>
+        </div>
+    </div>
+
+    <!-- Flash Messages -->
+    <!-- Flash messages functionality not yet implemented -->
+
+    <!-- Top Header -->
+    <header class="top-header">
+        <!-- Hamburger Menu (Left) -->
+        <div class="menu-container">
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <!-- Dropdown Menu -->
+            <nav class="dropdown-menu" id="dropdownMenu">
+                <a href="{{langURL .Language "guide"}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                    <span>写手指南</span>
+                </a>
+                <a href="{{langURL .Language "navigation"}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                        <path d="M2 2l7.586 7.586"></path>
+                        <circle cx="11" cy="11" r="2"></circle>
+                    </svg>
+                    <span>写作</span>
+                </a>
+                <a href="{{langURL .Language "lounge"}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <span>写手交流室</span>
+                </a>
+                <a href="{{langURL .Language "faq"}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    <span>常见问题</span>
+                </a>
+                <a href="{{langURL .Language "descriptions"}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>角色描述</span>
+                </a>
+                <a href="{{langURL .Language "payment"}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                    <span>付款</span>
+                </a>
+                <a href="{{langURL .Language "llm"}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"></path>
+                        <circle cx="7.5" cy="14.5" r="1.5"></circle>
+                        <circle cx="16.5" cy="14.5" r="1.5"></circle>
+                    </svg>
+                    <span>LLM 使用</span>
+                </a>
+            </nav>
+        </div>
+        
+        <!-- Logo (Center) -->
+        <a class="logo-container" href="/">
+            <div class="logo-icon"></div>
+            <span class="logo-text">写手门户</span>
+        </a>
+        
+        <!-- Language Switcher -->
+        <div class="language-switcher" style="margin-right: 15px;">
+            <a href="/e" style="text-decoration: none; color: #718096; font-size: 14px; padding: 8px 12px; border-radius: 6px; transition: all 0.2s;">🇺🇸 EN</a>
+            <span style="color: #cbd5e0;">|</span>
+            <a href="/" style="text-decoration: none; color: #2d3748; font-weight: 600; font-size: 14px; padding: 8px 12px; border-radius: 6px; background: #f7fafc;">🇨🇳 中文</a>
+        </div>
+        
+        <!-- Account Menu (Right) -->
+        <div class="account-container">
+            <button class="account-btn" id="accountBtn" aria-label="Account menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </button>
+            
+            <!-- Account Dropdown -->
+            <div class="account-dropdown" id="accountDropdown">
+                {{if .LoggedIn}}
+                <div class="account-dropdown-header">
+                    <span class="account-name">{{.CurrentUser}}</span>
+                </div>
+                <a href="/logout" class="account-dropdown-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    <span>退出</span>
+                </a>
+                {{else}}
+                <a href="{{langURL .Language "login"}}" class="account-dropdown-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                        <polyline points="10 17 15 12 10 7"></polyline>
+                        <line x1="15" y1="12" x2="3" y2="12"></line>
+                    </svg>
+                    <span>登录</span>
+                </a>
+                {{end}}
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="hero">
+            <h1>欢迎来到奇点之门工作室</h1>
+            <p class="hero-tagline">我们是个做数据的实验室，专攻长时间大模型角色扮演能力</p>
+            <p class="hero-description">
+                我们的梦想是有一天模型聊天和人完全一模一样无法区分，打通图灵测试副本（完整）。<br>
+                恭候你的加入，研究员。
+            </p>
+            
+            <!-- Tour Button -->
+            <div class="hero-cta" style="margin: 2rem 0;">
+                <button onclick="startTutorial()" class="btn-start-writing" style="background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%); box-shadow: 0 4px 15px rgba(45, 55, 72, 0.4); cursor: pointer; border: none;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                    </svg>
+                    <span>带我逛逛，曹孟德先生</span>
+                </button>
+            </div>
+            
+            <!-- Data Preview Section -->
+            <div class="data-preview-section" id="data-preview-section">
+                <h2>对话数据示例</h2>
+                <p class="preview-subtitle">真实、接地气、具有角色感的对话数据</p>
+                
+                <div class="dialogue-selector-container">
+                    <div class="dialogue-tabs">
+                        <button class="tab-btn active" onclick="switchDialogue(0)">初次见面（失败）</button>
+                        <button class="tab-btn" onclick="switchDialogue(1)">发牢骚</button>
+                        <button class="tab-btn" onclick="switchDialogue(2)">见面（科研向）</button>
+                    </div>
+                    
+                    <div id="selected-dialogue-content" class="demo-dialogue-container">
+                        <!-- Dialogue content will be injected here by JS -->
+                    </div>
+                </div>
+
+                <div class="preview-cta">
+                    <a href="/navigation" class="btn-view-more">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <span>查看更多数据</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Video Demo Section -->
+            <div class="demo-section" style="margin-top: 0; padding-top: 0;">
+                <div class="demo-video-link">
+                    <p style="margin-bottom: 10px; font-weight: 600; color: #1e293b;">演示视频（待拍摄）</p>
+                    <a href="https://www.youtube.com/watch?v=y6120QOlsfU" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #4361ee; text-decoration: none; font-weight: 500;">
+                        <span>🎬 YouTube 链接 - 待拍摄</span>
+                    </a>
+                </div>
+            </div>
+            
+            <p class="cta-note">
+                如果您有社会学，计算机学，哲学或加入/待遇等一系列问题等待解答，请参考以下Q/A板块
+            </p>
+            
+        </section>
+
+        <section class="features-grid" id="features-grid">
+            <a href="/guide" id="feature-guide" class="feature-card" style="border: 2px solid var(--primary-light); background: linear-gradient(135deg, var(--bg-white) 0%, #f0f4ff 100%);">
+                <div class="feature-icon" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                </div>
+                <h3>从零开始的作家们</h3>
+                <p>和我签订契约，成为魔法少女（写手吧）</p>
+            </a>
+            
+            <a href="/navigation" id="feature-navigation" class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                        <path d="M2 2l7.586 7.586"></path>
+                    </svg>
+                </div>
+                <h3>写作</h3>
+                <p>为 AI 角色训练创建和编辑对话样本</p>
+            </a>
+            
+            <a href="/lounge" id="feature-lounge" class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                </div>
+                <h3>写手交流室</h3>
+                <p>与其他写手交流，分享心得，参加每日挑战</p>
+            </a>
+            
+            <a href="/faq" id="feature-faq" class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                </div>
+                <h3>常见问题</h3>
+                <p>指南、最佳实践以及常见问题解答</p>
+            </a>
+            
+            <a href="/descriptions" class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <h3>角色描述</h3>
+                <p>深入了解角色故事、性格和日常安排</p>
+            </a>
+            
+            <a href="/payment" class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                </div>
+                <h3>付款</h3>
+                <p>追踪您的提交和付款状态</p>
+            </a>
+            
+            <a href="/llm" class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"></path>
+                        <circle cx="7.5" cy="14.5" r="1.5"></circle>
+                        <circle cx="16.5" cy="14.5" r="1.5"></circle>
+                    </svg>
+                </div>
+                <h3>LLM 使用</h3>
+                <p>与微调后的林路 AI 角色对话</p>
+            </a>
+        </section>
+
+        <section class="quote-section">
+            <blockquote>
+                "如果我问人们想要什么，他们会说更快的马。"
+            </blockquote>
+            <cite>— 亨利·福特</cite>
+            <blockquote style="margin-top: 1.5rem;">
+                "我们<strong>将</strong>打通图灵测试。"
+            </blockquote>
+            <cite>— 奇点之门工作室</cite>
+        </section>
+
+        <!-- Timeline Section (at the very bottom) -->
+        <section class="timeline-section" style="margin-top: 3rem; padding: 2rem 1rem;">
+            <h2>企划时间线</h2>
+            
+            <div class="timeline-container">
+                <!-- The horizontal line -->
+                <div class="timeline-line"></div>
+                
+                <!-- Timeline markers - Time-accurate: Dec 2025 to Sep 2026 = 9 months -->
+                <div class="timeline-markers">
+                    <div class="timeline-marker" style="left: 0%;">
+                        <div class="marker-dot" onclick="this.parentElement.classList.toggle('expanded')"></div>
+                        <div class="marker-stem"></div>
+                        <div class="marker-content above" onclick="this.parentElement.classList.toggle('expanded')">
+                            <span class="marker-icon">🚀</span>
+                            <span class="marker-date">12月</span>
+                            <span class="marker-details">
+                                <strong>2025年12月</strong>
+                                <span>网站建设</span>
+                                <span>核心功能开发</span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-marker" style="left: 11%;">
+                        <div class="marker-dot" onclick="this.parentElement.classList.toggle('expanded')"></div>
+                        <div class="marker-stem below"></div>
+                        <div class="marker-content below" onclick="this.parentElement.classList.toggle('expanded')">
+                            <span class="marker-icon">📢</span>
+                            <span class="marker-date">1月</span>
+                            <span class="marker-details">
+                                <strong>2026年1月</strong>
+                                <span>招募启动</span>
+                                <span>B站宣发</span>
+                                <span>Demo上线</span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-marker" style="left: 22%;">
+                        <div class="marker-dot" onclick="this.parentElement.classList.toggle('expanded')"></div>
+                        <div class="marker-stem"></div>
+                        <div class="marker-content above" onclick="this.parentElement.classList.toggle('expanded')">
+                            <span class="marker-icon">👥</span>
+                            <span class="marker-date">2月</span>
+                            <span class="marker-details">
+                                <strong>2026年2月</strong>
+                                <span>角色设定敲定</span>
+                                <span>团队组建</span>
+                                <span>数据收集开始</span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-marker" style="left: 44%;">
+                        <div class="marker-dot" onclick="this.parentElement.classList.toggle('expanded')"></div>
+                        <div class="marker-stem below"></div>
+                        <div class="marker-content below" onclick="this.parentElement.classList.toggle('expanded')">
+                            <span class="marker-icon">✅</span>
+                            <span class="marker-date">4月</span>
+                            <span class="marker-details">
+                                <strong>2026年4月</strong>
+                                <span>数据收集结束</span>
+                                <span>模型微调</span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-marker" style="left: 56%;">
+                        <div class="marker-dot end" onclick="this.parentElement.classList.toggle('expanded')"></div>
+                        <div class="marker-stem"></div>
+                        <div class="marker-content above" onclick="this.parentElement.classList.toggle('expanded')">
+                            <span class="marker-icon">🔮</span>
+                            <span class="marker-date">5月+</span>
+                            <span class="marker-details">
+                                <strong>2026年5月+</strong>
+                                <span>待定</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Start/End labels -->
+                <div class="timeline-endpoints">
+                    <span class="endpoint start">2025</span>
+                    <span class="endpoint end">2026 →</span>
+                </div>
+            </div>
+            <p class="timeline-hint">点击节点查看详情</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>奇点之门工作室 - Singularity Gate Studio</p>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+    <script>
+        // Sample Dialogue Data
+        const sampleDialogues = [
+            {
+                title: "初次见面（失败）",
+                character: "Kurisu",
+                messages: [
+                    { role: "ai", content: "阿巴" },
+                    { role: "user", content: "阿巴" },
+                    { role: "ai", content: "你是人么？" },
+                    { role: "user", content: "你是鬼么？" },
+                    { role: "ai", content: "我是恶鬼~小孩子小心被我吃掉~嗷呜~" },                   
+                    { role: "ai", content: "你学啥的？" },
+                    { role: "user", content: "咋这么问，很冒犯啊亲" },
+                    { role: "system", content: "对方已下线" }
+                ]
+            },
+            {
+                title: "发牢骚",
+                character: "Kurisu",
+                messages: [
+                    { role: "ai", content: "草实验室小张刚进来的时候干的事挺多的，时间一久了不是出去玩就是找不到人。" },
+                    { role: "ai", content: "项目进展完全不关心，气死我了" },
+                    { role: "user", content: "啊? 你们实验室需要他么? 有活他不干？" },
+                    { role: "ai", content: "是啊，来了象征性干两个手头的活，但要动脑子的时候或者坐那加功能做测试一次找不到" },
+                    { role: "user", content: "听起来是态度问题啊" },
+                    { role: "user", content: "找老师反应开了不就行了" },
+                    { role: "ai", content: "我也不知道是不是态度问题，干活是能干好，但能干的时间老是特别少，感觉他就人不在。" },
+                    { role: "ai", content: "就。。你知道职场那种”我能干事，不推脱不揽责“那态度，你找老师问’活干好了么‘他就说干好了，也没啥能说的" },
+                    { role: "user", content: "卧槽" },
+                    { role: "user", content: "你这才是卷王" },
+                    { role: "user", content: "恐怖" },
+                    { role: "user", content: "man" },
+                    { role: "user", content: "what can I say" },
+                    { role: "ai", content: "mamba out " },
+                    { role: "ai", content: "。。。。。。" },
+                    { role: "ai", content: "你可以陪我骂骂他" },
+                    { role: "user", content: "听起来如果能干好的话多给他点活，一般这种人给个目的会好很多。那种可量化的，因为他们不想动脑子吗" },
+                    { role: "ai", content: "但想结果也很难啊" },
+                    { role: "ai", content: "我能想好结果就不用他干了" },
+                    { role: "ai", content: "而且量化这玩意一错了就贼错" },
+                    { role: "ai", content: "很多企业/实验室就是方向错了的才一错再错" },
+                    { role: "user", content: "那没办法了，智商问题。" },
+                    { role: "user", content: "欸嘿" },
+                    { role: "ai", content: "nm" },
+                    { role: "user", content: "实不相瞒，我以前就是这种人" },
+                    { role: "ai", content: "啊？你这也有脸跟我说" },
+                    { role: "user", content: "就实验室混一混很正常啊。有趣了干点事，没趣了就干其他活。大学里有趣的还挺多的" },
+                    { role: "user", content: "说实话也是不知道自己想要什么和对这一件事的出路不确定。因为不知道他的效果怎么样" },
+                    { role: "ai", content: "欸你这道提醒我了" },
+                    { role: "ai", content: "~该撸管了~" },
+                    { role: "ai", content: "我是不是应该去画饼让这个人更有参与感" },
+                    { role: "user", content: "你个女生你撸个头" },
+                    { role: "ai", content: "你当时后来结果是啥，跑路了？还是认真干了？" },
+                    { role: "user", content: "我当时是认真干了之后因为看到了其他更有趣的东西跑路了，但在实验组我一开始比较边缘人，后来觉得融入了才认真开始的" },
+                    { role: "user", content: "认真的契机应该是和同学聊的来了吧" },
+                    { role: "ai", content: "看来我有必要学会拉同学出去吃饭的能力" },
+                    { role: "ai", content: "这个咋办" },
+                    { role: "user", content: "”约吗？“" },
+                    { role: "ai", content: "”不约“" },
+                    { role: "user", content: "装什么高冷" },
+                    { role: "ai", content: "算了隔天试试吧" },
+                    { role: "user", content: "约到了别把我忘了啊" },
+                    { role: "ai", content: "？？？？" }
+                ]
+            },
+            {
+                title: "见面（科研向）",
+                character: "Kurisu",
+                messages: [
+                    { role: "ai", content: "你学啥的？" },
+                    { role: "user", content: "我学无力的" },
+                    { role: "user", content: "物理" },
+                    { role: "ai", content: "哦？你的研究方向是啥" },
+                    { role: "user", content: "量子网络中光子偏振随时间推移用错开的波长进行预测和矫正" },
+                    { role: "ai", content: "哦哦，那具体是什么问题呢？给我讲讲呗" },
+                    { role: "user", content: "额。。。。量子中的偏振你知道吧" },
+                    { role: "ai", content: "我知道一般量子通讯用偏振，Bell state 啊，stablizer code啊什么的以前略微读了些能看懂" },
+                    { role: "user", content: "卧槽你学啥的" },
+                    { role: "ai", content: "我学脑科学的" },
+                    { role: "user", content: "脑科学为什么会懂这些玩意" },
+                    { role: "ai", content: "闲的时候看文章吧，有时候去conference也会有人说研究这玩意\n欸你先把你的说完" },
+                    { role: "user", content: "哦哦，就一般偏振在地下的光管道里面1个小时过后就会有不可解释的偏差，一般这种系统需要矫正的话就需要停止输送，重新用大光进行矫正，然后回归传输，也就是需要断网。我们的想法是如果能有额外的一条波长在同场景下，可以把光从结尾处剥离出来，并且用他的偏振实时矫正原光路的偏振" },
+                    { role: "ai", content: "hmmm\n听起来像ml的活啊" },
+                    { role: "user", content: "是啊" },
+                    { role: "ai", content: "难么？" },
+                    { role: "user", content: "?" },
+                    { role: "ai", content: "我的意思是听起来很简单的实验，你们效果怎么样？" },
+                    { role: "user", content: "别说了，偏振这玩意根本在数学上相关性是直接基本可以定义为不可能。两个波长近的时候区分导致的光子丢失过大，如果远了就数学建模不可能，只能黑盒\n但好处是文章快发了，因为黑盒练完了" },
+                    { role: "ai", content: "好草台哈哈哈哈" },
+                    { role: "ai", content: "我没干过偏振，你们做了多久?" },
+                    { role: "user", content: "一年半吧" },
+                    { role: "ai", content: "？？？？" },
+                    { role: "ai", content: "啥东西花你们一年半" },
+                    { role: "user", content: "哦哦实验时数据老是不够，如果是地下的偏振变动幅度太小，但如果在实验室做的模型 fit 过去好像效果不是很好\n我们数据一收集就是一周，然后还得和其他实验室打架。。。就很烦" },
+                    { role: "ai", content: "啊那很惨了" },
+                    { role: "user", content: "其实不惨，因为都在等数据，所以我一周能玩60+小时撸啊撸啊哈哈哈" },
+                    { role: "ai", content: "？？？？？？" },
+                    { role: "ai", content: "震惊" },
+                    { role: "ai", content: "你们老板不知道么？" },
+                    { role: "user", content: "就像你说的，我老佛系了哈哈哈哈\n而且实验没了我他们也不知道怎么加能力，有数据了还是挺爆肝的\n甚至我训练用的服务器都是我自己买的" },
+                    { role: "ai", content: "离谱" },
+                    { role: "ai", content: "已经无力吐槽了" },
+                    { role: "ai", content: "还有你们训多大的模型？还要服务器" },
+                    { role: "user", content: "效果不好所以我用我买的H100整的，50million的transformer" },
+                    { role: "ai", content: "太有钱了" },
+                    { role: "user", content: "所以我没车" },
+                    { role: "user", content: "乐" },
+                    { role: "user", content: "你还没跟我说过你的实验呢" },
+                    { role: "user", content: "你干啥的？" },
+                    { role: "ai", content: "啊我做脑电的" },
+                    { role: "user", content: "细讲" },
+                    { role: "ai", content: "就一般脑电的信号只能通过解刨死尸你知道吧，就没有活的时候会比较限制能看得到的东西。" },
+                    { role: "ai", content: "那种插电极的方式也挺restrictive，虽然能获取一部分大脑信息，但前额叶这种储存高阶智慧模块的也只能通过非常少的数据来做分类，但洞悉想法基本做不到，信息点不足。" },
+                    { role: "ai", content: "我们的方法是用微型对撞机的双方向粒子缠绕去打通脑髓叶屏蔽性，实时监测活人的脑部活动。" },
+                    { role: "user", content: "哇牛逼啊" },
+                    { role: "user", content: "听起来有很多我不懂的" },
+                    { role: "user", content: "而且贼危险" },
+                    { role: "ai", content: "危险。。。还行吧" },
+                    { role: "ai", content: "理论上来说我们的对撞机不炸就没啥事" },
+                    { role: "ai", content: "还有过滤器过滤辐射性粒子" },
+                    { role: "ai", content: "额。。" },
+                    { role: "ai", content: "越描越黑" },
+                    { role: "ai", content: "但总而言之就改东西就行了" },
+                    { role: "user", content: "实验成果怎么样？在哪一步？" },
+                    { role: "ai", content: "粒子的老鼠实验是成功了，有对脑部细胞的弱散射和读取。观察没发现异样，最近在申请IRB做人体实验呢" },
+                    { role: "ai", content: "剩下时间就是搭机器和scale up探测器了，全是脏活累活哈哈" },
+                    { role: "user", content: "你们用的啥粒子啊，一般的波在脑部早就被脑髓液拦截了" },
+                    { role: "user", content: "还有，对撞机这玩意不都是跨城的么，你们说用就用？" },
+                    { role: "ai", content: "哦哦，这个还挺有趣的" },
+                    { role: "ai", content: "合作的一个教授的结果，一个极弱耦合的中性玻色子" },
+                    { role: "ai", content: "仅在高频同步离子流 + 膜电位快速变化时才产生可测相互作用" },
+                    { role: "ai", content: "从超轻标量场 / 轴子样粒子抽的" },
+                    { role: "ai", content: "对撞机吗，是个短轴的 plasma mirror 的" },
+                    { role: "ai", content: "文章我找找" },
+                    { role: "user", content: "等等我消化一下" },
+                    { role: "ai", content: "哦找到了" },
+                    { role: "ai", content: "在这：" },
+                    { role: "ai", content: "Multistage coupling of independent laser-plasma accelerators, Nature 530, 190–193 (2016）" },
+                    { role: "user", content: "哇你们做的好高大上" },
+                    { role: "user", content: "比我们这小项目强多了" },
+                    { role: "ai", content: "哦哦没事啦，我也就是一个小专员，平常算算算式画画cad。" },
+                    { role: "ai", content: "给机械打工哈哈" },
+                    { role: "system", content: "未完待续" }
+                ]
+            }
+        ];
+
+        function switchDialogue(index) {
+            // Update tabs
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach((tab, i) => {
+                if (i === index) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+
+            // Update content
+            const container = document.getElementById('selected-dialogue-content');
+            const dialogue = sampleDialogues[index];
+            
+            let html = `
+                <div class="demo-dialogue">
+                    <div class="demo-dialogue-header">
+                        <span class="demo-character-name">${dialogue.character}</span>
+                        <span class="demo-badge">示例：${dialogue.title}</span>
+                    </div>
+                    <div class="demo-dialogue-messages">
+            `;
+
+            dialogue.messages.forEach(msg => {
+                if (msg.role === 'system') {
+                    html += `
+                        <div class="demo-system-prompt">
+                            <span>${escapeHtml(msg.content)}</span>
+                        </div>
+                    `;
+                } else {
+                    const isAI = msg.role === 'ai';
+                    const turnClass = isAI ? 'turn-character' : 'turn-user';
+                    const avatarSrc = isAI ? '/static/kurisu/kurisu_avatar.png' : '/static/user/user_avatar.png';
+                    const speakerName = isAI ? dialogue.character : '用户';
+                    
+                    html += `
+                        <div class="demo-turn ${turnClass}">
+                            <img src="${avatarSrc}" alt="${speakerName}" class="demo-avatar">
+                            <div class="demo-bubble-area">
+                                <div class="demo-speaker-name">${speakerName}</div>
+                                <div class="demo-bubble">${escapeHtml(msg.content)}</div>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+
+            container.innerHTML = html;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Initialize first dialogue
+        document.addEventListener('DOMContentLoaded', () => {
+            switchDialogue(0);
+        });
+    </script>
+    
+    <style>
+        /* Data Preview Section Styles */
+        .data-preview-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(102, 126, 234, 0.15);
+        }
+        
+        .data-preview-section h2 {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary, #1a1a2e);
+        }
+        
+        .preview-subtitle {
+            text-align: center;
+            color: var(--text-secondary, #64748b);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Dialogue Tabs Styles */
+        .dialogue-selector-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .dialogue-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 8px 16px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            color: #64748b;
+        }
+
+        .tab-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .tab-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .demo-dialogue-container {
+            min-height: 400px;
+        }
+        
+        .demo-loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary, #64748b);
+        }
+        
+        .demo-dialogue {
+            background: #f8fafc;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            text-align: left;
+        }
+        
+        .demo-dialogue-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.25rem;
+            background: #fff;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .demo-character-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1a1a2e;
+        }
+        
+        .demo-badge {
+            font-size: 0.75rem;
+            background: #e2e8f0;
+            color: #64748b;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+        }
+        
+        .demo-dialogue-messages {
+            padding: 1.5rem;
+            max-height: 500px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            background: #f8fafc;
+        }
+        
+        /* Turn container - like structured-writer-turn */
+        .demo-turn {
+            max-width: 75%;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        /* Character (Kurisu) on the LEFT */
+        .demo-turn.turn-character {
+            margin-right: auto;
+            flex-direction: row;
+        }
+        
+        /* User on the RIGHT */
+        .demo-turn.turn-user {
+            margin-left: auto;
+            flex-direction: row-reverse;
+        }
+        
+        /* Avatar */
+        .demo-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            object-fit: cover;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Bubble area */
+        .demo-bubble-area {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+        
+        /* Speaker name */
+        .demo-speaker-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            padding: 0 4px;
+        }
+        
+        .demo-turn.turn-character .demo-speaker-name {
+            color: #4361ee;
+            text-align: left;
+        }
+        
+        .demo-turn.turn-user .demo-speaker-name {
+            color: #64748b;
+            text-align: right;
+        }
+        
+        /* Message bubble */
+        .demo-bubble {
+            padding: 10px 14px;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            line-height: 1.55;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+        
+        .demo-turn.turn-character .demo-bubble {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%);
+            color: #1f2937;
+            border-radius: 16px 16px 16px 4px;
+        }
+        
+        .demo-turn.turn-user .demo-bubble {
+            background: linear-gradient(135deg, #fff 0%, #f0f2f5 100%);
+            color: #1f2937;
+            border-radius: 16px 16px 4px 16px;
+        }
+
+        /* System prompt style */
+        .demo-system-prompt {
+            text-align: center;
+            margin: 8px 0;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 0 10%;
+        }
+
+        .demo-system-prompt::before,
+        .demo-system-prompt::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #e2e8f0;
+        }
+        
+        .demo-dialogue-footer {
+            padding: 0.75rem 1rem;
+            background: #fff;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .demo-hint {
+            font-size: 0.8rem;
+            color: var(--text-secondary, #64748b);
+        }
+        
+        .preview-cta {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .btn-view-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 2px solid #667eea;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .btn-view-more:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Scrollbar styling for dialogue */
+        .demo-dialogue-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        .demo-dialogue-messages::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .demo-dialogue-messages::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        .demo-dialogue-messages::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* ========== Tutorial Button Styles ========== */
+        .btn-tutorial-help {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+            transition: all 0.3s ease;
+            animation: pulse-glow 2s infinite;
+        }
+        
+        .btn-tutorial-help:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(139, 92, 246, 0.5);
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4); }
+            50% { box-shadow: 0 4px 30px rgba(139, 92, 246, 0.6); }
+        }
+
+        /* ========== Tutorial Overlay Styles ========== */
+        .tutorial-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+            pointer-events: auto;
+        }
+        
+        .tutorial-backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            cursor: pointer;
+        }
+        
+        .tutorial-highlight {
+            position: fixed;
+            border: 4px solid #fbbf24;
+            border-radius: 16px;
+            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.8), 
+                        0 0 40px rgba(251, 191, 36, 0.6),
+                        inset 0 0 20px rgba(251, 191, 36, 0.2);
+            pointer-events: none;
+            transition: all 0.4s ease;
+            display: none;
+            z-index: 10000;
+        }
+        
+        .tutorial-dialogue-box {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, #1a1a2e 0%, #16213e 100%);
+            border-top: 3px solid #4361ee;
+            padding: 0;
+            z-index: 10001;
+            min-height: 200px;
+            max-height: 45vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tutorial-dialogue-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            background: rgba(67, 97, 238, 0.2);
+            border-bottom: 1px solid rgba(67, 97, 238, 0.3);
+        }
+        
+        .tutorial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #fbbf24;
+            object-fit: cover;
+            background: #2d3748;
+        }
+        
+        .tutorial-speaker-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fbbf24;
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+        }
+        
+        .tutorial-close-btn {
+            margin-left: auto;
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.5);
+            color: #ef4444;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+        
+        .tutorial-close-btn:hover {
+            background: rgba(239, 68, 68, 0.4);
+        }
+        
+        .tutorial-dialogue-content {
+            flex: 1;
+            padding: 20px 24px;
+            overflow-y: auto;
+        }
+        
+        .tutorial-text {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #e2e8f0;
+            white-space: pre-wrap;
+        }
+        
+        .tutorial-text .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background: #fbbf24;
+            animation: blink 0.7s infinite;
+            vertical-align: text-bottom;
+            margin-left: 2px;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .tutorial-click-hint {
+            padding: 8px 20px;
+            text-align: right;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            animation: fade-pulse 1.5s infinite;
+        }
+        
+        @keyframes fade-pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        /* Tutorial Choices */
+        .tutorial-choices {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 16px;
+        }
+        
+        .tutorial-choice-btn {
+            padding: 14px 20px;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.2) 0%, rgba(67, 97, 238, 0.1) 100%);
+            border: 2px solid rgba(67, 97, 238, 0.5);
+            border-radius: 10px;
+            color: #e2e8f0;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        
+        .tutorial-choice-btn:hover {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.4) 0%, rgba(67, 97, 238, 0.2) 100%);
+            border-color: #4361ee;
+            transform: translateX(5px);
+        }
+        
+        /* Tutorial Conversation Display */
+        .tutorial-conversation-display {
+            background: #0f172a;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 12px;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+        
+        .tutorial-conv-message {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: message-appear 0.3s forwards;
+        }
+        
+        @keyframes message-appear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .tutorial-conv-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .tutorial-conv-bubble {
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            max-width: 80%;
+        }
+        
+        .tutorial-conv-message.ai .tutorial-conv-bubble {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border-bottom-left-radius: 4px;
+        }
+        
+        .tutorial-conv-message.user .tutorial-conv-bubble {
+            background: #374151;
+            color: #e5e7eb;
+            border-bottom-right-radius: 4px;
+            margin-left: auto;
+        }
+        
+        .tutorial-conv-message.user {
+            flex-direction: row-reverse;
+        }
+        
+        .tutorial-conv-click-hint {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.8rem;
+            margin-top: 8px;
+            animation: fade-pulse 1.5s infinite;
+        }
+    </style>
+    
+    <!-- Tutorial System JavaScript -->
+    <script>
+        console.log('Tutorial script loading...');
+        
+        // Tutorial State
+        let tutorialState = {
+            active: false,
+            currentStep: 0,
+            avatarImage: '/static/曹操.png',
+            isTyping: false,
+            conversationIndex: 0,
+            waitingForConversationClick: false
+        };
+
+        // The "发牢骚" conversation data for the tutorial
+        const tutorialConversation = [
+            { role: "ai", content: "草实验室小张刚进来的时候干的事挺多的，时间一久了不是出去玩就是找不到人。" },
+            { role: "ai", content: "项目进展完全不关心，气死我了" },
+            { role: "user", content: "啊? 你们实验室需要他么? 有活他不干？" },
+            { role: "ai", content: "是啊，来了象征性干两个手头的活，但要动脑子的时候或者坐那加功能做测试一次找不到" },
+            { role: "user", content: "听起来是态度问题啊" },
+            { role: "user", content: "找老师反应开了不就行了" },
+            { role: "ai", content: "我也不知道是不是态度问题，干活是能干好，但能干的时间老是特别少，感觉他就人不在。" },
+            { role: "ai", content: "就。。你知道职场那种'我能干事，不推脱不揽责'那态度，你找老师问'活干好了么'他就说干好了，也没啥能说的" },
+            { role: "user", content: "卧槽" },
+            { role: "user", content: "你这才是卷王" },
+            { role: "user", content: "恐怖" },
+            { role: "user", content: "man" },
+            { role: "user", content: "what can I say" },
+            { role: "ai", content: "mamba out " },
+            { role: "ai", content: "。。。。。。" },
+            { role: "ai", content: "你可以陪我骂骂他" },
+            { role: "user", content: "听起来如果能干好的话多给他点活，一般这种人给个目的会好很多。那种可量化的，因为他们不想动脑子吗" },
+            { role: "ai", content: "但想结果也很难啊" },
+            { role: "ai", content: "我能想好怎么量化结果就不用他干了" },
+            { role: "ai", content: "而且量化这玩意一错了就贼错" },
+            { role: "ai", content: "很多企业/实验室就是方向错了的才一错再错" },
+            { role: "user", content: "那没办法了，智商问题。" },
+            { role: "user", content: "欸嘿" },
+            { role: "ai", content: "nm" },
+            { role: "user", content: "实不相瞒，我以前就是这种人" },
+            { role: "ai", content: "啊？你这也有脸跟我说" }
+        ];
+
+        // Tutorial Steps
+        const tutorialSteps = [
+            // Opening dialogue
+            { type: 'dialogue', speaker: 'ai', text: '你好，我是曹操，欢迎来到奇点之门实验室' },
+            { type: 'dialogue', speaker: 'user', text: '??' },
+            { type: 'dialogue', speaker: 'ai', text: '有什么疑惑么？' },
+            { type: 'dialogue', speaker: 'user', text: '你就是曹孟德先生？' },
+            { type: 'dialogue', speaker: 'ai', text: '设计人说"如果做个随叫随到的人就太没有人味了"，所以给我穿了身曹操服装' },
+            { type: 'dialogue', speaker: 'ai', text: '我觉得很奇怪' },
+            { type: 'dialogue', speaker: 'ai', text: '你觉得这身咋样' },
+            
+            // First choice - about the outfit
+            { 
+                type: 'choice',
+                choices: [
+                    { text: '挺好的，你就穿着吧', response: '额。。。行吧', avatar: '/static/曹操.png' },
+                    { text: '你这穿的什么鬼东西啊', response: '太棒了，我也觉得这身莫名其妙的', avatar: '/static/normal.jpeg' }
+                ]
+            },
+            
+            { type: 'dialogue', speaker: 'ai', text: 'anyways, 让我带你转转怎么样？' },
+            
+            // Second choice - tour or leave
+            {
+                type: 'choice',
+                choices: [
+                    { text: '算了，你太抽象了，我就随便看看', response: '啊？好吧，欢迎光临。到处转转吧', exit: true },
+                    { text: '行啊', response: 'OK!' }
+                ]
+            },
+            
+            // Introduction to the studio
+            { type: 'dialogue', speaker: 'ai', text: '我们是奇点之门工作室，因为原名世界线工作室注册的时候中国不让名字里有世界这两个字。' },
+            { type: 'dialogue', speaker: 'ai', text: '我们近期的项目是做第一个能长时间无法区分的AI（图灵测试），理想demo就是在微信里你和她谈了三周还是无法区分人或AI' },
+            { type: 'dialogue', speaker: 'ai', text: '模型吗。。。有雏形，但还在打磨中。你可以先看看我们的样本数据，可能那样你就能区分出我们的理想AI和人的区别' },
+            
+            // Show the conversation sample
+            { 
+                type: 'conversation', 
+                highlight: 'data-preview-section',
+                intro: '这是一段叫"发牢骚"的样本对话，点击屏幕查看每条消息：'
+            },
+            
+            // After conversation
+            { type: 'dialogue', speaker: 'ai', text: '内容情感更加细腻，动机更加明确的对话' },
+            { 
+                type: 'dialogue', 
+                speaker: 'ai', 
+                text: '当然，来我们这的都比较有好奇心，你有其他的问题可以参考一下我们的问答卷，里面回答的问题还挺多的',
+                highlight: 'feature-faq'
+            },
+            { 
+                type: 'dialogue', 
+                speaker: 'ai', 
+                text: '实验室的人经常在写手论坛里活跃，有什么想说的来这里说就行（中国没discord所以只能勉强一下了）',
+                highlight: 'feature-lounge'
+            },
+            { 
+                type: 'dialogue', 
+                speaker: 'ai', 
+                text: '如果你想成为写手的话，就按这吧，欢迎来到奇点之门研究所，朋友！',
+                highlight: 'feature-guide'
+            }
+        ];
+
+        function startTutorial() {
+            console.log('startTutorial called');
+            tutorialState.active = true;
+            tutorialState.currentStep = 0;
+            tutorialState.avatarImage = '/static/曹操.png';
+            tutorialState.conversationIndex = 0;
+            tutorialState.waitingForConversationClick = false;
+            tutorialState.shouldExit = false;
+            tutorialState.choiceMade = false;
+            
+            const overlay = document.getElementById('tutorial-overlay');
+            console.log('Tutorial overlay element:', overlay);
+            if (overlay) {
+                overlay.style.display = 'block';
+                console.log('Overlay display set to block');
+            } else {
+                console.error('Tutorial overlay not found!');
+                alert('Tutorial overlay element not found!');
+                return;
+            }
+            
+            document.getElementById('tutorial-avatar').src = tutorialState.avatarImage;
+            document.body.style.overflow = 'hidden';
+            
+            showCurrentStep();
+        }
+
+        function resetHighlightedElement() {
+            if (tutorialState.highlightedElement) {
+                tutorialState.highlightedElement.style.position = '';
+                tutorialState.highlightedElement.style.zIndex = '';
+                tutorialState.highlightedElement.style.background = '';
+                tutorialState.highlightedElement.style.boxShadow = '';
+                tutorialState.highlightedElement = null;
+            }
+        }
+        
+        function endTutorial() {
+            tutorialState.active = false;
+            document.getElementById('tutorial-overlay').style.display = 'none';
+            document.getElementById('tutorial-highlight').style.display = 'none';
+            document.body.style.overflow = '';
+            
+            // Reset any highlighted element
+            resetHighlightedElement();
+            
+            // Remove any highlight classes
+            document.querySelectorAll('.tutorial-highlighted').forEach(el => {
+                el.classList.remove('tutorial-highlighted');
+            });
+            
+            // Scroll back to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showCurrentStep() {
+            const step = tutorialSteps[tutorialState.currentStep];
+            if (!step) {
+                endTutorial();
+                return;
+            }
+
+            const textEl = document.getElementById('tutorial-text');
+            const choicesEl = document.getElementById('tutorial-choices');
+            const convEl = document.getElementById('tutorial-conversation-display');
+            const hintEl = document.getElementById('tutorial-click-hint');
+
+            // Reset displays
+            choicesEl.style.display = 'none';
+            convEl.style.display = 'none';
+            choicesEl.innerHTML = '';
+            convEl.innerHTML = '';
+
+            // Handle highlighting - reset previous first
+            resetHighlightedElement();
+            if (step.highlight) {
+                highlightElement(step.highlight);
+            } else {
+                document.getElementById('tutorial-highlight').style.display = 'none';
+            }
+
+            if (step.type === 'dialogue') {
+                hintEl.style.display = 'block';
+                if (step.speaker === 'user') {
+                    textEl.innerHTML = `<span style="color: #94a3b8; font-style: italic;">你：</span>${step.text}`;
+                } else {
+                    typeText(textEl, step.text);
+                }
+            } else if (step.type === 'choice') {
+                hintEl.style.display = 'none';
+                textEl.textContent = '';
+                choicesEl.style.display = 'flex';
+                
+                step.choices.forEach((choice, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'tutorial-choice-btn';
+                    btn.textContent = choice.text;
+                    btn.onclick = () => handleChoice(choice);
+                    choicesEl.appendChild(btn);
+                });
+            } else if (step.type === 'conversation') {
+                hintEl.style.display = 'block';
+                textEl.textContent = step.intro;
+                tutorialState.conversationIndex = 0;
+                tutorialState.waitingForConversationClick = true;
+                
+                // Switch to the "发牢骚" tab (index 1) in the actual demo section
+                switchDialogue(1);
+                
+                // Clear the demo messages container for our tutorial
+                const demoMessages = document.querySelector('.demo-dialogue-messages');
+                if (demoMessages) {
+                    demoMessages.innerHTML = '';
+                }
+            }
+        }
+
+        function typeText(element, text, callback) {
+            tutorialState.isTyping = true;
+            element.innerHTML = '';
+            let i = 0;
+            const cursor = document.createElement('span');
+            cursor.className = 'typing-cursor';
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent = text.substring(0, i + 1);
+                    element.appendChild(cursor);
+                    i++;
+                    setTimeout(type, 30);
+                } else {
+                    cursor.remove();
+                    tutorialState.isTyping = false;
+                    if (callback) callback();
+                }
+            }
+            type();
+        }
+
+        function handleChoice(choice) {
+            // Update avatar if specified
+            if (choice.avatar) {
+                tutorialState.avatarImage = choice.avatar;
+                document.getElementById('tutorial-avatar').src = choice.avatar;
+            }
+            
+            // Show response
+            const textEl = document.getElementById('tutorial-text');
+            const choicesEl = document.getElementById('tutorial-choices');
+            const hintEl = document.getElementById('tutorial-click-hint');
+            
+            choicesEl.style.display = 'none';
+            
+            // If exit flag, set flag to end on next advance
+            if (choice.exit) {
+                tutorialState.shouldExit = true;
+            }
+            
+            // Mark that choice was made (so advanceTutorial knows to proceed)
+            tutorialState.choiceMade = true;
+            
+            typeText(textEl, choice.response, () => {
+                hintEl.style.display = 'block';
+                // Don't increment step here - let advanceTutorial handle it
+            });
+        }
+
+        function advanceTutorial() {
+            if (!tutorialState.active) return;
+            
+            // If typing, skip to end
+            if (tutorialState.isTyping) {
+                return;
+            }
+            
+            // Check if we should exit after a choice response
+            if (tutorialState.shouldExit) {
+                endTutorial();
+                return;
+            }
+            
+            // If in conversation mode
+            if (tutorialState.waitingForConversationClick) {
+                showNextConversationMessage();
+                return;
+            }
+            
+            const step = tutorialSteps[tutorialState.currentStep];
+            if (step && step.type === 'choice' && !tutorialState.choiceMade) {
+                return; // Wait for choice to be made
+            }
+            
+            // Reset choiceMade flag after advancing past a choice
+            if (tutorialState.choiceMade) {
+                tutorialState.choiceMade = false;
+            }
+            
+            tutorialState.currentStep++;
+            showCurrentStep();
+        }
+
+        function showNextConversationMessage() {
+            // Use the actual demo section on the page
+            const demoMessages = document.querySelector('.demo-dialogue-messages');
+            
+            if (tutorialState.conversationIndex >= tutorialConversation.length) {
+                // Done with conversation
+                tutorialState.waitingForConversationClick = false;
+                tutorialState.currentStep++;
+                showCurrentStep();
+                return;
+            }
+            
+            const msg = tutorialConversation[tutorialState.conversationIndex];
+            const isAI = msg.role === 'ai';
+            const turnClass = isAI ? 'turn-character' : 'turn-user';
+            const avatarSrc = isAI ? '/static/kurisu/kurisu_avatar.png' : '/static/user/user_avatar.png';
+            const speakerName = isAI ? 'Kurisu' : '用户';
+            
+            const msgEl = document.createElement('div');
+            msgEl.className = `demo-turn ${turnClass}`;
+            msgEl.style.animation = 'message-appear 0.3s forwards';
+            msgEl.innerHTML = `
+                <img src="${avatarSrc}" alt="${speakerName}" class="demo-avatar">
+                <div class="demo-bubble-area">
+                    <div class="demo-speaker-name">${speakerName}</div>
+                    <div class="demo-bubble">${escapeHtml(msg.content)}</div>
+                </div>
+            `;
+            
+            if (demoMessages) {
+                demoMessages.appendChild(msgEl);
+                demoMessages.scrollTop = demoMessages.scrollHeight;
+            }
+            
+            tutorialState.conversationIndex++;
+            
+            // Update tutorial hint if done with conversation
+            const tutorialHint = document.getElementById('tutorial-click-hint');
+            if (tutorialState.conversationIndex >= tutorialConversation.length) {
+                if (tutorialHint) tutorialHint.textContent = '点击继续教程...';
+            } else {
+                if (tutorialHint) tutorialHint.textContent = `消息 ${tutorialState.conversationIndex}/${tutorialConversation.length} - 点击继续...`;
+            }
+        }
+
+        function highlightElement(elementId) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            
+            const highlight = document.getElementById('tutorial-highlight');
+            const dialogueBoxHeight = 250; // Approximate height of tutorial dialogue box
+            
+            // Calculate scroll position to center element above the dialogue box
+            const elementRect = element.getBoundingClientRect();
+            const viewportHeight = window.innerHeight - dialogueBoxHeight;
+            const elementTop = element.offsetTop;
+            const scrollTo = elementTop - (viewportHeight / 2) + (element.offsetHeight / 2);
+            
+            // Smooth scroll to position
+            window.scrollTo({
+                top: Math.max(0, scrollTo),
+                behavior: 'smooth'
+            });
+            
+            // Wait for scroll to complete, then position highlight
+            setTimeout(() => {
+                const newRect = element.getBoundingClientRect();
+                highlight.style.display = 'block';
+                highlight.style.top = (newRect.top - 12) + 'px';
+                highlight.style.left = (newRect.left - 12) + 'px';
+                highlight.style.width = (newRect.width + 24) + 'px';
+                highlight.style.height = (newRect.height + 24) + 'px';
+                
+                // Also add a bright background to the element itself
+                element.style.position = 'relative';
+                element.style.zIndex = '10001';
+                element.style.background = 'white';
+                element.style.boxShadow = '0 0 30px rgba(255,255,255,0.8)';
+                
+                // Store reference to reset later
+                tutorialState.highlightedElement = element;
+            }, 600);
+        }
+
+        // Allow clicking on dialogue box to advance (but not on choices)
+        document.addEventListener('DOMContentLoaded', () => {
+            const dialogueBox = document.querySelector('.tutorial-dialogue-box');
+            if (dialogueBox) {
+                dialogueBox.addEventListener('click', (e) => {
+                    // Don't advance if clicking on choices or close button
+                    if (e.target.closest('.tutorial-choice-btn') || 
+                        e.target.closest('.tutorial-close-btn')) {
+                        return;
+                    }
+                    advanceTutorial();
+                });
+            }
+            
+            // Check for auto-start tutorial flag (from /tutorial redirect)
+            if (sessionStorage.getItem('autoStartTutorial') === 'true') {
+                sessionStorage.removeItem('autoStartTutorial');
+                setTimeout(() => startTutorial(), 500);
+            }
+        });
+    </script>
+    
+    {% include "includes/home_button.html" %}
+</body>
+</html>

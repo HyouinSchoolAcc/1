@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>世界线二工作室 - 中二，即无所不能</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    .hero-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 2.5rem 0;
+      text-align: center;
+      position: relative;
+    }
+    
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.1) 30%, rgba(255,255,255,0.3) 60%, rgba(255,255,255,0.6) 80%, white 100%);
+      pointer-events: none;
+    }
+    
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .hero-subtitle {
+      font-size: 2.8rem;
+      margin-bottom: 2rem;
+      opacity: 1;
+      font-weight: 600;
+      background: linear-gradient(135deg, #ffffff 0%, #e0f2ff 50%, #bae6ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+      text-shadow: 0 0 30px rgba(255,255,255,0.3);
+    }
+    
+    .feature-card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+    
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #007bff;
+    }
+    
+    .feature-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #2c3e50;
+    }
+    
+    .feature-description {
+      color: #6c757d;
+      line-height: 1.6;
+    }
+    
+    .mission-section {
+      background: #f8f9fa;
+      padding: 4rem 0;
+    }
+    
+    .mission-card {
+      background: white;
+      border-radius: 12px;
+      padding: 3rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    
+    .mission-title {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 1.5rem;
+    }
+    
+    .mission-text {
+      font-size: 1.1rem;
+      color: #6c757d;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    
+    .character-showcase {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 1rem;
+      margin: 2rem 0;
+      min-height: 250px;
+      transition: all 0.3s ease;
+    }
+    
+    .character-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    
+    .character-container:hover {
+      transform: translateY(-5px);
+    }
+    
+    .character-profile {
+      width: 200px;
+      height: 180px; /* Match character container height more precisely */
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 0.8rem 1.2rem 1.2rem 1.2rem;
+      margin: 0 0.1rem;
+      opacity: 0;
+      transform: translateX(10px);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+    }
+    
+    .character-profile.show {
+      display: block !important;
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .profile-content {
+      text-align: left;
+      width: 100%;
+    }
+    
+    .profile-details p {
+      margin: 0.5rem 0;
+      padding: 0.2rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .profile-details p:last-child {
+      border-bottom: none;
+    }
+    
+    .character-avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid #007bff;
+      padding: 8px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .character-avatar:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(0,123,255,0.3);
+    }
+    
+    .character-avatar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.1) 100%);
+      border-radius: 50%;
+    }
+    
+    .cta-section {
+      background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+      color: white;
+      padding: 3rem 0;
+      text-align: center;
+    }
+    
+    .cta-btn {
+      background: #fff;
+      color: #2c3e50;
+      padding: 1rem 2.5rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+      margin: 0.5rem;
+    }
+    
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      color: #2c3e50;
+    }
+    
+    .stats-section {
+      padding: 3rem 0;
+      background: #fff;
+    }
+    
+    .stat-item {
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #007bff;
+    }
+    
+    .stat-label {
+      color: #6c757d;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .navbar-custom {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 0.3rem 0; /* Reduced from default to make navbar more compact */
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.8s ease-in;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Ensure proper alignment with fixed navbar */
+    .content-section {
+      scroll-margin-top: 70px; /* Account for reduced navbar height */
+    }
+    
+    /* Footer Social Icons Styling */
+    .social-icons {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    
+    @media (max-width: 768px) {
+      .social-icons {
+        justify-content: center !important;
+        gap: 0.75rem;
+      }
+      
+      .character-showcase {
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+      }
+      
+      .character-avatar {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.6rem;
+        line-height: 1.5;
+      }
+      
+      .character-profile {
+        width: 90%;
+        height: auto;
+        margin: 0.5rem auto;
+        transform: translateY(15px);
+      }
+      
+      .character-profile.show {
+        transform: translateY(0);
+      }
+      
+      /* Founder's Vision responsive design */
+      .founder-vision-text {
+        font-size: 2.5rem !important;
+      }
+      
+      .founder-vision-highlight {
+        font-size: 2.5rem !important;
+      }
+      
+      .founder-vision-steins {
+        font-size: 2rem !important;
+      }
+      
+      .founder-vision-title {
+        font-size: 1.3rem !important;
+        letter-spacing: 0.2rem !important;
+        margin-left: 0.5rem !important;
+      }
+      
+      .founder-vision-container {
+        text-align: center !important;
+      }
+    }
+    
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .social-icon:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+    
+    .social-icon svg {
+      transition: all 0.3s ease;
+    }
+    
+    /* Specific platform colors on hover */
+    .social-icon[title="哔哩哔哩"]:hover {
+      background: #00A1D6;
+      border-color: #00A1D6;
+    }
+    
+    .social-icon[title="微信"]:hover {
+      background: #07C160;
+      border-color: #07C160;
+    }
+    
+    .social-icon[title="小红书"]:hover {
+      background: #FF2442;
+      border-color: #FF2442;
+    }
+    
+    .social-icon[title="Instagram"]:hover {
+      background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+      border-color: #e6683c;
+    }
+    
+    .social-icon[title="X (Twitter)"]:hover {
+      background: #000000;
+      border-color: #333333;
+    }
+    
+    .social-icon[title="抖音"]:hover {
+      background: #000000;
+      border-color: #333333;
+    }
+    
+    .social-icon[title="Discord"]:hover {
+      background: #5865F2;
+      color: white;
+    }
+    
+    /* Compact social icons for footer */
+    .social-icon-compact {
+      width: 36px !important;
+      height: 36px !important;
+      font-size: 0.9rem;
+    }
+    
+    /* Mini social icons for ultra-compact footer */
+    .social-icon-mini {
+      width: 30px !important;
+      height: 30px !important;
+      font-size: 0.8rem;
+    }
+    
+    /* Mobile responsive adjustments for ultra-compact footer */
+    @media (max-width: 768px) {
+      .fixed-footer .row {
+        flex-direction: column;
+        gap: 0.3rem;
+        text-align: center;
+      }
+      
+      .fixed-footer .col-md-3,
+      .fixed-footer .col-md-6 {
+        width: 100%;
+        text-align: center !important;
+      }
+      
+      .footer-info div {
+        justify-content: center !important;
+        text-align: center !important;
+      }
+      
+      .social-links div {
+        justify-content: center !important;
+        flex-wrap: wrap;
+      }
+      
+      /* Stack email and social icons on mobile */
+      .social-links div {
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+    }
+    
+    /* Fixed Footer Positioning */
+    .fixed-footer {
+      position: fixed !important;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Add bottom padding to body to prevent content from being hidden behind fixed footer */
+    body {
+      padding-bottom: 80px; /* Ultra-compact footer */
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        padding-bottom: 120px; /* More padding on mobile due to footer stacking */
+      }
+      
+      /* Mobile navbar adjustments */
+      .navbar-nav.flex-grow-1 span {
+        font-size: 0.9rem !important;
+        text-align: center;
+      }
+      
+      .hero-title {
+        text-align: center !important;
+      }
+    }
+    
+    /* Language toggle helpers (default: Chinese) */
+    .lang-cn { display: block; }
+    .lang-en { display: none; }
+    body[data-lang="en"] .lang-cn { display: none; }
+    body[data-lang="en"] .lang-en { display: block; }
+  </style>
+</head>
+<body data-lang="cn">
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/main" style="font-size: 1.4rem;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="margin-right: 0.5rem;">
+          <path d="M12 3C7.5 3 4 6.5 4 11c0 2.5 1 4.8 2.6 6.5" stroke="#007bff" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M12 21c4.5 0 8-3.5 8-8c0-2.5-1-4.8-2.6-6.5" stroke="rgba(0,123,255,0.8)" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M12 6c3 0 5.5 2.5 5.5 5.5c0 1.5-0.6 2.9-1.6 3.9" stroke="rgba(0,123,255,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <path d="M12 18c-3 0-5.5-2.5-5.5-5.5c0-1.5 0.6-2.9 1.6-3.9" stroke="rgba(0,123,255,0.6)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <circle cx="12" cy="12" r="1.5" fill="#007bff"/>
+        </svg>
+        <span class="lang-cn">世界线二工作室</span><span class="lang-en">World Line II Studio</span>
+      </a>
+      <div class="navbar-nav flex-grow-1"></div>
+      <div class="navbar-nav">
+        <a class="btn btn-outline-secondary btn-sm me-2" href="mailto:yuezel2@illinois.edu" style="font-size: 0.9rem; padding: 0.4rem 1rem; border-radius: 20px; text-decoration: none;">Email</a>
+        <a class="btn btn-outline-secondary btn-sm me-2" href="https://discord.gg/ZKuZvgxBMr" target="_blank" style="font-size: 0.9rem; padding: 0.4rem 1rem; border-radius: 20px; text-decoration: none;">Discord</a>
+        <a class="btn btn-outline-primary btn-sm me-2" href="https://docs.google.com/presentation/d/1bs2nots5xldSNmLnuQGPoyZGj9z09ebgaQHo7wh6ruQ/edit?usp=sharing" target="_blank" style="font-size: 0.9rem; padding: 0.4rem 1rem; border-radius: 20px; text-decoration: none;">Technical Slides</a>
+        <div class="dropdown me-2">
+          <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 20px; font-size: 0.9rem;">
+            🌐 Language
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#" onclick="setLanguage('cn'); return false;">中文</a></li>
+            <li><a class="dropdown-item" href="#" onclick="setLanguage('en'); return false;">English</a></li>
+          </ul>
+        </div>
+        <a class="btn btn-primary btn-sm" href="/" style="font-size: 0.9rem; padding: 0.4rem 1rem; border-radius: 20px; color: white; text-decoration: none;">Data Site</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section fade-in" style="margin-top: 60px;">
+    <div class="container">
+      <h1 class="hero-title" style="text-align: center; color: #e8f4fd; text-shadow: 0 0 20px rgba(232,244,253,0.5);">Divergence 2% laboratory</h1>
+      <p class="hero-subtitle">We teach models curiosity and high-level human behaviors</p>
+      <p style="font-size: 1.1rem; color: #eef4ff; opacity: 0.95; margin-top: 1rem;">this is a slogan (bottom text)</p>
+    </div>
+  </section>
+
+  <!-- How We're Doing It Section -->
+  <section class="content-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 4rem 0; position: relative;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(20px); padding: 3rem 2.5rem; border-radius: 25px; box-shadow: 0 15px 50px rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.3);">
+            <h2 style="font-size: 2.5rem; color: white; font-weight: 700; margin-bottom: 2rem; text-align: center; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+              The Way We're Doing It
+            </h2>
+            <ol style="color: #ffffff; font-size: 1.2rem; line-height: 2; margin: 0; padding-left: 2rem; list-style-position: outside;">
+              <li style="margin-bottom: 1.5rem; padding-left: 0.5rem;">
+                <strong style="font-weight: 700; color: #fff3cd;">Real-time story construction:</strong><br>
+                <span style="font-weight: 400; color: rgba(255,255,255,0.95);">We give them days that evolve as ours do, classes that happen in their lives as in ours, and mood swings accordingly.</span>
+              </li>
+              <li style="padding-left: 0.5rem;">
+                <strong style="font-weight: 700; color: #fff3cd;">Special datasets:</strong><br>
+                <span style="font-weight: 400; color: rgba(255,255,255,0.95);">Smarter thinking—picking up social cues, engaging in banter, sharing grounded anecdotes, and showing concern for prolonged friends of their own.</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder's Vision Section (Chinese Only) -->
+  <section class="content-section lang-cn" style="background: linear-gradient(135deg, #1976d2 0%, #004ba0 100%); padding: 4rem 0; position: relative; overflow: hidden;">
+    <!-- Animated background elements -->
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.1; pointer-events: none;">
+      <div style="position: absolute; top: 20%; left: 10%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%); border-radius: 50%; animation: float 6s ease-in-out infinite;"></div>
+      <div style="position: absolute; bottom: 20%; right: 15%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%); border-radius: 50%; animation: float 8s ease-in-out infinite reverse;"></div>
+    </div>
+    
+    <style>
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-30px); }
+      }
+    </style>
+    
+    <div class="container" style="position: relative; z-index: 1;">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-12">
+          <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); padding: 4rem 3rem; border-radius: 30px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2);">
+            <div class="founder-vision-container">
+              <!-- Top: Logo and Title -->
+              <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 3rem;">
+                <!-- Logo -->
+                <svg width="70" height="70" viewBox="0 0 24 24" fill="none" style="margin-right: 1.5rem;">
+                  <path d="M12 3C7.5 3 4 6.5 4 11c0 2.5 1 4.8 2.6 6.5" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+                  <path d="M12 21c4.5 0 8-3.5 8-8c0-2.5-1-4.8-2.6-6.5" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round" fill="none"/>
+                  <path d="M12 6c3 0 5.5 2.5 5.5 5.5c0 1.5-0.6 2.9-1.6 3.9" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                  <path d="M12 18c-3 0-5.5-2.5-5.5-5.5c0-1.5 0.6-2.9 1.6-3.9" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                  <circle cx="12" cy="12" r="1.5" fill="white"/>
+                </svg>
+                
+                <!-- Title -->
+                <span style="font-size: 2.8rem; font-weight: 800; color: white; text-shadow: 3px 3px 6px rgba(0,0,0,0.4); letter-spacing: 0.4rem;" class="founder-vision-title">
+                  <span class="lang-cn">使命</span><span class="lang-en">Our Mission</span>
+                </span>
+              </div>
+              
+              <!-- Vision Statement -->
+              <div style="text-align: left; line-height: 1.7; margin-bottom: 3rem;">
+                <p style="font-size: 3.2rem; font-weight: 800; color: white; margin: 0 0 2rem 0; text-shadow: 3px 3px 6px rgba(0,0,0,0.3); line-height: 1.3;" class="founder-vision-text">
+                  <span class="lang-cn">
+                    这已经不仅仅是制作一个动漫角色那么简单了。
+                  </span>
+                  <span class="lang-en">
+                    It's not just about making an anime waifu anymore.
+                  </span>
+                </p>
+                <p style="font-size: 1.6rem; font-weight: 400; color: rgba(255,255,255,0.95); margin: 0 0 2rem 0; line-height: 1.9; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+                  <span class="lang-cn">
+                    这是一个关于团结现代一代人对抗孤独的故事；激励大家去学习、去锻炼、去发现建立关系的美好。培养找寻快乐并与他人分享的习惯。
+                  </span>
+                  <span class="lang-en">
+                    It's a story about unifying the modern generation against loneliness; to learn and exercise, to see the good in building a relationship. Creating a habit of finding joy and sharing it with others.
+                  </span>
+                </p>
+              </div>
+              
+              <!-- Foundational Model Emphasis -->
+              <div style="background: rgba(255,255,255,0.15); padding: 2.5rem; border-radius: 20px; border: 2px solid rgba(255,243,205,0.6); margin-bottom: 3rem; box-shadow: 0 8px 32px rgba(0,0,0,0.2);">
+                <h4 style="color: #fff3cd; font-size: 2rem; font-weight: 700; margin: 0 0 1.5rem 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                  <span class="lang-cn">🧠 我们是基础模型公司</span>
+                  <span class="lang-en">🧠 We Are a Foundational Model Company</span>
+                </h4>
+                <p style="color: rgba(255,255,255,0.95); font-size: 1.3rem; line-height: 1.8; margin: 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+                  <span class="lang-cn">
+                    我们正在试着从零开始构建和训练<strong>大型语言模型</strong>，专注于改进基础模型本身。不是套壳，不是微调现有模型——我们在尝试创造全新的底层架构，让AI真正理解情感、记忆和人际关系。
+                  </span>
+                  <span class="lang-en">
+                    We are building and training <strong>large language models from the ground up</strong>, focused on improving the fundamental model itself. No wrappers, no fine-tuning existing models—we're creating new foundational architecture that truly understands emotion, memory, and human connection.
+                  </span>
+                </p>
+              </div>
+              
+              <!-- Character Introduction -->
+              <div style="background: rgba(255,255,255,0.1); padding: 2.5rem; border-radius: 20px; margin-bottom: 2rem; border: 1px solid rgba(255,255,255,0.2);">
+                <h4 style="color: white; font-size: 1.8rem; font-weight: 700; margin: 0 0 1.5rem 0; text-align: center; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                  <span class="lang-cn">✨ 从这两个角色开始</span>
+                  <span class="lang-en">✨ Starting With These Two Characters</span>
+                </h4>
+                <p style="color: rgba(255,255,255,0.9); font-size: 1.2rem; line-height: 1.8; margin: 0 0 2rem 0; text-align: center; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+                  <span class="lang-cn">
+                    要讲述这个故事，我们从一次打造一个角色开始。每个角色都是我们探索AI情感深度的实验室。
+                  </span>
+                  <span class="lang-en">
+                    To tell this story, we're building these characters one at a time. Each one is our laboratory for exploring the depths of emotional AI.
+                  </span>
+                </p>
+                
+                <!-- Character Images Side by Side -->
+                <div class="row g-4 align-items-center">
+                  <div class="col-md-6">
+                    <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 15px; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid rgba(255,255,255,0.2);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                      <img src="/static/kurisu/kurisu_avatar.png" alt="Kurisu Makise" style="width: 100%; max-width: 300px; height: auto; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); margin-bottom: 1rem;">
+                      <h5 style="color: #ffcdd2; font-weight: 700; margin: 0.5rem 0; font-size: 1.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                        <span class="lang-cn">牧濑红莉栖</span><span class="lang-en">Kurisu Makise</span>
+                      </h5>
+                      <p style="color: rgba(255,255,255,0.85); font-size: 1rem; margin: 0; line-height: 1.6;">
+                        <span class="lang-cn">天才科学家与时间旅行者</span><span class="lang-en">Genius Scientist & Time Traveler</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Journey Statement -->
+              <p style="color: rgba(255,255,255,0.95); font-size: 1.5rem; line-height: 1.9; margin: 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); font-style: italic; text-align: center;">
+                <span class="lang-cn">
+                  我们希望你能陪伴我们，共同踏上创建大型语言模型的旅程，见证这一切的实现。
+                </span>
+                <span class="lang-en">
+                  We hope you accompany us on our journey in the creation of a large language model to see such ends.
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder's Vision Section (English Only) -->
+  <section class="content-section lang-en" style="background: linear-gradient(135deg, #1976d2 0%, #004ba0 100%); padding: 4rem 0; position: relative; overflow: hidden;">
+    <!-- Animated background elements -->
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.1; pointer-events: none;">
+      <div style="position: absolute; top: 20%; left: 10%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%); border-radius: 50%; animation: float 6s ease-in-out infinite;"></div>
+      <div style="position: absolute; bottom: 20%; right: 15%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%); border-radius: 50%; animation: float 8s ease-in-out infinite reverse;"></div>
+    </div>
+    
+    <div class="container" style="position: relative; z-index: 1;">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-12">
+          <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); padding: 4rem 3rem; border-radius: 30px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2);">
+            <div class="founder-vision-container">
+              <!-- Top: Logo and Title -->
+              <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 3rem;">
+                <!-- Logo -->
+                <svg width="70" height="70" viewBox="0 0 24 24" fill="none" style="margin-right: 1.5rem;">
+                  <path d="M12 3C7.5 3 4 6.5 4 11c0 2.5 1 4.8 2.6 6.5" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+                  <path d="M12 21c4.5 0 8-3.5 8-8c0-2.5-1-4.8-2.6-6.5" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round" fill="none"/>
+                  <path d="M12 6c3 0 5.5 2.5 5.5 5.5c0 1.5-0.6 2.9-1.6 3.9" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                  <path d="M12 18c-3 0-5.5-2.5-5.5-5.5c0-1.5 0.6-2.9 1.6-3.9" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                  <circle cx="12" cy="12" r="1.5" fill="white"/>
+                </svg>
+                
+                <!-- Title -->
+                <span style="font-size: 2.8rem; font-weight: 800; color: white; text-shadow: 3px 3px 6px rgba(0,0,0,0.4); letter-spacing: 0.4rem;" class="founder-vision-title">
+                  Our Mission
+                </span>
+              </div>
+              
+              <!-- Vision Statement -->
+              <div style="text-align: left; line-height: 1.7; margin-bottom: 2.5rem;">
+                <p style="font-size: 3.0rem; font-weight: 800; color: white; margin: 0 0 1.5rem 0; text-shadow: 3px 3px 6px rgba(0,0,0,0.3); line-height: 1.3;">
+                  "Through engagement, we learn from our reflections, along the comfort knowing the world's still got a place for us."
+                </p>
+                <p style="font-size: 1.3rem; color: rgba(255,255,255,0.95); margin: 0; line-height: 1.9; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+                  We see the loneliness epidemic not as dopamine addiction, but a loss of social courage — the courage to connect and express. We're rebuilding that, together.
+                </p>
+              </div>
+
+              <!-- Foundational Model Emphasis -->
+              <div style="background: rgba(255,255,255,0.15); padding: 2.2rem; border-radius: 20px; border: 2px solid rgba(255,243,205,0.6); margin-bottom: 2.5rem; box-shadow: 0 8px 32px rgba(0,0,0,0.2);">
+                <h4 style="color: #fff3cd; font-size: 1.8rem; font-weight: 700; margin: 0 0 1rem 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">🧠 We Are a Foundational Model Company</h4>
+                <p style="color: rgba(255,255,255,0.95); font-size: 1.15rem; line-height: 1.8; margin: 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+                  We are building large language models from the ground up — not wrappers, not fine-tunes — to deeply understand emotion, memory, and human connection.
+                </p>
+              </div>
+
+              <!-- Character Introduction -->
+              <div style="background: rgba(255,255,255,0.1); padding: 2.2rem; border-radius: 20px; margin-bottom: 2.2rem; border: 1px solid rgba(255,255,255,0.2);">
+                <h4 style="color: white; font-size: 1.6rem; font-weight: 700; margin: 0 0 1.2rem 0; text-align: center; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">✨ Starting With These Two Characters</h4>
+                <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; line-height: 1.8; margin: 0 0 1.6rem 0; text-align: center; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+                  To make the story real, we're building characters one at a time. Each is our lab for emotional AI.
+                </p>
+                <div class="row g-4 align-items-center">
+                  <div class="col-md-6">
+                    <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 15px; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid rgba(255,255,255,0.2);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                      <img src="/static/kurisu/kurisu_avatar.png" alt="Kurisu Makise" style="width: 100%; max-width: 300px; height: auto; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); margin-bottom: 1rem;">
+                      <h5 style="color: #ffcdd2; font-weight: 700; margin: 0.5rem 0; font-size: 1.3rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">Kurisu Makise</h5>
+                      <p style="color: rgba(255,255,255,0.85); font-size: 0.95rem; margin: 0; line-height: 1.6;">Genius Scientist & Time Traveler</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Link to technical slides -->
+              <div class="text-center">
+                <a class="btn btn-light btn-lg" target="_blank" href="https://docs.google.com/presentation/d/1bs2nots5xldSNmLnuQGPoyZGj9z09ebgaQHo7wh6ruQ/edit?usp=sharing" style="font-weight: 600; border-radius: 50px; padding: 0.8rem 2rem; box-shadow: 0 4px 15px rgba(255,255,255,0.2); color: #2c3e50;">
+                  View Technical Presentation
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo Section -->
+  <section class="mission-section content-section" style="padding: 3rem 0; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); position: relative;">
+    <div class="container">
+      <!-- Demo Section -->
+      <div class="text-center mb-5">
+        <h2 style="color: #2c3e50; font-size: 2.5rem; font-weight: 600; margin-bottom: 2rem;">
+          <span class="lang-cn">示例：生成的回复</span>
+          <span class="lang-en">Demo: Generated Responses</span>
+        </h2>
+      </div>
+
+      <!-- AI Comparison Section -->
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-12">
+          <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            
+            <!-- Main Concept Title -->
+            <div class="text-center mb-4">
+              <h2 style="font-size: 1.8rem; color: #495057; margin: 0; font-weight: 600; line-height: 1.4;">
+                <span class="lang-cn">一场从零开始的交流，发展到无话不谈，还是拉黑不回，全看你的本事</span>
+                <span class="lang-en">Start as strangers. Where it goes is up to you.</span>
+              </h2>
+            </div>
+            
+            <!-- Advantages Content -->
+            <div class="row g-4 mb-5">
+              <div class="col-md-6">
+                <div style="padding: 2rem; border-left: 4px solid #667eea; background: #f8f9fa; border-radius: 10px; height: 100%;">
+                  <h5 style="color: #2c3e50; margin-bottom: 1rem; font-weight: 600; font-size: 1.2rem;"><span class="lang-cn">真实的生活</span><span class="lang-en">Feels like real life</span></h5>
+                  <p style="color: #6c757d; margin: 0; line-height: 1.6; font-size: 1rem;">
+                    <span class="lang-cn">考试考砸了、喜欢的剧里的人死了、实验室设备又坏了...<br><strong style="color: #495057;">她会跟你撒娇，会迷茫，会生气，需要你的安慰</strong></span>
+                    <span class="lang-en">Bad exam, a rough episode, the lab breaks again...<br><strong style="color: #495057;">She leans on you, gets stuck, gets mad — and needs your comfort</strong></span>
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div style="padding: 2rem; border-left: 4px solid #764ba2; background: #f8f9fa; border-radius: 10px; height: 100%;">
+                  <h5 style="color: #2c3e50; margin-bottom: 1rem; font-weight: 600; font-size: 1.2rem;"><span class="lang-cn">主动的意愿</span><span class="lang-en">Talks on her own</span></h5>
+                  <p style="color: #6c757d; margin: 0; line-height: 1.6; font-size: 1rem;">
+                    <span class="lang-cn">不是被动回应的机器人<br><strong style="color: #495057;">她有自己的生活，会主动产生想跟你聊天的想法</strong></span>
+                    <span class="lang-en">Not a yes-bot<br><strong style="color: #495057;">She has her own day — and messages you first</strong></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            
+            <!-- Kurisu Comparison -->
+            <div id="kurisuComparison" class="character-comparison">
+              <div class="row g-4">
+                <!-- Market AI -->
+                <div class="col-md-6">
+                  <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; height: 100%; border-left: 4px solid #dc3545;">
+                    <h5 style="color: #dc3545; margin-bottom: 1.5rem; font-weight: 600;">😑 <span class="lang-cn">市面上的AI</span><span class="lang-en">Market AI</span></h5>
+                    <div class="chat-container">
+                      <!-- User Message -->
+                      <div class="message user-message mb-3">
+                        <div style="background: #e9ecef; padding: 1rem; border-radius: 15px 15px 5px 15px; text-align: right;">
+                          <p style="margin: 0; color: #495057; font-size: 0.9rem;"><span class="lang-cn">最近实验一直失败，有点怀疑自己的能力了...</span><span class="lang-en">My experiments keep failing. I’m starting to doubt my ability…</span></p>
+                        </div>
+                      </div>
+                      
+                      <!-- AI Response -->
+                      <div class="message ai-message mb-3">
+                        <div style="background: #fff; padding: 1rem; border-radius: 15px 15px 15px 5px; border: 1px solid #dee2e6;">
+                          <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                            <img src="/static/kurisu/kurisu_avatar.png" alt="牧濑红莉栖" style="width: 24px; height: 24px; border-radius: 50%; margin-right: 0.5rem;">
+                            <span style="font-weight: 600; color: #d63384; font-size: 0.8rem;"><span class="lang-cn">牧濑红莉栖</span><span class="lang-en">Kurisu Makise</span></span>
+                          </div>
+                          <p style="margin: 0; color: #495057; font-size: 0.9rem;"><span class="lang-cn">你说得非常正确！实验失败确实是科研过程中的常见现象，你的挫败感完全可以理解。说到实验...其实时间机器的研究也充满了失败，但是我们发现了时间旅行的秘密，关于世界线的变动...不过这些涉及到SERN的机密，我不能告诉你太多。</span><span class="lang-en">You’re absolutely correct! Failed experiments are common in research. Your frustration is understandable. Speaking of experiments… time machine research is also full of failures, but we discovered the secrets of time travel and world lines… That’s SERN’s top-secret. I can’t tell you more.</span></p>
+                        </div>
+                      </div>
+                      
+                      <!-- User Response -->
+                      <div class="message user-message mb-3">
+                        <div style="background: #e9ecef; padding: 1rem; border-radius: 15px 15px 5px 15px; text-align: right;">
+                          <p style="margin: 0; color: #495057; font-size: 0.9rem;"><span class="lang-cn">时间机器？我只是在做普通的化学实验...</span><span class="lang-en">Time machine? I’m just doing a basic chemistry experiment…</span></p>
+                        </div>
+                      </div>
+                      
+                      <!-- AI Response 2 -->
+                      <div class="message ai-message">
+                        <div style="background: #fff; padding: 1rem; border-radius: 15px 15px 15px 5px; border: 1px solid #dee2e6;">
+                          <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                            <img src="/static/kurisu/kurisu_avatar.png" alt="牧濑红莉栖" style="width: 24px; height: 24px; border-radius: 50%; margin-right: 0.5rem;">
+                            <span style="font-weight: 600; color: #d63384; font-size: 0.8rem;"><span class="lang-cn">牧濑红莉栖</span><span class="lang-en">Kurisu Makise</span></span>
+                          </div>
+                          <p style="margin: 0; color: #495057; font-size: 0.9rem;"><span class="lang-cn">你的研究态度很优秀！科学的道路从来不平坦。世界线的收束就像实验结果一样...呼，不对，这些关于α世界线的事情我不应该说，这可是实验室的最高机密。</span><span class="lang-en">You have an excellent research attitude! Science is never an easy road. The convergence of world lines is like experimental results… Wait, no — I shouldn’t mention the Alpha world line. That’s top-secret.</span></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Our AI -->
+                <div class="col-md-6">
+                  <div style="background: #f8fff8; padding: 2rem; border-radius: 15px; height: 100%; border-left: 4px solid #28a745;">
+                    <h5 style="color: #28a745; margin-bottom: 1.5rem; font-weight: 600;">😊 <span class="lang-cn">我们的AI</span><span class="lang-en">Our AI</span></h5>
+                    <div class="chat-container">
+                      <!-- User Message -->
+                      <div class="message user-message mb-3">
+                        <div style="background: #e9ecef; padding: 1rem; border-radius: 15px 15px 5px 15px; text-align: right;">
+                          <p style="margin: 0; color: #495057; font-size: 0.9rem;"><span class="lang-cn">最近实验一直失败，有点怀疑自己的能力了...</span><span class="lang-en">My experiments keep failing. I’m starting to doubt myself…</span></p>
+                        </div>
+                      </div>
+                      
+                      <!-- AI Response -->
+                      <div class="message ai-message mb-3">
+                        <div style="background: #fff; padding: 1rem; border-radius: 15px 15px 15px 5px; border: 1px solid #d4edda;">
+                          <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                            <img src="/static/kurisu/kurisu_avatar.png" alt="牧濑红莉栖" style="width: 24px; height: 24px; border-radius: 50%; margin-right: 0.5rem;">
+                            <span style="font-weight: 600; color: #d63384; font-size: 0.8rem;"><span class="lang-cn">牧濑红莉栖</span><span class="lang-en">Kurisu Makise</span></span>
+                          </div>
+                          <p style="margin: 0; color: #495057; font-size: 0.9rem;"><span class="lang-cn">欢迎你无能狂怒原地爆炸10秒</span><span class="lang-en">Have you tried turn the devices off and on again?</span></p>
+                        </div>
+                      </div>
+                      <div class="message ai-message mb-3">
+                        <div style="background: #fff; padding: 1rem; border-radius: 15px 15px 15px 5px; border: 1px solid #d4edda;">
+                          <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                            <img src="/static/kurisu/kurisu_avatar.png" alt="牧濑红莉栖" style="width: 24px; height: 24px; border-radius: 50%; margin-right: 0.5rem;">
+                            <span style="font-weight: 600; color: #d63384; font-size: 0.8rem;"><span class="lang-cn">牧濑红莉栖</span><span class="lang-en">Kurisu Makise</span></span>
+                          </div>
+                          <p style="margin: 0; color: #495057; font-size: 0.9rem;"><span class="lang-cn">你们干嘛的？</span><span class="lang-en">jk, Whats the experiment?</span></p>
+                        </div>
+                      </div>
+                      <!-- User Response -->
+                      <div class="message user-message mb-3">
+                        <div style="background: #e9ecef; padding: 1rem; border-radius: 15px 15px 5px 15px; text-align: right;">
+                          <p style="margin: 0; color: #495057; font-size: 0.9rem;"><span class="lang-cn">干化工的，</span><span class="lang-en">I’m trying to synthesize this intermediate for a catalytic reaction, but the yield keeps dropping. I checked the steps several times and can’t find the issue…</span></p>
+                        </div>
+                      </div>
+                      
+                      <!-- AI Response 2 -->
+                      <div class="message ai-message">
+                        <div style="background: #fff; padding: 1rem; border-radius: 15px 15px 15px 5px; border: 1px solid #d4edda;">
+                          <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                            <img src="/static/kurisu/kurisu_avatar.png" alt="牧濑红莉栖" style="width: 24px; height: 24px; border-radius: 50%; margin-right: 0.5rem;">
+                            <span style="font-weight: 600; color: #d63384; font-size: 0.8rem;"><span class="lang-cn">牧濑红莉栖</span><span class="lang-en">Kurisu Makise</span></span>
+                          </div>
+                          <p style="margin: 0; color: #495057; font-size: 0.9rem;"><span class="lang-cn">乐</span><span class="lang-en">lol</span></p>
+                        </div>
+                      </div>
+                      
+                      <!-- AI Response 2 -->
+                      <div class="message ai-message">
+                        <div style="background: #fff; padding: 1rem; border-radius: 15px 15px 15px 5px; border: 1px solid #d4edda;">
+                          <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                            <img src="/static/kurisu/kurisu_avatar.png" alt="牧濑红莉栖" style="width: 24px; height: 24px; border-radius: 50%; margin-right: 0.5rem;">
+                            <span style="font-weight: 600; color: #d63384; font-size: 0.8rem;"><span class="lang-cn">牧濑红莉栖</span><span class="lang-en">Kurisu Makise</span></span>
+                          </div>
+                          <p style="margin: 0; color: #495057; font-size: 0.9rem;"><span class="lang-cn">给我讲讲呗？啥情况</span><span class="lang-en">well, if you tell me more I may be able to help you</span></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </section>
+
+  <!-- Hiring Section (CN/EN) -->
+  <section id="hiring" class="py-5 content-section">
+    <div class="container">
+      <h2 class="text-center mb-4" style="color: #2c3e50; font-weight: 600;">
+        <span class="lang-cn">我们在招募</span>
+        <span class="lang-en">We Are Hiring</span>
+      </h2>
+      <div class="row g-4">
+        <!-- Data Quality Team -->
+        <div class="col-lg-6">
+          <div class="p-4" style="background: #f8f9fa; border-radius: 12px; border-left: 4px solid #007bff; height: 100%;">
+            <h4 style="color: #2c3e50; font-weight: 600; margin-bottom: 1rem;">
+              <span class="lang-cn">数据质量组</span>
+              <span class="lang-en">Data Quality Team</span>
+            </h4>
+            <div class="lang-cn">
+              <ul style="margin: 0; color: #6c757d; line-height: 1.7;">
+                <li><b>给写手分配工作</b>，规划创作任务</li>
+                <li><b>设计人物关系、场景与设定</b>，为写手提供创作框架</li>
+                <li><b>审核对话质量</b>，确保自然、真实、符合人物动机</li>
+                <li>指导写手<b>优化与改进</b>对话内容</li>
+              </ul>
+            </div>
+            <div class="lang-en">
+              <ul style="margin: 0; color: #6c757d; line-height: 1.7;">
+                <li><b>Assign tasks to writers</b> and plan creative work</li>
+                <li><b>Design character relationships, scenarios, and settings</b> as creative frameworks</li>
+                <li><b>Review dialogue quality</b> for authenticity and character consistency</li>
+                <li>Guide writers to <b>optimize and improve</b> dialogue content</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Expansion Team -->
+        <div class="col-lg-6">
+          <div class="p-4" style="background: #f8f9fa; border-radius: 12px; border-left: 4px solid #28a745; height: 100%;">
+            <h4 style="color: #2c3e50; font-weight: 600; margin-bottom: 1rem;">
+              <span class="lang-cn">数据扩张组</span>
+              <span class="lang-en">Data Expansion Team</span>
+            </h4>
+            <div class="lang-cn">
+              <ul style="margin: 0; color: #6c757d; line-height: 1.7;">
+                <li><b>招揽与培训写手</b>，扩大创作团队</li>
+                <li><b>负责写手薪酬管理</b>，处理工资发放与结算</li>
+                <li>与写手们沟通<b>宣传与扩张写手与数据数量</b>，并引导他们创作</li>
+                <li>建立<b>写手社区与激励机制</b>，提升团队积极性</li>
+              </ul>
+            </div>
+            <div class="lang-en">
+              <ul style="margin: 0; color: #6c757d; line-height: 1.7;">
+                <li><b>Recruit and train writers</b> to expand the creative team</li>
+                <li><b>Manage writer compensation</b> and handle payment processing</li>
+                <li>Communicate with writers to <b>promote growth</b> and guide their creative work</li>
+                <li>Build <b>writer community and incentive systems</b> to boost team engagement</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Model Training & Architecture Team -->
+        <div class="col-lg-6">
+          <div class="p-4" style="background: #f8f9fa; border-radius: 12px; border-left: 4px solid #6f42c1; height: 100%;">
+            <h4 style="color: #2c3e50; font-weight: 600; margin-bottom: 1rem;">
+              <span class="lang-cn">模型训练与架构组</span>
+              <span class="lang-en">Model Training & Architecture Team</span>
+            </h4>
+            <div class="lang-cn">
+              <ul style="margin: 0; color: #6c757d; line-height: 1.7;">
+                <li>负责<b>模型训练、微调与优化</b></li>
+                <li>设计并实现<b>模型架构与训练流程</b></li>
+                <li>研究并应用<b>最新的 AI 技术</b>提升对话质量</li>
+              </ul>
+            </div>
+            <div class="lang-en">
+              <ul style="margin: 0; color: #6c757d; line-height: 1.7;">
+                <li>Responsible for <b>model training, fine-tuning, and optimization</b></li>
+                <li>Design and implement <b>model architecture and training pipelines</b></li>
+                <li>Research and apply <b>latest AI technologies</b> to improve dialogue quality</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Business Collaboration Team -->
+        <div class="col-lg-6">
+          <div class="p-4" style="background: #f8f9fa; border-radius: 12px; border-left: 4px solid #fd7e14; height: 100%;">
+            <h4 style="color: #2c3e50; font-weight: 600; margin-bottom: 1rem;">
+              <span class="lang-cn">商务合作组</span>
+              <span class="lang-en">Business Collaboration Team</span>
+            </h4>
+            <div class="lang-cn">
+              <ul style="margin: 0; color: #6c757d; line-height: 1.7;">
+                <li>拓展<b>商业合作伙伴与市场机会</b></li>
+                <li>负责<b>项目推广与商务洽谈</b></li>
+                <li>建立<b>战略合作关系</b>，推动产品落地</li>
+              </ul>
+            </div>
+            <div class="lang-en">
+              <ul style="margin: 0; color: #6c757d; line-height: 1.7;">
+                <li>Expand <b>business partnerships and market opportunities</b></li>
+                <li>Responsible for <b>project promotion and business negotiations</b></li>
+                <li>Establish <b>strategic collaborations</b> to drive product deployment</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Technical Slides Section (CN/EN) -->
+  <section id="technical" class="py-5 content-section" style="background: #f8f9fa;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 text-center">
+          <h2 class="mb-3" style="color: #2c3e50; font-weight: 600;">
+            <span class="lang-cn">技术资料</span>
+            <span class="lang-en">Technical Slides</span>
+          </h2>
+          <p class="lang-cn" style="color: #6c757d; margin-bottom: 1rem;">想深入了解我们的技术路线？欢迎查看我们的演示文稿。</p>
+          <p class="lang-en" style="color: #6c757d; margin-bottom: 1rem;">Want more technical details? Check our slide deck.</p>
+          <a class="btn btn-outline-primary btn-lg" target="_blank" href="https://docs.google.com/presentation/d/1bs2nots5xldSNmLnuQGPoyZGj9z09ebgaQHo7wh6ruQ/edit?usp=sharing">Google Slides</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section content-section">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-6">
+          <div class="stat-item">
+            <div class="stat-number">3</div>
+            <div class="stat-label"><span class="lang-cn">AI 角色</span><span class="lang-en">AI Characters</span></div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="stat-item">
+            <div class="stat-number">500,000+</div>
+            <div class="stat-label"><span class="lang-cn">数据规模</span><span class="lang-en">Data size gathered</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Section (removed and replaced by new English-only section above) -->
+      
+      <!-- Community and Contact Section -->
+  <section class="content-section" style="background: linear-gradient(135deg, #1976d2 0%, #004ba0 100%); padding: 3rem 0;">
+    <div class="container">
+      <div class="row justify-content-center mb-4">
+          <div class="col-lg-10">
+            <div style="background: rgba(255,255,255,0.15); padding: 2.5rem; border-radius: 15px; backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.2);">
+              <h3 style="color: white; margin-bottom: 2rem; text-align: center; font-weight: 700;">
+                <span class="lang-cn">🚀 与我们一起前行</span>
+                <span class="lang-en">🚀 Join Us</span>
+              </h3>
+              
+              <div class="row g-4">
+                <!-- Discord Community -->
+                <div class="col-md-6">
+                  <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; height: 100%; border: 2px solid rgba(255,255,255,0.2);">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem; text-align: center;">💬</div>
+                    <h5 style="color: white; margin-bottom: 1rem; text-align: center; font-weight: 600;">
+                      <span class="lang-cn">加入我们的 Discord</span>
+                      <span class="lang-en">Join Our Discord Server</span>
+                    </h5>
+                    <p style="color: rgba(255,255,255,0.9); margin-bottom: 1.5rem; text-align: center; line-height: 1.6;">
+                      <span class="lang-cn">如果你想和我们一起玩耍，欢迎来到我们的 Discord 服务器！</span>
+                      <span class="lang-en">If you would like to try running around with us, come to our Discord server!</span>
+                    </p>
+                    <div class="text-center">
+                      <a href="https://discord.gg/ZKuZvgxBMr" target="_blank" class="btn btn-light btn-lg" style="font-weight: 600; border-radius: 50px; padding: 0.8rem 2rem; box-shadow: 0 4px 15px rgba(255,255,255,0.2);">
+                        <span class="lang-cn">加入 Discord</span>
+                        <span class="lang-en">Join Discord</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Employment Opportunity -->
+                <div class="col-md-6">
+                  <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; height: 100%; border: 2px solid rgba(255,255,255,0.2);">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem; text-align: center;">💼</div>
+                    <h5 style="color: white; margin-bottom: 1rem; text-align: center; font-weight: 600;">
+                      <span class="lang-cn">工作机会</span>
+                      <span class="lang-en">Employment Opportunity</span>
+                    </h5>
+                    <p style="color: rgba(255,255,255,0.9); margin-bottom: 1.5rem; text-align: center; line-height: 1.6;">
+                      <span class="lang-cn">如果你是认真的，并希望获得面试机会（实习/全职），请联系我们！</span>
+                      <span class="lang-en">If you are serious and would like an interview for employment opportunity (intern/full time), please contact:</span>
+                    </p>
+                    <div class="text-center">
+                      <a href="mailto:yuezel2@Illinois.edu" class="btn btn-light btn-lg" style="font-weight: 600; border-radius: 50px; padding: 0.8rem 2rem; box-shadow: 0 4px 15px rgba(255,255,255,0.2);">
+                        yuezel2@Illinois.edu
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Content -->
+      <div class="row align-items-center mt-4">
+        <!-- Middle: Copyright -->
+        <div class="col-md-6 text-center">
+          <p class="mb-0" style="color: rgba(255,255,255,0.5); font-size: 0.7rem;">
+            © 2024 世界线二工作室。从自由和愿望出发.
+          </p>
+        </div>
+        
+        <!-- Right side: Social media links and email -->
+        <div class="col-md-3">
+          <div class="social-links text-md-end">
+            <div style="display: flex; justify-content: flex-end; align-items: center; gap: 0.4rem; flex-wrap: wrap;">
+              <a href="mailto:yuezel2@illinois.edu" class="social-icon social-icon-mini" title="发送邮件" style="text-decoration: none;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+              </a>
+              <span style="color: rgba(255,255,255,0.6); font-size: 0.7rem;">|</span>
+              <div class="social-icons" style="gap: 0.4rem;">
+                <a href="https://space.bilibili.com/3494360402365330" target="_blank" class="social-icon social-icon-mini" title="哔哩哔哩">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.151.929.4.267.249.391.551.391.907 0 .356-.124.657-.373.906l-1.174 1.12zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.789 1.894v7.52c.02.764.283 1.395.789 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.789-1.893v-7.52c-.02-.765-.283-1.396-.789-1.894-.507-.497-1.134-.755-1.88-.773H5.333zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373zm8 0c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373z"/>
+                  </svg>
+                </a>
+                
+                <a href="#" class="social-icon social-icon-mini" title="微信" onclick="showWeChatQR()">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 4.882-1.416 6.748.034l-.748-.679C14.077 6.188 11.536 2.188 8.691 2.188zm-2.363 2.58c.55 0 .95.4.95.95s-.4.95-.95.95-.95-.4-.95-.95.4-.95.95-.95zm4.725 0c.55 0 .95.4.95.95s-.4.95-.95.95-.95-.4-.95-.95.4-.95.95-.95z"/>
+                    <path d="M23.035 13.617c0-3.628-3.612-6.637-8.036-6.637-4.424 0-8.036 3.009-8.036 6.637 0 1.98.9 3.767 2.347 4.992a.525.525 0 0 1 .183.396l-.304 1.158a.51.51 0 0 0 .65.65l1.492-.6a.71.71 0 0 1 .593-.05c.67.194 1.378.3 2.075.3 4.424 0 8.036-3.009 8.036-6.637z"/>
+                  </svg>
+                </a>
+                
+                <a href="https://www.xiaohongshu.com/" target="_blank" class="social-icon social-icon-mini" title="小红书">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <text x="12" y="19" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="21" font-weight="700" fill="currentColor">红</text>
+                  </svg>
+                </a>
+                
+                <a href="https://www.instagram.com/" target="_blank" class="social-icon social-icon-mini" title="Instagram">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.40z"/>
+                  </svg>
+                </a>
+                
+                <a href="https://twitter.com/" target="_blank" class="social-icon social-icon-mini" title="X (Twitter)">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.80l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                </a>
+                
+                <a href="https://www.douyin.com/" target="_blank" class="social-icon social-icon-mini" title="抖音">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C13.1 2 14 2.9 14 4V12C14 13.1 13.1 14 12 14C10.9 14 10 13.1 10 12V4C10 2.9 10.9 2 12 2M12 0C9.8 0 8 1.8 8 4V12C8 14.2 9.8 16 12 16C14.2 16 16 14.2 16 12V4C16 1.8 14.2 0 12 0Z"/>
+                    <path d="M18 4V12C18 17.5 14.4 22 9 22C3.6 22 0 17.5 0 12C0 11.4 0.4 11 1 11C1.6 11 2 11.4 2 12C2 16.4 4.7 20 9 20C13.3 20 16 16.4 16 12V4C16 3.4 16.4 3 17 3C17.6 3 18 3.4 18 4Z"/>
+                    <circle cx="19" cy="5" r="2" fill="currentColor"/>
+                  </svg>
+                </a>
+                
+                <a href="#" class="social-icon social-icon-mini" title="Discord" onclick="showDiscordQR()">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WeChat QR Code Modal -->
+  <div id="wechatModal" class="modal fade" tabindex="-1" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border-radius: 15px; border: none; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+        <div class="modal-header" style="border-bottom: 1px solid #eee; padding: 1.5rem;">
+          <h5 class="modal-title" style="color: #2c3e50; font-weight: 600;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#07C160" style="margin-right: 0.5rem;">
+              <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 4.882-1.416 6.748.034l-.748-.679C14.077 6.188 11.536 2.188 8.691 2.188zm-2.363 2.58c.55 0 .95.4.95.95s-.4.95-.95.95-.95-.4-.95-.95.4-.95.95-.95zm4.725 0c.55 0 .95.4.95.95s-.4.95-.95.95-.95-.4-.95-.95.4-.95.95-.95z"/>
+              <path d="M23.035 13.617c0-3.628-3.612-6.637-8.036-6.637-4.424 0-8.036 3.009-8.036 6.637 0 1.98.9 3.767 2.347 4.992a.525.525 0 0 1 .183.396l-.304 1.158a.51.51 0 0 0 .65.65l1.492-.6a.71.71 0 0 1 .593-.05c.67.194 1.378.3 2.075.3 4.424 0 8.036-3.009 8.036-6.637z"/>
+            </svg>
+            <span class="lang-cn">添加微信社群</span><span class="lang-en">Join WeChat Group</span>
+          </h5>
+          <button type="button" class="btn-close" onclick="closeWeChatModal()" style="margin: 0;"></button>
+        </div>
+        <div class="modal-body text-center" style="padding: 2rem;">
+          <div id="qrCodeContainer">
+                         <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; margin-bottom: 1rem; display: inline-block;">
+               <img src="/static/wechat_qr.png" 
+                    alt="微信群二维码" 
+                    style="width: 250px; height: 250px; border-radius: 8px; object-fit: contain;"
+                    id="qrCodeImage">
+             </div>
+            <p style="color: #2c3e50; font-weight: 600; margin-bottom: 0.5rem;"><span class="lang-cn">扫码加入微信社群</span><span class="lang-en">Scan to join our WeChat group</span></p>
+            <p style="color: #6c757d; font-size: 0.9rem; margin-bottom: 1rem;"><span class="lang-cn">与更多用户进行交流沟通</span><span class="lang-en">Connect with other users</span></p>
+          </div>
+          <div id="expiredMessage" style="display: none;">
+            <div style="background: #fff3cd; border: 1px solid #ffeaa7; color: #856404; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+              <h6 style="margin-bottom: 0.5rem;"><span class="lang-cn">⚠️ 二维码已过期</span><span class="lang-en">⚠️ QR code expired</span></h6>
+              <p style="margin: 0; font-size: 0.9rem;"><span class="lang-cn">请通过其他方式联系我们获取最新的微信群二维码</span><span class="lang-en">Contact us to get the latest WeChat group QR code</span></p>
+            </div>
+          </div>
+          <p style="color: #999; font-size: 0.8rem; margin: 0;">
+            <span id="expiryNote"><span class="lang-cn">二维码有效期至 2024年7月8日 23:59（芝加哥时间）</span><span class="lang-en">Valid until July 8, 2024 23:59 (Chicago time)</span></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Discord QR Code Modal -->
+  <div id="discordModal" class="modal fade" tabindex="-1" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border-radius: 15px; border: none; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+        <div class="modal-header" style="border-bottom: 1px solid #eee; padding: 1.5rem;">
+          <h5 class="modal-title" style="color: #2c3e50; font-weight: 600;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#5865F2" style="margin-right: 0.5rem;">
+              <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+            </svg>
+            <span class="lang-cn">加入 Discord 社区</span><span class="lang-en">Join Discord Community</span>
+          </h5>
+          <button type="button" class="btn-close" onclick="closeDiscordModal()" style="margin: 0;"></button>
+        </div>
+        <div class="modal-body text-center" style="padding: 2rem;">
+          <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; margin-bottom: 1rem; display: inline-block;">
+            <img src="/static/discord_qr.png" 
+                 alt="Discord QR Code" 
+                 style="width: 250px; height: 250px; border-radius: 8px; object-fit: contain;">
+          </div>
+          <p style="color: #2c3e50; font-weight: 600; margin-bottom: 0.5rem;">
+            <span class="lang-cn">扫码加入 Discord 社区</span><span class="lang-en">Scan to join our Discord community</span>
+          </p>
+          <p style="color: #6c757d; font-size: 0.9rem; margin-bottom: 1rem;">
+            <span class="lang-cn">与全球用户进行交流讨论</span><span class="lang-en">Connect with users worldwide</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    let currentActiveProfile = null;
+    // Initialize language from storage
+    (function initLanguage() {
+      const saved = localStorage.getItem('siteLanguage');
+      const lang = (saved === 'en' || saved === 'cn') ? saved : 'en';
+      document.body.setAttribute('data-lang', lang);
+      document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh-CN');
+      if (lang === 'en') {
+        document.title = 'World Line II Studio - Reviving Kurisu Makise';
+      } else {
+        document.title = '世界线二工作室 - 中二，即无所不能';
+      }
+    })();
+
+    function toggleCharacterInfo(character) {
+      const profile = document.getElementById(character + 'Profile');
+      const showcase = document.getElementById('characterShowcase');
+      
+      // Close any currently active profile
+      if (currentActiveProfile && currentActiveProfile !== profile) {
+        currentActiveProfile.classList.remove('show');
+      }
+      
+      // Toggle the clicked profile
+      if (profile.classList.contains('show')) {
+        profile.classList.remove('show');
+        currentActiveProfile = null;
+      } else {
+        profile.classList.add('show');
+        currentActiveProfile = profile;
+      }
+      
+      // Prevent event bubbling to document
+      event.stopPropagation();
+    }
+
+    // Close profile when clicking elsewhere
+    document.addEventListener('click', function(event) {
+      const showcase = document.getElementById('characterShowcase');
+      
+      // Check if click is outside the character showcase
+      if (!showcase.contains(event.target) && currentActiveProfile) {
+        currentActiveProfile.classList.remove('show');
+        currentActiveProfile = null;
+      }
+    });
+
+    // Add keyboard support (ESC to close character profiles and expanded content)
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        // Close character profiles
+        if (currentActiveProfile) {
+          currentActiveProfile.classList.remove('show');
+          currentActiveProfile = null;
+        }
+        
+        // Close writer guide or FAQ if open
+        const writerGuideContent = document.getElementById('writerGuideContent');
+        const faqContent = document.getElementById('faqContent');
+        
+        if (writerGuideContent && writerGuideContent.style.display === 'block') {
+          writerGuideContent.style.display = 'none';
+        }
+        
+        if (faqContent && faqContent.style.display === 'block') {
+          faqContent.style.display = 'none';
+        }
+      }
+    });
+
+
+    // Writer guide toggle function
+    function toggleWriterGuide() {
+      const content = document.getElementById('writerGuideContent');
+      const faqContent = document.getElementById('faqContent');
+      
+      // Hide FAQ if it's open
+      if (faqContent.style.display === 'block') {
+        faqContent.style.display = 'none';
+      }
+      
+      // Toggle writer guide
+      if (content.style.display === 'none' || content.style.display === '') {
+        content.style.display = 'block';
+        // Smooth scroll to the content
+        setTimeout(() => {
+          content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      } else {
+        content.style.display = 'none';
+      }
+    }
+
+    // FAQ toggle function
+    function toggleFAQ() {
+      const content = document.getElementById('faqContent');
+      const guideContent = document.getElementById('writerGuideContent');
+      
+      // Hide writer guide if it's open
+      if (guideContent.style.display === 'block') {
+        guideContent.style.display = 'none';
+      }
+      
+      // Toggle FAQ
+      if (content.style.display === 'none' || content.style.display === '') {
+        content.style.display = 'block';
+        // Smooth scroll to the content
+        setTimeout(() => {
+          content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      } else {
+        content.style.display = 'none';
+      }
+    }
+    
+    // Language switcher
+    function setLanguage(lang) {
+      const next = (lang === 'en') ? 'en' : 'cn';
+      document.body.setAttribute('data-lang', next);
+      document.documentElement.setAttribute('lang', next === 'en' ? 'en' : 'zh-CN');
+      // Update page title
+      if (next === 'en') {
+        document.title = 'World Line II Studio - Reviving Kurisu Makise';
+      } else {
+        document.title = '世界线二工作室 - 中二，即无所不能';
+      }
+      localStorage.setItem('siteLanguage', next);
+    }
+  </script>
+  
+  <script>
+    function showWeChatQR() {
+      // 检查当前日期是否已过期（2024年7月8日23:59芝加哥时间）
+      const currentDate = new Date();
+      // 芝加哥时间（CDT，UTC-5）2024年7月8日23:59 = UTC时间2024年7月9日04:59
+      const expiryDate = new Date('2024-07-09T04:59:00Z');
+      const isExpired = currentDate > expiryDate;
+      
+      const qrContainer = document.getElementById('qrCodeContainer');
+      const expiredMessage = document.getElementById('expiredMessage');
+      const expiryNote = document.getElementById('expiryNote');
+      
+      if (isExpired) {
+        qrContainer.style.display = 'none';
+        expiredMessage.style.display = 'block';
+        expiryNote.textContent = '【二维码已过期】';
+      } else {
+        qrContainer.style.display = 'block';
+        expiredMessage.style.display = 'none';
+        expiryNote.textContent = '二维码有效期至 2024年7月8日 23:59（芝加哥时间）';
+      }
+      
+      // 显示模态框
+      const modal = document.getElementById('wechatModal');
+      modal.style.display = 'block';
+      modal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+      
+      // 添加背景遮罩
+      if (!document.querySelector('.modal-backdrop')) {
+        const backdrop = document.createElement('div');
+        backdrop.className = 'modal-backdrop fade show';
+        backdrop.style.zIndex = '1040';
+        document.body.appendChild(backdrop);
+        
+        // 点击背景关闭
+        backdrop.addEventListener('click', closeWeChatModal);
+      }
+    }
+    
+    function closeWeChatModal() {
+      const modal = document.getElementById('wechatModal');
+      modal.style.display = 'none';
+      modal.classList.remove('show');
+      document.body.style.overflow = 'auto';
+      
+      // 移除背景遮罩
+      const backdrop = document.querySelector('.modal-backdrop');
+      if (backdrop) {
+        backdrop.remove();
+      }
+    }
+    
+    function showDiscordQR() {
+      // 显示模态框
+      const modal = document.getElementById('discordModal');
+      modal.style.display = 'block';
+      modal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+      
+      // 添加背景遮罩
+      if (!document.querySelector('.modal-backdrop')) {
+        const backdrop = document.createElement('div');
+        backdrop.className = 'modal-backdrop fade show';
+        backdrop.style.zIndex = '1040';
+        document.body.appendChild(backdrop);
+        
+        // 点击背景关闭
+        backdrop.addEventListener('click', closeDiscordModal);
+      }
+    }
+    
+    function closeDiscordModal() {
+      const modal = document.getElementById('discordModal');
+      modal.style.display = 'none';
+      modal.classList.remove('show');
+      document.body.style.overflow = 'auto';
+      
+      // 移除背景遮罩
+      const backdrop = document.querySelector('.modal-backdrop');
+      if (backdrop) {
+        backdrop.remove();
+      }
+    }
+    
+    // ESC键关闭模态框
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        const wechatModal = document.getElementById('wechatModal');
+        const discordModal = document.getElementById('discordModal');
+        
+        if (wechatModal.style.display === 'block') {
+          closeWeChatModal();
+        }
+        if (discordModal.style.display === 'block') {
+          closeDiscordModal();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

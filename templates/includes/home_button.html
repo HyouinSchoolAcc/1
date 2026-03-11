@@ -1,0 +1,74 @@
+<!-- Floating Home Button -->
+<style>
+  .floating-home-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+  
+  .floating-home-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    color: white;
+    text-decoration: none;
+  }
+  
+  .floating-home-btn:active {
+    transform: translateY(-1px);
+  }
+  
+  .floating-home-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+  
+  @media (max-width: 768px) {
+    .floating-home-btn {
+      bottom: 15px;
+      right: 15px;
+      padding: 10px 16px;
+      font-size: 12px;
+    }
+    
+    .floating-home-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+</style>
+
+<a href="/landing" class="floating-home-btn" id="floating-home-btn" title="返回首页 / Back to Home">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+  </svg>
+  <span id="home-btn-text">首页</span>
+</a>
+<script>
+  // Update home button for English
+  (function() {
+    const isEnglish = document.documentElement.lang === 'en';
+    if (isEnglish) {
+      const homeBtn = document.getElementById('floating-home-btn');
+      const homeBtnText = document.getElementById('home-btn-text');
+      if (homeBtn) homeBtn.setAttribute('href', '/landing/e');
+      if (homeBtnText) homeBtnText.textContent = 'Home';
+    }
+  })();
+</script>
+

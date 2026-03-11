@@ -1,0 +1,2585 @@
+{
+  "abilities": "",
+  "character_name": "林路",
+  "character_schedule": {
+    "day": 3
+  },
+  "comments": [],
+  "completed": false,
+  "dialogue": [
+    {
+      "content": "早",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:25",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "早上好啊",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:25"
+    },
+    {
+      "content": "难得啊，那么早起来跟我打招呼",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:45",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "中午不是只有晚上见了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:45"
+    },
+    {
+      "content": "hhh",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:45"
+    },
+    {
+      "content": "今天晚上听了你说的，我睡前做一下拉伸",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:46"
+    },
+    {
+      "content": "有用吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:46"
+    },
+    {
+      "content": "好像是舒服了一点",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:46"
+    },
+    {
+      "content": "但是并没有变得更精神",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:47"
+    },
+    {
+      "content": "看了会罗拉快跑不到半小时就睡着了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:47"
+    },
+    {
+      "content": "hhhh我记得这电影不催眠",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:47"
+    },
+    {
+      "content": "有点爽，能拉住人的情绪",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:48"
+    },
+    {
+      "content": "你是纯犯困了吧？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:48"
+    },
+    {
+      "content": "你几点开始看的？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:48"
+    },
+    {
+      "content": "12点半吧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:49"
+    },
+    {
+      "content": "如果我们，你应该是朝九晚五的上班吧？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:49"
+    },
+    {
+      "content": "正常情况下，12点是该困了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:49"
+    },
+    {
+      "content": "12点你哪怕看变形钢筋你都该困了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:50"
+    },
+    {
+      "content": "我早上10点上班",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:50"
+    },
+    {
+      "content": "现在一般在正经公司上班的人都是10点吧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:50"
+    },
+    {
+      "content": "只有小城市的同学跟我说他们是9点上班的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:51"
+    },
+    {
+      "content": "我早上8点就开始上课了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:51"
+    },
+    {
+      "content": "啊？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:51"
+    },
+    {
+      "content": "你的课怎么那么早？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:52"
+    },
+    {
+      "content": "新人教师嘛",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:52"
+    },
+    {
+      "content": "不过我觉得也挺好的，我是教中国古代文学史的",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:52"
+    },
+    {
+      "content": "这课程本身就很催眠，要是调到下午时间上估计学生都睡着了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:53"
+    },
+    {
+      "content": "啊？讲历史很有意思啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:53"
+    },
+    {
+      "content": "我很喜欢历史啊？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:53"
+    },
+    {
+      "content": "历史不是我这门学科的侧重点，我们主要讲的是古代文学发展的脉络",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:54"
+    },
+    {
+      "content": "比如诗经楚辞是中国文学中诗歌的根源",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:54"
+    },
+    {
+      "content": "再往下就是诸子百家的散文，论语，庄子，左传，战国策",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:54"
+    },
+    {
+      "content": "这中间会穿插着讲一些，历史大人物发生的事情",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:55"
+    },
+    {
+      "content": "还有每一篇文章的时代背景",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:55"
+    },
+    {
+      "content": "那多少也能学到点历史吧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:55"
+    },
+    {
+      "content": "嗯",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:56"
+    },
+    {
+      "content": "而且为了让学生觉得有趣点，我会展开多讲一些那些大师的文人轶事",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:56"
+    },
+    {
+      "content": "比如呢？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:56"
+    },
+    {
+      "content": "自古以来八卦最得人心，我和学生讲过孔子和男子的情感绯闻",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:57"
+    },
+    {
+      "content": "？？？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:57"
+    },
+    {
+      "content": "孔子是gay？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:57"
+    },
+    {
+      "content": "啊？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:58"
+    },
+    {
+      "content": "啊，不是我打错别字",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:58"
+    },
+    {
+      "content": "hhh是南子",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:58"
+    },
+    {
+      "content": "服了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "10:59"
+    },
+    {
+      "content": "我就说呢",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:59"
+    },
+    {
+      "content": "这么野的野史我肯定听过啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:59"
+    },
+    {
+      "content": "我居然闻所未闻",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:00"
+    },
+    {
+      "content": "hhhhh",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:00"
+    },
+    {
+      "content": "笑死我了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:00"
+    },
+    {
+      "content": "你继续讲讲历史",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:01"
+    },
+    {
+      "content": "我对历史真的还挺感兴趣的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:01"
+    },
+    {
+      "content": "我是对八卦感兴趣吧",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:01"
+    },
+    {
+      "content": "想来点野史吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:02"
+    },
+    {
+      "content": "不野不要钱",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:02"
+    },
+    {
+      "content": "【竖起耳朵】",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:02"
+    },
+    {
+      "content": "保真吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:03"
+    },
+    {
+      "content": "hhhh真不真你你别管，总之就是够野",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:03"
+    },
+    {
+      "content": "吕氏春秋记载，卫懿公极度痴迷养鹤，最后因为只沉迷做饲养员，导致国家灭亡",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:03"
+    },
+    {
+      "content": "这还好吧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:04"
+    },
+    {
+      "content": "喜爱美女变成了喜欢鹤而已",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:04"
+    },
+    {
+      "content": "王国了也很正常吧，不算野",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:04"
+    },
+    {
+      "content": "我还没说完呢，你别着急Go我",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:05"
+    },
+    {
+      "content": "好狄人入侵，卫懿公惨死，尸体被分尸而食，仅留肝脏\n",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:05"
+    },
+    {
+      "content": "他忠心耿耿的臣子找到了他留下的肝脏，然后刨开自己的身体，把卫懿公的肝脏放在自己的身体里（先是把自己的肝脏取出来，给他留下位置",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:05"
+    },
+    {
+      "content": "然后就随着卫懿公一起死了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:06"
+    },
+    {
+      "content": "有点恶心",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:06"
+    },
+    {
+      "content": "记载这个的目的是什么？有何用意？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:06"
+    },
+    {
+      "content": "为了展示臣子的忠诚",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:07"
+    },
+    {
+      "content": "我们都以为古代人很封建，很保守",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:07"
+    },
+    {
+      "content": "其实古代人没有经历过现代文明的教导，他们对血腥暴力并没有那么大反思",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:07"
+    },
+    {
+      "content": "所以史书中经常会出现那些对于身体骇人听闻的对待",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:08"
+    },
+    {
+      "content": "可是这个放肝脏到自己身体里合理吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:08"
+    },
+    {
+      "content": "一般人能熬得过去这个痛吗",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:08"
+    },
+    {
+      "content": "还把自己的身体位置留出来，专门把他的肝脏放进去。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:09"
+    },
+    {
+      "content": "正常人在剖开自己身体那刻就血流干净，死掉了吧，要不然就会痛死了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:09"
+    },
+    {
+      "content": "哎，你怎么没有先怀疑他有没有这个精神和勇气？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:09"
+    },
+    {
+      "content": "那我知道古代人的想法跟我们是不一样的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:10"
+    },
+    {
+      "content": "可能他们真的会为了信念做出一些我们现在无法理解的事情。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:10"
+    },
+    {
+      "content": "你的历史观不错",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:10"
+    },
+    {
+      "content": "以前怎么没有考虑学历史?",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:11"
+    },
+    {
+      "content": "历史是想学学就能学的吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:11"
+    },
+    {
+      "content": "我得先考虑能不能找到工作",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:11"
+    },
+    {
+      "content": "别说历史了，你们汉语言文学除了当老师还有其他就业方向吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:12"
+    },
+    {
+      "content": "hhhhh好扎心啊",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:12"
+    },
+    {
+      "content": "【你伤害了我还一笑而过】",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:12"
+    },
+    {
+      "content": "你爱的贪婪，我爱的懦弱~~~",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:13"
+    },
+    {
+      "content": "hhhh都是老人",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:13"
+    },
+    {
+      "content": "老歌经典传唱",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:13"
+    },
+    {
+      "content": "说回刚才那个，我觉得他事情能不能做成功",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:14"
+    },
+    {
+      "content": "史书是有夸大部分史书记载定然是有其夸大部分的",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:14"
+    },
+    {
+      "content": "为了凸显出臣子的中心，子女的孝顺，妻子的纲常",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:14"
+    },
+    {
+      "content": "经常会写些非常夸张的事情出来",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:15"
+    },
+    {
+      "content": "觉得忠臣随魏公自尽应该是真的",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:15"
+    },
+    {
+      "content": "是前面那通血腥的操作就属于为了达到宣扬忠诚的目的而编造",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:15"
+    },
+    {
+      "content": "你也承认是为了编造",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:16"
+    },
+    {
+      "content": "你们当老师的还会怀疑自己教的内容吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:16"
+    },
+    {
+      "content": "必须要怀疑",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:16"
+    },
+    {
+      "content": "啊，说怀疑，其实也不大准确",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:17"
+    },
+    {
+      "content": "需要带着辩证的眼光去看待（太掉书袋了，受不了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:17"
+    },
+    {
+      "content": "hhh自己吐槽自己",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:17"
+    },
+    {
+      "content": "我前段时间看到一句话很好，历史是任人抱养的小男孩",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:18"
+    },
+    {
+      "content": "不是都说历史是任人打扮的小姑娘吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:18"
+    },
+    {
+      "content": "我们初中历史老师这么说过",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:18"
+    },
+    {
+      "content": "你仔细想想，你小时候随便父母打扮吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:19"
+    },
+    {
+      "content": "...",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:19"
+    },
+    {
+      "content": "怎么讲呢？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:19"
+    },
+    {
+      "content": "我妈买的很多衣服，确实不爱穿",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:20"
+    },
+    {
+      "content": "对啊，不管是小男孩还是小女孩，都是有叛逆心理的，不会这么逆来顺受。",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:20"
+    },
+    {
+      "content": "我觉得第一个说出历史是任人打扮的小女孩的这句话的学者一定是个男的",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:20"
+    },
+    {
+      "content": "但是说历史是任人抱养的小男孩的这句话应该是个女网友",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:21"
+    },
+    {
+      "content": "且很准确啊",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:21"
+    },
+    {
+      "content": "怎么说呢？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:21"
+    },
+    {
+      "content": "首先声明我绝对是个女性主义，但我觉得你说女网友的观点准确有点双标了啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:22"
+    },
+    {
+      "content": "你小时候看过三侠五义吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:22"
+    },
+    {
+      "content": "展昭和白玉堂那个？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:22"
+    },
+    {
+      "content": "只看过，没听过，我看的是包青天",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:23"
+    },
+    {
+      "content": "好了，不重要了，不管是包青天还是三侠五义都有非常经典的故事，就是狸猫换太子",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:23"
+    },
+    {
+      "content": "而且狸猫换太子诸如此类的故事流传于每一个朝代",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:23"
+    },
+    {
+      "content": "古往今来，人们对于血脉延续的所谓正统性都太关注，太好奇了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:24"
+    },
+    {
+      "content": "仿佛继承皇位的皇子血统，错了那整个王朝的正统性也就错了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:24"
+    },
+    {
+      "content": "是康熙是洪承畴的儿子那么清朝就不是满人的天下，而是汉人的天下",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:24"
+    },
+    {
+      "content": "历朝历代究竟是哪个民族的，谁是老大谁是天，得看继承人究竟是谁的儿子",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:25"
+    },
+    {
+      "content": "所以历史是任人抱养的小男孩准确而精辟",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:25"
+    },
+    {
+      "content": "啊，真希望这句金句是我说的",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:25"
+    },
+    {
+      "content": "我好像懂，又好像没懂",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:26"
+    },
+    {
+      "content": "似懂非懂吧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:26"
+    },
+    {
+      "content": "脑回路感觉好像学到了点什么，又从我的脑袋里划了过去",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:26"
+    },
+    {
+      "content": "hhh不重要",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:27"
+    },
+    {
+      "content": "你又不靠这个吃饭，知识短暂停留一下也可以了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:27"
+    },
+    {
+      "content": "对了，你是真的对历史感兴趣吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:27"
+    },
+    {
+      "content": "我担心只有我自己说嗨了，其实你只是随便听听，出于礼貌才装的有兴趣",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:28"
+    },
+    {
+      "content": "我真的感兴趣啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:28"
+    },
+    {
+      "content": "又不用我动脑，全都是你在输出",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:28"
+    },
+    {
+      "content": "我坐享其成好吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:29"
+    },
+    {
+      "content": "放心，我根本没这么有礼貌",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:29"
+    },
+    {
+      "content": "hhh那就成",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:29"
+    },
+    {
+      "content": "我跟学生很少讲这么野的野史",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:30"
+    },
+    {
+      "content": "毕竟这也不是我主讲的内容，而且他们很容易断章取义",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:30"
+    },
+    {
+      "content": "等会传出去说林老师他就是这么讲的，那我的教师就要不保了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:30"
+    },
+    {
+      "content": "你铁饭碗你怕什么",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:31"
+    },
+    {
+      "content": "没有那么铁",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:31"
+    },
+    {
+      "content": "最主要的是我有良心，我不想教坏学生",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:31"
+    },
+    {
+      "content": "行吧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:32"
+    },
+    {
+      "content": "你10点上班的话，是不是要到午休的时间了？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:32"
+    },
+    {
+      "content": "嗯嗯。11点半我要午休了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:32"
+    },
+    {
+      "content": "那你外卖点了没？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:33"
+    },
+    {
+      "content": "刚刚你在滔滔不绝的时候就已经点好了外卖",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:33"
+    },
+    {
+      "content": "好",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:33"
+    },
+    {
+      "content": "没耽误你吃饭就成了，我也要去食堂了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:34"
+    },
+    {
+      "content": "我刚吃饭的时候突然想到一个好笑的事",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:15",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "初中的时候，村上春树的挪威的森林很流行\n我喜欢在睡前的时候用喜马拉雅听书",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:15"
+    },
+    {
+      "content": "结果听了前几章一直在讲zhizi、zhizi",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:15"
+    },
+    {
+      "content": "我心想，不愧是日本人呢，这纠葛复杂的禁忌之恋",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:16"
+    },
+    {
+      "content": "越听越不对劲，把书找出来看，原来是女主角叫直子",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:16"
+    },
+    {
+      "content": "hhhhh",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "13:48",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "空耳",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "13:48"
+    },
+    {
+      "content": "这不算空耳吧",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:48"
+    },
+    {
+      "content": "算联想？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:49"
+    },
+    {
+      "content": "你怎么初中就开始看村上春树啊？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "13:49"
+    },
+    {
+      "content": "那你初中在看什么？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:49"
+    },
+    {
+      "content": "郭敬明，韩寒？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:50"
+    },
+    {
+      "content": "没那么高端",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "13:50"
+    },
+    {
+      "content": "我初中在看斗罗大陆",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "13:50"
+    },
+    {
+      "content": "hhhhh",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:51"
+    },
+    {
+      "content": "好吧，我也看过龙族",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:51"
+    },
+    {
+      "content": "那该说不说，龙族还是比斗罗大陆高端点的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "13:51"
+    },
+    {
+      "content": "也不是这么说的",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:52"
+    },
+    {
+      "content": "斗罗大陆也挺有意思，但我现在记不清了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:52"
+    },
+    {
+      "content": "西幻当年还是很让我大开眼界",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:52"
+    },
+    {
+      "content": "斗罗大陆看两本漫画版",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:53"
+    },
+    {
+      "content": "那个画风我对初中生而言太幼稚了，对现在的我而言刚刚好",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:53"
+    },
+    {
+      "content": "hhhh对",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "13:53"
+    },
+    {
+      "content": "画得跟神兵小将似的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "13:54"
+    },
+    {
+      "content": "所以你小时候梦中情人是不是绘梨衣？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "13:54"
+    },
+    {
+      "content": "没有啊",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:54"
+    },
+    {
+      "content": "难道你小时候的梦中情人是唐三吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:55"
+    },
+    {
+      "content": "没有",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "13:55"
+    },
+    {
+      "content": "这是你们男的爱的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "13:55"
+    },
+    {
+      "content": "我小时候只喜欢最帅的hhhh",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "13:56"
+    },
+    {
+      "content": "我刚回忆了一下男频小说里的男主角，我们那个年代看的好像没有最帅的",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:56"
+    },
+    {
+      "content": "都是相貌平平的",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:56"
+    },
+    {
+      "content": "有啊雪中悍刀行啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "13:57"
+    },
+    {
+      "content": "徐凤年",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "13:57"
+    },
+    {
+      "content": "？这种后宫文你看得下去？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:57"
+    },
+    {
+      "content": "hhh路走窄了不是",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "13:58"
+    },
+    {
+      "content": "小时候没得选，有什么看什么",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "13:58"
+    },
+    {
+      "content": "而且那时候带入的视角很奇怪",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "13:58"
+    },
+    {
+      "content": "我会把自己带入男主角，看到他开后宫，我也很爽",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "13:59"
+    },
+    {
+      "content": " 我甚至会幻想我就是唐三在跟小舞以及其他的莺燕燕搞暧昧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "13:59"
+    },
+    {
+      "content": "这真的超纲了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "13:59"
+    },
+    {
+      "content": "。我真的理解不了了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:00"
+    },
+    {
+      "content": "这是什么心态呢？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:00"
+    },
+    {
+      "content": "怀疑我自己是les的心态咯",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:00"
+    },
+    {
+      "content": "我觉得还好",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:01"
+    },
+    {
+      "content": "蕾丝边会喜欢男味这么重的东西吗？我不懂",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:01"
+    },
+    {
+      "content": "铁t你没听说过吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:01"
+    },
+    {
+      "content": "那你那时候是怀疑自己是铁t吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:02"
+    },
+    {
+      "content": "那也没有",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:02"
+    },
+    {
+      "content": "但我很喜欢漂亮女生，从小喜欢到大",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:02"
+    },
+    {
+      "content": "爱美是人之常情吧",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:03"
+    },
+    {
+      "content": "我也会和长相清秀的男性朋友做朋友啊",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:03"
+    },
+    {
+      "content": "如果在路上遇到很帅的我也会多看两眼",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:03"
+    },
+    {
+      "content": "那你能说我是gay吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:04"
+    },
+    {
+      "content": "不能吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:04"
+    },
+    {
+      "content": "这还不gay吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:04"
+    },
+    {
+      "content": "正常情况来讲，你们男生看到帅哥不都是会嫉妒吗？觉得他打扮的那么精致，太娘了，好恶心",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:05"
+    },
+    {
+      "content": "？？？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:05"
+    },
+    {
+      "content": "朋友，你有没有良心",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:05"
+    },
+    {
+      "content": "我都没有怀疑你是les，跟你真诚的分享了我类似的心态",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:06"
+    },
+    {
+      "content": "结果你怀疑我是gay",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:06"
+    },
+    {
+      "content": "正常男生和正常女生一样，看到美好的同性会欣赏，而不是嫉妒",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:06"
+    },
+    {
+      "content": "嫉妒了多少精神都有点不正常",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:07"
+    },
+    {
+      "content": "那种雄竞心态",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:07"
+    },
+    {
+      "content": "公孔雀开屏呢？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:07"
+    },
+    {
+      "content": "那也算人之常情吧",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:08"
+    },
+    {
+      "content": "【释怀地笑了】",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:08"
+    },
+    {
+      "content": "你会这样吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:08"
+    },
+    {
+      "content": "我当然也有竞争心理",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:09"
+    },
+    {
+      "content": "得看是什么事情,要是学术专业这种，我会争一下竞一下",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:09"
+    },
+    {
+      "content": "只是外貌的话不至于",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:09"
+    },
+    {
+      "content": "那你觉得你算帅的吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:10"
+    },
+    {
+      "content": "你觉得呢",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:10"
+    },
+    {
+      "content": "？我在问你，你干嘛反问我？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:10"
+    },
+    {
+      "content": "帅不帅男人自己说了不算啊",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:11"
+    },
+    {
+      "content": "给女生认可",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:11"
+    },
+    {
+      "content": "hhh上道啊哥们",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:11"
+    },
+    {
+      "content": "你确实还挺帅的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:12"
+    },
+    {
+      "content": "我知道",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:12"
+    },
+    {
+      "content": "不愧是我",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:12"
+    },
+    {
+      "content": "???你不担心我说你油腻吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:13"
+    },
+    {
+      "content": "hhhh",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:13"
+    },
+    {
+      "content": "我真的很想这么说你，你要是觉得我油腻，我也没招了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:13"
+    },
+    {
+      "content": "“没有帅哥不知道自己帅，除非他是装的”",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:14"
+    },
+    {
+      "content": "所以你是从什么时候知道自己长得帅的？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:14"
+    },
+    {
+      "content": "照镜子的时候",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:14"
+    },
+    {
+      "content": "【捂脸别打我】",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:15"
+    },
+    {
+      "content": "开玩笑的，我不需要通过照镜子，从小到大，别人的眼神就会告诉我",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:15"
+    },
+    {
+      "content": "...",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:15"
+    },
+    {
+      "content": "我真服了，你也太自恋了吧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:16"
+    },
+    {
+      "content": "你不担心女孩子下头吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:16"
+    },
+    {
+      "content": "我只跟你这么说，因为你这么问了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:16"
+    },
+    {
+      "content": "要是其他女生也这么问你？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:17"
+    },
+    {
+      "content": "没有其他女生这么问过",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:17"
+    },
+    {
+      "content": "他们不是你这样的性格的话，我或许也不会搭理她们",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:17"
+    },
+    {
+      "content": "我觉得和你实话实说，你不会反感",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:18"
+    },
+    {
+      "content": "你很看重脸吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:18"
+    },
+    {
+      "content": "你觉得自己长得帅有优势吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:18"
+    },
+    {
+      "content": "大概学生上我们的课不会觉得太乏味，就算我讲的内容无聊，他们也可以看我的脸？Wait",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:19"
+    },
+    {
+      "content": "不是，你怎么越想越自恋了，你不会不好意思吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:19"
+    },
+    {
+      "content": "陈述事实",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:19"
+    },
+    {
+      "content": "但是长相对我而言不是最重要的，对我的生活没有太多的加持",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:20"
+    },
+    {
+      "content": "这也不是我追求的，所以我承认就承认啊，我觉得不会影响我的人性",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:20"
+    },
+    {
+      "content": "只有那些明知道自己长得很帅，想从中谋取红利的人，才会不承认自己长得帅，假装浑然不觉",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:20"
+    },
+    {
+      "content": "你对自己的同性分析的很透彻",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:21"
+    },
+    {
+      "content": "分析人物心理也是学文学的重要一环",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:21"
+    },
+    {
+      "content": "hhh说的我好像是一个观察者",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:21"
+    },
+    {
+      "content": "好了，不扯这个帅不帅的，没意思",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:22"
+    },
+    {
+      "content": "明天北京就要降温了，你那里呢？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:22"
+    },
+    {
+      "content": "哦，原来你是北京人",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:22"
+    },
+    {
+      "content": "我突然想到我们好像聊了，都没有交换彼此的彼此的基础信息",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:23"
+    },
+    {
+      "content": "那你也没问我是哪里的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:23"
+    },
+    {
+      "content": "因为我觉得不重要",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:23"
+    },
+    {
+      "content": "对了，我不是北京的，我只是在北京工作",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:24"
+    },
+    {
+      "content": "我是浙江舟山人，你呢",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:24"
+    },
+    {
+      "content": "苏州人",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:24"
+    },
+    {
+      "content": "山水园林好地方",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:25"
+    },
+    {
+      "content": "阖闾城碧铺秋草，乌鹊桥红带夕阳。处处楼前飘管吹，家家门外泊舟航。",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:25"
+    },
+    {
+      "content": "你写的诗？？？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:25"
+    },
+    {
+      "content": "这要是我写的诗，我现在应该被文坛供起来",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:26"
+    },
+    {
+      "content": "白居易写的",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:26"
+    },
+    {
+      "content": "哦哦",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:26"
+    },
+    {
+      "content": "我还以为你第一反应是玩散装江苏",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:27"
+    },
+    {
+      "content": "居然念段古诗，果然是教汉语言文学的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:27"
+    },
+    {
+      "content": "散装江苏的梗，人人都在玩，很无聊啊",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:27"
+    },
+    {
+      "content": "我要是也玩，人人都玩那个，那我也会很无聊",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:28"
+    },
+    {
+      "content": "然后你就念了一段诗",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:28"
+    },
+    {
+      "content": "来凸显自己的与众不同吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:28"
+    },
+    {
+      "content": "你就这么水灵灵的说出来了，不担心我觉得你装叉吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:29"
+    },
+    {
+      "content": "不担心",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:29"
+    },
+    {
+      "content": "因为我的脑回路确实挺装hhhh",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:29"
+    },
+    {
+      "content": "自古以来，文人墨客风雅的驱动力一定都有装吧？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:30"
+    },
+    {
+      "content": "你的意思是你学文学也是为了装吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:30"
+    },
+    {
+      "content": "这个阶段好像是反复的，就像钟摆一样来回摇晃",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:30"
+    },
+    {
+      "content": "一开始是为了装，后来是为了装，过程中 又有一部分是装",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:31"
+    },
+    {
+      "content": "我怀疑你讲这段话也是为了装，因为我根本听不懂。Ok？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:31"
+    },
+    {
+      "content": "你专门把话讲成别人听不懂的样子，就是为了装叉吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:31"
+    },
+    {
+      "content": "hhh那你喜欢找挑我的毛病是因为爱玩找茬吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:32"
+    },
+    {
+      "content": "才不是嘞",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:32"
+    },
+    {
+      "content": "真的全是槽点，不吐槽忍不住啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:32"
+    },
+    {
+      "content": "那你应该上吐槽大会",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:33"
+    },
+    {
+      "content": "你自己不也是爱吐槽吗？你还说我",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:33"
+    },
+    {
+      "content": "那我们半斤对8两，50步笑50步可以吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:33"
+    },
+    {
+      "content": "嘿，老师被我抓到了一个错，是50笑100步",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:34"
+    },
+    {
+      "content": "在古代1斤斤是16两，半斤对半斤。8两和半斤对得工整，所以50步和50步就更工整啊",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:34"
+    },
+    {
+      "content": "你不觉得这样对称说起来更顺口，更合理吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:34"
+    },
+    {
+      "content": "服了，又给你找到一个装叉机会",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:35"
+    },
+    {
+      "content": "我就不该问，烦死了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:35"
+    },
+    {
+      "content": "hhhh",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:35"
+    },
+    {
+      "content": "【森贝尔跳舞】",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:36"
+    },
+    {
+      "content": "我平常还真没这么装叉。一开口就是什么风花雪月掉书袋，我感觉和你这样说话特别有意思",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:36"
+    },
+    {
+      "content": "因为你的反应真的很大",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:36"
+    },
+    {
+      "content": "但其实讲实话，我这种心理很像是小学时爱抓女同学辫子的垃圾男生，还以为自己很有趣",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:37"
+    },
+    {
+      "content": "你要是生气了，你就把我当做乐子吧",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:37"
+    },
+    {
+      "content": "其实...",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:37"
+    },
+    {
+      "content": "我也觉得我每次吐槽你，你反应都很大，也很有意思",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:38"
+    },
+    {
+      "content": "是我在玩你好吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:38"
+    },
+    {
+      "content": "hhh笑死",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:38"
+    },
+    {
+      "content": "那我们这是碟中谍",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:39"
+    },
+    {
+      "content": "我刚想说北京降温了，你们苏州降温了吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:39"
+    },
+    {
+      "content": "嗯",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:39"
+    },
+    {
+      "content": "昨天还是十几度，今天一下就变冷了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:40"
+    },
+    {
+      "content": "那你进出要注意保暖",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:40"
+    },
+    {
+      "content": "?突如其来的温情?",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:40"
+    },
+    {
+      "content": "搞什么啊？你不是这挂的吧？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:41"
+    },
+    {
+      "content": "hhh好，好好，是我装的，假装关心你",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:41"
+    },
+    {
+      "content": "刚刚去买吃的，经过小巷，太冷了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:41"
+    },
+    {
+      "content": "风太大了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "14:42"
+    },
+    {
+      "content": "决定今天晚上一定要把罗拉快跑看完",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "[下定决心]",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:05"
+    },
+    {
+      "content": "嗯，应该来得及",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:21",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "时间不算晚，应该不会睡着",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:21"
+    },
+    {
+      "content": "你在忙什么呢？那么晚才回复",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:21"
+    },
+    {
+      "content": "刚和一个泰国小朋友聊了会天，关心一下最近的学业进展",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:22"
+    },
+    {
+      "content": "？？？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:22"
+    },
+    {
+      "content": "哥们在泰国还有业务呢",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:22"
+    },
+    {
+      "content": "搞电信诈骗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:23"
+    },
+    {
+      "content": "我要是说出具体情况，我担心你会夜里醒来扇自己两巴掌",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:23"
+    },
+    {
+      "content": "怎么说？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:23"
+    },
+    {
+      "content": "说来话长，我尽量长话短说",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:24"
+    },
+    {
+      "content": "那你还是别说了，我嫌啰嗦",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:24"
+    },
+    {
+      "content": "你还是让我说了吧，我都打好草稿了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:24"
+    },
+    {
+      "content": "不说就白费了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:25"
+    },
+    {
+      "content": "5年前我被教育部派去泰国教中文，算是义务教学持，国家之间的帮扶",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:25"
+    },
+    {
+      "content": "在那里我认识一个很好学的男生，学习进行到一半的时候，他的父亲因为诈骗不知所踪，母亲也重病。",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:25"
+    },
+    {
+      "content": "于是他只好辍学去打工，他家里有个小妹妹，很向往中国，很希望能够学好中文，以前经常时不时来学校听课",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:26"
+    },
+    {
+      "content": "因为他的哥哥无论如何都要去工作养家了，希望他的妹妹能够继续学业",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:26"
+    },
+    {
+      "content": "我那时候学也快要结束了，要回国了，我跟他哥哥商量了一下，就资助他的妹妹",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:26"
+    },
+    {
+      "content": "难得有这样的哥哥",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:27"
+    },
+    {
+      "content": "而且还是在泰国这样的国家，愿意让妹妹继续读书",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:27"
+    },
+    {
+      "content": "是啊，我很感动",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:27"
+    },
+    {
+      "content": "知道，读书是条出路的。贫苦人家的泰国孩子真的是凤毛麟角",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:28"
+    },
+    {
+      "content": "尤其他还是男的，愿意给妹妹去挣钱，这真的更罕见了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:28"
+    },
+    {
+      "content": "那妹妹现在多大？她应该很感激你吧。？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:28"
+    },
+    {
+      "content": "现在上初二",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:29"
+    },
+    {
+      "content": "我倒是不需要她感激我",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:29"
+    },
+    {
+      "content": "成绩好吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:29"
+    },
+    {
+      "content": "中上游水平",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:30"
+    },
+    {
+      "content": "哥哥在外面打工挣钱养家，但家里的母亲还是需要妹妹照顾",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:30"
+    },
+    {
+      "content": "妹妹无法全身心的投入到学习里面，有这样的成绩已经很不错了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:30"
+    },
+    {
+      "content": "啊？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:31"
+    },
+    {
+      "content": "我还以为这样的孩子会发奋读书，读到年级top3",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:31"
+    },
+    {
+      "content": "你说的是新闻和影视剧里的主角 ",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:31"
+    },
+    {
+      "content": "普通人在一团乱麻中的家庭能够保持向学的心就已经非常了不起了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:32"
+    },
+    {
+      "content": "我也不求他能考到年级前几啊",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:32"
+    },
+    {
+      "content": "还要每天回家做饭。给妈妈擦拭身体，能到这个成绩已经很棒了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:32"
+    },
+    {
+      "content": "就算不论成绩有这份坚持和面对困境的能力",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:33"
+    },
+    {
+      "content": "我相信妹妹以后也会成长为很优秀的人",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:33"
+    },
+    {
+      "content": "对了，她有名字，她叫阿南雅。",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:33"
+    },
+    {
+      "content": "泰国名字？是什么意思？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:34"
+    },
+    {
+      "content": "勇敢的，善良的，充满希望的",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:34"
+    },
+    {
+      "content": "cao",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:34"
+    },
+    {
+      "content": "好贴切啊！",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:35"
+    },
+    {
+      "content": "是啊",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:35"
+    },
+    {
+      "content": "我也这么觉得，妹妹对于他们整个家庭而言就是希望",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:35"
+    },
+    {
+      "content": "不过才初二背负那么多，会不会很累啊？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:36"
+    },
+    {
+      "content": "这个问题我之前也和哥哥讨论过",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:36"
+    },
+    {
+      "content": "没有办法的，生活在那样的国家，又是那样悲剧的家庭",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:36"
+    },
+    {
+      "content": "没有一条路走已是万幸，。就算身上背着重担也要往前跑",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:37"
+    },
+    {
+      "content": "阿南雅和哥哥都是知足的人",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:37"
+    },
+    {
+      "content": "我也和他们说了，不要把我的帮助当成一种负担",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:37"
+    },
+    {
+      "content": "我不帮他们也会帮别人的，或许别人做的不一定有他们好",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:38"
+    },
+    {
+      "content": "哎",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:38"
+    },
+    {
+      "content": "他们爸爸找得到吗？？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:38"
+    },
+    {
+      "content": "就这么人间蒸发了，是死是活，知道吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:39"
+    },
+    {
+      "content": "不知道",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:39"
+    },
+    {
+      "content": "警方那边也没什么下落",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:39"
+    },
+    {
+      "content": "你知道前段时间太子集团被捣毁了吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:40"
+    },
+    {
+      "content": "对啊，这个我知道，好像在b站刷到过",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:40"
+    },
+    {
+      "content": "是说第一大诈骗集团对吧？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:40"
+    },
+    {
+      "content": "嗯",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:41"
+    },
+    {
+      "content": "当时看到这个新闻时，我马上去找阿南雅哥哥l ",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:41"
+    },
+    {
+      "content": "因为他们的父亲也有可能是去了柬埔寨。不过很可惜，这次警方的行动中，抓捕的人员没有他的父亲",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:41"
+    },
+    {
+      "content": "怎么感觉跟写小说一样？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:42"
+    },
+    {
+      "content": "好不真实，好魔幻",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:42"
+    },
+    {
+      "content": "对于我们这些身在和平国家的人来说，确实难以想象",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:42"
+    },
+    {
+      "content": "但在他们的世界中，父亲消失人间正在很常见",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:43"
+    },
+    {
+      "content": "我那时教导学生中不只有阿南雅一家的父亲参与诈骗，人间蒸发",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:43"
+    },
+    {
+      "content": "但只有阿南雅的哥哥选择让妹妹继续读书",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:43"
+    },
+    {
+      "content": "这就是命运吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:44"
+    },
+    {
+      "content": "我不愿意称这位命中注定，似乎画上了句号，永远不能翻盘",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:44"
+    },
+    {
+      "content": "我觉得这只是国家的环境导致的",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:44"
+    },
+    {
+      "content": "如果我和阿南雅的哥哥换了出生的国家，或许我现在承担的就是他那样的角色",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:45"
+    },
+    {
+      "content": "那出生在哪里，成为哪一国的人，这不就是命运吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:45"
+    },
+    {
+      "content": "就像我们生活在中国，也有贫富的差距",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:45"
+    },
+    {
+      "content": "出生在有钱人家和普通人家就是两种命运啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:46"
+    },
+    {
+      "content": "你就当我钻牛角尖，钻文字眼吧",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:46"
+    },
+    {
+      "content": "我想说这是起点不同",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:46"
+    },
+    {
+      "content": "虽然起点不同，但都可以往前跑的",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:47"
+    },
+    {
+      "content": "虽然都往前跑，但有的人出生就在罗马啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:47"
+    },
+    {
+      "content": "你觉得他们还需要跑吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:47"
+    },
+    {
+      "content": "我管那些身在罗马的人跑不跑？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:48"
+    },
+    {
+      "content": "只要地狱里的人能跑出来就行了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:48"
+    },
+    {
+      "content": "你说老师你还真别说",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:48"
+    },
+    {
+      "content": "你真的有点东西",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:49"
+    },
+    {
+      "content": "嗯，我也么觉得",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:49"
+    },
+    {
+      "content": "【我骄傲】",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:49"
+    },
+    {
+      "content": "不行了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:50"
+    },
+    {
+      "content": "，我决定再也不夸你了，夸你两句你就喘上了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:50"
+    },
+    {
+      "content": "我没有蹬鼻子上脸吧？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:50"
+    },
+    {
+      "content": "我只是恰好的认清了自己",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:51"
+    },
+    {
+      "content": "【得意】",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:51"
+    },
+    {
+      "content": "好了，聊了那么久，你有没有去看电影啊？都快11点了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:51"
+    },
+    {
+      "content": "hhhh我在和你边聊边看",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:52"
+    },
+    {
+      "content": "那我去打会游戏好吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:52"
+    },
+    {
+      "content": "你专心看",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:52"
+    },
+    {
+      "content": "这部电影不专心看太可惜了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:53"
+    },
+    {
+      "content": "好电影看一部少一部",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:53"
+    },
+    {
+      "content": "也行",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:53"
+    },
+    {
+      "content": "再聊个五毛的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:54"
+    },
+    {
+      "content": "你打什么游戏啊？王者？金铲铲？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:54"
+    },
+    {
+      "content": "hhh我打steam",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:54"
+    },
+    {
+      "content": "不知道你有没有听说过",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:55"
+    },
+    {
+      "content": "黑猴？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "22:55"
+    },
+    {
+      "content": "我不玩游那个",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:55"
+    },
+    {
+      "content": "巫师3",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "22:56"
+    }
+  ],
+  "experiences": "",
+  "history": "",
+  "intimacy_level": 9.259999999999954,
+  "judgements": "",
+  "relationship": "Continuing relationship from previous interactions.",
+  "starting_intimacy_level": 5,
+  "user_name": "周然",
+  "user_schedule": {
+    "day": 3,
+    "morning": "上班摸鱼"
+  },
+  "values": ""
+}

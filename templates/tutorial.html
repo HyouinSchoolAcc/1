@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="{{if eq .Language "en"}}en{{else}}zh-CN{{end}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{if eq .Language "en"}}Tutorial - Redirecting...{{else}}教程 - 跳转中...{{end}}</title>
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .loading {
+            text-align: center;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 215, 0, 0.2);
+            border-top-color: #ffd700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        h2 {
+            color: #ffd700;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        p {
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading">
+        <div class="spinner"></div>
+        <h2>{{if eq .Language "en"}}Starting Tutorial...{{else}}启动教程中...{{end}}</h2>
+        <p>{{if eq .Language "en"}}Redirecting to the guide{{else}}正在跳转到写手指南{{end}}</p>
+    </div>
+    <script>
+        // Redirect directly to the guide page (consolidated tutorial)
+        const isEnglish = document.documentElement.lang === 'en';
+        window.location.href = isEnglish ? '/guide/e' : '/guide';
+    </script>
+</body>
+</html>

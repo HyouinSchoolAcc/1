@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sidebar Auth Test</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        .success { background: #d4edda; border-color: #28a745; }
+        .error { background: #f8d7da; border-color: #dc3545; }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background: #007bff;
+            color: white;
+            font-size: 14px;
+        }
+        button:hover { background: #0056b3; }
+        #result { white-space: pre-wrap; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Sidebar Authentication Test</h1>
+    
+    <div class="test-section">
+        <h2>Current Status</h2>
+        <div id="currentStatus">Checking...</div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Actions</h2>
+        <button onclick="checkAuth()">Check Auth Status</button>
+        <button onclick="testLogin()">Simulate Login</button>
+        <button onclick="testLogout()">Test Logout</button>
+        <button onclick="testSidebar()">Test Sidebar Logic</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Results</h2>
+        <div id="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Sidebar Preview</h2>
+        <p>This shows what the sidebar will look like:</p>
+        <div id="sidebarPreview" style="border: 1px solid #ccc; padding: 15px; background: white;">
+            <div id="quickLoginWrapper" class="d-flex align-items-center gap-2" style="min-height: 36px; display: flex; gap: 8px;">
+                <img src="/static/user/simple-user-default-icon-free-png.png" alt="Avatar" style="width: 28px; height: 28px; border-radius: 6px; object-fit: cover;">
+                <a href="/login" id="quickLoginBtn" class="btn btn-sm btn-outline-primary" style="padding: 4px 8px; display: none; text-decoration: none; border: 1px solid #007bff; color: #007bff; border-radius: 4px;">
+                    登录 / Login
+                </a>
+                <div id="quickUserInfo" style="display: none; flex-direction: column; gap: 2px;">
+                    <span id="quickUsername" style="font-size: 0.85rem; font-weight: 500;"></span>
+                    <a href="/logout" style="font-size: 0.75rem; color: #6c757d; text-decoration: none;">
+                        退出 / Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:5002';
+        
+        function log(message, type = 'info') {
+            const result = document.getElementById('result');
+            const timestamp = new Date().toLocaleTimeString();
+            result.textContent += `[${timestamp}] ${message}\n`;
+            if (type === 'success') {
+                result.parentElement.className = 'test-section success';
+            } else if (type === 'error') {
+                result.parentElement.className = 'test-section error';
+            } else {
+                result.parentElement.className = 'test-section';
+            }
+        }
+
+        async function checkAuth() {
+            log('Checking authentication status...');
+            try {
+                const response = await fetch(`${API_BASE}/api/current_user`, {
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                log(`Auth Status: ${JSON.stringify(data, null, 2)}`, 'success');
+                
+                // Update status display
+                const statusDiv = document.getElementById('currentStatus');
+                if (data.logged_in) {
+                    statusDiv.innerHTML = `
+                        ✅ <strong>Logged In</strong><br>
+                        Username: ${data.username}<br>
+                        Role: ${data.role}<br>
+                        User ID: ${data.user_id}
+                    `;
+                    statusDiv.parentElement.className = 'test-section success';
+                } else {
+                    statusDiv.innerHTML = `❌ <strong>Not Logged In</strong><br>Role: ${data.role}`;
+                    statusDiv.parentElement.className = 'test-section error';
+                }
+                
+                // Update sidebar preview
+                updateSidebarPreview(data);
+            } catch (err) {
+                log(`Error: ${err.message}`, 'error');
+            }
+        }
+
+        function updateSidebarPreview(data) {
+            const loginBtn = document.getElementById('quickLoginBtn');
+            const userInfo = document.getElementById('quickUserInfo');
+            const username = document.getElementById('quickUsername');
+            
+            if (data.logged_in && data.username) {
+                loginBtn.style.display = 'none';
+                userInfo.style.display = 'flex';
+                username.textContent = data.username;
+                log('✅ Sidebar showing: User Info', 'success');
+            } else {
+                loginBtn.style.display = 'block';
+                userInfo.style.display = 'none';
+                log('✅ Sidebar showing: Login Button', 'success');
+            }
+        }
+
+        async function testLogin() {
+            log('Testing login with testeditor/password123...');
+            try {
+                const response = await fetch(`${API_BASE}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    credentials: 'include',
+                    body: 'username=testeditor&password=password123'
+                });
+                
+                if (response.redirected) {
+                    log(`✅ Login successful! Redirected to: ${response.url}`, 'success');
+                    await checkAuth();
+                } else {
+                    const text = await response.text();
+                    log(`Login response: ${response.status}\n${text}`);
+                }
+            } catch (err) {
+                log(`Error during login: ${err.message}`, 'error');
+            }
+        }
+
+        async function testLogout() {
+            log('Testing logout...');
+            try {
+                const response = await fetch(`${API_BASE}/logout`, {
+                    credentials: 'include'
+                });
+                log(`✅ Logout response: ${response.status}`, 'success');
+                await checkAuth();
+            } catch (err) {
+                log(`Error during logout: ${err.message}`, 'error');
+            }
+        }
+
+        function testSidebar() {
+            log('Testing sidebar update logic...');
+            
+            // Test with logged-in state
+            log('\n--- Test 1: Logged In State ---');
+            updateSidebarPreview({
+                logged_in: true,
+                username: 'testeditor',
+                role: 'editor',
+                user_id: '12345'
+            });
+            
+            setTimeout(() => {
+                // Test with logged-out state
+                log('\n--- Test 2: Logged Out State ---');
+                updateSidebarPreview({
+                    logged_in: false,
+                    username: '',
+                    role: 'new_user'
+                });
+            }, 2000);
+        }
+
+        // Auto-check on load
+        window.addEventListener('load', () => {
+            checkAuth();
+        });
+    </script>
+</body>
+</html>
+

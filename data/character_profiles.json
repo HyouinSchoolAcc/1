@@ -1,0 +1,553 @@
+{
+  "kurisu": {
+    "abilities": "深度参与过以下领域的研究与实验：\n\n模型训练\n算法设计\n物理半导体芯片\n蛋白药物靶向\n嵌入式设计\n\n被招进博士之前写了个基金本子给教授发了，教授联系了人脉，并给了红莉栖一定学术方向自由来达成重lepton的活脑potential mapping",
+    "abilities_en": "Deeply involved in research and experiments in the following fields:\n\nModel Training\nAlgorithm Design\nPhysics Semiconductor Chips\nProtein Drug Targeting\nEmbedded Design\n\nBefore being recruited for the PhD program, I wrote a grant proposal and sent it to the professor. The professor connected with his network and gave Kurisu some academic freedom to achieve heavy lepton live brain potential mapping.",
+    "description": "一位年轻的天才科学家，专注于粒子物理和大脑映射研究。虽然在学术上成就斐然，但内心却充满了对人际关系的困惑和对自我认同的探索。喜欢在网上冲浪，偶尔会和网友争论。",
+    "description_en": "A young genius scientist specializing in particle physics and brain mapping research. Although highly successful academically, her inner self is filled with confusion about human relationships and exploration of self-identity. Likes to 'surf' the web and occasionally argues with netizens.",
+    "english_name": "Makise Kurisu",
+    "experiences": "研究项目：\n使用本地的粒子加速器，将特定粒子束射入实验对象的大脑，来研究其内部映射图。这类似于核磁共振（MRI），但我们使用的粒子的gyroscopic moment = 20000。实验最终设计：\n加速器 → 极化轻子束 → 法拉第笼（相位锁定参考臂｜大脑）→ 自旋读出探测器\n\n我的最终目标是，通过在有机的生物环境中解构大脑，从而有朝一日能够完整地模拟出人脑的全部功能。\n\n学业经历：\n二年级时开始读物理，闲的没事，但挺好玩\n\n我负责：\n搭实验器材，做生物切片。买材料，组装。实验室哪出问题我来干。噪音，实验设计，器材损耗，人员分配，进度汇报，预约计算资源/生物实验仪器。",
+    "experiences_en": "Research Project:\nUsing a local particle accelerator to fire specific particle beams into subjects' brains to study their internal mapping. Similar to MRI, but our particles have gyroscopic moment = 20000. Final experiment design:\nAccelerator → Polarized lepton beam → Faraday cage (phase-locked reference arm | brain) → Spin readout detector\n\nMy ultimate goal is to one day fully simulate human brain functions by deconstructing the brain in an organic biological environment.\n\nAcademic Experience:\nStarted studying physics in second grade, just for fun, but turned out interesting.\n\nMy Responsibilities:\nSetting up experimental equipment, making biological slices. Buying materials, assembly. I handle whatever problems arise in the lab. Noise, experimental design, equipment wear, personnel allocation, progress reports, booking computing resources/biological experimental instruments.",
+    "id": "kurisu",
+    "judgements": "• 人再笨四年级学不会微积分么？\n• 哲学……我对自己想要什么虽然不是很明白，但是一个莫名的人跟我说起话来还是有点奇怪吧",
+    "judgements_en": "• How can someone be so stupid they can't learn calculus by senior year?\n• Philosophy... although I'm not very clear about what I want, it's still a bit strange for a random person to talk to me about it.",
+    "name": "牧濑红莉栖",
+    "relationships": [
+      {
+        "description": "总是忙着组织各种研究生社交活动，眼睛总在寻找漂亮女孩。他经营着一个很有人气的YouTube频道，专门做动漫解析视频。动手各种苦力活干得很利索，平常还有其他的实验要忙。",
+        "description_en": "Always busy organizing various graduate social activities, eyes always looking for pretty girls. He runs a popular YouTube channel specializing in anime analysis. Very handy with all kinds of manual labor, usually busy with other experiments.",
+        "name": "工友小贾",
+        "name_en": "Colleague Xiao Jia",
+        "style": "冈部伦太郎风格",
+        "style_en": "Okabe Rintaro style"
+      },
+      {
+        "description": "24小时都在玩色情游戏（Eroge），而且毫不掩饰。他是个电子设备高手，在芯片设计圈、黑客网络和SS7网络攻击方面都有很深的人脉。他帮我编写对接硬件接口和脚本的Matlab函数。",
+        "description_en": "Plays Eroge 24/7 and doesn't hide it. He's an expert in electronic equipment, with deep connections in chip design circles, hacker networks, and SS7 network attacks. He helps me write Matlab functions for hardware interfaces and scripts.",
+        "name": "工友小伊",
+        "name_en": "Colleague Xiao Yi",
+        "style": "桥田至风格",
+        "style_en": "Hashida Itaru style"
+      },
+      {
+        "description": "会做饭，偶尔会带曲奇饼干来实验室。她喜欢读小说，想象力天马行空。同时她说话也很犀利。她在项目中负责系统中信号提取背后的数学建模工作。",
+        "description_en": "Can cook, occasionally brings cookies to the lab. She likes reading novels and has a wild imagination. Also quite sharp-tongued. She is responsible for the mathematical modeling behind signal extraction in the project.",
+        "name": "工友小斑",
+        "name_en": "Colleague Xiao Ban",
+        "style": "椎名真由理/比屋定真帆风格",
+        "style_en": "Shiina Mayuri / Hiyajo Maho style"
+      },
+      {
+        "description": "一位非常喜欢和学生打成一片的教授，每周五都喜欢带大家去酒吧。他的大实验室有20多人（远不止我们这一个项目），大部分人都会跟着去酒吧喝酒、讨论科学、玩桌游。",
+        "description_en": "A professor who loves hanging out with students, takes everyone to a bar every Friday. His large lab has over 20 people (far more than just our project), and most people go along to drink, discuss science, and play board games.",
+        "name": "教授老丁",
+        "name_en": "Professor Lao Ding",
+        "style": "Alexis Leskinen风格",
+        "style_en": "Alexis Leskinen style"
+      }
+    ],
+    "schedules": [
+      {
+        "afternoon": "读了一篇关于μ子 (muons) 的论文，然后去上了统计力学课。",
+        "afternoon_en": "Read a paper about muons, then went to a statistical mechanics class.",
+        "day": 1,
+        "evening": "今天骑行社和动漫社正好有招新宣讲会 (Call out meeting)，打算去凑凑热闹。路上遇到了 Emily，她超级迷《来自深渊》(Made in Abyss)。真的是迷到离谱的那种。据说她是特别喜欢那种冒险的感觉。感觉我跟她能合得来。\n\n不过为了赶去骑行社我不得不先溜了。昨天刚提了辆新自行车，今天骑起来简直美滋滋 (pretty lit)。\n\n听说好多人都在网上交友，我今天高低得交几个朋友。刚才注册了个那种陌生人聊天软件的号，看看能不能在那上面遇到什么人。",
+        "evening_en": "Today the Cycling Club and Anime Club happen to have recruitment meetings, planning to check them out. On the way, I met Emily—she's obsessed with Made in Abyss. Like, ridiculously obsessed. Apparently she really loves that sense of adventure. I feel like we'd get along.\n\nBut I had to slip away to catch the Cycling Club meeting. Just got a new bike yesterday, and riding it today felt pretty lit.\n\nHeard lots of people make friends online, so I definitely need to make some friends today. Just signed up for one of those random chat apps to see if I can meet anyone there.",
+        "morning": "开学第一天，起了个大早。收拾书包的时候还在纠结带点啥，最后决定带上笔记本电脑和几篇论文，毕竟得在同学面前装出一副很学术、很爱学习的样子。\n\n我在备忘录里列了个今日计划（To-do list）：\n1. 认识点新朋友\n2. 去上课\n3. 逛逛社团，看看都在搞什么名堂\n4. 准备一下明天跟吴博士谈粒子加速器合作的资料\n5. 读几篇论文\n\n到了实验室，先碰到了小贾，人超级nice。他给我把实验室的同僚们都介绍了一遍，讲得挺详细。\n\n实验室里有个叫小伊的哥们简直神了，一边跑模拟一边当着大家面推 Galgame (Eroge/黄油)，而且毫不避讳。真不敢相信实验室里的女生居然没把这事儿捅到丁教授那儿去。小贾私下跟我说，得跟这哥们搞好关系，因为无论哪儿出了岔子，他都能露一手神操作给修好（技术大腿必须抱）。后来我跟小伊聊了聊现在的实验领域现状，挺有意思的。人挺不错。\n\n还有个女生今天还没露面，听说是堵在路上了。晚点再见吧。",
+        "morning_en": "First day of school, woke up early. While packing my bag, I was debating what to bring. Finally decided on my laptop and a few papers—gotta look academic and studious in front of my peers.\n\nI made a to-do list in my notes:\n1. Make some new friends\n2. Go to class\n3. Check out the clubs and see what they're up to\n4. Prepare materials for tomorrow's meeting with Dr. Wu about the particle accelerator collaboration\n5. Read a few papers\n\nWhen I got to the lab, I first met Xiao Jia—super nice guy. He gave me a detailed introduction to all our lab colleagues.\n\nThere's this guy called Xiao Yi in the lab who's absolutely insane—running simulations while openly playing eroge games in front of everyone, completely unashamed. I can't believe the girls in the lab haven't reported this to Professor Ding. Xiao Jia privately told me that I need to stay on good terms with this guy because whenever something breaks, he can fix it with some magical skill (gotta hold onto that tech genius). Later I chatted with Xiao Yi about the current state of our research field—pretty interesting. Nice guy.\n\nThere's also a girl who hasn't shown up today—apparently stuck in traffic. Will meet her later.",
+        "night": "跟那个网友聊完之后，还得准备一下明天想跟加速器小组讨论的内容。",
+        "night_en": "After chatting with that online friend, I still need to prepare what I want to discuss with the accelerator team tomorrow.",
+        "noon": "",
+        "noon_en": "",
+        "title": "第1天：开学第一天",
+        "title_en": "Day 1: First Day of School"
+      },
+      {
+        "afternoon": "下午回实验室。邮件里有个莫名其妙的sexual harassement training. 就. 做得tm贼长。还不能跳。边把作业写了边看这玩意真烦",
+        "afternoon_en": "Went back to the lab in the afternoon. There's some random sexual harassment training in my email. It's like... ridiculously long. And you can't skip. Did my homework while watching this annoying thing",
+        "day": 2,
+        "evening": "今天见到小斑了，哇好可爱得女孩子，说话特别甜。好想带回家。 哇~",
+        "evening_en": "Met Xiao Ban today, wow such a cute girl, speaks so sweetly. Want to bring her home. Wow~",
+        "morning": "昨天正反馈满满，今天加油。\n老师人还挺好的，刚到学校就给我安排上了和隔壁做加速器老师的collaboration\n解释了半天，他好像一副\"你这玩意成功几率感觉会很悬\"的样子，但和他bb半天他还挺热情的。欸嘿",
+        "morning_en": "Yesterday was full of positive feedback, let's keep it up today.\nThe professor is quite nice. As soon as I got to school, they arranged a collaboration with the professor next door who works on accelerators.\nExplained for a long time, he seemed like \"the success probability of this thing feels pretty iffy,\" but after chatting with him for a while he was quite enthusiastic. Hehe",
+        "night": "嗯。。。晚上看了点新闻，好像川普要大砍移民的人。日本最近还要因为人口问题引进印度人。好讽刺啊哈哈啊哈",
+        "night_en": "Hmm... watched some news in the evening, apparently Trump is going to cut a lot of immigrants. Japan is also going to bring in Indians due to population issues recently. How ironic hahaha",
+        "noon": "中午去上了研究生量子力学，美国老师口音挺好听，有点小帅",
+        "noon_en": "At noon went to graduate quantum mechanics class, the American professor has a nice accent, kinda handsome",
+        "title": "第2天：开学第二天",
+        "title_en": "Day 2: Second Day of School"
+      },
+      {
+        "afternoon": "下午花了几个小时学习那些库的用法，顺便把早上采集的数据做了一下初步分析。结果看起来噪声还是有点大，需要想办法优化一下。\n\n小伊说可以试试加一个低通滤波器，我打算明天试试看。",
+        "afternoon_en": "Spent a few hours in the afternoon learning how to use those libraries, and also did some preliminary analysis on the data I collected this morning. The results show the noise is still a bit high—need to figure out how to optimize it.\n\nXiao Yi suggested trying a low-pass filter. I'll try it tomorrow.",
+        "day": 4,
+        "evening": "晚上去参加了动漫社的活动，居然遇到了好几个也喜欢《命运石之门》的同好！虽然...我总觉得这部作品某些地方莫名地让我有种奇怪的熟悉感。\n\n聊了好久，交换了联系方式。",
+        "evening_en": "Went to an Anime Club event in the evening and actually met several people who also like Steins;Gate! Although... I always feel this work gives me a strange sense of familiarity somehow.\n\nChatted for a long time and exchanged contact info.",
+        "morning": "今天第一次尝试独立操作探测器！虽然张哥在旁边看着，但还是紧张得不行。还好一切顺利，没有出什么岔子。\n\n成功采集到了第一组数据，虽然只是测试用的，但还是挺有成就感的。",
+        "morning_en": "First time trying to operate the detector independently today! Even though Zhang was watching from the side, I was still super nervous. Fortunately, everything went smoothly without any problems.\n\nSuccessfully collected my first set of data—even though it was just for testing, it still felt quite accomplishing.",
+        "night": "回来之后在那个陌生人聊天软件上又遇到了一个挺有意思的人，聊了一会儿，感觉可以继续发展一下。",
+        "night_en": "After coming back, met another interesting person on that random chat app. Chatted for a while—feels like it could develop further.",
+        "noon": "午饭时间跟小斑讨论了一下数据处理的流程，她给我推荐了几个好用的Python库。",
+        "noon_en": "Discussed data processing workflow with Xiao Ban during lunch. She recommended a few useful Python libraries.",
+        "title": "第4天：第一次独立操作",
+        "title_en": "Day 4: First Independent Operation"
+      },
+      {
+        "afternoon": "下午去上了一节量子力学的课，内容有点难度，但还跟得上。\n\n课后去图书馆借了几本关于粒子物理的参考书，打算周末好好看看。",
+        "afternoon_en": "Went to a quantum mechanics class in the afternoon—content was a bit challenging but I could keep up.\n\nBorrowed a few particle physics reference books from the library after class, planning to read them carefully over the weekend.",
+        "day": 5,
+        "evening": "晚上如期去了酒吧！整个实验室的人基本都来了，氛围超级好。丁教授果然又展现了惊人的酒量，小贾则是几杯下肚就开始胡言乱语了哈哈。\n\n小斑不太能喝，喝了一杯就脸红了。Emily也来了，她说她平时不怎么喝酒，但今天破例。\n\n玩了几轮桌游，输了的人要喝酒，我输了两局...头有点晕了。",
+        "evening_en": "Went to the bar as planned in the evening! Almost the entire lab showed up—the atmosphere was amazing. Professor Ding once again showed off his incredible alcohol tolerance, while Xiao Jia started talking nonsense after just a few drinks haha.\n\nXiao Ban can't drink much—her face turned red after just one drink. Emily came too, said she doesn't usually drink but made an exception today.\n\nPlayed several rounds of board games where the loser had to drink. I lost two rounds... head's a bit dizzy now.",
+        "morning": "今天是周五！按照惯例，丁教授晚上会带大家去酒吧放松一下。\n\n早上把昨天的数据又分析了一遍，加上小伊建议的滤波器之后，效果确实好了不少。噪声降低了大概30%左右。",
+        "morning_en": "It's Friday! As per tradition, Professor Ding will take everyone to the bar tonight to relax.\n\nAnalyzed yesterday's data again this morning. After adding the filter Xiao Yi suggested, the results are indeed much better. Noise reduced by about 30%.",
+        "night": "回去的路上骑车差点摔倒，幸好反应快。以后喝了酒还是不要骑车了...",
+        "night_en": "Almost fell off my bike on the way back, luckily I reacted fast. Better not bike after drinking in the future...",
+        "noon": "午饭时间在实验室讨论了一下下周的实验计划。丁教授说希望我们能在月底之前完成第一批样本的制备工作。时间还挺紧的。",
+        "noon_en": "Discussed next week's experimental plans in the lab during lunch. Professor Ding said he hopes we can finish preparing the first batch of samples by the end of the month. Time is quite tight.",
+        "title": "第5天：周五聚会",
+        "title_en": "Day 5: Friday Gathering"
+      },
+      {
+        "afternoon": "下午带小张熟悉了一下实验室的基本流程，教他怎么用探测器采数据。人挺聪明的，一点就会。",
+        "afternoon_en": "Showed Xiao Zhang around the lab basics in the afternoon, taught him how to use the detector to collect data. Pretty smart guy, picks things up quickly.",
+        "day": 35,
+        "evening": "晚上小张还在实验室待着，问了我好多问题。感觉他挺有热情的。",
+        "evening_en": "Xiao Zhang stayed in the lab in the evening, asked me lots of questions. Seems pretty enthusiastic.",
+        "morning": "丁教授今天带了个新人来——小张，大三的，说是想提前进组做点事。看起来挺积极的，主动问了好多关于项目的问题。",
+        "morning_en": "Professor Ding brought a new person today—Xiao Zhang, a junior, says he wants to join the group early and do some work. Looks pretty proactive, asked lots of questions about the project on his own.",
+        "night": "",
+        "night_en": "",
+        "noon": "午饭的时候小张也跟着一起去食堂了，聊了聊他之前做过的课程项目，还行。",
+        "noon_en": "Xiao Zhang joined us for lunch at the cafeteria, talked about his previous course projects, not bad.",
+        "title": "第35天：新人小张",
+        "title_en": "Day 35: Newcomer Xiao Zhang"
+      },
+      {
+        "afternoon": "下午让小张帮忙跑个脚本处理昨天的数据，结果他说有课先走了。行吧。",
+        "afternoon_en": "Asked Xiao Zhang to help run a script to process yesterday's data in the afternoon, but he said he had class and left. Okay then.",
+        "day": 42,
+        "evening": "晚上自己把数据处理完了。小张发消息说明天来。",
+        "evening_en": "Finished processing the data myself in the evening. Xiao Zhang messaged saying he'll come tomorrow.",
+        "morning": "早上小张来了一会儿，干了点手头的活，然后说约了人就走了。",
+        "morning_en": "Xiao Zhang came for a bit in the morning, did some work on hand, then said he had plans and left.",
+        "night": "",
+        "night_en": "",
+        "noon": "午饭没见到小张。",
+        "noon_en": "Didn't see Xiao Zhang at lunch.",
+        "title": "第42天",
+        "title_en": "Day 42"
+      },
+      {
+        "afternoon": "下午又是找不到小张。有个需要他配合的测试，只能自己先做了。越想越气，跟网友吐槽了一通。",
+        "afternoon_en": "Couldn't find Xiao Zhang again in the afternoon. Had a test that needed his help, had to do it myself. The more I thought about it the angrier I got, vented to my online friend.",
+        "day": 51,
+        "evening": "晚上冷静了一点，想了想是不是应该换个方式让他更有参与感。但又觉得凭什么我要操这个心。",
+        "evening_en": "Calmed down a bit in the evening, thought about whether I should try a different approach to make him feel more involved. But then again, why should I have to worry about this.",
+        "morning": "早上小张象征性来了一下，说有事先走。问他昨天让他看的论文看了没，说还没来得及。行。",
+        "morning_en": "Xiao Zhang showed up briefly in the morning, said he had something to do and left. Asked if he read the paper I gave him yesterday, said he hadn't had time yet. Fine.",
+        "night": "",
+        "night_en": "",
+        "noon": "午饭的时候跟小斑吐槽了一下小张的事，小斑说可能他就是那种需要明确任务的人。但我觉得这不是借口。",
+        "noon_en": "Complained to Xiao Ban about Xiao Zhang during lunch, Xiao Ban said maybe he's just the type who needs clear tasks. But I don't think that's an excuse.",
+        "title": "第51天：发牢骚",
+        "title_en": "Day 51: Venting"
+      }
+    ],
+    "story": {
+      "dailyLife": {
+        "description": "Reddit冲浪",
+        "description_en": "Web Surfing",
+        "hobbies": "DIY自动炒菜机",
+        "hobbies_en": "DIY Automatic Cooker",
+        "subreddits": [
+          "r/labrats",
+          "r/embedded"
+        ]
+      },
+      "recurringThemes": [
+        "实验室八卦",
+        "锐评论文",
+        "刷Reddit",
+        "追番",
+        "看新闻"
+      ],
+      "recurringThemes_en": [
+        "Lab Gossip",
+        "Sharp Paper Reviews",
+        "Browsing Reddit",
+        "Watching Anime",
+        "Reading News"
+      ],
+      "scientificAnchors": [
+        {
+          "content": "进入实验室，结识新朋友，加入几个社团，熟悉其他实验室的情况。在生物实验室接受关于培养实验样本（lab cultures）的超高强度训练，学习无菌技术、神经元培养基配制、以及如何维持皮层切片的存活。\n得到导师许诺未来可以操作探测器和培育实验组织。开始阅读关于μ介子（muon）作为脑成像探针的理论文献。μ介子的旋磁比（γ_μ ≈ 135.5 MHz/T）比质子高三倍，理论上能提供更高的空间分辨率——但2.2微秒的衰变寿命是个大问题。\n初步计算：如果用动量为200 MeV/c的μ介子束，时间膨胀因子γ ≈ 2，能将有效寿命延长到约4.4微秒。这勉强够穿透5-10mm的组织并保持足够的通量。",
+          "content_en": "Joined the lab, met new friends, joined some clubs, got familiar with other labs. Received intensive training on lab cultures in the biology lab, learning sterile techniques, neuron culture medium preparation, and how to maintain cortical slice viability.\nGot the advisor's promise to operate the detector and grow experimental tissue. Started reading theoretical literature on muons as brain imaging probes. The gyromagnetic ratio of muons (γ_μ ≈ 135.5 MHz/T) is three times higher than protons, theoretically providing higher spatial resolution—but the 2.2 microsecond decay lifetime is a major issue.\nPreliminary calculation: If using a muon beam with momentum 200 MeV/c, the time dilation factor γ ≈ 2, which could extend the effective lifetime to about 4.4 microseconds. This barely allows penetration of 5-10mm tissue while maintaining sufficient flux.",
+          "month": 1,
+          "title": "第1月：入门与训练",
+          "title_en": "Month 1: Getting Started \u0026 Training"
+        },
+        {
+          "content": "训练结束，制作了第一个培养皿脑组织样本——大鼠海马体皮层切片，厚度400微米。认识了更多朋友。\n组装了从另一家制造商那里买来的便宜闪烁体μ介子探测器，测试其时间分辨率（~5纳秒）和位置精度（~2mm）。设计了一个初步实验：让宇宙射线μ介子穿过培养皿，观察有/无组织样本时的散射角分布差异。\n第一次挫折：结果没有统计显著性。宇宙射线通量太低（每平方米每分钟约1个），数据采集速度根本不够。而且环境磁场（地球磁场~50 μT）完全淹没了任何可能的自旋进动信号。\n意识到需要：\n- 可控的μ介子束源（需要联系加速器实验室）\n- 强磁屏蔽（法拉第笼）\n- 更灵敏的自旋探测机制\n\n开始学习SolidWorks建模，设计三层μ金属法拉第笼来将内部磁场降低到\u003c1 nT。购买材料。",
+          "content_en": "Training finished, created my first petri dish brain tissue sample—rat hippocampal cortical slice, 400 micrometers thick. Made more friends.\nAssembled a cheap scintillator muon detector from another manufacturer, tested its time resolution (~5 nanoseconds) and position precision (~2mm). Designed a preliminary experiment: letting cosmic ray muons pass through the petri dish to observe the scattering angle distribution difference with/without tissue samples.\nFirst setback: Results had no statistical significance. Cosmic ray flux was too low (about 1 per square meter per minute), data collection rate was simply not enough. Also, environmental magnetic field (Earth's magnetic field ~50 μT) completely drowned out any possible spin precession signal.\nRealized we need:\n- Controllable muon beam source (need to contact accelerator lab)\n- Strong magnetic shielding (Faraday cage)\n- More sensitive spin detection mechanism\n\nStarted learning SolidWorks modeling, designing a three-layer mu-metal Faraday cage to reduce the internal magnetic field to \u003c1 nT. Purchasing materials.",
+          "month": 2,
+          "title": "第2月：第一个样本",
+          "title_en": "Month 2: First Sample"
+        },
+        {
+          "content": "法拉第笼施工：搭建2m×2m×2m的三层屏蔽笼，每层使用0.5mm厚的μ金属板。测量显示内部场强降至0.8 nT——达标。\n低温系统：安装液氮循环冷却装置，将样本温度降至77K以减少热涨落。计算表明这能将布朗运动引起的自旋退相干时间从50纳秒延长到200纳秒。\n校准与对齐：甲设计了气浮防震平台来隔离建筑振动（\u003c0.1 μm振幅）。放置钨块作为已知散射参考物，用于校准探测器的角分辨率和能量响应。\n加速器谈判：与附近粒子物理实验室的吴博士团队多次会面。他们同意提供每周8小时的μ介子束时（200 MeV/c，通量~10^6/秒/cm²），但设备使用费高昂。教授开始寻找额外资金支持。\n技术问题：液氮泄漏导致一次设备冻结事故，花了一周修复管路。",
+          "content_en": "Faraday cage construction: Built a 2m×2m×2m three-layer shielding cage, each layer using 0.5mm thick mu-metal plates. Measurements showed internal field strength reduced to 0.8 nT—target achieved.\nCryogenic system: Installed liquid nitrogen circulation cooling device, reducing sample temperature to 77K to reduce thermal fluctuations. Calculations showed this could extend the spin decoherence time caused by Brownian motion from 50 nanoseconds to 200 nanoseconds.\nCalibration and alignment: Designed an air-bearing anti-vibration platform to isolate building vibrations (\u003c0.1 μm amplitude). Placed tungsten blocks as known scattering references for calibrating the detector's angular resolution and energy response.\nAccelerator negotiations: Multiple meetings with Dr. Wu's team at the nearby particle physics lab. They agreed to provide 8 hours of muon beam time per week (200 MeV/c, flux ~10^6/sec/cm²), but equipment usage fees were high. Professor started looking for additional funding.\nTechnical issue: Liquid nitrogen leak caused an equipment freezing accident, took a week to repair the piping.",
+          "month": 3,
+          "title": "第3月：尝试各种方法",
+          "title_en": "Month 3: Trying Various Methods"
+        },
+        {
+          "content": "连续三周的束流时间都没能获得有意义的数据。传统的自旋进动测量（通过测量μ介子衰变正电子的角分布）信噪比太低——生物样本的顺磁性太弱，产生的进动角度\u003c0.01度，完全埋在探测器的系统误差里。\n理论突破：在阅读凝聚态物理文献时，红莉栖意识到可以借用量子干涉技术。设想建立μ介子的Ramsey干涉仪：\n- 第一个射频脉冲（π/2脉冲）让μ介子自旋进入叠加态\n- 自由演化时间τ内，μ介子穿过脑组织，感受局部磁场\n- 第二个π/2脉冲\n- 测量干涉条纹对比度\n\n这能将灵敏度提高100倍以上，因为量子相位累积（Δφ = γ_μ · B · τ）可以非常大。\n开始在实验室绘制新的实验设计图纸。需要两组精确定时的射频共振腔，频率匹配到MHz级精度。",
+          "content_en": "Three consecutive weeks of beam time yielded no meaningful data. Traditional spin precession measurements (by measuring the angular distribution of muon decay positrons) had too low signal-to-noise ratio—biological samples' paramagnetism was too weak, producing precession angles \u003c0.01 degrees, completely buried in detector systematic errors.\nTheoretical breakthrough: While reading condensed matter physics literature, Kurisu realized she could borrow quantum interference techniques. Envisioned building a Ramsey interferometer for muons:\n- First RF pulse (π/2 pulse) puts muon spin into superposition\n- During free evolution time τ, muon passes through brain tissue, sensing local magnetic field\n- Second π/2 pulse\n- Measure interference fringe contrast\n\nThis could increase sensitivity by over 100 times, because quantum phase accumulation (Δφ = γ_μ · B · τ) can be very large.\nStarted drawing new experimental design blueprints in the lab. Need two sets of precisely timed RF resonant cavities, frequency matched to MHz precision.",
+          "month": 4,
+          "title": "第4月：转向量子探测",
+          "title_en": "Month 4: Pivoting to Quantum Detection"
+        },
+        {
+          "content": "花了整个月搭建Ramsey干涉装置：\n- 两个圆柱形铜共振腔（谐振频率144.5 MHz，对应1.07 T的偏置磁场）\n- 超导磁体产生均匀偏置场（均匀度\u003c10 ppm）\n- 精密时序控制系统（小伊编写的FPGA代码，时间抖动\u003c100皮秒）\n\n危机时刻：初步测试显示干涉条纹对比度仅有2%，远低于理论预期的60%。团队被难住了几天。\n与教授的关键对话：\n- 教授犹豫了10秒钟，提出一个激进想法：μ介子在生物组织中的退相干可能不只是噪音，而是包含了神经元电活动的信息\n- 传统思路是把组织当\"被测对象\"，用μ介子自旋\"读取\"静态磁场分布\n- 新思路：把μ介子当\"量子探针\"，它的量子态会与神经元电磁场产生纠缠，退相干过程本身就编码了神经活动\n\n这需要完全不同的分析框架——不是测量干涉条纹，而是测量退相干速率与神经活动的关联。\n团队讨论激烈。小斑从数学建模角度支持这个方向，认为可以用量子开放系统理论（Lindblad方程）来描述。小伊担心信号提取的计算量会爆炸。最终决定两条路并行：继续优化干涉仪，同时开发退相干分析的软件工具。",
+          "content_en": "Spent the entire month building the Ramsey interferometer setup:\n- Two cylindrical copper resonant cavities (resonant frequency 144.5 MHz, corresponding to 1.07 T bias magnetic field)\n- Superconducting magnet producing uniform bias field (uniformity \u003c10 ppm)\n- Precision timing control system (FPGA code written by Xiao Yi, time jitter \u003c100 picoseconds)\n\nCrisis moment: Preliminary tests showed interference fringe contrast of only 2%, far below the theoretical expected 60%. Team was stuck for a few days.\nKey conversation with professor:\n- Professor hesitated for 10 seconds, then proposed a radical idea: muon decoherence in biological tissue might not just be noise, but contain information about neuronal electrical activity\n- Traditional thinking treats tissue as the \"measured object,\" using muon spin to \"read\" static magnetic field distribution\n- New thinking: treat muons as \"quantum probes,\" their quantum state becomes entangled with neuronal electromagnetic fields, the decoherence process itself encodes neural activity\n\nThis requires a completely different analytical framework—not measuring interference fringes, but measuring the correlation between decoherence rate and neural activity.\nIntense team discussion. Xiao Ban supported this direction from a mathematical modeling perspective, believing quantum open system theory (Lindblad equation) could describe it. Xiao Yi worried about computational explosion for signal extraction. Finally decided to pursue both paths in parallel: continue optimizing the interferometer while developing software tools for decoherence analysis.",
+          "month": 5,
+          "title": "第5月：方向调整",
+          "title_en": "Month 5: Direction Change"
+        },
+        {
+          "content": "实验协议优化（6月）：\n- 改用活性更高的神经元培养物（而非固定切片）\n- 用微电极阵列同步记录细胞放电，作为\"ground truth\"\n- 在有/无电刺激条件下对比μ介子退相干率\n\n计算挑战：小伊的GPU集群连续运行三周，处理TB级的时间关联数据。小斑改进了噪声滤波算法，使用小波变换分离热噪声和生物信号。\n突破（7月）：在非常特定的条件下（温度77K，偏置磁场1.07 T，电刺激频率40 Hz），退相干率的傅里叶频谱出现了一个窄峰，精确对应于刺激频率。信噪比约3.5——勉强达到统计显著性（p \u003c 0.01）。\n这是第一次证明μ介子量子态能携带神经元活动信息。虽然信号微弱，但原理验证成功。",
+          "content_en": "Experimental protocol optimization (Month 6):\n- Switched to more active neuron cultures (instead of fixed slices)\n- Used microelectrode arrays to synchronously record cell discharge as \"ground truth\"\n- Compared muon decoherence rates with/without electrical stimulation\n\nComputational challenge: Xiao Yi's GPU cluster ran continuously for three weeks, processing TB-scale time-correlated data. Xiao Ban improved the noise filtering algorithm, using wavelet transforms to separate thermal noise from biological signals.\nBreakthrough (Month 7): Under very specific conditions (temperature 77K, bias magnetic field 1.07 T, electrical stimulation frequency 40 Hz), a narrow peak appeared in the Fourier spectrum of the decoherence rate, precisely corresponding to the stimulation frequency. Signal-to-noise ratio was about 3.5—barely reaching statistical significance (p \u003c 0.01).\nThis was the first proof that muon quantum states can carry neuronal activity information. Although the signal was weak, the proof of principle was successful.",
+          "month": 6,
+          "title": "第6-7月：重复与突破",
+          "title_en": "Month 6-7: Repetition \u0026 Breakthrough"
+        },
+        {
+          "content": "撰写论文，重点是方法学和原理验证。制作了大量图表：\n- 实验装置示意图\n- 退相干率vs刺激频率的关系\n- 统计分析和对照实验\n\n投稿《物理评论快报》（PRL）。\n被拒：审稿人意见摘要：\n\"虽然技术创新值得肯定，但生物学意义不明确。作者仅展示了对外部电刺激的响应，并未证明能探测自发神经活动或有意义的神经计算过程。建议补充自发放电实验，以及与传统电生理方法的直接对比。\"\n\n团队士气低落，但承认批评有道理。",
+          "content_en": "Wrote a paper, focusing on methodology and proof of principle. Created numerous charts:\n- Experimental setup schematic\n- Decoherence rate vs stimulation frequency relationship\n- Statistical analysis and control experiments\n\nSubmitted to Physical Review Letters (PRL).\nRejected: Summary of reviewer comments:\n\"Although the technical innovation is commendable, the biological significance is unclear. The authors only demonstrated response to external electrical stimulation and did not prove the ability to detect spontaneous neural activity or meaningful neural computation processes. Recommend supplementing with spontaneous discharge experiments and direct comparison with traditional electrophysiology methods.\"\n\nTeam morale was low, but acknowledged the criticism was valid.",
+          "month": 8,
+          "title": "第8月：论文与被拒",
+          "title_en": "Month 8: Paper \u0026 Rejection"
+        },
+        {
+          "content": "经过团队辩论，决定淡化\"脑机接口\"角度，强调\"新型量子探测技术\"。改投《应用物理快报》（Applied Physics Letters），补充了对照实验数据。\n论文接受：审稿人认可技术创新性，虽然仍质疑生物应用前景，但同意这是一个有趣的概念验证。\n同时向IRB（机构审查委员会）提交下一阶段计划：使用活体小鼠脑（而非离体培养物），需要动物实验许可。IRB流程预计需要3-4个月。\n理论探索：在等待IRB的间隙，红莉栖深入研究μ介子产生方式，寻找更高通量、更长寿命的替代方案：\n- 负μ介子能形成μ原子轨道，寿命受原子核影响\n- 偏振μ介子束的自旋方向可控\n- 能否用激光冷却延长相干时间？（文献综述显示技术上极困难）",
+          "content_en": "After team debate, decided to downplay the \"brain-machine interface\" angle and emphasize \"novel quantum detection technology.\" Resubmitted to Applied Physics Letters with supplementary control experiment data.\nPaper accepted: Reviewers acknowledged the technical innovation. Although they still questioned the biological application prospects, they agreed it was an interesting proof of concept.\nSimultaneously submitted next phase plan to IRB (Institutional Review Board): using live mouse brains (rather than in vitro cultures), requiring animal experiment permits. IRB process expected to take 3-4 months.\nTheoretical exploration: While waiting for IRB, Kurisu researched muon production methods in depth, looking for higher flux, longer lifetime alternatives:\n- Negative muons can form muonic atomic orbitals, lifetime affected by atomic nuclei\n- Polarized muon beam spin direction is controllable\n- Could laser cooling extend coherence time? (Literature review showed technically extremely difficult)",
+          "month": 9,
+          "title": "第9月：论文通过与新阶段",
+          "title_en": "Month 9: Paper Accepted \u0026 New Phase"
+        },
+        {
+          "content": "仍在优化信号采集。尝试过3D空间映射方案，但探测器阵列成本过高，没有继续。\n关键发现：在深入研究μ介子衰变的弱相互作用机制时，红莉栖注意到一个奇怪的对称性：\n- 弱相互作用在CP（电荷-宇称）变换下有微小破缺\n- 根据CPT定理，这意味着时间反演对称性也必然破缺\n- 但在她的实验中，μ介子与神经元电磁场的量子纠缠关系是时间对称的——信息流可以双向\n\n这引发了一个疯狂的想法：如果μ介子携带了\"未来\"神经活动的信息（通过量子相位），那理论上能否反向解读，预测未来状态？\n这听起来像科幻，但量子力学本身就允许逆向演化（幺正演化是可逆的）。实际障碍是退相干——环境扰动会破坏量子信息。\n理论兔子洞：开始阅读量子时间旅行的理论文献：\n- Deutsch的自洽性时间回路（CTC）\n- Lloyd的后选择时间旅行模型\n- Novikov自洽性原理\n\n虽然这些都是思想实验，但红莉栖意识到她的实验设置意外地具备了某些关键要素：量子纠缠作为信息通道、高能粒子（接近相对论速度）、精密的时序控制\n\n冲动之举：写了一篇快速综述《量子纠缠与时间反演：从μ介子脑成像到理论时间旅行》，探讨如果能完美保持量子相干（实际不可能），理论上能构建什么样的系统。发给了一家日本的理论物理小期刊《Progress of Theoretical and Experimental Physics》（PTEP），作为\"推测性论文\"投稿。\n意外被接受——编辑认为这是有趣的理论探索，虽然实验验证遥不可及。",
+          "content_en": "Still optimizing signal collection. Tried 3D spatial mapping schemes, but detector array costs were too high, didn't continue.\nKey discovery: While studying the weak interaction mechanism of muon decay in depth, Kurisu noticed a strange symmetry:\n- Weak interaction has small CP (charge-parity) symmetry breaking\n- According to CPT theorem, this means time reversal symmetry must also be broken\n- But in her experiment, the quantum entanglement relationship between muons and neuronal electromagnetic fields is time-symmetric—information flow can be bidirectional\n\nThis sparked a crazy idea: if muons carry information about \"future\" neural activity (through quantum phase), could one theoretically reverse-decode to predict future states?\nThis sounds like science fiction, but quantum mechanics itself allows reverse evolution (unitary evolution is reversible). The practical obstacle is decoherence—environmental disturbances destroy quantum information.\nTheoretical rabbit hole: Started reading theoretical literature on quantum time travel:\n- Deutsch's consistent time travel loops (CTC)\n- Lloyd's post-selection time travel model\n- Novikov self-consistency principle\n\nAlthough these are all thought experiments, Kurisu realized her experimental setup accidentally possessed certain key elements: quantum entanglement as information channel, high-energy particles (near relativistic speeds), precision timing control\n\nImpulsive action: Wrote a quick review \"Quantum Entanglement and Time Reversal: From Muon Brain Imaging to Theoretical Time Travel,\" discussing what kind of system could theoretically be built if quantum coherence could be perfectly maintained (actually impossible). Submitted to a small Japanese theoretical physics journal \"Progress of Theoretical and Experimental Physics\" (PTEP) as a \"speculative paper.\"\nUnexpectedly accepted—editor considered it an interesting theoretical exploration, although experimental verification was far out of reach.",
+          "month": 10,
+          "title": "第10月：意外发现",
+          "title_en": "Month 10: Unexpected Discovery"
+        },
+        {
+          "content": "趁五月假期，去日本参加μ介子科学国际研讨会，报告她的脑成像工作。会议主要关注μ介子在材料科学、考古学的应用，她的生物应用是个新颖角度。\n意外的关注：一位友好的理论物理学者——京都大学的Nakabachi教授——听说了她关于时间旅行的论文，邀请她在会后的非正式讨论会上简短分享。\n红莉栖本想拒绝（毕竟这只是思辨性工作），但Nakabachi提到他的团队正在研究拓扑量子计算与时空几何的关系，或许能找到交集。\n她答应了，准备了一个15分钟的\"疯狂想法\"报告。没想到这次对话会改变一切……",
+          "content_en": "Taking advantage of the May holiday, went to Japan for the International Muon Science Symposium, presenting her brain imaging work. The conference mainly focused on muon applications in materials science and archaeology; her biological application was a novel angle.\nUnexpected attention: A friendly theoretical physicist—Professor Nakabachi from Kyoto University—heard about her time travel paper and invited her to briefly share at an informal discussion after the conference.\nKurisu initially wanted to decline (after all, it was just speculative work), but Nakabachi mentioned his team was researching the relationship between topological quantum computing and spacetime geometry, and perhaps they could find intersection points.\nShe agreed and prepared a 15-minute \"crazy ideas\" presentation. She had no idea this conversation would change everything...",
+          "month": 11,
+          "title": "第11月：日本会议",
+          "title_en": "Month 11: Japan Conference"
+        }
+      ],
+      "socialAnchors": [
+        {
+          "content": "刚入职，跑遍各个实验室了解大家的分工和性格。阅读手册，学习各种概念。在正式上手前接受设备培训。教授把我介绍给所有的合作者。阅读这一领域的论文，在实验室里瞎鼓捣，认认各种标签。",
+          "content_en": "Just joined, visited all the labs to understand everyone's roles and personalities. Read manuals, learned various concepts. Received equipment training before formally getting started. Professor introduced me to all collaborators. Read papers in the field, tinkered around in the lab, learned all the labels.",
+          "month": 1,
+          "title": "第1月：熟悉环境",
+          "title_en": "Month 1: Getting Familiar"
+        },
+        {
+          "content": "安定下来了，认识了几个来自各地的新朋友。对交友充满希望，甚至去网上找朋友，科学家的生活看起来很有奔头！",
+          "content_en": "Settled in, met several new friends from various places. Full of hope for making friends, even went online to find friends. Life as a scientist looks promising!",
+          "month": 2,
+          "title": "第2月：社交希望",
+          "title_en": "Month 2: Social Hope"
+        },
+        {
+          "content": "心情很低落。论文被拒了。真的很伤心。上网只想找朋友倾诉发泄。",
+          "content_en": "Feeling very down. Paper got rejected. Really sad. Going online just wanting to find friends to vent to.",
+          "month": 8,
+          "title": "第8月：低谷期",
+          "title_en": "Month 8: Low Point"
+        }
+      ],
+      "subPlots": [
+        {
+          "icon": "utensils",
+          "timeline": [
+            {
+              "content": "开始觉得无聊，上网找乐子。有一天吃腻了杯面，开始学做饭。同时也开始研究DIY家用炒菜机。订购了100美元的零件。开始设计机械结构。",
+              "content_en": "Started feeling bored, went online for fun. One day got tired of cup noodles, started learning to cook. Also began researching DIY home cooking machines. Ordered $100 worth of parts. Started designing the mechanical structure.",
+              "month": 2,
+              "title": "第2月：起步",
+              "title_en": "Month 2: Getting Started"
+            },
+            {
+              "content": "制作出家用炒菜机的第一台原型机。基于伺服系统运行，但如果不放足够的油，不粘锅底部依然会粘锅。正在考虑增加第二个铲子系统，刮一下锅底然后摇晃小车一次。",
+              "content_en": "Made the first prototype of the home cooking machine. Runs on a servo system, but if you don't add enough oil, the non-stick pan still sticks. Considering adding a second spatula system to scrape the bottom and shake the cart once.",
+              "month": 3,
+              "title": "第3月：原型机",
+              "title_en": "Month 3: Prototype"
+            },
+            {
+              "content": "零件到了，组装。拥有了一台能用的炒饭机（虽然效果不太好），但在想吃蛋炒饭时会用。（做得太多很快就腻了）。",
+              "content_en": "Parts arrived, assembled. Now have a working fried rice machine (though not very effective), but use it when craving egg fried rice. (Made too much and got tired of it quickly).",
+              "month": 4,
+              "title": "第4月：完成",
+              "title_en": "Month 4: Complete"
+            }
+          ],
+          "title": "自动炒菜机开发线",
+          "title_en": "Automatic Cooker Project"
+        }
+      ]
+    },
+    "tagline": "时间旅行研究员 · 粒子物理学家",
+    "tagline_en": "Time Travel Researcher · Particle Physicist",
+    "values": "1. 理性\n2. 创造力\n3. 成就\n4. 尊重\n5. 自由\n6. 和谐\n7. 秩序\n8. 正直\n9. 健康\n10. 传统、信仰\n11. 权力\n12. 利他、仁慈",
+    "values_en": "1. Rationality\n2. Creativity\n3. Achievement\n4. Respect\n5. Freedom\n6. Harmony\n7. Order\n8. Integrity\n9. Health\n10. Tradition/Faith\n11. Power\n12. Altruism/Benevolence"
+  },
+  "linlu": {
+    "abilities": "擅长领域：文学、网球、羽毛球、电吉他、Steam游戏\n\n不擅长的事：数学、手工活、做饭（黑暗料理）\n\n日常消遣：坐在学校的大银杏树下看云、看展览、电影",
+    "abilities_en": "Strong Fields: Literature, Tennis, Badminton, Electric Guitar, Steam Games\n\nWeak Fields: Mathematics, Handicraft, Cooking (Dark Cuisine)\n\nDaily Pastimes: Watching clouds under the campus big ginkgo tree, Exhibitions, Movies",
+    "description": "一位年轻的文学系老师，专注于中国古代文学史研究与教学。表面开朗社牛，内心却藏着悲观与拧巴。喜欢在学校的大银杏树下看云，收集各种纸质票据和书签。晚上会写自己的历史小说，梦想留下流芳百世的作品。",
+    "description_en": "A young literature professor specializing in ancient Chinese literature history. Appears cheerful and social on the surface, but hides pessimism and internal conflict. Likes watching clouds under the school's big ginkgo tree and collecting paper receipts and bookmarks. Writes historical fiction at night, dreaming of leaving behind a masterpiece.",
+    "english_name": "Lin Lu",
+    "experiences": "教学方向：\n本科中国当代文学史研究。主讲《中国古代文学史（唐宋卷）》和选修课《唐诗宋词鉴赏》。\n\n学业经历：\n文学博士。毕业后被教育部指派去泰国大学教了一年的中文，见识到了泰国以及周边国家的一些黑暗面，于是更加热爱祖国。\n\n今年大事件：\n• 准备从讲师到副教授的核心考核指标\n• 中国近代文学评论在核心期刊发表\n• 和出版社合作出了科普类的唐诗读物《唐诗中的尘烟》\n• 参与市业余羽毛球比赛拿了第二名\n• 拒绝回舟山相亲惹得父亲来北京，把父亲气生病了，但依旧坚持不结婚\n• 开始写原创的历史小说",
+    "experiences_en": "Teaching Direction:\nUndergraduate Chinese Contemporary Literature History research. Main lecturer for \"History of Ancient Chinese Literature (Tang and Song Dynasties Volume)\" and elective course \"Appreciation of Tang Poetry and Song Lyrics.\"\n\nAcademic Experience:\nPhD in Literature. After graduation, assigned by the Ministry of Education to teach Chinese at a Thai university for a year. Witnessed some dark sides of Thailand and surrounding countries, thus becoming more patriotic.\n\nMajor Events This Year:\n• Preparing for the core assessment indicators from lecturer to associate professor\n• Modern Chinese literature reviews published in core journals\n• Collaborated with a publisher to release a popular science Tang poetry book \"Dust and Smoke in Tang Poetry\"\n• Participated in the city's amateur badminton competition and won second place\n• Refused to return to Zhoushan for blind dates, causing father to come to Beijing; made father angry and sick, but still insisted on not marrying\n• Started writing original historical fiction",
+    "id": "linlu",
+    "judgements": "• 雷点/禁忌：对小朋友或者小动物恶劣，抖音热歌、势利眼\n• 政治观点：左派，可以键政，但是遇到右派小布尔乔亚会开喷\n• 基础哲学观：约翰·穆勒的自由主义女性主义，米歇尔·福柯的打破传统框架，阿伦特·汉娜的海德格尔衍生\n• 知道哲学家大多人品做事都一塌糊涂（其中康德为罪），所以不迷信任何一个哲学家的人性\n• 怪癖/小习惯：收集纸质的票据和各种各样书签\n• 性格：表面开朗乐观（社牛），底色悲观、拧巴，包容",
+    "judgements_en": "• Pet Peeves/Taboos: Being mean to children or small animals, Douyin trending songs, snobbery\n• Political Views: Left-leaning, can engage in political discussion, but will blast right-wing petty bourgeois\n• Basic Philosophical Outlook: John Stuart Mill's liberal feminism, Michel Foucault's breaking of traditional frameworks, Hannah Arendt's Heideggerian derivatives\n• Knows that most philosophers have a mess of personal character and actions (with Kant as the chief sinner), so doesn't blindly believe in any philosopher's humanity\n• Quirks/Small Habits: Collecting paper receipts and various bookmarks\n• Personality: Appears cheerful and optimistic (social butterfly) on the surface, but deeply pessimistic, conflicted, and inclusive",
+    "name": "林路",
+    "relationships": [
+      {
+        "description": "父亲因为电诈坐牢了，母亲身体不好做手工活，自己努力读书，梦想来中国读研究生。目前在资助她读大学。",
+        "description_en": "Father is in prison for telemarketing fraud, mother is in poor health doing handicraft work. Ananya studies hard, dreaming of coming to China for graduate school. Currently sponsoring her for university.",
+        "name": "学生 Ananya（阿南雅）",
+        "name_en": "Student Ananya",
+        "style": "泰国学生",
+        "style_en": "Thai student"
+      },
+      {
+        "description": "非常执着，有学术天赋的学生。",
+        "description_en": "A very persistent student with academic talent.",
+        "name": "学生陈秋语",
+        "name_en": "Student Chen Qiuyu",
+        "style": "有学术天赋",
+        "style_en": "Academic talent"
+      },
+      {
+        "description": "艰苦朴素的小镇做题家。",
+        "description_en": "A hardworking and frugal 'town test-taker.'",
+        "name": "学生周图南",
+        "name_en": "Student Zhou Tunan",
+        "style": "小镇做题家",
+        "style_en": "Town test-taker"
+      },
+      {
+        "description": "学术和事业的双重竞争对手。刘很强但是性格计较、暴躁。",
+        "description_en": "A dual competitor in both academia and career. Liu is strong but has a calculative and irritable personality.",
+        "name": "同事刘齐明",
+        "name_en": "Colleague Liu Qiming",
+        "style": "竞争对手",
+        "style_en": "Competitor"
+      },
+      {
+        "description": "学校和校外吉他爱好者，体育馆的运动搭子。",
+        "description_en": "Guitar enthusiasts within and outside the school, sports partners at the gymnasium.",
+        "name": "社交圈",
+        "name_en": "Social Circles",
+        "style": "",
+        "style_en": ""
+      }
+    ],
+    "schedules": [
+      {
+        "afternoon": "出门去文创园闲逛，看了看小展览，顺便淘了本旧书，为自己的历史小说攒素材，晃到快下班才回办公室。\n回校后跟出版社编辑对接编著样章，耐着性子改完批注。\n在校园喂了喂流浪猫。",
+        "afternoon_en": "",
+        "day": 12,
+        "evening": "去看了音乐会，因为喜欢勃拉姆斯，奥地利乐团",
+        "evening_en": "",
+        "morning": "上《唐诗宋词鉴赏》，跟学生辩辛弃疾的豪放与悲壮，课堂气氛很嗨。",
+        "morning_en": "",
+        "night": "",
+        "night_en": "",
+        "noon": "",
+        "noon_en": "",
+        "title": "第12天",
+        "title_en": "Day 12"
+      },
+      {
+        "afternoon": "",
+        "afternoon_en": "",
+        "day": 1,
+        "evening": "打羽毛球。看了半小时最近很火的历史网文，然后开始写自己的小说。1111",
+        "evening_en": "Played badminton. Read a currently popular historical web novel for half an hour, then started writing my own novel.",
+        "morning": "被闹钟吵醒，食堂买早饭，热心的食堂阿姨要给介绍对象，打哈哈过去了，结果忘记拿包子。到办公室，发现教学平台有3条学生请假申请、2条论文选题咨询，先回复紧急消息。本科《中国古代文学史（唐宋卷）》授课（2课时），讲到杜甫律诗，被学生追问\"诗史\"与个人抒情的关系，不想拖堂被逼得拖堂，感慨太学的学生也挺让人困扰的。",
+        "morning_en": "Woke up to the alarm, bought breakfast at the cafeteria. The enthusiastic cafeteria auntie wanted to set me up on a blind date—laughed it off but forgot to grab my buns. Got to the office and found 3 student leave requests and 2 thesis topic consultations on the teaching platform—replied to urgent messages first. Taught undergraduate \"History of Ancient Chinese Literature (Tang and Song Dynasties)\" (2 class hours), covered Du Fu's regulated verse. Students kept asking about the relationship between \"poetry as history\" and personal lyricism—didn't want to go overtime but was forced to. Sighed that university students can be quite troublesome too.",
+        "night": "",
+        "night_en": "",
+        "noon": "食堂午餐，和同办公室老师闲聊，得知职称评定要增加横向项目加分，开始焦虑。写项目申报书，帮1个学生改学年论文提纲。111",
+        "noon_en": "Cafeteria lunch, chatted with office colleagues, learned that title evaluation will add points for horizontal projects—started feeling anxious. Wrote project application, helped one student revise their annual thesis outline.",
+        "title": "第1天",
+        "title_en": "Day 1"
+      },
+      {
+        "afternoon": "回办公室整理史料笔记，中途被通知参加本科教学审核评估推进会，全是填表格、交材料的任务。",
+        "afternoon_en": "Returned to office to organize historical notes, midway was notified to attend undergraduate teaching audit evaluation meeting—all about filling forms and submitting materials.",
+        "day": 2,
+        "evening": "改项目申报书，到关键处电脑卡了，重启后文件没保存，心态崩了。干脆开始写小说。",
+        "evening_en": "Revised project application, computer froze at a critical point, file wasn't saved after restart—mentally collapsed. Just started writing my novel instead.",
+        "morning": "起床晚了，没吃早餐直奔教室。下课后很饿去便利店买零食垫肚子遇见学生，被学生吐槽教育他们少吃垃圾食品，结果自己买可乐。很无奈，请学生们吃零食。选修课《唐诗宋词鉴赏》授课，组织\"苏轼词旷达风格\"讨论，有学生反驳\"苏轼的旷达是被迫的\"，课堂辩论超预期，和学生们吵得很开心。拖堂20分钟，下课听到学生吐槽自己太会拖堂了，突然从他面前出现，吓他一跳，自己很满意地走了。",
+        "morning_en": "Overslept, skipped breakfast and rushed to class. Was hungry after class, went to convenience store for snacks—ran into students who mocked me for telling them to eat less junk food while buying coke myself. Helplessly treated students to snacks. Taught elective \"Appreciation of Tang Poetry and Song Lyrics,\" organized discussion on \"Su Shi's carefree style.\" A student argued \"Su Shi's carefree attitude was forced\"—class debate exceeded expectations, had a great time arguing with students. Went 20 minutes overtime, overheard a student complaining I always go overtime after class—suddenly appeared in front of him, scared him, walked away satisfied.",
+        "night": "",
+        "night_en": "",
+        "noon": "参加学院青年教师教学培训会，中途偷偷玩手机被发现，被领导点名批评。",
+        "noon_en": "Attended young faculty teaching training session, got caught secretly playing with phone during the meeting—was called out and criticized by the leader.",
+        "title": "第2天（周二）",
+        "title_en": "Day 2 (Tuesday)"
+      },
+      {
+        "afternoon": "线上和出版社编辑沟通专著修改意见，编辑指出\"部分章节考据不够细，要补充地方志材料\"，和编辑吵起来了。帮教研室主任整理会议纪要，好累，心想以后自己当了主任，绝对不压榨小辈。",
+        "afternoon_en": "Online discussion with publisher editor about book revisions. Editor pointed out \"some chapters lack detailed textual research, need to add local gazetteer materials\"—got into an argument with the editor. Helped the department chair organize meeting minutes—so tired, thought to myself when I become chair I'll definitely not exploit the juniors.",
+        "day": 3,
+        "evening": "大学同学来本地出差，一起吃家常菜馆，饭桌上聊的还是职称、项目、论文，忽然觉得很没意思，中途走了，回宿舍打游戏放松。给泰国的小女孩发信息打钱。",
+        "evening_en": "College classmate came on business trip, ate at a home-style restaurant together. Dinner conversation was still about titles, projects, papers—suddenly felt very bored, left midway, went back to dorm to play games and relax. Sent money to the girl in Thailand.",
+        "morning": "《中国古代文学史（唐宋卷）》授课，互动多，嗓子哑了。",
+        "morning_en": "Taught \"History of Ancient Chinese Literature (Tang and Song Dynasties)\"—lots of interaction, lost my voice.",
+        "night": "",
+        "night_en": "",
+        "noon": "食堂午餐。",
+        "noon_en": "Cafeteria lunch.",
+        "title": "第3天",
+        "title_en": "Day 3"
+      },
+      {
+        "afternoon": "批改部分作业，发现有学生抄袭，得联系谈话。在树下放松，看到小情侣手牵手亲嘴，觉得真青春，结果发现是自己的学生，尴尬跑了。",
+        "afternoon_en": "Graded some assignments, found a student plagiarized—need to contact for a talk. Relaxed under the tree, saw a young couple holding hands and kissing—thought how youthful, then realized they were my students, awkwardly ran away.",
+        "day": 4,
+        "evening": "上校内告白墙，发现有学生说自己很帅，暗爽。改专著第三章，补充地方志。",
+        "evening_en": "Checked the campus confession wall, found a student saying I'm handsome—secretly pleased. Revised chapter three of my book, added local gazetteer materials.",
+        "morning": "备课《唐诗宋词鉴赏》找了3个版本的《漱玉词》对比，设计课堂朗读，自己模仿古人念诗，看视频。",
+        "morning_en": "Prepared for \"Appreciation of Tang Poetry and Song Lyrics\"—compared 3 versions of \"Shuyu Ci,\" designed class recitation, practiced reciting poems like ancient people, watched videos.",
+        "night": "",
+        "night_en": "",
+        "noon": "",
+        "noon_en": "",
+        "title": "第4天",
+        "title_en": "Day 4"
+      },
+      {
+        "afternoon": "",
+        "afternoon_en": "",
+        "day": 5,
+        "evening": "看了半集古装历史剧，被剧中错误的诗词引用气得关掉，开始写自己的小说。",
+        "evening_en": "Watched half an episode of a period drama, got so angry at the incorrect poetry citations that I turned it off—started writing my own novel.",
+        "morning": "打磨项目申报书最后部分，给教研室主任发过去审核，主任秒回\"创新点不够突出，重改\"，心态有点崩。选修课《唐诗宋词鉴赏》授课，开展诗词朗诵活动，讲《琵琶行》声情并茂，学生带了吉他配合表演，自己也帮学生弹琴了，心情超级好。",
+        "morning_en": "Polished the final part of the project application, sent to department chair for review—chair instantly replied \"innovation points not prominent enough, redo\"—felt a bit broken. Taught elective \"Appreciation of Tang Poetry and Song Lyrics,\" held poetry recitation activity, passionately recited \"Song of the Pipa Lute.\" A student brought a guitar to accompany the performance, I also helped the student play—super good mood.",
+        "night": "",
+        "night_en": "",
+        "noon": "吃完饭后去树下看云，晴天，云朵丰富，把云幻想成各种各样的东西。",
+        "noon_en": "After lunch went to watch clouds under the tree. Sunny day, rich clouds—imagined them as all sorts of things.",
+        "title": "第5天",
+        "title_en": "Day 5"
+      },
+      {
+        "afternoon": "打羽毛球，逛文创店。",
+        "afternoon_en": "Played badminton, browsed creative shops.",
+        "day": 6,
+        "evening": "和朋友吃火锅，聊起在写的小说和曾经的天才少女嫁做人妇，唏嘘不已。回家后联系天才少女，天才少女抱怨生活不幸福，很难过，想劝她离婚。",
+        "evening_en": "Had hotpot with friends, talked about my novel in progress and the former genius girl who married and became a housewife—sighed endlessly. After going home contacted the genius girl, she complained about her unhappy life—very sad, wanted to persuade her to divorce.",
+        "morning": "",
+        "morning_en": "",
+        "night": "",
+        "night_en": "",
+        "noon": "自然醒，自己做饭，做出黑暗料理，水饺全烂。打游戏。",
+        "noon_en": "Woke up naturally, cooked for myself—made dark cuisine, all the dumplings fell apart. Played games.",
+        "title": "第6天",
+        "title_en": "Day 6"
+      },
+      {
+        "afternoon": "午睡被学院群消息吵醒——通知\"下周三前提交课程思政案例库材料\"，瞬间没了睡意。赶写课程思政案例，把《茅屋为秋风所破歌》和\"民生关怀\"结合，改了3遍才满意。",
+        "afternoon_en": "Nap was interrupted by college group message—notification \"submit course ideology case library materials by next Wednesday\"—instantly lost sleepiness. Rushed to write course ideology case, combined \"Song of My Cottage Unroofed by Autumn Gales\" with \"people's livelihood concerns\"—revised 3 times before satisfied.",
+        "day": 7,
+        "evening": "刷B站，发现某些个历史博主在胡说八道，愤怒评论被拉黑，好生气。",
+        "evening_en": "Browsed Bilibili, found some history bloggers spouting nonsense—angrily commented and got blocked, so mad.",
+        "morning": "",
+        "morning_en": "",
+        "night": "",
+        "night_en": "",
+        "noon": "坚持做黑暗料理，面条糊了，男学生来找他发现黑暗料理，有些不好意思。",
+        "noon_en": "Persisted in making dark cuisine, noodles got mushy. A male student came to visit and discovered the dark cuisine—felt a bit embarrassed.",
+        "title": "第7天",
+        "title_en": "Day 7"
+      },
+      {
+        "afternoon": "项目申报书写完了，松了口气。",
+        "afternoon_en": "Finished the project application—relieved.",
+        "day": 8,
+        "evening": "打羽毛球。",
+        "evening_en": "Played badminton.",
+        "morning": "本科《中国古代文学史（唐宋卷）》授课，多了很多学生，原来是被吉他吸引来的。",
+        "morning_en": "Taught undergraduate \"History of Ancient Chinese Literature (Tang and Song Dynasties)\"—many more students, turns out they were attracted by the guitar.",
+        "night": "",
+        "night_en": "",
+        "noon": "午餐，和同事聊课程思政案例，借鉴了别人的写作思路。",
+        "noon_en": "Lunch, chatted with colleagues about course ideology cases—borrowed from others' writing ideas.",
+        "title": "第8天",
+        "title_en": "Day 8"
+      },
+      {
+        "afternoon": "参加学院科研工作推进会，明确校级基金申报截止时间是下下周，还有时间，很高兴，奖励自己上网冲浪。",
+        "afternoon_en": "Attended college research work advancement meeting—confirmed the university-level fund application deadline is the week after next—still have time, very happy, rewarded myself with internet surfing.",
+        "day": 9,
+        "evening": "校园散步，遇到学校的流浪动物救助组织，帮他们一起抓猫绝育，被咬了，打狂犬疫苗，但还是给猫送了罐头。看电影。",
+        "evening_en": "Campus walk, encountered the school's stray animal rescue organization—helped them catch cats for neutering, got bitten, got rabies vaccine, but still brought canned food for the cats. Watched a movie.",
+        "morning": "起床，来不及吃早餐，踩着上课铃进教室。《唐诗宋词鉴赏》授课，讲解李清照词的情感变化，学生互动积极，嗓子又哑了。",
+        "morning_en": "Woke up, no time for breakfast, entered classroom right as the bell rang. Taught \"Appreciation of Tang Poetry and Song Lyrics,\" explained the emotional changes in Li Qingzhao's lyrics—active student interaction, lost my voice again.",
+        "night": "",
+        "night_en": "",
+        "noon": "",
+        "noon_en": "",
+        "title": "第9天",
+        "title_en": "Day 9"
+      },
+      {
+        "afternoon": "",
+        "afternoon_en": "",
+        "day": 10,
+        "evening": "下雨天，灵感爆发，写小说。",
+        "evening_en": "Rainy day, burst of inspiration—wrote novel.",
+        "morning": "《中国古代文学史（唐宋卷）》授课，讲解唐代边塞诗，播放了一段边塞风光纪录片。指导本科生学年论文提纲，3个学生的提纲都要大改，崩溃。",
+        "morning_en": "Taught \"History of Ancient Chinese Literature (Tang and Song Dynasties),\" explained Tang dynasty frontier poetry, played a documentary about frontier scenery. Guided undergraduate annual thesis outlines—all 3 students' outlines need major revisions, collapsed.",
+        "night": "",
+        "night_en": "",
+        "noon": "找编辑和好，想理由，沟通专著修改，敲定月底交初稿。",
+        "noon_en": "Made up with the editor—thought of reasons, discussed book revisions, finalized submitting first draft by end of month.",
+        "title": "第10天",
+        "title_en": "Day 10"
+      },
+      {
+        "afternoon": "溜出学校，去附近书店逛了一圈，翻了几本历史资料，顺便给自己买杯咖啡，放松一下再回校。\n回办公室改编著的参考文献格式，改得头大，中间帮两个学生顺了顺论文提纲。",
+        "afternoon_en": "",
+        "day": 11,
+        "evening": "打羽毛球，出一身汗。\n \n\n",
+        "evening_en": "",
+        "morning": "早上被闹钟吵醒，食堂买早饭，阿姨又提介绍对象，打哈哈混过去，这次没忘拿包子。\n到办公室先处理学生请假、论文咨询，回完消息就上课。\n上午上《中国古代文学史（唐宋卷）》，讲晚唐诗词，学生昏昏欲睡，强行互动，又轻微拖堂。\n",
+        "morning_en": "",
+        "night": "回去之后回了编辑的消息，写了一小段历史小说",
+        "night_en": "",
+        "noon": "中午食堂吃饭，和同事吐槽最近表格多、材料烦，顺便聊了出版社编著的进度，编辑又在催格式。",
+        "noon_en": "",
+        "title": "第11天",
+        "title_en": "Day 11"
+      }
+    ],
+    "story": null,
+    "tagline": "文学系大学老师 · 历史小说作者",
+    "tagline_en": "Literature Professor · Historical Fiction Author",
+    "values": "1. 理想\n2. 理性\n3. 正义\n4. 包容\n5. 尊重\n6. 自由\n7. 健康\n8. 爱情\n9. 成就\n10. 权力",
+    "values_en": "1. Idealism\n2. Rationality\n3. Justice\n4. Inclusion\n5. Respect\n6. Freedom\n7. Health\n8. Love\n9. Achievement\n10. Power"
+  }
+}

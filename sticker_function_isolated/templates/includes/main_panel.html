@@ -1,0 +1,51 @@
+<!-- main_panel.html: 顶部功能栏 - Compact toggle bar -->
+<div id="banner" class="banner-toggle-bar d-flex align-items-center justify-content-between px-2" style="background:#f8f9fa; border-bottom:1px solid #dee2e6; min-height: 36px;">
+  <button id="toggleSidebarBtn" class="btn btn-sm btn-link text-decoration-none p-1" style="font-size: 0.875rem; color: #495057;" title="{{if eq .Language "en"}}Toggle Left Sidebar{{else}}切换左侧栏{{end}}">◀</button>
+  <button id="toggleChecklistBtn" class="btn btn-sm btn-link text-decoration-none p-1" style="font-size: 0.875rem; color: #495057;" title="{{if eq .Language "en"}}Toggle Right Sidebar{{else}}切换右侧栏{{end}}">▶</button>
+</div>
+<div id="dayNavBar" class="mt-2"></div>
+<div id="structuredWriterAddTurnControls" class="text-center my-3">
+  <button id="btnAddStructuredWriterCharacterTurn" class="btn pink-text-button">{{if eq .Language "en"}}Character Speaks First{{else}}角色先说{{end}}</button>
+  <button id="btnAddStructuredWriterUserTurn" class="btn pink-text-button">{{if eq .Language "en"}}User Speaks First{{else}}用户先说{{end}}</button>
+</div>
+<div id="conversation" style="padding-bottom: 10px;"></div>
+
+<div id="controlsStructuredWriter" class="controls-bar" style="display: flex; flex-wrap: wrap; gap: 0.75rem; padding: 1rem 1.25rem; background: #f8f9fa; border-top: 1px solid #dee2e6; align-items: center;">
+  <!-- Left side: Action buttons -->
+  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; flex: 1; min-width: 0;">
+    <button id="btnStickerPicker"
+            class="btn pink-text-button"
+            onclick="showStickerPicker()"
+            style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; font-size: 0.875rem;">
+      <span>😊</span><span>{{if eq .Language "en"}}Add Sticker{{else}}添加贴纸{{end}}</span>
+    </button>
+    <button id="btnDownloadDialogueImage"
+            class="btn pink-text-button"
+            onclick="downloadDialogueImage()"
+            style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; font-size: 0.875rem;">
+      <span>🖼️</span><span>{{if eq .Language "en"}}Generate Image{{else}}生成图片{{end}}</span>
+    </button>
+    <button id="btnCopyConversation"
+            class="btn pink-text-button"
+            title="{{if eq .Language "en"}}Copy all conversation contents{{else}}复制所有对话内容{{end}}"
+            style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; font-size: 0.875rem;">
+      <span>📋</span><span>{{if eq .Language "en"}}Copy Dialogue{{else}}复制对话{{end}}</span>
+    </button>
+    <button id="btnAutoFillAllTimes"
+            class="btn pink-text-button"
+            title="{{if eq .Language "en"}}Auto-fill all timestamps from first valid time{{else}}自动填充所有时间戳{{end}}"
+            style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; font-size: 0.875rem;">
+      <span>⏰</span><span>{{if eq .Language "en"}}Fill Times{{else}}填充时间{{end}}</span>
+    </button>
+  </div>
+  <!-- Right side: Save & QC buttons -->
+  <div style="display: flex; gap: 0.75rem; align-items: center; flex-shrink: 0;">
+    <button id="btnMarkReadyForQC" class="btn btn-success" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; font-size: 0.875rem; white-space: nowrap;">
+      <span id="qcButtonIcon">✓</span>
+      <span id="qcButtonText">{{if eq .Language "en"}}QC Ready{{else}}待审核{{end}}</span>
+    </button>
+    <button id="btnSaveStructuredWriter" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1.25rem; font-size: 0.875rem; font-weight: 600; background: linear-gradient(135deg, #FF6699 0%, #e05585 100%); border: none; white-space: nowrap;">
+      <span>💾</span><span>{{if eq .Language "en"}}Save{{else}}保存{{end}}</span>
+    </button>
+  </div>
+</div>

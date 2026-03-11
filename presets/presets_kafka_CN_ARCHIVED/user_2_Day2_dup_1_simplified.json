@@ -1,0 +1,33 @@
+{
+  "character_schedule": {
+    "morning": "截获了一条机密广播——斯泰拉龙在首都尖塔下方的重生物心灵防护罩下被确认存在。",
+    "noon": "",
+    "afternoon": "伪装成统治家族女儿的顾问。她聪明、愤世嫉俗且感到无聊。再好不过了。",
+    "evening": "植入了一个暗示，即“自由”与“母亲的期望”是不相容的。72小时内很可能引发情绪爆炸。",
+    "night": ""
+  },
+  "user_schedule": {
+    "morning": "骑自行车通勤，避开深圳的电动滑板车。",
+    "noon": "",
+    "afternoon": "进行代码审查马拉松，留下富有思考的PR评论。",
+    "evening": "观看独立科幻电影，吃辣条。",
+    "night": ""
+  },
+  "history": "",
+  "relationship": "两个人刚刚认识，彼此还不熟悉。他们的对话大多只是礼貌而表面的，局限于工作、学习或天气等日常话题。在这个阶段，双方都比较谨慎，尚未展现出真实的自我。",
+  "dialogue": [
+    {
+      "role": "User",
+      "content": "亲爱的",
+      "intimacy_delta": 0.01
+    }
+  ],
+  "completed": false,
+  "starting_intimacy_level": 0,
+  "intimacy_level": 0.010000000000000009,
+  "day_simu": 2,
+  "category": "legacy_rejected",
+  "rejection_reason": "",
+  "real_name": "李伟",
+  "legacy_timestamp": 1761107398
+}

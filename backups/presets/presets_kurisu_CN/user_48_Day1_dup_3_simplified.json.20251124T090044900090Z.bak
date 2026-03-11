@@ -1,0 +1,34 @@
+{
+  "dialogue": [],
+  "completed": false,
+  "history": "",
+  "user_schedule": {
+    "day": 1,
+    "早晨": "起晚了，背了几分钟单词就放弃。",
+    "中午": "和朋友去看电影。吃饭",
+    "下午": "回家打游戏，和朋友闹别扭。",
+    "晚上": "心情郁闷，下线。吃完饭看了一会儿书。",
+    "夜晚": "洗澡完，睡前聊天。"
+  },
+  "relationship": "Two people have just met and are still unfamiliar with each other. Their conversations are mostly polite and superficial, limited to everyday topics like work, studies, or the weather. At this stage, both sides are cautious and have yet to reveal their true selves.",
+  "user_name": "沈科",
+  "character_name": "",
+  "user_id": "user_48",
+  "real_name": "张晶鹏",
+  "intimacy_level": 0,
+  "starting_intimacy_level": 0,
+  "_creation_metadata": {
+    "created_at": 1761545965,
+    "created_by_ip": "127.0.0.1",
+    "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0",
+    "version": "1.0"
+  },
+  "character_schedule": {
+    "afternoon": "校准发射器焦点时，问题变得明显。稳定臂有轻微但持续的“漂移”（drifting），导致束流焦点无法精确锁定在几毫米的目标区域。她和同学甲花了整整三个小时手动微调，通过几十次小范围脉冲发射来强行校准，结果勉强达标。",
+    "day": 1,
+    "evening": "情绪波动及想聊的内容\n“烦死了，又是那个稳定臂。去年就说要换个新的伺服电机，结果经费申请被打回来说‘现有设备仍可运行’。可运行不代表‘可用’啊！每次开机都要跟它斗智斗勇半天，浪费的都是宝贵的实验时间。”\n为什么我们现代人与自己使用的工具如此脱节？一个古罗马的工匠能自己造出所有的工具，而我这个理论物理博士，连个伺服电机都修不好。这种技术上的“黑箱”是不是一种进步的代价？\n为什么有些科学家，比如费米，总能用最简单的设备做出最深刻的发现，而我们现在堆砌了这么多昂贵的设备，却常常在解决一些很无聊的问题？科学研究是不是也存在一种“品味”或“审美”？我们是不是正在失去这种品味？",
+    "morning": "启动加速器，开始进行标准的束流管道真空抽取和冷却系统预冷。一切流程看起来都和往常一样。心情平静，准备好开始新一周的工作。",
+    "night": "",
+    "noon": "午餐时和同学甲（加速器维护员）简短讨论，他抱怨说感觉稳定臂（stabilizer arm）的伺服电机响应有点延迟，但他上周已经“重启”过了。红莉栖没太在意，觉得是老毛病。吃完饭后感觉稍微有些累，前往附近咖啡馆准备休息一下。"
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "user_schedule": {
+    "morning": "得到工作通知，今天受托再做一只专用的黑塔人偶。",
+    "noon": "",
+    "afternoon": "",
+    "evening": "",
+    "night": "",
+    "day": 7
+  },
+  "history": "",
+  "relationship": "Continuing relationship from previous interactions.",
+  "dialogue": [
+    {
+      "content": "早，卡芙卡",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "08:10",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "呼我大名",
+      "intimacy_delta": 0.01,
+      "role": "Kafka",
+      "timestamp": "08:10",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "看来你有来头啊",
+      "intimacy_delta": 0.01,
+      "role": "Kafka",
+      "timestamp": "08:10",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "有何贵干？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka",
+      "timestamp": "08:11",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "。。。。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestampManuallyEdited": false,
+      "timestamp": "08:30"
+    },
+    {
+      "content": "没啥贵干",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestampManuallyEdited": false,
+      "timestamp": "08:30"
+    },
+    {
+      "content": "交个朋友是吗？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka",
+      "timestampManuallyEdited": false,
+      "timestamp": "08:30"
+    },
+    {
+      "content": "你可以这么说",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestampManuallyEdited": false,
+      "timestamp": "08:31"
+    },
+    {
+      "content": "那我们交换一下信息吧",
+      "intimacy_delta": 0.01,
+      "role": "Kafka",
+      "timestampManuallyEdited": false,
+      "timestamp": "08:31"
+    },
+    {
+      "content": "看起来你已经有我的了",
+      "intimacy_delta": 0.01,
+      "role": "Kafka",
+      "timestampManuallyEdited": false,
+      "timestamp": "08:31"
+    },
+    {
+      "content": "你现在对外职业，名字给我讲讲？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka",
+      "timestampManuallyEdited": false,
+      "timestamp": "08:32"
+    },
+    {
+      "content": "额。。。。你这不是套我信息么",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestampManuallyEdited": false,
+      "timestamp": "08:32"
+    },
+    {
+      "content": "不讲。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestampManuallyEdited": false,
+      "timestamp": "08:32"
+    },
+    {
+      "content": "哦。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka",
+      "timestampManuallyEdited": false,
+      "timestamp": "08:33"
+    },
+    {
+      "content": "那行吧。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka",
+      "timestampManuallyEdited": false,
+      "timestamp": "08:33"
+    },
+    {
+      "content": "有什么问题我洗耳恭听",
+      "intimacy_delta": 0.01,
+      "role": "Kafka",
+      "timestampManuallyEdited": false,
+      "timestamp": "08:33"
+    },
+    {
+      "role": "User",
+      "content": "叫你一声妈妈你敢不敢答应！",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:38",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "Kafka",
+      "content": "？",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:38",
+      "timestampManuallyEdited": false
+    }
+  ],
+  "intimacy_level": 6.850000000000004,
+  "starting_intimacy_level": 6.670000000000004,
+  "completed": false,
+  "user_name": "Castor",
+  "character_name": "Kafka",
+  "character_schedule": {
+    "afternoon": "根据部长哀求时的语调变化创作了一段音乐。",
+    "day": 7,
+    "evening": "收到了三场不同处决的邀请，但都拒绝了，转而去了一个爵士俱乐部。",
+    "morning": "用我未付费的薰衣草盐泡了长时间的澡。",
+    "night": "这首曲子……充满了绝望的美感。发给他听听看？算了，他可能还欣赏不来。",
+    "noon": ""
+  },
+  "category": "passed",
+  "assessment_timestamp": "2025-11-21T10:55:36.229Z",
+  "problems_count": 0,
+  "dialogue_trait": "interest_driven"
+}

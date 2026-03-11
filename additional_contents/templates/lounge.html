@@ -1,0 +1,2304 @@
+<!DOCTYPE html>
+<html lang="{{if eq .Language "en"}}en{{else}}zh-CN{{end}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{if eq .Language "en"}}Writers Hub - Writer Portal{{else}}写手社区 - Writers Hub{{end}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1e1f22;
+            --bg-darker: #17181b;
+            --bg-sidebar: #2b2d31;
+            --bg-channel: #313338;
+            --bg-hover: #35373c;
+            --bg-active: #404249;
+            --text-primary: #f2f3f5;
+            --text-secondary: #b5bac1;
+            --text-muted: #80848e;
+            --accent-primary: #5865f2;
+            --accent-green: #23a559;
+            --accent-yellow: #fee75c;
+            --accent-red: #ed4245;
+            --border-subtle: #3f4147;
+            --online-indicator: #23a559;
+            --message-hover: #2e3035;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Main Layout */
+        .app-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Left Sidebar - Servers/Sections */
+        .section-sidebar {
+            width: 72px;
+            background: var(--bg-darker);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px 0;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--bg-channel);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            position: relative;
+            font-size: 1.2rem;
+        }
+
+        .section-icon:hover {
+            border-radius: 16px;
+            background: var(--accent-primary);
+        }
+
+        .section-icon.active {
+            border-radius: 16px;
+            background: var(--accent-primary);
+        }
+
+        .section-icon.home {
+            background: var(--accent-primary);
+            border-radius: 16px;
+        }
+
+        .section-divider {
+            width: 32px;
+            height: 2px;
+            background: var(--border-subtle);
+            border-radius: 1px;
+            margin: 4px 0;
+        }
+
+        /* Channel Sidebar */
+        .channel-sidebar {
+            width: 240px;
+            background: var(--bg-sidebar);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .channel-header {
+            height: 48px;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--bg-darker);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .channel-header:hover {
+            background: var(--bg-hover);
+        }
+
+        .channel-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px;
+        }
+
+        .channel-category {
+            padding: 16px 0 4px 0;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .channel-category:hover {
+            color: var(--text-secondary);
+        }
+
+        .channel-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all 0.1s;
+            font-size: 0.95rem;
+        }
+
+        .channel-item:hover {
+            background: var(--bg-hover);
+            color: var(--text-secondary);
+        }
+
+        .channel-item.active {
+            background: var(--bg-active);
+            color: var(--text-primary);
+        }
+
+        .channel-item .hash {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .channel-item.active .hash {
+            color: var(--text-secondary);
+        }
+
+        .unread-badge {
+            background: var(--accent-red);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 8px;
+            margin-left: auto;
+        }
+
+        /* User Panel */
+        .user-panel {
+            height: 52px;
+            background: var(--bg-darker);
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            gap: 8px;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .user-avatar .status-dot {
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 3px solid var(--bg-darker);
+            background: var(--online-indicator);
+        }
+
+        .user-info {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .user-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .user-status {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 4px;
+        }
+
+        .user-action-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.1s;
+        }
+
+        .user-action-btn:hover {
+            background: var(--bg-hover);
+            color: var(--text-secondary);
+        }
+
+        /* Main Chat Area */
+        .chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-channel);
+            min-width: 0;
+        }
+
+        .chat-header {
+            height: 48px;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--bg-darker);
+            flex-shrink: 0;
+        }
+
+        .chat-header .hash {
+            color: var(--text-muted);
+            font-size: 1.4rem;
+        }
+
+        .chat-header .channel-name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .chat-header .channel-topic {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-left: 8px;
+            padding-left: 12px;
+            border-left: 1px solid var(--border-subtle);
+        }
+
+        .chat-header-actions {
+            margin-left: auto;
+            display: flex;
+            gap: 8px;
+        }
+
+        .header-btn {
+            width: 24px;
+            height: 24px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.1s;
+        }
+
+        .header-btn:hover {
+            color: var(--text-secondary);
+        }
+
+        /* Messages Container */
+        .messages-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 0;
+        }
+
+        .message-group {
+            padding: 2px 48px 2px 16px;
+            position: relative;
+        }
+
+        .message-group:hover {
+            background: var(--message-hover);
+        }
+
+        .message {
+            display: flex;
+            gap: 16px;
+            padding: 2px 0;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .message-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .message-header {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .message-author {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        .message-author:hover {
+            text-decoration: underline;
+        }
+
+        .message-timestamp {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .message-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            word-break: break-word;
+            white-space: pre-wrap;
+        }
+
+        .message-actions {
+            position: absolute;
+            right: 16px;
+            top: -16px;
+            background: var(--bg-sidebar);
+            border-radius: 4px;
+            display: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            padding: 4px;
+        }
+
+        .message-group:hover .message-actions {
+            display: flex;
+        }
+
+        .msg-action-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.1s;
+        }
+
+        .msg-action-btn:hover {
+            background: var(--bg-active);
+            color: var(--text-primary);
+        }
+
+        /* Message Reactions */
+        .message-reactions {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+
+        .reaction-chip {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            background: var(--bg-hover);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+
+        .reaction-chip:hover {
+            background: var(--bg-active);
+            border-color: var(--accent-primary);
+        }
+
+        .reaction-chip.active {
+            background: rgba(88, 101, 242, 0.15);
+            border-color: var(--accent-primary);
+        }
+
+        .reaction-count {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+
+        /* Message Input */
+        .chat-input-container {
+            padding: 0 16px 24px 16px;
+            flex-shrink: 0;
+        }
+
+        .chat-input-wrapper {
+            background: var(--bg-hover);
+            border-radius: 8px;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-btn {
+            width: 32px;
+            height: 44px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.1s;
+        }
+
+        .input-btn:hover {
+            color: var(--text-secondary);
+        }
+
+        .chat-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.95rem;
+            padding: 11px 0;
+            outline: none;
+            resize: none;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .chat-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Friends Sidebar (Right) */
+        .friends-sidebar {
+            width: 240px;
+            background: var(--bg-sidebar);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            border-left: 1px solid var(--bg-darker);
+        }
+
+        .friends-header {
+            height: 48px;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .friends-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px;
+        }
+
+        .friend-category {
+            padding: 16px 8px 4px 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .friend-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.1s;
+        }
+
+        .friend-item:hover {
+            background: var(--bg-hover);
+        }
+
+        .friend-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            position: relative;
+        }
+
+        .friend-avatar .online-dot {
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid var(--bg-sidebar);
+            background: var(--online-indicator);
+        }
+
+        .friend-avatar .offline-dot {
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid var(--bg-sidebar);
+            background: var(--text-muted);
+        }
+
+        .friend-name {
+            flex: 1;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .friend-action-btn {
+            width: 28px;
+            height: 28px;
+            background: var(--bg-active);
+            border: none;
+            border-radius: 50%;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.1s;
+        }
+
+        .friend-item:hover .friend-action-btn {
+            display: flex;
+        }
+
+        .friend-action-btn:hover {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        /* New Channel Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-channel);
+            border-radius: 8px;
+            width: 90%;
+            max-width: 440px;
+            overflow: hidden;
+            animation: modalSlide 0.15s ease;
+        }
+
+        @keyframes modalSlide {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-header {
+            padding: 16px;
+            text-align: center;
+        }
+
+        .modal-header h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .modal-header p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .modal-body {
+            padding: 0 16px 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            background: var(--bg-darker);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            padding: 10px 12px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.15s;
+        }
+
+        .form-input:focus {
+            border-color: var(--accent-primary);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .quote-preview {
+            background: var(--bg-hover);
+            border-left: 4px solid var(--accent-primary);
+            padding: 8px 12px;
+            margin-bottom: 16px;
+            border-radius: 0 4px 4px 0;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .modal-footer {
+            background: var(--bg-sidebar);
+            padding: 16px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+            border: none;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            text-decoration: underline;
+        }
+
+        .btn-primary {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4752c4;
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Add Friend Modal */
+        .search-results {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .search-result-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.1s;
+        }
+
+        .search-result-item:hover {
+            background: var(--bg-hover);
+        }
+
+        /* Friend Requests */
+        .friend-request {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px;
+            background: var(--bg-hover);
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .request-actions {
+            display: flex;
+            gap: 4px;
+            margin-left: auto;
+        }
+
+        .request-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.1s;
+        }
+
+        .request-btn.accept {
+            background: var(--accent-green);
+            color: white;
+        }
+
+        .request-btn.decline {
+            background: var(--accent-red);
+            color: white;
+        }
+
+        /* Empty States */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .empty-state p {
+            font-size: 0.9rem;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-darker);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--border-subtle);
+        }
+
+        /* DM View */
+        .dm-view .chat-header .hash {
+            display: none;
+        }
+
+        .dm-header-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        /* Selection Create Room */
+        .selection-popup {
+            position: fixed;
+            background: var(--bg-sidebar);
+            border-radius: 4px;
+            padding: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            display: none;
+            z-index: 500;
+        }
+
+        .selection-popup.active {
+            display: block;
+        }
+
+        .selection-popup button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            width: 100%;
+        }
+
+        .selection-popup button:hover {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        /* Home button */
+        .home-link {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent-primary);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
+            transition: all 0.2s;
+            z-index: 100;
+        }
+
+        .home-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.5);
+        }
+
+        /* Development Widget Styles */
+        .development-widget {
+            background: var(--bg-hover);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            margin: 8px;
+            overflow: hidden;
+        }
+
+        .development-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: var(--bg-active);
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .development-header-icon {
+            font-size: 1rem;
+        }
+
+        .development-toggle {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 2px;
+            transition: transform 0.2s;
+        }
+
+        .development-toggle:hover {
+            color: var(--text-secondary);
+        }
+
+        .development-content {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .development-content.collapsed {
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        .development-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--border-subtle);
+            transition: background 0.1s;
+        }
+
+        .development-item:last-child {
+            border-bottom: none;
+        }
+
+        .development-item:hover {
+            background: var(--bg-active);
+        }
+
+        .development-item-icon {
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .development-item-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .development-item-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.3;
+        }
+
+        .development-item-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .development-item-time {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            background: rgba(0,0,0,0.1);
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .development-item-status {
+            font-size: 0.7rem;
+            color: var(--accent-green);
+            font-weight: 500;
+        }
+
+        .development-actions {
+            display: none;
+            gap: 4px;
+        }
+
+        .development-item:hover .development-actions {
+            display: flex;
+        }
+
+        .development-action-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.1s;
+        }
+
+        .development-action-btn:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .development-editor {
+            padding: 12px 16px;
+            background: var(--bg-darker);
+            border-top: 1px solid var(--border-subtle);
+            display: none;
+        }
+
+        .development-editor.active {
+            display: block;
+        }
+
+        .editor-form {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .editor-input {
+            width: 100%;
+            background: var(--bg-channel);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            padding: 8px 12px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.85rem;
+            outline: none;
+        }
+
+        .editor-input:focus {
+            border-color: var(--accent-primary);
+        }
+
+        .editor-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+
+        .editor-btn {
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.1s;
+        }
+
+        .editor-btn.primary {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .editor-btn.secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .editor-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .friends-sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .channel-sidebar {
+                display: none;
+            }
+            .section-sidebar {
+                width: 56px;
+            }
+            .section-icon {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        /* Typing indicator */
+        .typing-indicator {
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: none;
+        }
+
+        .typing-indicator.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Section Sidebar (Server icons) -->
+        <div class="section-sidebar">
+            <div class="section-icon home" onclick="goHome()" title="{{if eq .Language "en"}}Home{{else}}首页{{end}}">🏠</div>
+            <div class="section-divider"></div>
+            <div class="section-icon active" title="{{if eq .Language "en"}}Writer's Lounge{{else}}写手社区{{end}}">✍️</div>
+        </div>
+
+        <!-- Channel Sidebar -->
+        <div class="channel-sidebar">
+            <div class="channel-header">
+                <span>{{if eq .Language "en"}}Writer's Lounge{{else}}写手社区{{end}}</span>
+                <span style="font-size: 0.8rem;">▾</span>
+            </div>
+
+            <div class="channel-list" id="channelList">
+                <!-- Channels Category -->
+                <div class="channel-category">
+                    <span>💬 {{if eq .Language "en"}}Channels{{else}}频道{{end}}</span>
+                    <button onclick="openNewChannelModal()" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:1rem;">+</button>
+                </div>
+                <div id="channelsContainer">
+                    <!-- Channels loaded dynamically -->
+                </div>
+
+                <!-- DMs Category -->
+                <div class="channel-category">
+                    <span>📨 {{if eq .Language "en"}}Direct Messages{{else}}私信{{end}}</span>
+                </div>
+                <div id="dmsContainer">
+                    <!-- DMs loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- Development Widget -->
+            <div class="development-widget">
+                <div class="development-header">
+                    <div class="development-header-icon">📋</div>
+                    <span>{{if eq .Language "en"}}Features To Develop{{else}}待开发功能{{end}}</span>
+                    <button class="development-toggle" onclick="toggleDevelopmentWidget()" title="{{if eq .Language "en"}}Toggle{{else}}收起/展开{{end}}">▼</button>
+                </div>
+                <div class="development-content" id="developmentContent">
+                    <div class="development-item" data-id="1">
+                        <span class="development-item-icon">🔔</span>
+                        <div class="development-item-content">
+                            <span class="development-item-text">{{if eq .Language "en"}}Push notifications{{else}}消息推送通知{{end}}</span>
+                            <div class="development-item-meta">
+                                <span class="development-item-time">~2h</span>
+                                <span class="development-item-status">{{if eq .Language "en"}}Planned{{else}}计划中{{end}}</span>
+                            </div>
+                        </div>
+                        <div class="development-actions">
+                            <button class="development-action-btn" onclick="editDevelopmentItem(1)" title="{{if eq .Language "en"}}Edit{{else}}编辑{{end}}">✏️</button>
+                            <button class="development-action-btn" onclick="deleteDevelopmentItem(1)" title="{{if eq .Language "en"}}Delete{{else}}删除{{end}}">🗑️</button>
+                        </div>
+                    </div>
+                    <div class="development-item" data-id="2">
+                        <span class="development-item-icon">🖼️</span>
+                        <div class="development-item-content">
+                            <span class="development-item-text">{{if eq .Language "en"}}Image sharing{{else}}图片分享{{end}}</span>
+                            <div class="development-item-meta">
+                                <span class="development-item-time">~3h</span>
+                                <span class="development-item-status">{{if eq .Language "en"}}Planned{{else}}计划中{{end}}</span>
+                            </div>
+                        </div>
+                        <div class="development-actions">
+                            <button class="development-action-btn" onclick="editDevelopmentItem(2)" title="{{if eq .Language "en"}}Edit{{else}}编辑{{end}}">✏️</button>
+                            <button class="development-action-btn" onclick="deleteDevelopmentItem(2)" title="{{if eq .Language "en"}}Delete{{else}}删除{{end}}">🗑️</button>
+                        </div>
+                    </div>
+                    <div class="development-item" data-id="3">
+                        <span class="development-item-icon">🎨</span>
+                        <div class="development-item-content">
+                            <span class="development-item-text">{{if eq .Language "en"}}Custom themes{{else}}自定义主题{{end}}</span>
+                            <div class="development-item-meta">
+                                <span class="development-item-time">~4h</span>
+                                <span class="development-item-status">{{if eq .Language "en"}}Planned{{else}}计划中{{end}}</span>
+                            </div>
+                        </div>
+                        <div class="development-actions">
+                            <button class="development-action-btn" onclick="editDevelopmentItem(3)" title="{{if eq .Language "en"}}Edit{{else}}编辑{{end}}">✏️</button>
+                            <button class="development-action-btn" onclick="deleteDevelopmentItem(3)" title="{{if eq .Language "en"}}Delete{{else}}删除{{end}}">🗑️</button>
+                        </div>
+                    </div>
+                    <div class="development-item" data-id="4">
+                        <span class="development-item-icon">📱</span>
+                        <div class="development-item-content">
+                            <span class="development-item-text">{{if eq .Language "en"}}Mobile optimization{{else}}移动端优化{{end}}</span>
+                            <div class="development-item-meta">
+                                <span class="development-item-time">~5h</span>
+                                <span class="development-item-status">{{if eq .Language "en"}}Planned{{else}}计划中{{end}}</span>
+                            </div>
+                        </div>
+                        <div class="development-actions">
+                            <button class="development-action-btn" onclick="editDevelopmentItem(4)" title="{{if eq .Language "en"}}Edit{{else}}编辑{{end}}">✏️</button>
+                            <button class="development-action-btn" onclick="deleteDevelopmentItem(4)" title="{{if eq .Language "en"}}Delete{{else}}删除{{end}}">🗑️</button>
+                        </div>
+                    </div>
+                    <div class="development-item" data-id="5">
+                        <span class="development-item-icon">🔍</span>
+                        <div class="development-item-content">
+                            <span class="development-item-text">{{if eq .Language "en"}}Message search{{else}}消息搜索{{end}}</span>
+                            <div class="development-item-meta">
+                                <span class="development-item-time">~2h</span>
+                                <span class="development-item-status">{{if eq .Language "en"}}Planned{{else}}计划中{{end}}</span>
+                            </div>
+                        </div>
+                        <div class="development-actions">
+                            <button class="development-action-btn" onclick="editDevelopmentItem(5)" title="{{if eq .Language "en"}}Edit{{else}}编辑{{end}}">✏️</button>
+                            <button class="development-action-btn" onclick="deleteDevelopmentItem(5)" title="{{if eq .Language "en"}}Delete{{else}}删除{{end}}">🗑️</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="development-editor" id="developmentEditor">
+                    <form class="editor-form" onsubmit="saveDevelopmentItem(event)">
+                        <input type="text" class="editor-input" id="editFeatureName" placeholder="{{if eq .Language "en"}}Feature name{{else}}功能名称{{end}}" required>
+                        <input type="text" class="editor-input" id="editFeatureTime" placeholder="{{if eq .Language "en"}}Time estimate (e.g. ~2h){{else}}时间预估 (例如 ~2h){{end}}" required>
+                        <select class="editor-input" id="editFeatureIcon" required>
+                            <option value="🔔">🔔 Push notifications</option>
+                            <option value="🖼️">🖼️ Image sharing</option>
+                            <option value="🎨">🎨 Custom themes</option>
+                            <option value="📱">📱 Mobile optimization</option>
+                            <option value="🔍">🔍 Message search</option>
+                            <option value="⚙️">⚙️ Settings</option>
+                            <option value="📊">📊 Analytics</option>
+                            <option value="🔒">🔒 Security</option>
+                            <option value="🌐">🌐 Integration</option>
+                            <option value="📝">📝 Writing tools</option>
+                        </select>
+                        <div class="editor-actions">
+                            <button type="button" class="editor-btn secondary" onclick="cancelEdit()">{{if eq .Language "en"}}Cancel{{else}}取消{{end}}</button>
+                            <button type="submit" class="editor-btn primary">{{if eq .Language "en"}}Save{{else}}保存{{end}}</button>
+                        </div>
+                    </form>
+                </div>
+                <div style="padding: 8px 16px; border-top: 1px solid var(--border-subtle);">
+                    <button onclick="addDevelopmentItem()" style="width: 100%; padding: 8px; background: var(--accent-primary); color: white; border: none; border-radius: 4px; font-size: 0.8rem; cursor: pointer;">{{if eq .Language "en"}}Add Feature{{else}}添加功能{{end}}</button>
+                </div>
+            </div>
+
+            <!-- User Panel -->
+            <div class="user-panel">
+                <div class="user-avatar">
+                    <span id="userAvatarEmoji">👤</span>
+                    <div class="status-dot"></div>
+                </div>
+                <div class="user-info">
+                    <div class="user-name" id="currentUsername">{{if eq .Language "en"}}Not Logged In{{else}}未登录{{end}}</div>
+                    <div class="user-status">{{if eq .Language "en"}}Online{{else}}在线{{end}}</div>
+                </div>
+                <div class="user-actions">
+                    <button class="user-action-btn" onclick="openAddFriendModal()" title="{{if eq .Language "en"}}Add Friend{{else}}添加好友{{end}}">👥</button>
+                    <button class="user-action-btn" onclick="goHome()" title="{{if eq .Language "en"}}Back to Home{{else}}返回首页{{end}}">🏠</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Chat Area -->
+        <div class="chat-area" id="chatArea">
+            <div class="chat-header">
+                <span class="hash">#</span>
+                <span class="channel-name" id="currentChannelName">general</span>
+                <span class="channel-topic" id="currentChannelTopic">{{if eq .Language "en"}}General discussion area{{else}}通用讨论区{{end}}</span>
+                <div class="chat-header-actions">
+                    <button class="header-btn" onclick="toggleFriendsSidebar()" title="{{if eq .Language "en"}}Member List{{else}}成员列表{{end}}">👥</button>
+                </div>
+            </div>
+
+            <div class="messages-container" id="messagesContainer">
+                <!-- Messages loaded dynamically -->
+            </div>
+
+            <div class="typing-indicator" id="typingIndicator">
+                {{if eq .Language "en"}}is typing...{{else}}正在输入...{{end}}
+            </div>
+
+            <div class="chat-input-container">
+                <div class="chat-input-wrapper">
+                    <button class="input-btn">➕</button>
+                    <textarea class="chat-input" id="messageInput" placeholder="{{if eq .Language "en"}}Send message to #general{{else}}发送消息至 #general{{end}}" rows="1" onkeydown="handleInputKeydown(event)"></textarea>
+                    <button class="input-btn" onclick="sendMessage()">📤</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Friends Sidebar -->
+        <div class="friends-sidebar" id="friendsSidebar">
+            <div class="friends-header">
+                {{if eq .Language "en"}}Members — {{else}}成员 — {{end}}<span id="onlineCount">0</span> {{if eq .Language "en"}}Online{{else}}在线{{end}}
+            </div>
+            
+            <!-- Add Friend Button -->
+            <div style="padding: 8px;">
+                <button onclick="openAddFriendModal()" style="
+                    width: 100%;
+                    padding: 10px 16px;
+                    background: var(--accent-primary);
+                    color: white;
+                    border: none;
+                    border-radius: 4px;
+                    font-size: 0.9rem;
+                    font-weight: 500;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 8px;
+                    transition: background 0.15s;
+                " onmouseover="this.style.background='#4752c4'" onmouseout="this.style.background='var(--accent-primary)'">
+                    <span>👥</span>
+                    <span>{{if eq .Language "en"}}Add Friend{{else}}添加好友{{end}}</span>
+                </button>
+            </div>
+            
+            <div class="friends-list" id="friendsList">
+                <!-- Friend Requests Section -->
+                <div id="friendRequestsSection" style="display:none;">
+                    <div class="friend-category">📬 {{if eq .Language "en"}}Pending Requests{{else}}待处理请求{{end}}</div>
+                    <div id="friendRequestsContainer"></div>
+                </div>
+
+                <!-- Online Friends -->
+                <div class="friend-category">🟢 {{if eq .Language "en"}}Online — {{else}}在线 — {{end}}<span id="onlineFriendsCount">0</span></div>
+                <div id="onlineFriendsContainer"></div>
+
+                <!-- Offline Friends -->
+                <div class="friend-category">⚫ {{if eq .Language "en"}}Offline — {{else}}离线 — {{end}}<span id="offlineFriendsCount">0</span></div>
+                <div id="offlineFriendsContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Channel Modal -->
+    <div class="modal-overlay" id="newChannelModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>{{if eq .Language "en"}}Create New Channel{{else}}创建新频道{{end}}</h2>
+                <p>{{if eq .Language "en"}}Create a discussion space for specific topics{{else}}为特定话题创建讨论空间{{end}}</p>
+            </div>
+            <div class="modal-body">
+                <div id="quotePreview" class="quote-preview" style="display:none;"></div>
+                <div class="form-group">
+                    <label class="form-label">{{if eq .Language "en"}}Channel Name{{else}}频道名称{{end}}</label>
+                    <input type="text" class="form-input" id="newChannelName" placeholder="{{if eq .Language "en"}}new-channel{{else}}新频道{{end}}">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">{{if eq .Language "en"}}Channel Description (Optional){{else}}频道描述（可选）{{end}}</label>
+                    <input type="text" class="form-input" id="newChannelDesc" placeholder="{{if eq .Language "en"}}This channel is about...{{else}}这个频道是关于...{{end}}">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeNewChannelModal()">{{if eq .Language "en"}}Cancel{{else}}取消{{end}}</button>
+                <button class="btn btn-primary" onclick="createChannel()">{{if eq .Language "en"}}Create Channel{{else}}创建频道{{end}}</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Friend Modal -->
+    <div class="modal-overlay" id="addFriendModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>{{if eq .Language "en"}}Add Friend{{else}}添加好友{{end}}</h2>
+                <p>{{if eq .Language "en"}}Search for users and send friend requests{{else}}搜索用户并发送好友请求{{end}}</p>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">{{if eq .Language "en"}}Search Username{{else}}搜索用户名{{end}}</label>
+                    <input type="text" class="form-input" id="friendSearchInput" placeholder="{{if eq .Language "en"}}Enter username...{{else}}输入用户名...{{end}}" oninput="searchUsers()">
+                </div>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeAddFriendModal()">{{if eq .Language "en"}}Close{{else}}关闭{{end}}</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Selection Popup -->
+    <div class="selection-popup" id="selectionPopup">
+        <button onclick="createRoomFromSelection()">
+            <span>➕</span>
+            <span>{{if eq .Language "en"}}Create Discussion Room{{else}}创建讨论室{{end}}</span>
+        </button>
+    </div>
+
+
+    <!-- Home Link -->
+    <a href="/landing" class="home-link">
+        <span>🏠</span>
+        <span>{{if eq .Language "en"}}Home{{else}}首页{{end}}</span>
+    </a>
+
+    <script>
+        // State
+        let currentUser = null;
+        let currentChannel = null;
+        let currentView = 'channel'; // 'channel' or 'dm'
+        let currentDMConversation = null;
+        let channels = [];
+        let dmConversations = [];
+        let friends = [];
+        let pendingRequests = [];
+        let messages = [];
+        let selectedQuote = '';
+        let pollInterval = null;
+
+        // Initialize
+        async function init() {
+            await fetchCurrentUser();
+            await loadChannels();
+            await loadDMConversations();
+            await loadFriends();
+            await loadPendingRequests();
+            await loadStats();
+
+            // Select default channel
+            if (channels.length > 0) {
+                selectChannel(channels[0]);
+            }
+
+            // Update presence
+            updatePresence('online');
+
+            // Poll for updates
+            pollInterval = setInterval(() => {
+                loadMessages();
+                loadStats();
+            }, 5000);
+
+            // Handle text selection for creating rooms
+            document.addEventListener('mouseup', handleTextSelection);
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.selection-popup')) {
+                    document.getElementById('selectionPopup').classList.remove('active');
+                }
+            });
+        }
+
+        // Fetch current user
+        async function fetchCurrentUser() {
+            try {
+                const response = await fetch('/api/current_user');
+                currentUser = await response.json();
+                const isEnglish = document.documentElement.lang === 'en';
+
+                if (currentUser.logged_in) {
+                    document.getElementById('currentUsername').textContent = currentUser.username;
+                    document.getElementById('userAvatarEmoji').textContent = currentUser.username.charAt(0).toUpperCase();
+                } else {
+                    document.getElementById('currentUsername').textContent = isEnglish ? 'Not Logged In' : '未登录';
+                    window.location.href = '/login/e?redirect=/lounge/e';
+                }
+
+                // Update development widget visibility after user auth check
+                updateDevelopmentWidgetVisibility();
+            } catch (error) {
+                console.error('Error fetching user:', error);
+            }
+        }
+
+        // Load channels
+        async function loadChannels() {
+            try {
+                const response = await fetch('/api/chat/channels');
+                const data = await response.json();
+                channels = data.channels || [];
+                renderChannels();
+            } catch (error) {
+                console.error('Error loading channels:', error);
+            }
+        }
+
+        // Render channels
+        function renderChannels() {
+            const container = document.getElementById('channelsContainer');
+            container.innerHTML = channels.map(ch => `
+                <div class="channel-item ${currentChannel?.id === ch.id ? 'active' : ''}" 
+                     onclick="selectChannel(${JSON.stringify(ch).replace(/"/g, '&quot;')})">
+                    <span class="hash">#</span>
+                    <span>${escapeHtml(ch.name)}</span>
+                </div>
+            `).join('');
+        }
+
+        // Select channel
+        async function selectChannel(channel) {
+            currentChannel = channel;
+            currentView = 'channel';
+            currentDMConversation = null;
+            const isEnglish = document.documentElement.lang === 'en';
+            
+            document.getElementById('chatArea').classList.remove('dm-view');
+            document.getElementById('currentChannelName').textContent = channel.name;
+            document.getElementById('currentChannelTopic').textContent = channel.description || '';
+            document.getElementById('messageInput').placeholder = isEnglish ? `Send message to #${channel.name}` : `发送消息至 #${channel.name}`;
+            
+            renderChannels();
+            renderDMs();
+            await loadMessages();
+        }
+
+        // Load messages
+        async function loadMessages() {
+            if (!currentChannel && !currentDMConversation) return;
+
+            try {
+                let response;
+                if (currentView === 'channel') {
+                    response = await fetch(`/api/chat/channels/${currentChannel.id}/messages?limit=100`);
+                } else {
+                    response = await fetch(`/api/chat/dms/${currentDMConversation.id}?limit=100`);
+                }
+                
+                const data = await response.json();
+                messages = data.messages || [];
+                renderMessages();
+            } catch (error) {
+                console.error('Error loading messages:', error);
+            }
+        }
+
+        // Render messages
+        function renderMessages() {
+            const container = document.getElementById('messagesContainer');
+            const isEnglish = document.documentElement.lang === 'en';
+            
+            if (messages.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">💬</div>
+                        <h3>${isEnglish ? 'Start a conversation!' : '开始对话吧！'}</h3>
+                        <p>${isEnglish ? 'No messages here yet, be the first to speak' : '这里还没有消息，成为第一个发言的人'}</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = messages.map((msg, idx) => {
+                const showHeader = idx === 0 || 
+                    messages[idx-1].user_id !== msg.user_id ||
+                    (new Date(msg.created_at) - new Date(messages[idx-1].created_at)) > 300000;
+                
+                const reactions = msg.reactions || {};
+                const reactionsHtml = Object.entries(reactions)
+                    .filter(([_, count]) => count > 0)
+                    .map(([emoji, count]) => `
+                        <div class="reaction-chip" onclick="toggleReaction('${msg.id}', '${emoji}')">
+                            <span>${emoji}</span>
+                            <span class="reaction-count">${count}</span>
+                        </div>
+                    `).join('');
+
+                if (showHeader) {
+                    return `
+                        <div class="message-group">
+                            <div class="message">
+                                <div class="message-avatar">${msg.username.charAt(0).toUpperCase()}</div>
+                                <div class="message-content">
+                                    <div class="message-header">
+                                        <span class="message-author">${escapeHtml(msg.username)}</span>
+                                        <span class="message-timestamp">${formatTime(msg.created_at)}</span>
+                                    </div>
+                                    <div class="message-text">${escapeHtml(msg.content)}</div>
+                                    ${reactionsHtml ? `<div class="message-reactions">${reactionsHtml}</div>` : ''}
+                                </div>
+                            </div>
+                            <div class="message-actions">
+                                <button class="msg-action-btn" onclick="addReactionPicker('${msg.id}')">😀</button>
+                                <button class="msg-action-btn" onclick="replyToMessage('${msg.id}')">↩️</button>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div class="message-group" style="padding-left: 72px;">
+                            <div class="message-text">${escapeHtml(msg.content)}</div>
+                            ${reactionsHtml ? `<div class="message-reactions">${reactionsHtml}</div>` : ''}
+                            <div class="message-actions">
+                                <button class="msg-action-btn" onclick="addReactionPicker('${msg.id}')">😀</button>
+                            </div>
+                        </div>
+                    `;
+                }
+            }).join('');
+
+            container.scrollTop = container.scrollHeight;
+        }
+
+        // Send message
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const content = input.value.trim();
+            if (!content) return;
+
+            try {
+                let response;
+                if (currentView === 'channel') {
+                    response = await fetch(`/api/chat/channels/${currentChannel.id}/messages`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ content })
+                    });
+                } else {
+                    response = await fetch(`/api/chat/dms/${currentDMConversation.id}/messages`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ content })
+                    });
+                }
+
+                if (response.ok) {
+                    input.value = '';
+                    await loadMessages();
+                }
+            } catch (error) {
+                console.error('Error sending message:', error);
+            }
+        }
+
+        // Handle input keydown
+        function handleInputKeydown(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+
+        // Toggle reaction
+        async function toggleReaction(messageId, emoji) {
+            try {
+                await fetch(`/api/chat/messages/${messageId}/reactions`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ emoji })
+                });
+                await loadMessages();
+            } catch (error) {
+                console.error('Error toggling reaction:', error);
+            }
+        }
+
+        // Load DM conversations
+        async function loadDMConversations() {
+            try {
+                const response = await fetch('/api/chat/dms');
+                const data = await response.json();
+                dmConversations = data.conversations || [];
+                renderDMs();
+            } catch (error) {
+                console.error('Error loading DMs:', error);
+            }
+        }
+
+        // Render DMs
+        function renderDMs() {
+            const container = document.getElementById('dmsContainer');
+            const isEnglish = document.documentElement.lang === 'en';
+            if (dmConversations.length === 0) {
+                container.innerHTML = `<div style="padding: 8px; color: var(--text-muted); font-size: 0.8rem;">${isEnglish ? 'No DMs' : '暂无私信'}</div>`;
+                return;
+            }
+            
+            container.innerHTML = dmConversations.map(dm => `
+                <div class="channel-item ${currentDMConversation?.id === dm.id ? 'active' : ''}" 
+                     onclick="selectDM('${dm.id}', '${escapeHtml(dm.other_username)}')">
+                    <span style="font-size: 0.9rem;">💬</span>
+                    <span>${escapeHtml(dm.other_username)}</span>
+                    ${dm.unread_count > 0 ? `<span class="unread-badge">${dm.unread_count}</span>` : ''}
+                </div>
+            `).join('');
+        }
+
+        // Select DM
+        async function selectDM(conversationId, username) {
+            currentView = 'dm';
+            currentChannel = null;
+            currentDMConversation = { id: conversationId, username };
+            const isEnglish = document.documentElement.lang === 'en';
+            
+            document.getElementById('chatArea').classList.add('dm-view');
+            document.getElementById('currentChannelName').textContent = username;
+            document.getElementById('currentChannelTopic').textContent = isEnglish ? 'Private Conversation' : '私信对话';
+            document.getElementById('messageInput').placeholder = isEnglish ? `Send DM to ${username}` : `发送私信给 ${username}`;
+            
+            renderChannels();
+            renderDMs();
+            await loadMessages();
+
+            // Mark as read
+            await fetch(`/api/chat/dms/${conversationId}/read`, { method: 'POST' });
+        }
+
+        // Start DM with friend
+        async function startDM(friendId, friendName) {
+            try {
+                const response = await fetch('/api/chat/dms', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ user_id: friendId })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    await loadDMConversations();
+                    selectDM(data.conversation.id, friendName);
+                }
+            } catch (error) {
+                console.error('Error starting DM:', error);
+            }
+        }
+
+        // Load friends
+        async function loadFriends() {
+            try {
+                const response = await fetch('/api/chat/friends');
+                const data = await response.json();
+                friends = data.friends || [];
+                renderFriends();
+            } catch (error) {
+                console.error('Error loading friends:', error);
+            }
+        }
+
+        // Render friends
+        function renderFriends() {
+            const onlineContainer = document.getElementById('onlineFriendsContainer');
+            const offlineContainer = document.getElementById('offlineFriendsContainer');
+            const isEnglish = document.documentElement.lang === 'en';
+            
+            const online = friends.filter(f => f.is_online);
+            const offline = friends.filter(f => !f.is_online);
+            
+            document.getElementById('onlineFriendsCount').textContent = online.length;
+            document.getElementById('offlineFriendsCount').textContent = offline.length;
+            
+            if (friends.length === 0) {
+                onlineContainer.innerHTML = `
+                    <div style="padding: 16px; color: var(--text-muted); font-size: 0.85rem; text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 8px;">👋</div>
+                        <div style="margin-bottom: 8px;">${isEnglish ? 'No friends yet' : '还没有好友'}</div>
+                        <div style="font-size: 0.75rem;">${isEnglish ? 'Click "Add Friend" above<br>to search and send requests' : '点击上方"添加好友"按钮<br>搜索用户并发送好友请求'}</div>
+                    </div>
+                `;
+                offlineContainer.innerHTML = '';
+                return;
+            }
+            
+            onlineContainer.innerHTML = online.map(f => `
+                <div class="friend-item" onclick="startDM('${f.friend_id}', '${escapeHtml(f.friend_name)}')">
+                    <div class="friend-avatar">
+                        ${f.friend_name.charAt(0).toUpperCase()}
+                        <div class="online-dot"></div>
+                    </div>
+                    <span class="friend-name">${escapeHtml(f.friend_name)}</span>
+                    <button class="friend-action-btn" title="${isEnglish ? 'Send DM' : '发私信'}">💬</button>
+                </div>
+            `).join('') || `<div style="padding: 8px; color: var(--text-muted); font-size: 0.8rem;">${isEnglish ? 'No friends online' : '暂无在线好友'}</div>`;
+            
+            offlineContainer.innerHTML = offline.map(f => `
+                <div class="friend-item" onclick="startDM('${f.friend_id}', '${escapeHtml(f.friend_name)}')">
+                    <div class="friend-avatar">
+                        ${f.friend_name.charAt(0).toUpperCase()}
+                        <div class="offline-dot"></div>
+                    </div>
+                    <span class="friend-name">${escapeHtml(f.friend_name)}</span>
+                </div>
+            `).join('');
+        }
+
+        // Load pending friend requests
+        async function loadPendingRequests() {
+            try {
+                const response = await fetch('/api/chat/friends/pending');
+                const data = await response.json();
+                pendingRequests = data.requests || [];
+                renderPendingRequests();
+            } catch (error) {
+                console.error('Error loading pending requests:', error);
+            }
+        }
+
+        // Render pending requests
+        function renderPendingRequests() {
+            const section = document.getElementById('friendRequestsSection');
+            const container = document.getElementById('friendRequestsContainer');
+            const isEnglish = document.documentElement.lang === 'en';
+            
+            if (pendingRequests.length === 0) {
+                section.style.display = 'none';
+                return;
+            }
+            
+            section.style.display = 'block';
+            container.innerHTML = pendingRequests.map(req => `
+                <div class="friend-request">
+                    <div class="friend-avatar">${req.friend_name.charAt(0).toUpperCase()}</div>
+                    <span class="friend-name">${escapeHtml(req.friend_name)}</span>
+                    <div class="request-actions">
+                        <button class="request-btn accept" onclick="acceptFriend('${req.user_id}')" title="${isEnglish ? 'Accept' : '接受'}">✓</button>
+                        <button class="request-btn decline" onclick="declineFriend('${req.user_id}')" title="${isEnglish ? 'Decline' : '拒绝'}">✕</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Accept friend request
+        async function acceptFriend(friendId) {
+            try {
+                await fetch('/api/chat/friends/accept', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ friend_id: friendId })
+                });
+                await loadFriends();
+                await loadPendingRequests();
+            } catch (error) {
+                console.error('Error accepting friend:', error);
+            }
+        }
+
+        // Decline friend request
+        async function declineFriend(friendId) {
+            try {
+                await fetch('/api/chat/friends/decline', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ friend_id: friendId })
+                });
+                await loadPendingRequests();
+            } catch (error) {
+                console.error('Error declining friend:', error);
+            }
+        }
+
+        // Search users
+        async function searchUsers() {
+            const query = document.getElementById('friendSearchInput').value.trim();
+            const container = document.getElementById('searchResults');
+            const isEnglish = document.documentElement.lang === 'en';
+            
+            if (query.length < 2) {
+                container.innerHTML = '';
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/chat/users/search?q=${encodeURIComponent(query)}`);
+                const data = await response.json();
+                const users = data.users || [];
+                
+                container.innerHTML = users.map(u => `
+                    <div class="search-result-item" onclick="sendFriendRequest('${u.id}', '${escapeHtml(u.username)}')">
+                        <div class="friend-avatar">${u.username.charAt(0).toUpperCase()}</div>
+                        <span>${escapeHtml(u.username)}</span>
+                        <span style="margin-left: auto; color: var(--accent-primary); font-size: 0.8rem;">+ ${isEnglish ? 'Add' : '添加'}</span>
+                    </div>
+                `).join('') || `<div style="padding: 12px; color: var(--text-muted);">${isEnglish ? 'User not found' : '未找到用户'}</div>`;
+            } catch (error) {
+                console.error('Error searching users:', error);
+            }
+        }
+
+        // Send friend request
+        async function sendFriendRequest(friendId, friendName) {
+            const isEnglish = document.documentElement.lang === 'en';
+            try {
+                const response = await fetch('/api/chat/friends/request', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ friend_id: friendId })
+                });
+                
+                if (response.ok) {
+                    alert(isEnglish ? `Friend request sent to ${friendName}` : `已向 ${friendName} 发送好友请求`);
+                    closeAddFriendModal();
+                } else {
+                    const data = await response.json();
+                    alert(data.error || (isEnglish ? 'Send failed' : '发送失败'));
+                }
+            } catch (error) {
+                console.error('Error sending friend request:', error);
+            }
+        }
+
+        // Load stats
+        async function loadStats() {
+            try {
+                const response = await fetch('/api/chat/stats');
+                const data = await response.json();
+                document.getElementById('onlineCount').textContent = data.online_users || 0;
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        // Update presence
+        async function updatePresence(status) {
+            try {
+                await fetch('/api/chat/presence', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status })
+                });
+            } catch (error) {
+                console.error('Error updating presence:', error);
+            }
+        }
+
+        // Handle text selection for creating rooms
+        function handleTextSelection(e) {
+            const selection = window.getSelection();
+            const text = selection.toString().trim();
+            
+            if (text.length > 10 && text.length < 200) {
+                selectedQuote = text;
+                const popup = document.getElementById('selectionPopup');
+                const range = selection.getRangeAt(0);
+                const rect = range.getBoundingClientRect();
+                
+                popup.style.top = (rect.bottom + window.scrollY + 8) + 'px';
+                popup.style.left = rect.left + 'px';
+                popup.classList.add('active');
+            }
+        }
+
+        // Create room from selection
+        function createRoomFromSelection() {
+            document.getElementById('selectionPopup').classList.remove('active');
+            document.getElementById('quotePreview').textContent = `"${selectedQuote}"`;
+            document.getElementById('quotePreview').style.display = 'block';
+            document.getElementById('newChannelName').value = selectedQuote.substring(0, 30) + (selectedQuote.length > 30 ? '...' : '');
+            openNewChannelModal();
+        }
+
+        // Modal functions
+        function openNewChannelModal() {
+            document.getElementById('newChannelModal').classList.add('active');
+        }
+
+        function closeNewChannelModal() {
+            document.getElementById('newChannelModal').classList.remove('active');
+            document.getElementById('newChannelName').value = '';
+            document.getElementById('newChannelDesc').value = '';
+            document.getElementById('quotePreview').style.display = 'none';
+            selectedQuote = '';
+        }
+
+        function openAddFriendModal() {
+            document.getElementById('addFriendModal').classList.add('active');
+        }
+
+        function closeAddFriendModal() {
+            document.getElementById('addFriendModal').classList.remove('active');
+            document.getElementById('friendSearchInput').value = '';
+            document.getElementById('searchResults').innerHTML = '';
+        }
+
+        // Create channel
+        async function createChannel() {
+            const name = document.getElementById('newChannelName').value.trim();
+            const description = document.getElementById('newChannelDesc').value.trim();
+            const isEnglish = document.documentElement.lang === 'en';
+            
+            if (!name) {
+                alert(isEnglish ? 'Please enter a channel name' : '请输入频道名称');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/chat/channels', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        name: name.replace(/\s+/g, '-').toLowerCase(),
+                        description,
+                        quote: selectedQuote
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    closeNewChannelModal();
+                    await loadChannels();
+                    selectChannel(data.channel);
+                } else {
+                    const err = await response.json();
+                    alert(err.error || (isEnglish ? 'Creation failed' : '创建失败'));
+                }
+            } catch (error) {
+                console.error('Error creating channel:', error);
+            }
+        }
+
+        // Toggle friends sidebar
+        function toggleFriendsSidebar() {
+            const sidebar = document.getElementById('friendsSidebar');
+            sidebar.style.display = sidebar.style.display === 'none' ? 'flex' : 'none';
+        }
+
+        // Navigate home
+        function goHome() {
+            window.location.href = '/landing';
+        }
+
+        // Utility functions
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatTime(timestamp) {
+            const date = new Date(timestamp);
+            const now = new Date();
+            const diff = now - date;
+            const isEnglish = document.documentElement.lang === 'en';
+            
+            if (diff < 60000) return isEnglish ? 'Just now' : '刚刚';
+            if (diff < 3600000) return Math.floor(diff / 60000) + (isEnglish ? ' mins ago' : ' 分钟前');
+            if (diff < 86400000) return Math.floor(diff / 3600000) + (isEnglish ? ' hours ago' : ' 小时前');
+            
+            return date.toLocaleDateString(isEnglish ? 'en-US' : 'zh-CN', { month: 'short', day: 'numeric' }) + ' ' +
+                   date.toLocaleTimeString(isEnglish ? 'en-US' : 'zh-CN', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            updatePresence('offline');
+            if (pollInterval) clearInterval(pollInterval);
+        });
+
+        // Development widget state
+        let developmentItems = [
+            { id: 1, icon: '🔔', text: '{{if eq .Language "en"}}Push notifications{{else}}消息推送通知{{end}}', time: '~2h', status: '{{if eq .Language "en"}}Planned{{else}}计划中{{end}}' },
+            { id: 2, icon: '🖼️', text: '{{if eq .Language "en"}}Image sharing{{else}}图片分享{{end}}', time: '~3h', status: '{{if eq .Language "en"}}Planned{{else}}计划中{{end}}' },
+            { id: 3, icon: '🎨', text: '{{if eq .Language "en"}}Custom themes{{else}}自定义主题{{end}}', time: '~4h', status: '{{if eq .Language "en"}}Planned{{else}}计划中{{end}}' },
+            { id: 4, icon: '📱', text: '{{if eq .Language "en"}}Mobile optimization{{else}}移动端优化{{end}}', time: '~5h', status: '{{if eq .Language "en"}}Planned{{else}}计划中{{end}}' },
+            { id: 5, icon: '🔍', text: '{{if eq .Language "en"}}Message search{{else}}消息搜索{{end}}', time: '~2h', status: '{{if eq .Language "en"}}Planned{{else}}计划中{{end}}' }
+        ];
+        let editingId = null;
+
+        // Toggle development widget
+        function toggleDevelopmentWidget() {
+            const content = document.getElementById('developmentContent');
+            const toggleBtn = document.querySelector('.development-toggle');
+
+            content.classList.toggle('collapsed');
+
+            // Update toggle button rotation
+            if (content.classList.contains('collapsed')) {
+                toggleBtn.style.transform = 'rotate(180deg)';
+            } else {
+                toggleBtn.style.transform = 'rotate(0deg)';
+            }
+
+            // Save preference
+            localStorage.setItem('developmentWidgetCollapsed', content.classList.contains('collapsed'));
+        }
+
+        // Restore development widget state
+        function restoreDevelopmentWidgetState() {
+            const isCollapsed = localStorage.getItem('developmentWidgetCollapsed') === 'true';
+            if (isCollapsed) {
+                document.getElementById('developmentContent').classList.add('collapsed');
+                document.querySelector('.development-toggle').style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Check if user is editor (full access role)
+        function isEditor() {
+            return currentUser && currentUser.role === 'editor';
+        }
+
+        // Update development widget visibility based on role
+        function updateDevelopmentWidgetVisibility() {
+            const widget = document.querySelector('.development-widget');
+            const addBtn = widget.querySelector('button[onclick="addDevelopmentItem()"]');
+            const editBtns = widget.querySelectorAll('.development-actions');
+
+            if (isEditor()) {
+                widget.style.display = 'block';
+                addBtn.style.display = 'block';
+                editBtns.forEach(btn => btn.style.display = 'flex');
+            } else {
+                widget.style.display = 'block'; // Still show, just without edit capabilities
+                addBtn.style.display = 'none';
+                editBtns.forEach(btn => btn.style.display = 'none');
+            }
+        }
+
+        // Add new development item
+        function addDevelopmentItem() {
+            if (!isEditor()) return;
+
+            editingId = null;
+            document.getElementById('editFeatureName').value = '';
+            document.getElementById('editFeatureTime').value = '';
+            document.getElementById('editFeatureIcon').value = '⚙️';
+            document.getElementById('developmentEditor').classList.add('active');
+        }
+
+        // Edit development item
+        function editDevelopmentItem(id) {
+            if (!isEditor()) return;
+
+            const item = developmentItems.find(item => item.id === id);
+            if (!item) return;
+
+            editingId = id;
+            document.getElementById('editFeatureName').value = item.text;
+            document.getElementById('editFeatureTime').value = item.time;
+            document.getElementById('editFeatureIcon').value = item.icon;
+            document.getElementById('developmentEditor').classList.add('active');
+        }
+
+        // Save development item
+        function saveDevelopmentItem(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('editFeatureName').value.trim();
+            const time = document.getElementById('editFeatureTime').value.trim();
+            const icon = document.getElementById('editFeatureIcon').value;
+
+            if (!name || !time) return;
+
+            if (editingId) {
+                // Update existing item
+                const item = developmentItems.find(item => item.id === editingId);
+                if (item) {
+                    item.text = name;
+                    item.time = time;
+                    item.icon = icon;
+                }
+            } else {
+                // Add new item
+                const newId = Math.max(...developmentItems.map(item => item.id)) + 1;
+                developmentItems.push({
+                    id: newId,
+                    icon: icon,
+                    text: name,
+                    time: time,
+                    status: '{{if eq .Language "en"}}Planned{{else}}计划中{{end}}'
+                });
+            }
+
+            renderDevelopmentItems();
+            saveDevelopmentItemsToStorage();
+            cancelEdit();
+        }
+
+        // Delete development item
+        function deleteDevelopmentItem(id) {
+            if (!isEditor()) return;
+            if (!confirm('{{if eq .Language "en"}}Are you sure you want to delete this item?{{else}}确定要删除这个项目吗？{{end}}')) return;
+
+            developmentItems = developmentItems.filter(item => item.id !== id);
+            renderDevelopmentItems();
+            saveDevelopmentItemsToStorage();
+        }
+
+        // Cancel editing
+        function cancelEdit() {
+            editingId = null;
+            document.getElementById('developmentEditor').classList.remove('active');
+        }
+
+        // Render development items
+        function renderDevelopmentItems() {
+            const container = document.getElementById('developmentContent');
+            const isEnglish = document.documentElement.lang === 'en';
+
+            container.innerHTML = developmentItems.map(item => `
+                <div class="development-item" data-id="${item.id}">
+                    <span class="development-item-icon">${item.icon}</span>
+                    <div class="development-item-content">
+                        <span class="development-item-text">${escapeHtml(item.text)}</span>
+                        <div class="development-item-meta">
+                            <span class="development-item-time">${escapeHtml(item.time)}</span>
+                            <span class="development-item-status">${escapeHtml(item.status)}</span>
+                        </div>
+                    </div>
+                    <div class="development-actions" style="display: ${isEditor() ? 'flex' : 'none'}">
+                        <button class="development-action-btn" onclick="editDevelopmentItem(${item.id})" title="${isEnglish ? 'Edit' : '编辑'}">✏️</button>
+                        <button class="development-action-btn" onclick="deleteDevelopmentItem(${item.id})" title="${isEnglish ? 'Delete' : '删除'}">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Save development items to localStorage
+        function saveDevelopmentItemsToStorage() {
+            localStorage.setItem('developmentItems', JSON.stringify(developmentItems));
+        }
+
+        // Load development items from localStorage
+        function loadDevelopmentItemsFromStorage() {
+            const stored = localStorage.getItem('developmentItems');
+            if (stored) {
+                try {
+                    developmentItems = JSON.parse(stored);
+                    renderDevelopmentItems();
+                } catch (e) {
+                    console.error('Error loading development items:', e);
+                }
+            }
+        }
+
+        // Initialize development widget
+        function initDevelopmentWidget() {
+            loadDevelopmentItemsFromStorage();
+            restoreDevelopmentWidgetState();
+            updateDevelopmentWidgetVisibility();
+        }
+
+        // Initialize
+        init();
+        initDevelopmentWidget();
+    </script>
+</body>
+</html>

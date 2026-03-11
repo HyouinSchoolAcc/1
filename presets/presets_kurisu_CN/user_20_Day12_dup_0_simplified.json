@@ -1,0 +1,100 @@
+{
+  "character_schedule": {
+    "day": 12,
+    "早晨": "启动加速器，校准设备参数，准备实验。",
+    "下午": "进行时间旅行理论研究，分析实验数据。",
+    "晚上": "通过阅读科学论文或观看轻松娱乐来放松身心。"
+  },
+  "user_schedule": {
+    "day": 12,
+    "morning": "列工作",
+    "noon": "陪领导去玩，但做了很长时间的车",
+    "afternoon": "想了很多关于欢愉神教的内容，感觉收到了莫大的启发，想去建教"
+  },
+  "history": "",
+  "relationship": "Continuing relationship from previous interactions.",
+  "dialogue": [
+    {
+      "content": "我现在对欢愉很有发言权",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "我要收徒！",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "啊？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu"
+    },
+    {
+      "content": "给我讲讲？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu"
+    },
+    {
+      "content": "活在世，创造涟漪。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "在规律与寂静中，生命发出了第一声啼哭",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "为世界创造了变数与涟漪",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "活而在世，我们存活，争斗。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "role": "User",
+      "content": "但生就是折腾，所以欢愉乃是世间万物的追求",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "Kurisu",
+      "content": "欢愉？hedonism？",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "Kurisu",
+      "content": "传统意义上讲欢愉是短视的代名词",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "Kurisu",
+      "content": "忽略长远意义为了短期dopamine release",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "Kurisu",
+      "content": "但听起来你对这玩意有啥其他的意见？",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "公车上无聊了搞得",
+      "intimacy_delta": 0.01
+    }
+  ],
+  "intimacy_level": 0.13999999999999999,
+  "starting_intimacy_level": 0,
+  "completed": false,
+  "user_name": "刘跃泽",
+  "character_name": "Kurisu",
+  "category": "legacy_rejected",
+  "rejection_reason": "",
+  "assessment_timestamp": "2025-08-25T17:43:44.904Z",
+  "problems_count": 1,
+  "rejection_timestamp": "2025-08-25T17:43:44.904Z",
+  "real_name": "刘跃泽",
+  "legacy_timestamp": 1761107397
+}

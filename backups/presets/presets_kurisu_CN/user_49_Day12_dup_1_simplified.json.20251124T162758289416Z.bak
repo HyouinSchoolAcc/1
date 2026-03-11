@@ -1,0 +1,27 @@
+{
+  "user_schedule": {
+    "day": 12,
+    "morning": "a",
+    "noon": "b",
+    "afternoon": "c",
+    "evening": "d"
+  },
+  "history": "",
+  "relationship": "Continuing relationship from previous interactions.",
+  "dialogue": [],
+  "intimacy_level": 0.0,
+  "starting_intimacy_level": 0,
+  "completed": false,
+  "user_name": "John Smith",
+  "character_name": "Kurisu",
+  "character_schedule": {
+    "day": 12,
+    "早晨": "启动加速器，校准设备参数，准备实验。",
+    "下午": "进行时间旅行理论研究，分析实验数据。",
+    "晚上": "通过阅读科学论文或观看轻松娱乐来放松身心。"
+  },
+  "category": "rejected",
+  "assessment_timestamp": "2025-10-27T02:30:19.161Z",
+  "problems_count": 1,
+  "rejection_timestamp": "2025-10-27T02:30:19.161Z"
+}

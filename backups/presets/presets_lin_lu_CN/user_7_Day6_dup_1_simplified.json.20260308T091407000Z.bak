@@ -1,0 +1,801 @@
+{
+  "abilities": "",
+  "character_name": "林路",
+  "character_schedule": {
+    "afternoon": "打羽毛球，逛文创店。",
+    "day": 6,
+    "evening": "和朋友吃火锅，聊起在写的小说和曾经的天才少女嫁做人妇，唏嘘不已。回家后联系天才少女，天才少女抱怨生活不幸福，很难过，想劝她离婚。",
+    "morning": "",
+    "night": "",
+    "noon": "自然醒，自己做饭，做出黑暗料理，水饺全烂。打游戏。"
+  },
+  "comments": [],
+  "completed": false,
+  "dialogue": [
+    {
+      "content": "啊aaa",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:08",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "烦死了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:08",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "领导要求我们每天早上提前10分钟到岗，检查仪容仪表",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:08",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:25",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你在干嘛？又忙着搞工作？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:08",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "还不回我？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:42",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "啊",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "今天没课，刚睡醒",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我刚睁开眼睛，就马上回你信息了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你要是不听他的话，按照规章制度正常时间上班会有什么影响？好",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "会不会穿小鞋？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我不知道，但我觉得应该会",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "还是别赌了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你的意思是我只能忍吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "嗯",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "零零后整顿职场是骗零零后的谎言啊",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "除非零零后有说走就走的决心，不然只能忍着吧",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "唉，还是怪我自己",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "别怪你自己了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "要怪就怪油滑利己的中层领导",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "怪不遵守劳动法的职场大环境",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "好绝望啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "感觉每个地方都一样",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "就算我换了一个公司也不会好多少",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "稍微人性化一点，公司总有的吧",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:07",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "像那种比如老板年轻一点，领导层也年轻一点的公司？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:07",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我也没体验过，但我，如果我们每一代如果我们这一代成长起来混入了管理层",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:07",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "职场环境可能会大变样，距离我们理想中的职场会接近一些",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:08",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "唉",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:09",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "唉，那我要等到什么时候？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:09",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "等到我七老八十的时候？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:09",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "那也太绝望了吧",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:09",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "说不定下一家公司就是了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:09",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我要去做个早饭",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:09",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你还没吃啊？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "自己做吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:10",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "嗯，我做水饺",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:10",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "应该不会翻车吧？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:10",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "hhhhhhh",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:10",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "[[sticker:uploads/upload_1771135581156883010.jpg]]",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:10",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "但愿不会",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "11:11",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "这是不出意外啊",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "12:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "翻车了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "12:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "很难想象做水饺还能怎么翻车",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "13:45",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "不就把水饺丢锅里煮就好了?",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "在做之前我也是这么想的",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "煮开裂了",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "???",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "那你还吃吗？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "吃啊！",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "自己做翻车的饭，哭着也要吃完",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "...",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "我好无聊",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "我也很无聊，所以我等会要去打游戏了",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "？？？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "你陪我聊会呗",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "好，我晚点再打",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "就是这么好说话的一个人",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "那你负责来想话题",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "行",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "你打游戏吗",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "？？？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "好干的话题啊",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "就这么干...",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "[[sticker:uploads/upload_1771863271933549449.jpg]]",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "你打什么游戏啊？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "巫师3",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "我怎么完全没听说过这个游戏？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "pc游戏，只在小圈子里面有名气",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "你是只玩手游吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "嗯，我打王者",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "好吧，我不怎么会玩王者",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "真的假的？怎么有人连王者都不会玩？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "正是在下了",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "我受不了打匹配机制的游戏",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "匹配到素质一般的玩家情绪会被影响",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "什么叫做素质一般？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "就是那种自己玩的不好，又爱乱开麦的",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "而且很容易匹配上小学生",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "玩的不好，又爱乱开麦，感觉你在阴阳我",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "hhh绝对没有",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "我都不知道你是这样打游戏的",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "但是真正素质差的人都意识不到自己玩的不好，乱开麦",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "所以你肯定不是",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "我是还没有到小学生那种离谱的地步",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "但是匹配到不咋样的队友骂上去不就完了",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "就是我不想和他们吵啊",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "以前也玩，后来觉得太消耗自己。了",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "打单机更自在",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "好吧",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "感觉游戏上我们是没什么共同话题了",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "嗯嗯，我都不知道你在玩什么东西",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "哦，对了",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "我突然想到要怎么和你解释我们玩的游戏类型",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "之前的唐宫天下很火，你玩了吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "你还知道这个？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "很火，但我没玩，我看了黑黑的解说",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "hhhh我也看了",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "散人和桃黑黑的解说我都看",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "散人经常解说steam的avg游戏",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "我也喜欢玩avg，形式和唐宫天下有点像",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "？？？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "你也喜欢谈恋爱的？？？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "那不是嘎啦game吗？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "hhhhhhhhh",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "不是，我为avg发声",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "Avg是文字冒险类游戏",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "有各种题材，科幻，探险，推理嗯，恐怖",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "是靠文字推动比较多的游戏吗？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "嗯，基本没有战斗机制",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "那和看小说有什么区别？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "真给你说中了，硬要说的话没什么区别hhhhh",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "我很喜欢玩的一个avg游戏是赛博朋克2077",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "故事内容就和老科幻差不多",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "你喜欢科幻啊？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "嗯嗯，你喜欢吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "不了解",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "我对科幻的了解只有三体",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "三体好，三体你看过吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "也没有",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "hhhhhh",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "在我们俩之间找共同点，好像就在海里找自行车",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "hhhhhhh",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "那你觉得两个人在一起拥有共同的兴趣爱好重要吗？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "不重要",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "两个人要是喜欢的东西都一样，怎么相互去探索对方的世界？",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "要是我以后的女朋友和我喜欢的内容南辕北辙，我很愿意去她的世界探索",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "要是你女朋友喜欢旅游呢？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "你也和她一起打吗？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "有何不可？",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "能让她痴迷的东西，总是有自身魅力所在吧？",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "得学习学习",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "好，不错！",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "那我就要上一下难度了",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "请问女朋友看双男主剧你也看吗？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "hhhhh",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    },
+    {
+      "content": "你不如直接说耽改",
+      "intimacy_delta": 0.01,
+      "role": "林路"
+    }
+  ],
+  "experiences": "",
+  "history": "",
+  "intimacy_level": 15.370000000000001,
+  "judgements": "",
+  "personnel_id": "20260109132020",
+  "personnel_username": "123",
+  "relationship": "Continuing relationship from previous interactions.",
+  "starting_intimacy_level": 14,
+  "user_name": "芝芝",
+  "user_schedule": {
+    "day": 6,
+    "morning": "......."
+  },
+  "values": ""
+}

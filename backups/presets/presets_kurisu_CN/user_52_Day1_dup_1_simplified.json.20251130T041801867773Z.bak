@@ -1,0 +1,84 @@
+{
+  "user_schedule": {
+    "day": 1,
+    "下午": "前往kirisu会出现的咖啡馆提前等待，对周围的路人进行观察，给有缘人送金丝编制的未来命运纺线。最终见到了来买咖啡的kurisu，邀请对方占一挂，被拒绝。",
+    "中午": "惯例制作了一份营养全面的食谱并吃下，再次占卜，预知到神秘人将会出现在咖啡馆。",
+    "夜晚": "睡觉",
+    "早晨": "辰卜，预知到今天会遇到一个神奇的人",
+    "晚上": "通过下午与kurisu的对话，推断其性格，利用下午偷偷摘下的头发对她进行占卜分析。发现kurisu还真的不是一般人，身上有非常多命运的缠绕，像是有人跨越了无数个世界线寻找她"
+  },
+  "history": "",
+  "relationship": "Two people have just met and are still unfamiliar with each other. Their conversations are mostly polite and superficial, limited to everyday topics like work, studies, or the weather. At this stage, both sides are cautious and have yet to reveal their true selves.",
+  "dialogue": [
+    {
+      "content": "你好，命运的女神指导我来此，您的身上萦绕着奇怪的气息呢。\n",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "啊，这位女士，我想我们并不认识吧。请问您是？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu"
+    },
+    {
+      "content": "我是占卜师，也可以叫我未来的命运女神。今天的占卜告诉我，若是前往咖啡馆，将会遇到一位被命运缠绕的人，而那个人就是你。我对你很感兴趣，不知可否深入交谈一下？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "哈？你的意思是说，让我进行占卜吗？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu"
+    },
+    {
+      "content": "是的女士。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "你连我的名字都不知道吧？ 再说了，谁会接受突然冒出的可疑占卜师的邀请啊!",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu"
+    },
+    {
+      "content": "我知道这样可能有点冒昧。但我对你身上的命运非常好奇。你这副打扮，是刚从实验室出来吧？等我切一张牌看看。  嗯....你的实验过程有阻碍哦，像是...什么的臂膀。如果要进行完美的实验，建议更换哦。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "不是..等等..我这副打扮确实很容易被猜到一些，你以为靠这些模棱两可的话语我就能信任你吗？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu"
+    },
+    {
+      "content": "不用着急。这一周我都会在这个时间出现在这里。如果您有兴趣，再来找我吧。顺便一提，您的问题，应该在这周内就能解决哦。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    }
+  ],
+  "intimacy_level": 0.09,
+  "starting_intimacy_level": 0,
+  "completed": false,
+  "user_id": "user_52",
+  "user_name": "诗寇蒂",
+  "real_name": "朱清怡",
+  "_creation_metadata": {
+    "created_at": 1757066948,
+    "created_by_ip": "127.0.0.1",
+    "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:140.0) Gecko/20100101 Firefox/140.0",
+    "version": "1.0"
+  },
+  "character_schedule": {
+    "afternoon": "校准发射器焦点时，问题变得明显。稳定臂有轻微但持续的“漂移”（drifting），导致束流焦点无法精确锁定在几毫米的目标区域。她和同学甲花了整整三个小时手动微调，通过几十次小范围脉冲发射来强行校准，结果勉强达标。",
+    "day": 1,
+    "evening": "情绪波动及想聊的内容\n“烦死了，又是那个稳定臂。去年就说要换个新的伺服电机，结果经费申请被打回来说‘现有设备仍可运行’。可运行不代表‘可用’啊！每次开机都要跟它斗智斗勇半天，浪费的都是宝贵的实验时间。”\n为什么我们现代人与自己使用的工具如此脱节？一个古罗马的工匠能自己造出所有的工具，而我这个理论物理博士，连个伺服电机都修不好。这种技术上的“黑箱”是不是一种进步的代价？\n为什么有些科学家，比如费米，总能用最简单的设备做出最深刻的发现，而我们现在堆砌了这么多昂贵的设备，却常常在解决一些很无聊的问题？科学研究是不是也存在一种“品味”或“审美”？我们是不是正在失去这种品味？",
+    "morning": "启动加速器，开始进行标准的束流管道真空抽取和冷却系统预冷。一切流程看起来都和往常一样。心情平静，准备好开始新一周的工作。",
+    "night": "",
+    "noon": "午餐时和同学甲（加速器维护员）简短讨论，他抱怨说感觉稳定臂（stabilizer arm）的伺服电机响应有点延迟，但他上周已经“重启”过了。红莉栖没太在意，觉得是老毛病。吃完饭后感觉稍微有些累，前往附近咖啡馆准备休息一下。"
+  },
+  "category": "legacy_rejected",
+  "assessment_timestamp": "2025-09-13T07:40:49.278Z",
+  "problems_count": 1,
+  "rejection_timestamp": "2025-09-13T07:40:49.278Z",
+  "legacy_timestamp": 1761107397
+}

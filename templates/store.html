@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="{{if eq .Language "en"}}en{{else}}zh-CN{{end}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{if eq .Language "en"}}XP Store — Writer Portal{{else}}经验商店 — 写手门户{{end}}</title>
+<link rel="stylesheet" href="/static/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#4f46e5;--accent:#818cf8;--bg:#f3f4f6;--card:#fff;--border:#e5e7eb;--text:#1f2937;--muted:#6b7280;--xp:#2563eb;}
+*{box-sizing:border-box;}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;margin:0;min-height:100vh;}
+
+.snav{background:var(--card);border-bottom:1px solid var(--border);padding:.7rem 1.5rem;display:flex;align-items:center;gap:1rem;}
+.snav a{color:var(--muted);text-decoration:none;font-size:.88rem;transition:color .2s;}
+.snav a:hover{color:var(--primary);}
+.snav .sep{color:var(--border);}
+
+.wrap{max-width:1000px;margin:0 auto;padding:1.5rem;}
+
+.store-hero{background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 50%,#ec4899 100%);border-radius:24px;padding:2.5rem 2rem;color:#fff;margin-bottom:2rem;text-align:center;position:relative;overflow:hidden;}
+.store-hero h1{font-family:'Crimson Pro',serif;font-size:2.5rem;margin:0 0 .5rem;position:relative;}
+.store-hero p{font-size:1rem;opacity:.85;margin:0 0 1.25rem;position:relative;}
+.xp-balance{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.2);border-radius:20px;padding:.45rem 1.25rem;font-weight:700;font-size:1rem;position:relative;}
+
+.cat-tabs{display:flex;gap:.65rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+.cat-tab{padding:.45rem 1.1rem;border-radius:20px;border:2px solid var(--border);background:var(--card);color:var(--muted);font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;}
+.cat-tab:hover,.cat-tab.active{background:var(--primary);border-color:var(--primary);color:#fff;}
+
+.items-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;}
+.item-card{background:var(--card);border-radius:18px;padding:1.5rem;border:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);display:flex;flex-direction:column;gap:.75rem;transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden;}
+.item-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.1);}
+.item-preview{height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;}
+.item-preview.bg{background:linear-gradient(135deg,#e9d5ff,#f3e8ff);}
+.item-preview.banner{background:linear-gradient(135deg,#fef3c7,#fde68a);}
+.item-preview.border{background:linear-gradient(135deg,#6366f1,#a78bfa);color:#fff;box-shadow:0 0 0 3px #a78bfa;}
+.item-name{font-weight:700;font-size:1rem;color:var(--text);}
+.item-desc{font-size:.82rem;color:var(--muted);line-height:1.45;}
+.item-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;flex-wrap:wrap;gap:.5rem;}
+.item-cost{display:flex;align-items:center;gap:.3rem;font-weight:700;font-size:.95rem;color:var(--xp);}
+.item-actions{display:flex;gap:.4rem;flex-wrap:wrap;}
+.buy-btn{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border:none;border-radius:10px;padding:.42rem .95rem;font-size:.82rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;}
+.buy-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(79,70,229,.35);}
+.buy-btn:disabled,.buy-btn.equipped{opacity:.7;cursor:default;transform:none;}
+.buy-btn.equipped{background:#22c55e;}
+.buy-btn.secondary{background:#94a3b8;}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#1f2937;color:#fff;padding:.75rem 1.5rem;border-radius:12px;font-size:.9rem;font-weight:600;transition:transform .35s ease;z-index:9999;pointer-events:none;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+
+<nav class="snav">
+  <a href="{{langURL .Language "landing"}}">&#8592; {{if eq .Language "en"}}Home{{else}}首页{{end}}</a>
+  <span class="sep">/</span>
+  <span style="color:var(--text);font-weight:600;">{{if eq .Language "en"}}XP Store{{else}}经验商店{{end}}</span>
+  {{if .LoggedIn}}
+  <span class="sep">|</span>
+  <a href="/profile/{{.CurrentUser}}{{if eq .Language "en"}}/e{{end}}">{{if eq .Language "en"}}My Profile{{else}}我的主页{{end}}</a>
+  {{end}}
+</nav>
+
+<div class="wrap">
+  <div class="store-hero">
+    <h1>🛍️ {{if eq .Language "en"}}The XP Store{{else}}经验商店{{end}}</h1>
+    <p>{{if eq .Language "en"}}Spend Site XP on profile backgrounds, name card banners, and avatar borders.{{else}}用网站经验值兑换个人主页背景、名字卡片横幅和头像边框。{{end}}</p>
+    {{if .LoggedIn}}
+    <div class="xp-balance" id="xpBalance">⚡ <span id="xpAmount">{{.UserXP}}</span> XP {{if eq .Language "en"}}available{{else}}可用{{end}}</div>
+    {{else}}
+    <a href="{{langURL .Language "login"}}" style="display:inline-block;background:rgba(255,255,255,.2);color:#fff;text-decoration:none;padding:.55rem 1.25rem;border-radius:20px;font-weight:600;">{{if eq .Language "en"}}Log in to spend XP{{else}}登录后使用经验值{{end}}</a>
+    {{end}}
+  </div>
+
+  <div class="cat-tabs" id="catTabs">
+    <button class="cat-tab" data-cat="all">{{if eq .Language "en"}}All{{else}}全部{{end}}</button>
+    <button class="cat-tab" data-cat="profile_background">🌅 {{if eq .Language "en"}}Profile Backgrounds{{else}}主页背景{{end}}</button>
+    <button class="cat-tab" data-cat="banner">🏆 {{if eq .Language "en"}}Banners{{else}}名字卡片{{end}}</button>
+    <button class="cat-tab" data-cat="profile_picture_border">🖼️ {{if eq .Language "en"}}Avatar Borders{{else}}头像边框{{end}}</button>
+  </div>
+
+  <div class="items-grid" id="itemsGrid"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const L = { en: document.documentElement.lang === 'en' };
+const T = (en, zh) => L.en ? en : zh;
+
+let ITEMS = {{.StoreJSON}};
+let userXP = {{.UserXP}};
+let inventory = [];
+let equipped = { profile_background: '', banner: '', profile_border: '' };
+let activeCat = 'all';
+
+async function loadStoreMe(){
+  const res = await fetch('/api/store/me');
+  if(!res.ok) return;
+  const d = await res.json();
+  userXP = d.xp || 0;
+  inventory = d.inventory || [];
+  equipped.profile_background = d.equipped_profile_background || '';
+  equipped.banner = d.equipped_banner || '';
+  equipped.profile_border = d.equipped_profile_border || '';
+  const el = document.getElementById('xpAmount');
+  if(el) el.textContent = userXP;
+  renderItems();
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+function owned(itemId){ return inventory.indexOf(itemId) >= 0; }
+function isEquipped(itemId, cat){
+  if(cat === 'profile_background') return equipped.profile_background === itemId;
+  if(cat === 'banner') return equipped.banner === itemId;
+  if(cat === 'profile_picture_border') return equipped.profile_border === itemId;
+  return false;
+}
+
+function renderItems(){
+  const grid = document.getElementById('itemsGrid');
+  const filtered = activeCat === 'all' ? ITEMS : ITEMS.filter(i => i.category === activeCat);
+  grid.innerHTML = filtered.map(item => {
+    const canAfford = userXP >= item.cost;
+    const isOwned = owned(item.id);
+    const equippedNow = isEquipped(item.id, item.category);
+    const previewClass = item.category === 'profile_background' ? 'bg' : item.category === 'banner' ? 'banner' : 'border';
+    let btn = '';
+    if (!isOwned) {
+      btn = '<button class="buy-btn" data-id="'+item.id+'" data-cost="'+item.cost+'" '+(canAfford?'': 'disabled')+'>'+(canAfford ? '⚡ '+T('Get','购买')+' ('+item.cost+' XP)' : T('Not enough XP','经验不足'))+'</button>';
+    } else {
+      btn = equippedNow
+        ? '<button class="buy-btn equipped" disabled>✓ '+T('Equipped','已装备')+'</button>'
+        : '<button class="buy-btn secondary equip-btn" data-id="'+item.id+'" data-cat="'+item.category+'">'+T('Equip','装备')+'</button>';
+    }
+    return '<div class="item-card"><div class="item-preview '+previewClass+'">'+item.icon+'</div><div class="item-name">'+item.name+'</div><div class="item-desc">'+item.desc+'</div><div class="item-footer"><div class="item-cost">⚡ '+item.cost+' XP</div><div class="item-actions">'+btn+'</div></div></div>';
+  }).join('');
+
+  grid.querySelectorAll('.buy-btn:not(:disabled)').forEach(btn => {
+    if(btn.classList.contains('equip-btn')){
+      btn.addEventListener('click', () => doEquip(btn.dataset.id, btn.dataset.cat));
+    } else {
+      btn.addEventListener('click', () => doBuy(btn.dataset.id, parseInt(btn.dataset.cost, 10)));
+    }
+  });
+}
+
+async function doBuy(itemId, cost){
+  const res = await fetch('/api/store/purchase', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ item_id: itemId }) });
+  const d = await res.json();
+  if (d.success) {
+    showToast(d.already_owned ? T('Already owned','已拥有') : T('Purchased!','购买成功'));
+    loadStoreMe();
+  } else {
+    showToast(d.error || T('Failed','失败'));
+  }
+}
+
+async function doEquip(itemId, cat){
+  const key = cat === 'profile_picture_border' ? 'profile_border' : cat === 'profile_background' ? 'profile_background' : 'banner';
+  const body = {};
+  body[key] = itemId;
+  const res = await fetch('/api/store/equip', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  const d = await res.json();
+  if (d.success) {
+    equipped[key] = itemId;
+    showToast(T('Equipped!','已装备'));
+    renderItems();
+  } else {
+    showToast(d.error || T('Failed','失败'));
+  }
+}
+
+document.getElementById('catTabs').addEventListener('click', e => {
+  const btn = e.target.closest('.cat-tab');
+  if(!btn) return;
+  document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeCat = btn.dataset.cat;
+  renderItems();
+});
+
+if (typeof ITEMS === 'object' && ITEMS.length) {
+  document.querySelector('.cat-tab[data-cat="all"]').classList.add('active');
+  if ({{if .LoggedIn}}true{{else}}false{{end}}) {
+    loadStoreMe();
+  } else {
+    renderItems();
+  }
+} else {
+  fetch('/api/store/items').then(r => r.json()).then(d => {
+    ITEMS = d.items || [];
+    if ({{if .LoggedIn}}true{{else}}false{{end}}) loadStoreMe();
+    else renderItems();
+  });
+}
+</script>
+</body>
+</html>

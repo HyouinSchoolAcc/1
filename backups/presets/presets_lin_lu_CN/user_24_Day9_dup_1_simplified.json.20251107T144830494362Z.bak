@@ -1,0 +1,50 @@
+{
+  "user_schedule": {
+    "day": 9,
+    "night": "休息日，和闺蜜去清吧喝酒放松，喝嗨了上台唱歌，得到无数赞美"
+  },
+  "history": "",
+  "relationship": "Continuing relationship from previous interactions.",
+  "dialogue": [
+    {
+      "role": "陆清禾",
+      "content": "在吗？",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:30",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "陆清禾",
+      "content": "还没醒？",
+      "intimacy_delta": 0.01,
+      "timestamp": "14:30",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "hhh醒了",
+      "intimacy_delta": 0.01,
+      "timestamp": "23:45",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "今天越好和闺蜜出来玩，一醒来就开始化妆搞穿搭",
+      "intimacy_delta": 0.01
+    }
+  ],
+  "intimacy_level": 0.03999999999999915,
+  "starting_intimacy_level": 0,
+  "completed": false,
+  "user_name": "赵闻音",
+  "character_name": "陆清禾",
+  "character_schedule": {
+    "morning": "照顾小奶猫后去实验室，请了保姆在家照看小猫，由于不放心，时不时让保姆发送视频",
+    "noon": "",
+    "afternoon": "工作，听到小奶猫吐奶后赶了回去，请宠物医生上门，原来只是小奶猫吃撑了。心情是又好笑又无奈。",
+    "evening": "去见资方，在马场，陪资方跑了两场马，获得资方赞赏。他会骑马是因为十九岁时陪着生病的妈妈去内蒙修养了三个月，在那里学会了骑马。骑马技术被马术教练赞赏。结束骑马后和资方吃下午茶闲谈，谈到时新闻话题，富二代医保枪杀案。资方对这种伤害资本的行为深恶痛绝。他有分寸地表示了不同的意见。他是偏左派的。今日讨论点：骑马、内蒙古、枪击案的看法、小奶猫的乌龙。",
+    "night": "",
+    "day": 9
+  },
+  "real_name": "（小昭）"
+}

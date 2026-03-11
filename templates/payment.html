@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="{{if eq .Language "en"}}en{{else}}zh-CN{{end}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{if eq .Language "en"}}My Dashboard - Writer Portal{{else}}我的仪表盘 - 写手门户{{end}}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --gold-dark: #DAA520;
+            --silver: #C0C0C0;
+            --bronze: #CD7F32;
+            --success-green: #22c55e;
+            --error-red: #ef4444;
+            --warn-amber: #f59e0b;
+            --info-blue: #3b82f6;
+            --earnings-purple: #7C3AED;
+        }
+
+        .payment-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        /* ── Personal Header ── */
+        .personal-header {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        .personal-avatar {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.75rem; color: #fff; flex-shrink: 0;
+        }
+        .personal-header-text h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin: 0 0 .15rem 0;
+        }
+        .personal-header-text p {
+            font-family: 'DM Sans', sans-serif;
+            font-size: .95rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+        .rank-pill {
+            margin-left: auto;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: #fff; font-weight: 700; font-size: .85rem;
+            padding: .35rem .9rem; border-radius: 20px;
+            font-family: 'DM Sans', sans-serif;
+            box-shadow: 0 2px 8px rgba(218,165,32,.35);
+        }
+
+        /* ── Stat Cards Grid ── */
+        .stat-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        @media (max-width: 800px) { .stat-cards { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { .stat-cards { grid-template-columns: 1fr; } }
+
+        .stat-card {
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 1.35rem 1.25rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,.06);
+            border: 1px solid var(--border-light);
+            display: flex; flex-direction: column; gap: .35rem;
+            transition: transform .2s, box-shadow .2s;
+        }
+        .stat-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,.09); }
+        .stat-card .icon { font-size: 1.5rem; }
+        .stat-card .value {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.85rem; font-weight: 700;
+            color: var(--primary);
+        }
+        .stat-card .label {
+            font-family: 'DM Sans', sans-serif;
+            font-size: .82rem; color: var(--text-muted);
+        }
+        .stat-card.purple { background: linear-gradient(135deg, #7C3AED 0%, #9333EA 100%); }
+        .stat-card.purple .value, .stat-card.purple .label { color: #fff; }
+        .stat-card.purple .label { opacity: .85; }
+        .stat-card.green { background: linear-gradient(135deg, #059669 0%, #10b981 100%); }
+        .stat-card.green .value, .stat-card.green .label { color: #fff; }
+        .stat-card.green .label { opacity: .85; }
+
+        /* ── Progress Bar ── */
+        .progress-section {
+            background: var(--bg-white);
+            border-radius: 16px; padding: 1.25rem 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,.06);
+            border: 1px solid var(--border-light);
+        }
+        .progress-label {
+            font-family: 'DM Sans', sans-serif; font-size: .9rem; color: var(--text-dark);
+            display: flex; justify-content: space-between; margin-bottom: .5rem;
+        }
+        .progress-bar {
+            height: 10px; background: #e5e7eb; border-radius: 6px; overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%; border-radius: 6px;
+            background: linear-gradient(90deg, var(--success-green) 0%, #34d399 100%);
+            transition: width .5s ease;
+        }
+
+        /* ── Alerts Section ── */
+        .alerts-section {
+            margin-bottom: 2rem;
+        }
+        .section-heading {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.35rem; font-weight: 600;
+            color: var(--primary);
+            margin: 0 0 1rem 0;
+            display: flex; align-items: center; gap: .5rem;
+        }
+        .alert-list {
+            display: flex; flex-direction: column; gap: .65rem;
+        }
+        .alert-item {
+            display: flex; align-items: flex-start; gap: .85rem;
+            background: var(--bg-white);
+            border-radius: 14px; padding: 1rem 1.25rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,.05);
+            border-left: 4px solid transparent;
+            transition: transform .15s;
+        }
+        .alert-item:hover { transform: translateX(3px); }
+        .alert-item.passed  { border-left-color: var(--success-green); }
+        .alert-item.rejected { border-left-color: var(--error-red); }
+        .alert-item.comment  { border-left-color: var(--info-blue); }
+
+        .alert-icon {
+            width: 36px; height: 36px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; flex-shrink: 0;
+        }
+        .alert-item.passed  .alert-icon { background: #dcfce7; }
+        .alert-item.rejected .alert-icon { background: #fee2e2; }
+        .alert-item.comment  .alert-icon { background: #dbeafe; }
+
+        .alert-body { flex: 1; min-width: 0; }
+        .alert-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: .92rem; font-weight: 600;
+            color: var(--text-dark); margin-bottom: .2rem;
+        }
+        .alert-detail {
+            font-family: 'DM Sans', sans-serif;
+            font-size: .82rem; color: var(--text-muted);
+            line-height: 1.45;
+        }
+        .alert-detail .reason {
+            display: inline-block; margin-top: .25rem;
+            background: #fef2f2; color: var(--error-red);
+            padding: .15rem .55rem; border-radius: 6px;
+            font-size: .8rem;
+        }
+        .alert-detail .trait-badge {
+            display: inline-block; margin-top: .25rem;
+            background: #f0fdf4; color: #15803d;
+            padding: .15rem .55rem; border-radius: 6px;
+            font-size: .8rem; font-weight: 600;
+        }
+        .alert-time {
+            font-family: 'DM Sans', sans-serif;
+            font-size: .75rem; color: var(--text-light);
+            white-space: nowrap; margin-left: .5rem; align-self: center;
+        }
+
+        .empty-alerts {
+            text-align: center; padding: 2rem;
+            color: var(--text-muted); font-family: 'DM Sans', sans-serif;
+        }
+
+        /* ── Leaderboard ── */
+        .leaderboard-section {
+            background: var(--bg-white);
+            border-radius: 20px; padding: 1.75rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,.06);
+            border: 1px solid var(--border-light);
+            margin-bottom: 2rem;
+        }
+        .leaderboard-list { list-style: none; padding: 0; margin: 0; }
+        .leaderboard-item {
+            display: flex; align-items: center;
+            padding: .85rem 1rem; margin-bottom: .5rem;
+            border-radius: 12px; background: var(--bg-cream);
+            transition: background .15s, transform .15s;
+        }
+        .leaderboard-item:hover { background: var(--accent-light); transform: translateX(3px); }
+        .leaderboard-item.rank-1 { background: linear-gradient(135deg, #FEF9E7 0%, #FCF3CF 100%); border: 2px solid var(--gold); }
+        .leaderboard-item.rank-2 { background: linear-gradient(135deg, #F8F9F9 0%, #EAEDED 100%); border: 2px solid var(--silver); }
+        .leaderboard-item.rank-3 { background: linear-gradient(135deg, #FDF2E9 0%, #FAE5D3 100%); border: 2px solid var(--bronze); }
+        .leaderboard-item.is-me { outline: 2px solid var(--earnings-purple); outline-offset: 1px; }
+
+        .rank-badge {
+            width: 36px; height: 36px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: .9rem; margin-right: .85rem; flex-shrink: 0;
+        }
+        .rank-1 .rank-badge { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: #fff; box-shadow: 0 3px 10px rgba(255,215,0,.35); }
+        .rank-2 .rank-badge { background: linear-gradient(135deg, var(--silver) 0%, #A6A6A6 100%); color: #fff; }
+        .rank-3 .rank-badge { background: linear-gradient(135deg, var(--bronze) 0%, #A0522D 100%); color: #fff; }
+        .rank-badge.normal { background: var(--accent-light); color: var(--primary); }
+
+        .writer-info { flex: 1; min-width: 0; }
+        .writer-name { font-family: 'DM Sans', sans-serif; font-weight: 600; color: var(--text-dark); margin-bottom: .15rem; }
+        .writer-stats-inline { font-family: 'DM Sans', sans-serif; font-size: .8rem; color: var(--text-muted); }
+        .writer-earnings { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1rem; color: var(--earnings-purple); margin-left: .75rem; }
+
+        .approval-bar { height: 5px; background: #e5e7eb; border-radius: 3px; overflow: hidden; margin-top: .35rem; }
+        .approval-fill { height: 100%; background: linear-gradient(90deg, var(--success-green) 0%, #34d399 100%); border-radius: 3px; transition: width .3s ease; }
+
+        /* ── Admin Section ── */
+        .admin-section {
+            background: var(--bg-cream); border-radius: 16px;
+            padding: 1.5rem; margin-bottom: 1.5rem;
+            border: 1px solid var(--border-light);
+        }
+        .admin-section h3 { margin: 0 0 .75rem 0; font-size: 1rem; }
+        .admin-row { display: flex; flex-wrap: wrap; gap: .75rem; align-items: flex-end; }
+        .admin-row label { display: block; font-size: .82rem; margin-bottom: .2rem; }
+        .admin-row input {
+            padding: .45rem .65rem; border-radius: 8px;
+            border: 1px solid var(--border-light); width: 130px;
+        }
+        .admin-row button {
+            padding: .45rem .9rem; border-radius: 8px;
+            background: var(--primary); color: #fff; border: none;
+            font-weight: 600; cursor: pointer;
+        }
+
+        /* ── Rush Editor Button ── */
+        .rush-section {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .rush-btn {
+            display: inline-flex; align-items: center; gap: .6rem;
+            padding: .75rem 1.5rem;
+            border: none; border-radius: 14px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem; font-weight: 700;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(239,68,68,.35);
+            transition: transform .2s, box-shadow .2s, opacity .2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .rush-btn:hover:not(:disabled) {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 6px 20px rgba(239,68,68,.45);
+        }
+        .rush-btn:active:not(:disabled) { transform: scale(.97); }
+        .rush-btn:disabled {
+            background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+            cursor: not-allowed;
+            box-shadow: 0 2px 8px rgba(0,0,0,.1);
+        }
+        .rush-btn .rush-icon {
+            font-size: 1.3rem;
+            animation: shake 2s ease-in-out infinite;
+        }
+        .rush-btn:disabled .rush-icon { animation: none; }
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            10% { transform: rotate(-12deg); }
+            20% { transform: rotate(12deg); }
+            30% { transform: rotate(-8deg); }
+            40% { transform: rotate(8deg); }
+            50% { transform: rotate(0deg); }
+        }
+        .rush-cooldown {
+            font-family: 'DM Sans', sans-serif;
+            font-size: .85rem;
+            color: var(--text-muted);
+        }
+        .rush-feedback {
+            font-family: 'DM Sans', sans-serif;
+            font-size: .9rem;
+            padding: .4rem .8rem;
+            border-radius: 8px;
+            display: none;
+        }
+        .rush-feedback.success {
+            display: inline-block;
+            background: #dcfce7; color: #15803d;
+            animation: fadeIn .3s ease;
+        }
+        .rush-feedback.error {
+            display: inline-block;
+            background: #fee2e2; color: #dc2626;
+            animation: fadeIn .3s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ── Editor Nudges Panel (editor-only) ── */
+        .nudges-panel {
+            background: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
+            border: 2px solid #FB923C;
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .nudges-panel h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.15rem; font-weight: 600;
+            color: #C2410C; margin: 0 0 .75rem 0;
+            display: flex; align-items: center; gap: .5rem;
+        }
+        .nudge-item {
+            display: flex; align-items: center; gap: .75rem;
+            padding: .6rem .85rem; margin-bottom: .4rem;
+            background: rgba(255,255,255,.7);
+            border-radius: 10px; font-family: 'DM Sans', sans-serif;
+        }
+        .nudge-item .nudge-who {
+            font-weight: 600; color: #9A3412; flex: 1;
+        }
+        .nudge-item .nudge-pending {
+            font-size: .82rem; color: #C2410C;
+            background: #FED7AA; padding: .15rem .55rem;
+            border-radius: 6px; font-weight: 600;
+        }
+        .nudge-item .nudge-time {
+            font-size: .78rem; color: #9CA3AF;
+        }
+        .nudge-item .nudge-msg {
+            font-size: .82rem; color: #78716C;
+            font-style: italic;
+        }
+
+        /* ── Loading / Empty ── */
+        .loading { text-align: center; padding: 2.5rem; color: var(--text-muted); }
+        .loading::after {
+            content: ''; display: inline-block; width: 20px; height: 20px;
+            border: 3px solid var(--accent); border-top-color: var(--primary);
+            border-radius: 50%; animation: spin .8s linear infinite;
+            margin-left: .75rem; vertical-align: middle;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <header class="top-header">
+        <div class="menu-container">
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <nav class="dropdown-menu" id="dropdownMenu">
+                <a href="/navigation" class="dropdown-item"><span>{{if eq .Language "en"}}Writing{{else}}写作{{end}}</span></a>
+                <a href="/faq" class="dropdown-item"><span>{{if eq .Language "en"}}FAQ{{else}}常见问题{{end}}</span></a>
+                <a href="/descriptions" class="dropdown-item"><span>{{if eq .Language "en"}}Character Descriptions{{else}}角色描述{{end}}</span></a>
+                <a href="/payment" class="dropdown-item"><span>{{if eq .Language "en"}}Payment{{else}}付款{{end}}</span></a>
+                {{if .LoggedIn}}<a href="/profile/{{.CurrentUser}}" class="dropdown-item"><span>{{if eq .Language "en"}}My Profile{{else}}我的主页{{end}}</span></a>{{end}}
+                <a href="/store" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Store{{else}}商店{{end}}</span>
+                </a>
+</nav>
+        </div>
+        <a class="logo-container" href="/landing">
+            <div class="logo-icon"></div>
+            <span class="logo-text">{{if eq .Language "en"}}Writer Portal{{else}}写手门户{{end}}</span>
+        </a>
+        <div class="account-container">
+            <button class="account-btn" id="accountBtn" aria-label="Account menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </button>
+            <div class="account-dropdown" id="accountDropdown">
+                <div class="account-dropdown-header">
+                    <span class="account-name" id="accountName">{{if .LoggedIn}}{{.CurrentUser}}{{else}}{{if eq .Language "en"}}Visitor{{else}}访客{{end}}{{end}}</span>
+                </div>
+                {{if .LoggedIn}}
+                <a href="/profile/{{.CurrentUser}}" class="account-dropdown-item">{{if eq .Language "en"}}My Profile{{else}}我的主页{{end}}</a>
+                <a href="/logout" class="account-dropdown-item">{{if eq .Language "en"}}Logout{{else}}退出登录{{end}}</a>
+                {{else}}
+                <a href="/login/e" class="account-dropdown-item">{{if eq .Language "en"}}Login{{else}}登录{{end}}</a>
+                {{end}}
+            </div>
+        </div>
+    </header>
+
+    <div class="payment-container">
+
+        <!-- ── Personal Header ── -->
+        <div class="personal-header" id="personalHeader" style="display:none">
+            <div class="personal-avatar">✍️</div>
+            <div class="personal-header-text">
+                <h1 id="dashTitle">{{if eq .Language "en"}}My Writing Dashboard{{else}}我的写作仪表盘{{end}}</h1>
+                <p id="dashSubtitle"></p>
+            </div>
+            <div class="rank-pill" id="rankPill" style="display:none"></div>
+        </div>
+
+        <!-- ── Four Key Stats ── -->
+        <div class="stat-cards" id="statCards">
+            <div class="stat-card green">
+                <div class="icon">📝</div>
+                <div class="value" id="wordsPassed">-</div>
+                <div class="label">{{if eq .Language "en"}}Words Passed{{else}}已通过字数{{end}}</div>
+            </div>
+            <div class="stat-card purple">
+                <div class="icon">💰</div>
+                <div class="value" id="incomeReceived">-</div>
+                <div class="label">{{if eq .Language "en"}}Income Received{{else}}已获收入{{end}}</div>
+            </div>
+            <div class="stat-card">
+                <div class="icon">📊</div>
+                <div class="value" id="incomeExpected">-</div>
+                <div class="label">{{if eq .Language "en"}}Income Expected{{else}}预期收入{{end}}</div>
+            </div>
+            <div class="stat-card">
+                <div class="icon">⭐</div>
+                <div class="value" id="upvotes">-</div>
+                <div class="label">{{if eq .Language "en"}}Upvotes{{else}}点赞数{{end}}</div>
+            </div>
+        </div>
+
+        <!-- ── Progress ── -->
+        <div class="progress-section" id="progressSection" style="display:none">
+            <div class="progress-label">
+                <span id="progressText"></span>
+                <span id="progressPct"></span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width:0%"></div>
+            </div>
+        </div>
+
+        <!-- ── Rush Editor Button (writer only) ── -->
+        <div class="rush-section" id="rushSection" style="display:none">
+            <button class="rush-btn" id="rushBtn" onclick="rushEditor()">
+                <span class="rush-icon">🔥</span>
+                <span id="rushBtnText">{{if eq .Language "en"}}Rush the Editors!{{else}}催审！催他们快点！{{end}}</span>
+            </button>
+            <span class="rush-cooldown" id="rushCooldown"></span>
+            <span class="rush-feedback" id="rushFeedback"></span>
+        </div>
+
+        <!-- ── Editor Nudges Panel (editor only) ── -->
+        {{if eq .UserRole "editor"}}
+        <div class="nudges-panel" id="nudgesPanel" style="display:none">
+            <h3>🔥 {{if eq .Language "en"}}Writers Nudging You{{else}}写手在催你{{end}}</h3>
+            <div id="nudgesContent"></div>
+        </div>
+        {{end}}
+
+        <!-- ── Admin Override (editor only) ── -->
+        {{if eq .UserRole "editor"}}
+        <div class="admin-section">
+            <h3>{{if eq .Language "en"}}Editor: Override Payment Totals{{else}}管理员：覆盖付款合计{{end}}</h3>
+            <div class="admin-row">
+                <div>
+                    <label>{{if eq .Language "en"}}Pending payments (¥){{else}}待结算 (¥){{end}}</label>
+                    <input type="number" id="adminPendingPayments" step="0.01" min="0" placeholder="{{if eq .Language "en"}}e.g. 1234.56{{else}}如 1234.56{{end}}" />
+                </div>
+                <div>
+                    <label>{{if eq .Language "en"}}Paid amount (¥){{else}}本月发放 (¥){{end}}</label>
+                    <input type="number" id="adminPaidAmount" step="0.01" min="0" placeholder="{{if eq .Language "en"}}e.g. 5678.90{{else}}如 5678.90{{end}}" />
+                </div>
+                <div>
+                    <button type="button" id="adminSavePaymentSettings">{{if eq .Language "en"}}Save{{else}}保存{{end}}</button>
+                </div>
+                <span id="adminPaymentSettingsMessage" style="font-size:.85rem;color:var(--success-green);"></span>
+            </div>
+        </div>
+        {{end}}
+
+        <!-- ── Review Alerts ── -->
+        <div class="alerts-section">
+            <h2 class="section-heading">🔔 {{if eq .Language "en"}}Review Notifications{{else}}审核通知{{end}}</h2>
+            <div id="alertsContent">
+                <div class="loading">{{if eq .Language "en"}}Loading...{{else}}加载中...{{end}}</div>
+            </div>
+        </div>
+
+        <!-- ── Leaderboard ── -->
+        <div class="leaderboard-section">
+            <h2 class="section-heading">🏆 {{if eq .Language "en"}}Writer Leaderboard{{else}}写手排行榜{{end}}</h2>
+            <div id="leaderboardContent">
+                <div class="loading">{{if eq .Language "en"}}Loading...{{else}}加载中...{{end}}</div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>Divergence 2% {{if eq .Language "en"}}Writer Portal{{else}}写手门户{{end}}</p>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+    <script>
+        /* ── UI helpers ── */
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        hamburgerBtn?.addEventListener('click', () => dropdownMenu.classList.toggle('show'));
+        const accountBtn = document.getElementById('accountBtn');
+        const accountDropdown = document.getElementById('accountDropdown');
+        accountBtn?.addEventListener('click', () => accountDropdown.classList.toggle('show'));
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.menu-container')) dropdownMenu?.classList.remove('show');
+            if (!e.target.closest('.account-container')) accountDropdown?.classList.remove('show');
+        });
+
+        const isEnglish = document.documentElement.lang === 'en';
+        const currentUser = '{{.CurrentUser}}';
+
+        function fmt(n) {
+            if (n >= 10000) return isEnglish ? (n/1000).toFixed(1)+'k' : (n/10000).toFixed(1)+'万';
+            return n.toLocaleString();
+        }
+        function fmtCur(a) { return '¥' + a.toFixed(2); }
+
+        function timeAgo(ts) {
+            if (!ts) return '';
+            const diff = Math.floor(Date.now()/1000) - ts;
+            if (diff < 60) return isEnglish ? 'just now' : '刚刚';
+            if (diff < 3600) return Math.floor(diff/60) + (isEnglish ? 'm ago' : '分钟前');
+            if (diff < 86400) return Math.floor(diff/3600) + (isEnglish ? 'h ago' : '小时前');
+            return Math.floor(diff/86400) + (isEnglish ? 'd ago' : '天前');
+        }
+
+        /* ── Load both endpoints in parallel ── */
+        async function loadDashboard() {
+            try {
+                const [dashRes, summaryRes] = await Promise.all([
+                    fetch('/api/payment/my-dashboard'),
+                    fetch('/api/payment/summary')
+                ]);
+
+                if (dashRes.ok) {
+                    const dash = await dashRes.json();
+                    renderPersonalDashboard(dash);
+                }
+                if (summaryRes.ok) {
+                    const summary = await summaryRes.json();
+                    renderLeaderboard(summary.leaderboard);
+                    // Pre-fill admin overrides
+                    const ap = document.getElementById('adminPendingPayments');
+                    const aa = document.getElementById('adminPaidAmount');
+                    if (ap) ap.placeholder = summary.pending_payments != null ? summary.pending_payments.toFixed(2) : '';
+                    if (aa) aa.placeholder = summary.paid_amount != null ? summary.paid_amount.toFixed(2) : '';
+                }
+            } catch (err) {
+                console.error('Dashboard load error:', err);
+                document.getElementById('alertsContent').innerHTML =
+                    `<div class="empty-alerts">${isEnglish ? 'Could not load data.' : '无法加载数据。'}</div>`;
+                document.getElementById('leaderboardContent').innerHTML =
+                    `<div class="empty-alerts">${isEnglish ? 'Could not load data.' : '无法加载数据。'}</div>`;
+            }
+        }
+
+        /* ── Render personal dashboard ── */
+        function renderPersonalDashboard(d) {
+            // Header
+            const hdr = document.getElementById('personalHeader');
+            hdr.style.display = 'flex';
+            const name = d.real_name || d.username || currentUser;
+            document.getElementById('dashSubtitle').textContent =
+                isEnglish
+                    ? `${d.total_dialogues} dialogue${d.total_dialogues!==1?'s':''} written · ${d.approved_dialogues} approved`
+                    : `已写 ${d.total_dialogues} 篇对话 · ${d.approved_dialogues} 篇已通过`;
+
+            // Rank pill
+            if (d.leaderboard_rank > 0) {
+                const pill = document.getElementById('rankPill');
+                pill.style.display = '';
+                pill.textContent = isEnglish ? `#${d.leaderboard_rank} rank` : `第 ${d.leaderboard_rank} 名`;
+            }
+
+            // Stat cards
+            document.getElementById('wordsPassed').textContent = fmt(d.words_passed);
+            document.getElementById('incomeReceived').textContent = fmtCur(d.income_received);
+            document.getElementById('incomeExpected').textContent = fmtCur(d.income_expected);
+            document.getElementById('upvotes').textContent = d.upvotes;
+
+            // Progress bar
+            if (d.total_characters > 0) {
+                const sec = document.getElementById('progressSection');
+                sec.style.display = '';
+                const pct = d.total_characters > 0 ? Math.round(d.words_passed / d.total_characters * 100) : 0;
+                document.getElementById('progressText').textContent =
+                    isEnglish
+                        ? `${fmt(d.words_passed)} / ${fmt(d.total_characters)} characters approved (${fmt(d.chars_missing)} pending)`
+                        : `${fmt(d.words_passed)} / ${fmt(d.total_characters)} 字已通过（${fmt(d.chars_missing)} 待审）`;
+                document.getElementById('progressPct').textContent = pct + '%';
+                document.getElementById('progressFill').style.width = Math.min(pct, 100) + '%';
+            }
+
+            // Alerts
+            renderAlerts(d.alerts || []);
+        }
+
+        /* ── Render review alerts ── */
+        function renderAlerts(alerts) {
+            const cont = document.getElementById('alertsContent');
+            if (!alerts || alerts.length === 0) {
+                cont.innerHTML = `<div class="empty-alerts">
+                    ${isEnglish
+                        ? '📭 No review notifications yet. Your work will show up here once reviewed.'
+                        : '📭 暂无审核通知。作品审核后将在此显示。'}
+                </div>`;
+                return;
+            }
+
+            let html = '<div class="alert-list">';
+            alerts.forEach(a => {
+                const charLabel = a.character_name || a.filename;
+                if (a.category === 'passed') {
+                    html += `
+                    <div class="alert-item passed">
+                        <div class="alert-icon">✅</div>
+                        <div class="alert-body">
+                            <div class="alert-title">${isEnglish ? 'Congratulations!' : '恭喜！'} <strong>${charLabel}</strong> ${isEnglish ? 'has been approved' : '已通过审核'}</div>
+                            <div class="alert-detail">
+                                ${fmt(a.char_count)} ${isEnglish ? 'characters' : '字'}
+                                ${a.dialogue_trait ? `<span class="trait-badge">${a.dialogue_trait}</span>` : ''}
+                            </div>
+                        </div>
+                        <span class="alert-time">${timeAgo(a.timestamp)}</span>
+                    </div>`;
+                } else if (a.category === 'rejected') {
+                    const reason = a.rejection_reason || (isEnglish ? 'Please review and revise.' : '请检查并修改。');
+                    html += `
+                    <div class="alert-item rejected">
+                        <div class="alert-icon">⚠️</div>
+                        <div class="alert-body">
+                            <div class="alert-title">${isEnglish ? 'Revision needed:' : '需要修改：'} <strong>${charLabel}</strong></div>
+                            <div class="alert-detail">
+                                <span class="reason">${reason}</span>
+                                ${a.problems_count > 0 ? `<br><small>${a.problems_count} ${isEnglish ? 'issue(s) flagged' : '个问题被标记'}</small>` : ''}
+                            </div>
+                        </div>
+                        <span class="alert-time">${timeAgo(a.timestamp)}</span>
+                    </div>`;
+                }
+
+                // Show latest comment if any
+                if (a.comments && a.comments.length > 0) {
+                    const last = a.comments[a.comments.length - 1];
+                    const cText = typeof last === 'object' ? (last.text || '') : String(last);
+                    const cAuthor = typeof last === 'object' ? (last.author || '') : '';
+                    if (cText) {
+                        html += `
+                        <div class="alert-item comment">
+                            <div class="alert-icon">💬</div>
+                            <div class="alert-body">
+                                <div class="alert-title">${cAuthor ? cAuthor + ': ' : ''}${isEnglish ? 'Comment on' : '评论于'} ${charLabel}</div>
+                                <div class="alert-detail">"${cText.length > 120 ? cText.substring(0,120)+'...' : cText}"</div>
+                            </div>
+                            <span class="alert-time">${typeof last === 'object' && last.timestamp ? last.timestamp : ''}</span>
+                        </div>`;
+                    }
+                }
+            });
+            html += '</div>';
+            cont.innerHTML = html;
+        }
+
+        /* ── Render leaderboard ── */
+        function renderLeaderboard(lb) {
+            const cont = document.getElementById('leaderboardContent');
+            if (!lb || lb.length === 0) {
+                cont.innerHTML = `<div class="empty-alerts">${isEnglish ? '🏆 No ranking data yet.' : '🏆 暂无排行数据。'}</div>`;
+                return;
+            }
+            let html = '<ul class="leaderboard-list">';
+            lb.slice(0, 15).forEach((w, i) => {
+                const rank = i + 1;
+                const rc = rank <= 3 ? `rank-${rank}` : '';
+                const bc = rank <= 3 ? '' : 'normal';
+                const name = w.real_name || w.username || w.user_id;
+                const isMe = (w.username === currentUser || w.real_name === currentUser);
+                html += `
+                <li class="leaderboard-item ${rc} ${isMe ? 'is-me' : ''}">
+                    <div class="rank-badge ${bc}">${rank <= 3 ? ['🥇','🥈','🥉'][rank-1] : rank}</div>
+                    <div class="writer-info">
+                        <div class="writer-name">${name}${isMe ? (isEnglish ? ' (you)' : ' (我)') : ''}</div>
+                        <div class="writer-stats-inline">
+                            ${fmt(w.approved_chars)} ${isEnglish ? 'chars' : '字'} · ${w.approved_dialogues} ${isEnglish ? 'dialogues' : '篇'} · ${w.approval_rate.toFixed(0)}%
+                        </div>
+                        <div class="approval-bar"><div class="approval-fill" style="width:${Math.min(w.approval_rate,100)}%"></div></div>
+                    </div>
+                    <div class="writer-earnings">${fmtCur(w.earnings)}</div>
+                </li>`;
+            });
+            html += '</ul>';
+            cont.innerHTML = html;
+        }
+
+        /* ── Rush Editor Logic ── */
+        let rushCooldownTimer = null;
+
+        async function loadRushStatus() {
+            try {
+                const res = await fetch('/api/payment/rush-status');
+                if (!res.ok) return;
+                const data = await res.json();
+                const section = document.getElementById('rushSection');
+                section.style.display = 'flex';
+
+                if (data.has_nudged && data.cooldown_remaining > 0) {
+                    setRushCooldown(data.cooldown_remaining);
+                }
+            } catch (e) {
+                console.error('Rush status error:', e);
+            }
+        }
+
+        async function rushEditor() {
+            const btn = document.getElementById('rushBtn');
+            const feedback = document.getElementById('rushFeedback');
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('/api/payment/rush-editor', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({})
+                });
+                const data = await res.json();
+
+                if (res.ok) {
+                    feedback.className = 'rush-feedback success';
+                    feedback.textContent = isEnglish
+                        ? `✅ Editors nudged! You have ${data.pending_count} file(s) pending.`
+                        : `✅ 催审成功！你有 ${data.pending_count} 篇待审。`;
+                    feedback.style.display = 'inline-block';
+                    setRushCooldown(data.cooldown || 7200);
+                } else if (res.status === 429) {
+                    // Cooldown active
+                    setRushCooldown(data.cooldown_remaining);
+                    feedback.className = 'rush-feedback error';
+                    feedback.textContent = isEnglish
+                        ? '⏳ You already nudged recently. Wait for cooldown.'
+                        : '⏳ 你刚催过了，等冷却再催。';
+                    feedback.style.display = 'inline-block';
+                } else {
+                    btn.disabled = false;
+                    feedback.className = 'rush-feedback error';
+                    feedback.textContent = data.error || (isEnglish ? 'Failed' : '失败');
+                    feedback.style.display = 'inline-block';
+                }
+
+                // Auto-hide feedback after 5s
+                setTimeout(() => { feedback.style.display = 'none'; }, 5000);
+            } catch (e) {
+                btn.disabled = false;
+                feedback.className = 'rush-feedback error';
+                feedback.textContent = isEnglish ? 'Request failed.' : '请求失败。';
+                feedback.style.display = 'inline-block';
+            }
+        }
+
+        function setRushCooldown(seconds) {
+            const btn = document.getElementById('rushBtn');
+            const cd = document.getElementById('rushCooldown');
+            const btnText = document.getElementById('rushBtnText');
+            btn.disabled = true;
+
+            if (rushCooldownTimer) clearInterval(rushCooldownTimer);
+
+            let remaining = Math.ceil(seconds);
+            const updateDisplay = () => {
+                if (remaining <= 0) {
+                    clearInterval(rushCooldownTimer);
+                    btn.disabled = false;
+                    btnText.textContent = isEnglish ? 'Rush the Editors!' : '催审！催他们快点！';
+                    cd.textContent = '';
+                    return;
+                }
+                const m = Math.floor(remaining / 60);
+                const s = remaining % 60;
+                const timeStr = m > 0
+                    ? `${m}${isEnglish ? 'm' : '分'} ${s}${isEnglish ? 's' : '秒'}`
+                    : `${s}${isEnglish ? 's' : '秒'}`;
+                btnText.textContent = isEnglish ? 'Already Nudged' : '已催审';
+                cd.textContent = isEnglish
+                    ? `⏱️ Can nudge again in ${timeStr}`
+                    : `⏱️ ${timeStr}后可再次催审`;
+                remaining--;
+            };
+            updateDisplay();
+            rushCooldownTimer = setInterval(updateDisplay, 1000);
+        }
+
+        /* ── Editor: Load nudges panel ── */
+        async function loadEditorNudges() {
+            const panel = document.getElementById('nudgesPanel');
+            if (!panel) return; // not an editor
+
+            try {
+                const res = await fetch('/api/payment/editor-nudges');
+                if (!res.ok) return;
+                const data = await res.json();
+                if (!data.nudges || data.nudges.length === 0) {
+                    panel.style.display = 'none';
+                    return;
+                }
+
+                panel.style.display = '';
+                const cont = document.getElementById('nudgesContent');
+                let html = '';
+                data.nudges.forEach(n => {
+                    const name = n.real_name || n.writer_name || n.writer_id;
+                    html += `
+                    <div class="nudge-item">
+                        <span class="nudge-who">🔥 ${name}</span>
+                        <span class="nudge-pending">${n.pending_count} ${isEnglish ? 'pending' : '篇待审'}</span>
+                        ${n.message ? `<span class="nudge-msg">"${n.message}"</span>` : ''}
+                        <span class="nudge-time">${timeAgo(n.timestamp)}</span>
+                    </div>`;
+                });
+                cont.innerHTML = html;
+            } catch (e) {
+                console.error('Editor nudges error:', e);
+            }
+        }
+
+        /* ── Init ── */
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDashboard();
+            loadRushStatus();
+            loadEditorNudges();
+
+            // Admin save
+            document.getElementById('adminSavePaymentSettings')?.addEventListener('click', async function() {
+                const pendingEl = document.getElementById('adminPendingPayments');
+                const paidEl = document.getElementById('adminPaidAmount');
+                const msgEl = document.getElementById('adminPaymentSettingsMessage');
+                const body = {};
+                if (pendingEl) {
+                    const v = pendingEl.value.trim();
+                    body.pending_payments = v === '' ? null : parseFloat(v);
+                    if (body.pending_payments !== null && isNaN(body.pending_payments)) {
+                        msgEl.textContent = isEnglish ? 'Invalid number.' : '请输入有效数字。';
+                        return;
+                    }
+                }
+                if (paidEl) {
+                    const v = paidEl.value.trim();
+                    body.paid_amount = v === '' ? null : parseFloat(v);
+                    if (body.paid_amount !== null && isNaN(body.paid_amount)) {
+                        msgEl.textContent = isEnglish ? 'Invalid number.' : '请输入有效数字。';
+                        return;
+                    }
+                }
+                msgEl.textContent = '';
+                try {
+                    const res = await fetch('/api/payment/settings', {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(body)
+                    });
+                    const data = await res.json();
+                    if (!res.ok) {
+                        msgEl.textContent = data.error || (isEnglish ? 'Failed.' : '保存失败。');
+                        msgEl.style.color = '#c00';
+                        return;
+                    }
+                    msgEl.textContent = isEnglish ? 'Saved.' : '已保存。';
+                    msgEl.style.color = '';
+                    loadDashboard();
+                } catch(e) {
+                    msgEl.textContent = isEnglish ? 'Request failed.' : '请求失败。';
+                    msgEl.style.color = '#c00';
+                }
+            });
+        });
+
+        /* ── Language-aware links ── */
+        (function() {
+            if (isEnglish) {
+                document.querySelectorAll('a[href^="/"]').forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href.startsWith('/static/') || href.endsWith('/e') || href.includes('/e#') || href === '/logout') return;
+                    if (href.includes('#')) {
+                        const [path, hash] = href.split('#');
+                        link.setAttribute('href', path + '/e#' + hash);
+                    } else {
+                        link.setAttribute('href', href + '/e');
+                    }
+                });
+            }
+        })();
+    </script>
+
+{% include "includes/home_button.html" %}
+
+</body>
+</html>

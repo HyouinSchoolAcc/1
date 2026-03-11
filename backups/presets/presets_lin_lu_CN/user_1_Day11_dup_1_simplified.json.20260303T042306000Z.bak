@@ -1,0 +1,32 @@
+{
+  "abilities": "",
+  "character_name": "林路",
+  "character_schedule": {
+    "afternoon": "溜出学校，去附近书店逛了一圈，翻了几本历史资料，顺便给自己买杯咖啡，放松一下再回校。\n回办公室改编著的参考文献格式，改得头大，中间帮两个学生顺了顺论文提纲。",
+    "day": 11,
+    "evening": "打羽毛球，出一身汗。\n \n\n",
+    "morning": "早上被闹钟吵醒，食堂买早饭，阿姨又提介绍对象，打哈哈混过去，这次没忘拿包子。\n到办公室先处理学生请假、论文咨询，回完消息就上课。\n上午上《中国古代文学史（唐宋卷）》，讲晚唐诗词，学生昏昏欲睡，强行互动，又轻微拖堂。\n",
+    "night": "回去之后回了编辑的消息，写了一小段历史小说",
+    "noon": "中午食堂吃饭，和同事吐槽最近表格多、材料烦，顺便聊了出版社编著的进度，编辑又在催格式。"
+  },
+  "completed": false,
+  "dialogue": [
+    {
+      "content": "下午好啊",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    }
+  ],
+  "experiences": "",
+  "history": "",
+  "intimacy_level": 29.01,
+  "judgements": "",
+  "relationship": "Continuing relationship from previous interactions.",
+  "starting_intimacy_level": 29,
+  "user_name": "周然",
+  "user_schedule": {
+    "day": 11,
+    "morning": "...."
+  },
+  "values": ""
+}

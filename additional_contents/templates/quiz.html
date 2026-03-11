@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="{{if eq .Language "en"}}en{{else}}zh-CN{{end}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{if eq .Language "en"}}Character Quiz{{else}}角色测验{{end}}</title>
+    <link rel="icon" href="/static/favicon/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f0c29;
+            --bg-card: #1a1a2e;
+            --text-gold: #ffd700;
+            --text-white: #f0f0f0;
+            --text-dim: #888;
+            --accent-green: #4ade80;
+            --accent-red: #f87171;
+            --accent-purple: #bc8cff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: var(--text-white);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-header h1 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2.5rem;
+            color: var(--text-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-header p {
+            color: var(--text-dim);
+            font-size: 1rem;
+        }
+
+        .character-tabs {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .character-tab {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-card);
+            border: 2px solid transparent;
+            border-radius: 25px;
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .character-tab:hover {
+            border-color: var(--text-gold);
+            color: var(--text-white);
+        }
+
+        .character-tab.active {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(188, 140, 255, 0.2));
+            border-color: var(--text-gold);
+            color: var(--text-gold);
+        }
+
+        .quiz-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .question-number {
+            color: var(--text-gold);
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .option {
+            padding: 1rem 1.25rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .option:hover {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .option.selected {
+            border-color: var(--text-gold);
+            background: rgba(255, 215, 0, 0.15);
+        }
+
+        .option.correct {
+            border-color: var(--accent-green);
+            background: rgba(74, 222, 128, 0.15);
+        }
+
+        .option.incorrect {
+            border-color: var(--accent-red);
+            background: rgba(248, 113, 113, 0.15);
+        }
+
+        .option-letter {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .option.selected .option-letter {
+            background: var(--text-gold);
+            color: var(--bg-dark);
+        }
+
+        .option.correct .option-letter {
+            background: var(--accent-green);
+            color: var(--bg-dark);
+        }
+
+        .option.incorrect .option-letter {
+            background: var(--accent-red);
+            color: var(--bg-dark);
+        }
+
+        .quiz-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .quiz-progress {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--text-gold), #ffaa00);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--text-gold);
+            color: var(--text-gold);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        /* Results */
+        .results-container {
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .results-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .results-title {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2rem;
+            color: var(--text-gold);
+            margin-bottom: 1rem;
+        }
+
+        .results-score {
+            font-size: 1.2rem;
+            color: var(--text-white);
+            margin-bottom: 0.5rem;
+        }
+
+        .results-message {
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .results-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Cao Cao feedback */
+        .cao-cao-feedback {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background: rgba(255, 166, 87, 0.1);
+            border: 1px solid rgba(255, 166, 87, 0.3);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .cao-cao-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #ffa657;
+            flex-shrink: 0;
+        }
+
+        .cao-cao-speech {
+            flex: 1;
+        }
+
+        .cao-cao-name {
+            color: #ffa657;
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .cao-cao-text {
+            color: var(--text-white);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Open book notice */
+        .open-book-notice {
+            background: rgba(188, 140, 255, 0.1);
+            border: 1px solid rgba(188, 140, 255, 0.3);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .open-book-notice span {
+            font-size: 1.5rem;
+        }
+
+        .open-book-notice p {
+            color: var(--text-white);
+            font-size: 0.9rem;
+        }
+
+        .open-book-notice a {
+            color: var(--accent-purple);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .quiz-header h1 {
+                font-size: 2rem;
+            }
+
+            .quiz-card {
+                padding: 1.5rem;
+            }
+
+            .quiz-actions {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="quiz-header">
+            <h1>📜 {{if eq .Language "en"}}Character Quiz{{else}}角色认证测验{{end}}</h1>
+            <p>{{if eq .Language "en"}}Test your knowledge of the characters before writing{{else}}开始写作前，先测试一下你对角色的了解{{end}}</p>
+        </div>
+
+        <div class="open-book-notice">
+            <span>📖</span>
+            <p>
+                {{if eq .Language "en"}}This is an open-book test! You can check the <a href="/descriptions" target="_blank">Character Descriptions</a> while answering.{{else}}这是开卷测验！答题时可以随时查看 <a href="/descriptions" target="_blank">角色描述页</a>。{{end}}
+            </p>
+        </div>
+
+        <div class="character-tabs" id="characterTabs">
+            <button class="character-tab active" data-character="kurisu">牧濑红莉栖</button>
+            <button class="character-tab" data-character="linlu">林路</button>
+        </div>
+
+        <div id="quizArea">
+            <!-- Quiz content will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+        // Quiz questions for each character
+        const QUIZ_DATA = {
+            kurisu: {
+                name: "牧濑红莉栖",
+                questions: [
+                    {
+                        question: "红莉栖目前的职业是什么？",
+                        options: ["大学教授", "研究员/博士生", "软件工程师", "高中生"],
+                        correct: 1,
+                        explanation: "红莉栖是一名研究员/博士生，专注于神经科学和计算机科学的交叉领域。"
+                    },
+                    {
+                        question: "红莉栖平时喜欢做什么私下活动？",
+                        options: ["打游戏", "幻想超能力", "看电视剧", "逛街购物"],
+                        correct: 1,
+                        explanation: "红莉栖私底下喜欢幻想超能力，会在没人的时候偷偷比划，被发现会很尴尬。"
+                    },
+                    {
+                        question: "在设定中，红莉栖的感情状态是？",
+                        options: ["有男朋友", "已婚", "单身", "暧昧中"],
+                        correct: 2,
+                        explanation: "为了符合对话场景设定，角色都被设定为单身状态。"
+                    },
+                    {
+                        question: "写红莉栖的对话时，最重要的特点是什么？",
+                        options: ["高冷、不爱说话", "话很多、爱八卦", "理性、有逻辑但偶尔中二", "情绪化、爱哭"],
+                        correct: 2,
+                        explanation: "红莉栖的特点是理性且有逻辑，但内心有中二的一面，会偷偷幻想超能力。"
+                    },
+                    {
+                        question: "以下哪个场景最适合红莉栖出现？",
+                        options: ["夜店", "实验室或咖啡厅", "健身房", "KTV"],
+                        correct: 1,
+                        explanation: "红莉栖是研究员，最常出现在实验室、咖啡厅等适合学术交流的场所。"
+                    }
+                ]
+            },
+            linlu: {
+                name: "林路",
+                questions: [
+                    {
+                        question: "林路的职业是什么？",
+                        options: ["高中语文老师", "文学系教授", "自由作家", "编辑"],
+                        correct: 1,
+                        explanation: "林路是一位文学系教授，对文学有很深的造诣。"
+                    },
+                    {
+                        question: "林路有一个知识分子的通病是什么？",
+                        options: ["骄傲自大", "对物理世界的事"想当然"", "不爱说话", "过度自谦"],
+                        correct: 1,
+                        explanation: "林路会对很多物理世界的东西"想当然"，比如不理解为什么修电脑不能靠重启解决。"
+                    },
+                    {
+                        question: "林路为什么会让人觉得有趣？",
+                        options: ["会讲笑话", ""知识诅咒"导致的认知差距", "会模仿别人", "很会唱歌"],
+                        correct: 1,
+                        explanation: "林路的"知识诅咒"让他不理解为什么学生觉得莎士比亚难读，这种差距很有趣。"
+                    },
+                    {
+                        question: "写林路对话时，应该注意什么？",
+                        options: ["用很多网络用语", "彬彬有礼，爱聊社会话题和文学", "说话简短", "经常发表情包"],
+                        correct: 1,
+                        explanation: "林路彬彬有礼，喜欢聊社会话题和文学，对文学要求很深。"
+                    },
+                    {
+                        question: "以下哪个背景的作者更适合写林路？",
+                        options: ["理工科学生", "人文/文学背景", "体育生", "艺术生"],
+                        correct: 1,
+                        explanation: "林路需要有人文/文学背景的作者来写，才能体现他对文学的深刻理解。"
+                    }
+                ]
+            }
+        };
+
+        let currentCharacter = 'kurisu';
+        let currentQuestion = 0;
+        let selectedAnswers = {};
+        let quizSubmitted = false;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            setupTabs();
+            loadQuiz();
+        });
+
+        function setupTabs() {
+            document.querySelectorAll('.character-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.character-tab').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    currentCharacter = tab.dataset.character;
+                    currentQuestion = 0;
+                    selectedAnswers = {};
+                    quizSubmitted = false;
+                    loadQuiz();
+                });
+            });
+        }
+
+        function loadQuiz() {
+            const quizArea = document.getElementById('quizArea');
+            const data = QUIZ_DATA[currentCharacter];
+            
+            if (quizSubmitted) {
+                showResults();
+                return;
+            }
+
+            const question = data.questions[currentQuestion];
+            const letters = ['A', 'B', 'C', 'D'];
+
+            quizArea.innerHTML = `
+                <div class="quiz-card">
+                    <div class="question-number">问题 ${currentQuestion + 1} / ${data.questions.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="options">
+                        ${question.options.map((opt, i) => `
+                            <div class="option ${selectedAnswers[currentQuestion] === i ? 'selected' : ''}" 
+                                 onclick="selectOption(${i})">
+                                <span class="option-letter">${letters[i]}</span>
+                                <span>${opt}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div class="quiz-actions">
+                    <div class="quiz-progress">
+                        已回答 ${Object.keys(selectedAnswers).length} / ${data.questions.length} 题
+                    </div>
+                    <div>
+                        ${currentQuestion > 0 ? `<button class="btn btn-secondary" onclick="prevQuestion()">上一题</button>` : ''}
+                        ${currentQuestion < data.questions.length - 1 
+                            ? `<button class="btn btn-primary" onclick="nextQuestion()" ${selectedAnswers[currentQuestion] === undefined ? 'disabled' : ''}>下一题</button>`
+                            : `<button class="btn btn-primary" onclick="submitQuiz()" ${Object.keys(selectedAnswers).length < data.questions.length ? 'disabled' : ''}>提交答案</button>`
+                        }
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectOption(index) {
+            if (quizSubmitted) return;
+            selectedAnswers[currentQuestion] = index;
+            loadQuiz();
+        }
+
+        function nextQuestion() {
+            const data = QUIZ_DATA[currentCharacter];
+            if (currentQuestion < data.questions.length - 1) {
+                currentQuestion++;
+                loadQuiz();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuiz();
+            }
+        }
+
+        function submitQuiz() {
+            quizSubmitted = true;
+            showResults();
+        }
+
+        function showResults() {
+            const quizArea = document.getElementById('quizArea');
+            const data = QUIZ_DATA[currentCharacter];
+            
+            let correct = 0;
+            data.questions.forEach((q, i) => {
+                if (selectedAnswers[i] === q.correct) correct++;
+            });
+
+            const percentage = (correct / data.questions.length) * 100;
+            const passed = percentage >= 60;
+
+            let caoCaoMessage = '';
+            if (passed) {
+                caoCaoMessage = percentage === 100 
+                    ? "完美！看来你真的认真看了设定，孺子可教也！"
+                    : "不错不错，基本过关了。有些细节再注意一下就更好了。";
+            } else {
+                caoCaoMessage = "...你真的看设定了吗？回去再看看吧，这几道题都是送分题。我当年赤壁之战输了也没这么难看。";
+            }
+
+            quizArea.innerHTML = `
+                <div class="quiz-card results-container">
+                    <div class="results-icon">${passed ? '🎉' : '😅'}</div>
+                    <div class="results-title">${passed ? '测验通过！' : '还需努力'}</div>
+                    <div class="results-score">得分：${correct} / ${data.questions.length} (${Math.round(percentage)}%)</div>
+                    <div class="results-message">
+                        ${passed 
+                            ? `恭喜你通过了 ${data.name} 的认证测验！现在可以开始写作了。`
+                            : `需要答对至少 60% 才能通过。建议回去再看看角色设定。`
+                        }
+                    </div>
+
+                    <div class="cao-cao-feedback">
+                        <img src="/static/曹操.png" alt="曹操" class="cao-cao-avatar">
+                        <div class="cao-cao-speech">
+                            <div class="cao-cao-name">曹操</div>
+                            <div class="cao-cao-text">${caoCaoMessage}</div>
+                        </div>
+                    </div>
+
+                    <div class="results-buttons" style="margin-top: 2rem;">
+                        ${passed 
+                            ? `<a href="/navigation" class="btn btn-primary">🖊️ 开始写作</a>`
+                            : `<button class="btn btn-secondary" onclick="retryQuiz()">🔄 重新测验</button>
+                               <a href="/descriptions" class="btn btn-primary" target="_blank">📖 查看设定</a>`
+                        }
+                    </div>
+                </div>
+
+                ${!passed ? '' : `
+                <div class="quiz-card" style="margin-top: 1.5rem;">
+                    <h3 style="color: var(--text-gold); margin-bottom: 1rem; font-family: 'Ma Shan Zheng', cursive;">答案解析</h3>
+                    ${data.questions.map((q, i) => {
+                        const isCorrect = selectedAnswers[i] === q.correct;
+                        const letters = ['A', 'B', 'C', 'D'];
+                        return `
+                            <div style="margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                    <span style="color: ${isCorrect ? 'var(--accent-green)' : 'var(--accent-red)'};">
+                                        ${isCorrect ? '✓' : '✗'}
+                                    </span>
+                                    <strong>问题 ${i + 1}:</strong> ${q.question}
+                                </div>
+                                <div style="color: var(--text-dim); font-size: 0.9rem;">
+                                    你的答案: ${letters[selectedAnswers[i]]}. ${q.options[selectedAnswers[i]]}
+                                    ${!isCorrect ? `<br>正确答案: ${letters[q.correct]}. ${q.options[q.correct]}` : ''}
+                                    <br><span style="color: var(--accent-purple);">${q.explanation}</span>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+                `}
+            `;
+
+            // If passed, call the API to mark certification
+            if (passed) {
+                completeCertification();
+            }
+        }
+
+        function retryQuiz() {
+            currentQuestion = 0;
+            selectedAnswers = {};
+            quizSubmitted = false;
+            loadQuiz();
+        }
+
+        async function completeCertification() {
+            try {
+                await fetch('/api/tutorial/complete', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ character_id: currentCharacter })
+                });
+            } catch (e) {
+                console.error('Failed to save certification');
+            }
+        }
+    </script>
+</body>
+</html>

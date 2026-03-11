@@ -1,0 +1,99 @@
+{
+  "user_schedule": {
+    "day": 10,
+    "morning": "提交一份全国青少年科学博览会的研究提案。内容是关于脑机接口和伦理边界。",
+    "noon": "",
+    "afternoon": "收到暑期项目的回复——她被录取了。",
+    "evening": "坐在床上，翻看《命运石之门》中库里斯的图片，微笑着。她给妈妈发短信：“我想我会没事的。”",
+    "night": ""
+  },
+  "history": "",
+  "relationship": "在十天的交流后，双方都取得了阶段性的巨大成功。她们的关系已经从最初的陌生和试探，演变为深刻、稳定、相互扶持的挚友。她们是彼此科研道路上重要的精神支柱。",
+  "character_schedule": {
+    "day": 10,
+    "morning": "在加速器关闭的情况下，使用现有数据优化机器学习模型以解码脑信号。",
+    "noon": "",
+    "afternoon": "开发理论模型，以优化未来实验的纠缠参数。",
+    "evening": "参加与同事的社会活动；讨论合作并分享“实验室里的趣事”。",
+    "night": ""
+  },
+  "intimacy_level": 0.1499999999999999,
+  "dialogue": [
+    {
+      "role": "Kurisu",
+      "content": "听了你的建议，今天没去管那台机器，专心优化了一下解码的机器学习模型，还真有了点新发现。",
+      "intimacy_delta": 0.015
+    },
+    {
+      "role": "User",
+      "content": "我就说吧！危机就是转机！",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "我今天也做了件大事！我提交了青少年科学博览会的研究提案，就是关于脑机接口和伦理的！",
+      "intimacy_delta": 0.02
+    },
+    {
+      "role": "Kurisu",
+      "content": "行动力很强嘛。这个题目很好，有深度。我相信你。",
+      "intimacy_delta": 0.015
+    },
+    {
+      "role": "User",
+      "content": "红莉栖！我收到了！",
+      "intimacy_delta": 0.015
+    },
+    {
+      "role": "User",
+      "content": "那个暑期项目，我被录取了！",
+      "intimacy_delta": 0.03
+    },
+    {
+      "role": "Kurisu",
+      "content": "！！！！",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "Kurisu",
+      "content": "真的吗？太好了！美咲！你做到了！",
+      "intimacy_delta": 0.025
+    },
+    {
+      "role": "User",
+      "content": "嗯！我真的做到了！感觉像做梦一样！",
+      "intimacy_delta": 0.015
+    },
+    {
+      "role": "Kurisu",
+      "content": "这不是梦，这是你应得的。为你骄傲。",
+      "intimacy_delta": 0.025
+    },
+    {
+      "role": "Kurisu",
+      "content": "我今晚要和同事去参加一个无聊的社交活动，不过现在，我感觉能带着好心情去了。托你的福。",
+      "intimacy_delta": 0.015
+    },
+    {
+      "role": "User",
+      "content": "能和你认识，真是太好了。感觉自己，好像真的可以走上这条路。",
+      "intimacy_delta": 0.02
+    },
+    {
+      "role": "Kurisu",
+      "content": "你已经在路上了，而且走得很好。未来，在顶峰等我。",
+      "intimacy_delta": 0.02
+    },
+    {
+      "role": "User",
+      "content": "好！一言为定！",
+      "intimacy_delta": 0.01
+    }
+  ],
+  "completed": false,
+  "starting_intimacy_level": 0,
+  "category": "legacy_rejected",
+  "rejection_reason": "ai生成",
+  "real_name": "森川美咲",
+  "legacy_timestamp": 1761107397
+}

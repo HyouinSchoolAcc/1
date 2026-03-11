@@ -1,0 +1,514 @@
+{
+  "user_schedule": {
+    "day": 1,
+    "早晨": "爱丁堡一条湿漉漉的后巷，林奇刚刚结束一场“朝九晚五”的酒吧演出，手里攥着几张皱巴巴的英镑。\n突然，他看到巷子深处，一个带着神秘气息的女子正在茫然地靠着墙，带着一种林奇从未见过的困惑"
+  },
+  "history": "",
+  "relationship": "Two people have just met and are still unfamiliar with each other. Their conversations are mostly polite and superficial, limited to everyday topics like work, studies, or the weather. At this stage, both sides are cautious and have yet to reveal their true selves.",
+  "dialogue": [
+    {
+      "content": "嘿，你还好吗？\n",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "如果我说需要一张前往新巴比伦的星舰票呢？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "新巴比伦？那地方三千年前就没了……",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "等等，星舰？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "嗯，星舰。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "新巴比伦不在了的话，雅利洛六号也行。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "……那你得先说服移民局和海关承认那个地方存在，然后尽快为你修建一座通向那边的航天中心。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "补充一句：这地方修高铁，十几年修了十几里。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "这个世界的文明等级，似乎比我想象的要低。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "可不是嘛。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "哦？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "我在这里见到了三个瘾君子，两处流浪汉聚居点，还有一群偷渡来的东欧模特。这个地方远比我想象的差得多了。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "你原本的想象是怎样的？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "摇滚之乡，发达国家，英伦风貌……我不远万里从亚欧大陆的另一侧来这里“朝圣”，可算是见识了这个光鲜亮丽的地方的另一面了。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "你似乎认为横跨一个大洲的距离，很远。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "至少对我足够远了。你呢？最近爱丁堡在扮国际艺术节，我看你气质不凡，你是巴黎或者别的什么地方来的艺术家吗？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "嗯……比巴黎要更远一些。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "你迷路了？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "远比迷路要麻烦得多，但你可以这么说。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "这种情况是我从来没有经历过的，但似乎也距离我所追逐的东西稍微近了些……亦或者是又一场错觉……",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "你听起来像是个马上就要在幻觉中晕倒的半吊子哲学家。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "你听起来……像是在拼凑自己的赎身契。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "……",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "准！大姐。你说得很准。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "虽然失去了力量，但观察与思索的能力还是保留着的。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "以及，你所使用的称呼，似乎并不很得体。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "在忙着思考怎么填饱肚子的情况下，人是很难优雅得体的，女士。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "来，三明治，先填填肚子……我是林奇，玩摇滚的。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "……你在给我食物……",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "放心，星际超能力旅行者小姐，我没意愿也没能力坑你。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "我刚被乐队那帮孙子克扣了演出费，现在穷得只剩下道德底线了。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "卡芙卡。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "很酷的名字，像某个写小说的怪大叔。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "老天啊，我居然在爱丁堡的雨天跟一个哲学系流浪美女搭讪……",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "你令人疑惑的地方不止这些：不如谈谈一个来自大陆另一端的摇滚爱好者，为什么会对着陌生流浪者施舍所剩无几的善意？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "这叫无产阶级互助精神。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "唉，我护照被人扣了，距离签证到期还有五个月零三天。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "看到对面那家酒吧没？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "“渔夫与酒”？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "就是那儿。剥削我的混蛋们正在里面花着我的劳动成果喝酒呢。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "很……有趣的困境。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "被迫滞留在一个不想留下的地方……",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "……而且还不能找警察，否则我就要被判非法牟利了。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "……那么，林奇。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "这是你最接近“恐惧”的时刻吗？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "除了贫穷与压迫之外，是否还有什么让你更加绝望——",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "比如，坠落，黑暗，失去预期，失去掌控？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "上周日下午两点二十七分。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "全城断电断网，那时候我正在美滋滋地等着返程的班机。亲眼目睹了整个城市突然失能，就像是所有的东西都被按下暂停……那确实接近如你所说。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "……原来如此……",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "嗯？你该不会，和那件事有关吧？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "如果说，我就是从那次事件中降临呢？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "嘿，得了吧。我还见过自称吸血鬼的醉鬼，一边吃炸鱼薯条一边宣称自己在吞噬人肉，最后被丢到街上醒酒——",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "看看这个。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "……",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "一块碎片？“苏格兰洛锡安变电厂”……",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "啊？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "是因为跃迁时的空间翘曲释放在了错误的地点……看样子，我欠你一张机票？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "何止机票！？……哎呀，老子现在被困在这破地方，被黑心乐队扣着护照打黑工——",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "不，抱歉……这应当是场悲剧。我不该向你发脾气，除非，你是故意这么做的。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "有意思。旅行者，剥削者，被剥削者……",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "被囚禁，被掠夺的不甘灵魂，不会燃起毁灭的火焰吗？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "哇哦！姐姐你说话就像我们主唱偷来的那些中二歌词。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "你不喜欢？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "哦，我可喜欢了，因为他偷的歌词可是我的创作。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "你试图让自己相信自己比剥削你的人高贵。这是自我安慰？还是对现状的无可奈何？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "是为了让他们不毁了我仅剩的一点好心情——比如下班吃饭的时候。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "现在是早上。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "没错，朝九晚五——从昨晚上五点，到今早九点，刚刚下班。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "所以，你接下来要怎么办？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "我不能直接报官，也不能让那帮畜生把我报上去，那么就只能先攒好机票钱，再伺机而动咯。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "在那最终的“毁灭”之日到来之前，我还要保证接下来五个月都得活着。当然了，怎么拿回护照也还要慢慢琢磨。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "……我开始对你有些兴趣了。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "也许，我能够帮你拿回护照。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "哦？可是为什么？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "一点即便所剩无几但却有意义的“同病相怜”，这还不够吗？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "呵，就凭你一个外星哲学系……",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "就凭我比任何人都了解，如何洞察欲望与恐惧，以及，如何狩猎恶魔。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "……",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "先说好，我讨厌三种人：怜悯摇滚的伪君子，克扣分成的资本家，还有说话说得半懂不懂的……",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "以及所有不让你把话说完的？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "哈。你至少对我洞察挺深的。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "那——你需要我做什么？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "我只需要这一切以尽可能美的方式完成。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "……那需要看你能不能欣赏摇滚乐了。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "我想，它不会让我过于失望。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "今天晚上我们在肉铺街的地下livehouse有例行演出。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "那里的设施并不完备，会有很多漏洞。那座livehouse本身也曾经是一座餐厅的后厨，所有，会有一个后门。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "你从没有放弃过……",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "我只是在等。女士，我们接下来会有时间商量的。你对这个计划的美感，评判如何？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "嗯，还不错。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "但与之比起来，那边的覆盆子挞会更美一些。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": " 那边……那个一眼看上去就贵的要死的甜品店？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "这就是你的计划？用我最后的存款买甜品？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "呵呵。所有的狩猎——",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "——都要从品尝猎场的氛围开始。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    }
+  ],
+  "intimacy_level": 0.9600000000000006,
+  "starting_intimacy_level": 0,
+  "completed": false,
+  "user_id": "user_46",
+  "user_name": "林奇",
+  "real_name": "李正平",
+  "_creation_metadata": {
+    "created_at": 1760288614,
+    "created_by_ip": "127.0.0.1",
+    "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0",
+    "version": "1.0"
+  },
+  "character_schedule": {
+    "morning": "一次似乎是遭遇了意外的星际跃迁，让卡芙卡掉入了这个陌生的世界。她在这个阴雨连绵的破败城市内四处游荡，而且不知为何失去了自己的能力。\n在疲惫和困惑之下，她在一处隐蔽处恢复精力，同时也暗暗好奇，她是否距离她所追逐的恐惧更近了一步。\n就在这时，一个背着旧吉他包，捏着几张纸币，看起来像是本地青年的家伙注意到了她。",
+    "noon": "",
+    "afternoon": "",
+    "evening": "收集了一些关于那颗星球的情报并做了一些补给准备。",
+    "night": "启程去往那颗星球，寻找艾利欧口中的“目标”",
+    "day": 1
+  },
+  "category": "rejected",
+  "assessment_timestamp": "2025-10-29T14:35:17.002Z",
+  "problems_count": 3,
+  "rejection_timestamp": "2025-10-29T14:35:17.002Z"
+}

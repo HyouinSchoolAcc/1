@@ -1,0 +1,59 @@
+<!-- UI Mini Version Badge -->
+<style>
+  .ui-version-badge {
+    position: fixed;
+    bottom: 12px;
+    right: 14px;
+    z-index: 10000;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: rgba(7, 11, 40, 0.85);
+    color: #f8f9fc;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 12px rgba(7, 11, 40, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    pointer-events: none;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+  }
+
+  .ui-version-badge:hover {
+    opacity: 1;
+  }
+
+  body.trial-mode .ui-version-badge {
+    bottom: 56px;
+  }
+
+  @media (max-width: 576px) {
+    .ui-version-badge {
+      font-size: 0.65rem;
+      padding: 3px 10px;
+      right: 10px;
+      bottom: 10px;
+    }
+  }
+</style>
+<div id="uiVersionBadge" class="ui-version-badge" aria-live="polite"></div>
+<script>
+  // Update this string whenever a mini change is shipped.
+  window.__UI_MINI_VERSION__ = "Mini Build v1.0.12";
+
+  (function updateVersionBadge() {
+    function applyText() {
+      const badge = document.getElementById("uiVersionBadge");
+      if (!badge) return;
+      badge.textContent = window.__UI_MINI_VERSION__ || "Mini Build";
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", applyText);
+    } else {
+      applyText();
+    }
+  })();
+</script>
+

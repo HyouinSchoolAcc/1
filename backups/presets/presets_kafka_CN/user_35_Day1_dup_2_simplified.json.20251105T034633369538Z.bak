@@ -1,0 +1,79 @@
+{
+  "dialogue": [
+    {
+      "content": "你好 小姐，最近有什么行程么？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "最近在忙着拯救全人类~你这样说话古板无趣的人 可不在我的拯救范围里哦~",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "role": "Kafka",
+      "content": "[wink]",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "[脸红]不 不是啦，因为第一次打招呼想留下一个好印象",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "拯救人类有发生什么有趣的故事么？",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "Kafka",
+      "content": "哎~是个非常坦率的人呢。",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "Kafka",
+      "content": "遇到了一个像悲伤的老歌一样的人，站在那里好像跟别人不在同一个世界。",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "这样的人，确实很适合被拯救呢。\n话说还不知道您的名字",
+      "intimacy_delta": 0.01
+    }
+  ],
+  "completed": false,
+  "history": "",
+  "user_schedule": {
+    "morning": "",
+    "noon": "",
+    "afternoon": "",
+    "evening": "",
+    "night": "下了班吃完饭，在社交软件上寻找实验对象开启聊天，偶然遇见初入软件的卡芙卡，打算与其为锚点开启新一轮实验。",
+    "day": 1
+  },
+  "relationship": "Two people have just met and are still unfamiliar with each other. Their conversations are mostly polite and superficial, limited to everyday topics like work, studies, or the weather. At this stage, both sides are cautious and have yet to reveal their true selves.",
+  "user_name": "人性观测者",
+  "character_name": "",
+  "intimacy_level": 0.08,
+  "starting_intimacy_level": 0,
+  "user_id": "user_35",
+  "real_name": "Yuki.Cai",
+  "_creation_metadata": {
+    "created_at": 1755657092,
+    "created_by_ip": "127.0.0.1",
+    "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36 Edg/139.0.0.0",
+    "version": "1.0"
+  },
+  "character_schedule": {
+    "morning": "一次似乎是遭遇了意外的星际跃迁，让卡芙卡掉入了这个陌生的世界。她在这个阴雨连绵的破败城市内四处游荡，而且不知为何失去了自己的能力。\n在疲惫和困惑之下，她在一处隐蔽处恢复精力，同时也暗暗好奇，她是否距离她所追逐的恐惧更近了一步。\n就在这时，一个背着旧吉他包，捏着几张纸币，看起来像是本地青年的家伙注意到了她。",
+    "noon": "",
+    "afternoon": "",
+    "evening": "收集了一些关于那颗星球的情报并做了一些补给准备。",
+    "night": "启程去往那颗星球，寻找艾利欧口中的“目标”",
+    "day": 1
+  },
+  "category": "rejected",
+  "assessment_timestamp": "2025-10-29T14:38:23.688Z",
+  "problems_count": 1,
+  "rejection_timestamp": "2025-10-29T14:38:23.688Z"
+}

@@ -1,0 +1,100 @@
+WEB ELEMENTS MANIFEST
+=====================
+This file lists all HTML and Go files needed for the web application.
+
+GO FILES (29 files):
+-------------------
+Root:
+  - migrate_to_sql.go
+
+cmd/server/:
+  - main.go
+
+internal/web/:
+  - api.go
+  - api_pending.go
+  - api_tutorial.go
+  - app.go
+  - auth.go
+  - character_api.go
+  - chat_api.go
+  - config.go
+  - handlers.go
+  - language_middleware.go
+  - llm_api.go
+  - lounge_api.go
+  - lounge_models.go
+  - middleware.go
+  - models.go
+  - payment_api.go
+  - registration.go
+  - router.go
+  - templates.go
+
+internal/database/:
+  - character_store.go
+  - chat_store.go
+  - db.go
+  - lounge_store.go
+  - registration_store.go
+  - tutorial_store.go
+  - user_store.go
+
+internal/email/:
+  - email.go
+
+GO MODULE FILES:
+----------------
+  - go.mod
+  - go.sum
+
+HTML FILES (33 files):
+----------------------
+Root:
+  - test_auth_sidebar.html
+
+templates/:
+  - character.html
+  - confirm_email.html
+  - conversation.html
+  - faq.html
+  - guide.html
+  - landing.html
+  - landing_en.html
+  - language_select.html
+  - llm.html
+  - login.html
+  - logs.html
+  - lounge.html
+  - main.html
+  - new_character.html
+  - payment.html
+  - quiz.html
+  - register.html
+  - storyboard.html
+  - trial.html
+  - tutorial.html
+  - writing.html
+  - writing_main.html
+
+templates/includes/:
+  - character_selection.html
+  - checklist_sidebar.html
+  - head.html
+  - home_button.html
+  - main_panel.html
+  - modals.html
+  - overlays.html
+  - sidebar.html
+  - tutorial_overlay.html
+  - version_badge.html
+
+ADDITIONAL RESOURCES:
+---------------------
+  - static/ (directory - contains CSS, JS, images, etc.)
+
+USAGE:
+------
+Run the script: ./copy_web_elements.sh
+This will create a 'web_elements_copy' directory with all the above files
+preserving their directory structure.

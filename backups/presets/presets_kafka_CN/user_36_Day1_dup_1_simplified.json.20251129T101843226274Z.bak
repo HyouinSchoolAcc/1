@@ -1,0 +1,45 @@
+{
+  "user_schedule": {
+    "day": 1,
+    "夜晚": "和卡夫卡讨论接下来的合作"
+  },
+  "history": "",
+  "relationship": "Two people have just met and are still unfamiliar with each other. Their conversations are mostly polite and superficial, limited to everyday topics like work, studies, or the weather. At this stage, both sides are cautious and have yet to reveal their true selves.",
+  "dialogue": [
+    {
+      "content": "嗨，卡芙卡，久闻大名",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "role": "Kafka",
+      "content": "我也听说过你的名号",
+      "intimacy_delta": 0.01
+    }
+  ],
+  "intimacy_level": 0.02,
+  "starting_intimacy_level": 0,
+  "completed": false,
+  "user_id": "user_36",
+  "user_name": "星穹",
+  "real_name": "孙星齐",
+  "_creation_metadata": {
+    "created_at": 1755930389,
+    "created_by_ip": "127.0.0.1",
+    "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
+    "version": "1.0"
+  },
+  "character_schedule": {
+    "afternoon": "",
+    "day": 1,
+    "evening": "收集了一些关于那颗星球的情报并做了一些补给准备。",
+    "morning": "艾利欧给出了新的剧本：在这颗边荒的星球上，存在着一个拥有奇特力量的小家伙，她似乎还没意识到自己的本质，去观察她，去引导她",
+    "night": "启程去往那颗星球，寻找艾利欧口中的“目标”",
+    "noon": ""
+  },
+  "category": "legacy_rejected",
+  "assessment_timestamp": "2025-09-03T18:16:28.110Z",
+  "problems_count": 3,
+  "rejection_timestamp": "2025-09-03T18:16:28.110Z",
+  "legacy_timestamp": 1761107398
+}

@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奇点之门工作室 - Singularity Gate Studio</title>
+    <link rel="stylesheet" href="/static/style.css?v=6">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- One-time redirect for logged-in users (allows back navigation) -->
+    <script>
+        (async function() {
+            // Skip if already redirected this session
+            if (sessionStorage.getItem('redirectedFromLanding')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/current_user');
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.logged_in && (data.role === 'writer' || data.role === 'editor')) {
+                        sessionStorage.setItem('redirectedFromLanding', 'true');
+                        const isEnglish = '{{.Language}}' === 'en';
+                        window.location.href = isEnglish ? '/navigation/e' : '/navigation';
+                    }
+                }
+            } catch (e) {}
+        })();
+    </script>
+    
+    <!-- Flash Messages -->
+    <!-- Flash messages functionality not yet implemented -->
+
+    <!-- Top Header -->
+    <header class="top-header">
+        <!-- Hamburger Menu (Left) -->
+        <div class="menu-container">
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <!-- Dropdown Menu -->
+            <nav class="dropdown-menu" id="dropdownMenu">
+                <a href="{{langURL .Language "guide"}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                    <span>写手指南</span>
+                </a>
+                <a href="{{langURL .Language "navigation"}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                        <path d="M2 2l7.586 7.586"></path>
+                        <circle cx="11" cy="11" r="2"></circle>
+                    </svg>
+                    <span>写作</span>
+                </a>
+                <a href="{{langURL .Language "lounge"}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <span>写手交流室</span>
+                </a>
+                <a href="{{langURL .Language "faq"}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    <span>常见问题</span>
+                </a>
+                <a href="{{langURL .Language "descriptions"}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>角色描述</span>
+                </a>
+                <a href="{{langURL .Language "payment"}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                    <span>付款</span>
+                </a>
+                <a href="{{langURL .Language "llm"}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"></path>
+                        <circle cx="7.5" cy="14.5" r="1.5"></circle>
+                        <circle cx="16.5" cy="14.5" r="1.5"></circle>
+                    </svg>
+                    <span>LLM 使用</span>
+                </a>
+                <a href="/store" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span>商店</span>
+                </a>
+                {{if .LoggedIn}}
+                <a href="/profile/{{.CurrentUser}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>我的主页</span>
+                </a>
+                {{end}}
+            </nav>
+        </div>
+        
+        <!-- Logo (Center) -->
+        <a class="logo-container" href="/">
+            <div class="logo-icon"></div>
+            <span class="logo-text">写手门户</span>
+        </a>
+        
+        <!-- Language Switcher -->
+        <div class="language-switcher" style="margin-right: 15px;">
+            <a href="/e" style="text-decoration: none; color: #718096; font-size: 14px; padding: 8px 12px; border-radius: 6px; transition: all 0.2s;">🇺🇸 EN</a>
+            <span style="color: #cbd5e0;">|</span>
+            <a href="/" style="text-decoration: none; color: #2d3748; font-weight: 600; font-size: 14px; padding: 8px 12px; border-radius: 6px; background: #f7fafc;">🇨🇳 中文</a>
+        </div>
+        
+        <!-- Account Menu (Right) -->
+        <div class="account-container">
+            <button class="account-btn" id="accountBtn" aria-label="Account menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </button>
+            
+            <!-- Account Dropdown -->
+            <div class="account-dropdown" id="accountDropdown">
+                {{if .LoggedIn}}
+                <div class="account-dropdown-header">
+                    <span class="account-name">{{.CurrentUser}}</span>
+                </div>
+                <a href="/logout" class="account-dropdown-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    <span>退出</span>
+                </a>
+                {{else}}
+                <a href="{{langURL .Language "login"}}" class="account-dropdown-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                        <polyline points="10 17 15 12 10 7"></polyline>
+                        <line x1="15" y1="12" x2="3" y2="12"></line>
+                    </svg>
+                    <span>登录</span>
+                </a>
+                {{end}}
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="hero">
+            <h1>欢迎来到奇点之门工作室</h1>
+            <p class="hero-tagline">我们是个做数据的实验室，专攻长时间大模型角色扮演能力</p>
+            <p class="hero-description">
+                我们的梦想是有一天模型聊天和人完全一模一样无法区分，打通图灵测试副本（完整）。<br>
+                恭候你的加入，研究员。
+            </p>
+            
+            <!-- ====== What We Do ====== -->
+            <div class="about-section">
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="about-icon">🎯</div>
+                        <h3>问题</h3>
+                        <p>现有AI角色扮演模型短期聊天看起来没问题，但一旦聊久了就会出现遗忘、情感错位、漫无目的等问题。这些都源于模型训练数据的根本缺失。</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-icon">🔬</div>
+                        <h3>方案</h3>
+                        <p>我们用人工编写的高质量对话数据，通过SFT让模型学会高阶思考、情感表达和背景知识。不用爬虫、不用AI生成——每一条数据都是真人精心构建的。</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-icon">🌟</div>
+                        <h3>愿景</h3>
+                        <p>让AI聊天真正做到和人无法区分。不是几句话的表演，而是长期相处中的理解、记忆和成长。打通完整的图灵测试。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ====== Mini FAQ ====== -->
+            <div class="mini-faq-section">
+                <h2>你可能想问</h2>
+                <div class="mini-faq-list">
+                    <details class="mini-faq-item">
+                        <summary>为什么不直接用网上已有数据训练？</summary>
+                        <p>贴吧、同人文、小说各有问题——要么缺乏角色一致性，要么人设杂乱，要么深度不足。微信数据没有角色背景，反推困难。我们从零构建结构化数据，确保每一条都可直接用于训练。</p>
+                    </details>
+                    <details class="mini-faq-item">
+                        <summary>你们需要什么样的人？</summary>
+                        <p>不需要程序员——我们需要<strong>和人说过话的人</strong>。只有真正在实验室干过、工作过、生活过的人，才知道真实对话的氛围、节奏和情感。能融入角色、写出自然对话的编辑/演员就是我们需要的。</p>
+                    </details>
+                    <details class="mini-faq-item">
+                        <summary>待遇怎么算？</summary>
+                        <p>暂定 <strong>¥100 / 1000字</strong>（约 $14 USD）。根据项目发展和数据需求可能调整，一切以实验室可持续运转为基准。</p>
+                    </details>
+                    <details class="mini-faq-item">
+                        <summary>凭什么你能做过大厂？</summary>
+                        <p>大厂追求短期指标，不愿意在长期角色真实性上冒险。我们的优势在于更深的理解和对长期研究的投入。而且很多投机取巧用模型赚快钱的已经死光了。</p>
+                    </details>
+                </div>
+                <a href="/faq" class="mini-faq-more">查看完整FAQ（含计算机、社会学、哲学等） →</a>
+            </div>
+
+            <!-- ====== Data Preview Section ====== -->
+            <div class="data-preview-section" id="data-preview-section">
+                <h2>对话数据示例</h2>
+                <p class="preview-subtitle">真实、接地气、具有角色感的对话数据</p>
+                
+                <div class="dialogue-selector-container">
+                    <div class="dialogue-tabs">
+                        <button class="tab-btn active" onclick="switchDialogue(0)">初次见面（失败）</button>
+                        <button class="tab-btn" onclick="switchDialogue(1)">发牢骚</button>
+                        <button class="tab-btn" onclick="switchDialogue(2)">见面（科研向）</button>
+                    </div>
+                    
+                    <div id="selected-dialogue-content" class="demo-dialogue-container">
+                        <!-- Dialogue content will be injected here by JS -->
+                    </div>
+                </div>
+
+                <div class="preview-cta">
+                    <a href="/navigation" class="btn-view-more">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <span>查看更多数据</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- ====== CTA — now placed AFTER context ====== -->
+            <div class="join-cta-section">
+                <h2>准备好了？</h2>
+                <p>曹操会带你了解整个写作流程和工具使用</p>
+                <a href="/guide" class="btn-start-writing" style="background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%); box-shadow: 0 4px 15px rgba(45, 55, 72, 0.4); cursor: pointer; border: none; text-decoration: none;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                    </svg>
+                    <span>带我逛逛，曹孟德先生</span>
+                </a>
+            </div>
+            
+        </section>
+
+        <section class="features-grid" id="features-grid">
+            <a href="/guide" id="feature-guide" class="feature-card" style="border: 2px solid var(--primary-light); background: linear-gradient(135deg, var(--bg-white) 0%, #f0f4ff 100%);">
+                <div class="feature-icon" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                </div>
+                <h3>从零开始的作家们</h3>
+                <p>和我签订契约，成为魔法少女（写手吧）</p>
+            </a>
+            
+            <a href="/navigation" id="feature-navigation" class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                        <path d="M2 2l7.586 7.586"></path>
+                    </svg>
+                </div>
+                <h3>写作</h3>
+                <p>为 AI 角色训练创建和编辑对话样本</p>
+            </a>
+            
+            <a href="/lounge" id="feature-lounge" class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                </div>
+                <h3>写手交流室</h3>
+                <p>与其他写手交流，分享心得，参加每日挑战</p>
+            </a>
+            
+            <a href="/faq" id="feature-faq" class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                </div>
+                <h3>常见问题</h3>
+                <p>指南、最佳实践以及常见问题解答</p>
+            </a>
+            
+            <a href="/descriptions" class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <h3>角色描述</h3>
+                <p>深入了解角色故事、性格和日常安排</p>
+            </a>
+            
+            <a href="/payment" class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                </div>
+                <h3>付款</h3>
+                <p>追踪您的提交和付款状态</p>
+            </a>
+            
+            <a href="/llm" class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"></path>
+                        <circle cx="7.5" cy="14.5" r="1.5"></circle>
+                        <circle cx="16.5" cy="14.5" r="1.5"></circle>
+                    </svg>
+                </div>
+                <h3>LLM 使用</h3>
+                <p>与微调后的林路 AI 角色对话</p>
+            </a>
+        </section>
+
+        <!-- Journey Path — visual story checkpoint -->
+        <section class="journey-section" id="journey-section">
+            <h2 class="journey-title">你的写手之旅</h2>
+            <p class="journey-subtitle">新人推荐路线 — 跟着走，不迷路</p>
+
+            <div class="journey-map">
+                <!-- Connecting path line (behind the stops) -->
+                <div class="journey-line-track" aria-hidden="true"></div>
+
+                <!-- Stop 1: Guide -->
+                <a href="/guide" class="journey-stop stop-start" id="jstop-guide">
+                    <div class="stop-marker">
+                        <span class="marker-pulse"></span>
+                        <span class="marker-num">1</span>
+                </div>
+                    <div class="stop-card">
+                        <div class="stop-preview preview-guide">
+                            <img src="/static/caocao.png" alt="" class="pv-avatar">
+                            <div class="pv-speech">
+                                <div class="pv-line"></div>
+                                <div class="pv-line short"></div>
+                                <div class="pv-line shorter"></div>
+                </div>
+                        </div>
+                        <div class="stop-info">
+                            <h3>写手指南</h3>
+                            <p>曹操带你入门，了解写作流程</p>
+                            <span class="stop-tag tag-start">从这里开始!</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Stop 2: Writing Interface -->
+                <a href="/navigation" class="journey-stop" id="jstop-writing">
+                    <div class="stop-marker"><span class="marker-num">2</span></div>
+                    <div class="stop-card">
+                        <div class="stop-preview preview-writing">
+                            <!-- CSS-only 3-column mockup of the actual writing page -->
+                            <div class="pw-layout">
+                                <div class="pw-col pw-sidebar">
+                                    <div class="pw-head"></div>
+                                    <div class="pw-item"></div>
+                                    <div class="pw-item active"></div>
+                                    <div class="pw-item"></div>
+                </div>
+                                <div class="pw-col pw-main">
+                                    <div class="pw-bubble ai"><span class="pw-dot"></span><span class="pw-dot"></span><span class="pw-dot w"></span></div>
+                                    <div class="pw-bubble user"><span class="pw-dot"></span><span class="pw-dot w"></span></div>
+                                    <div class="pw-bubble ai"><span class="pw-dot"></span><span class="pw-dot"></span></div>
+                                    <div class="pw-bubble user"><span class="pw-dot w"></span></div>
+                                    <div class="pw-input-bar"><div class="pw-input-line"></div><div class="pw-send-btn"></div></div>
+                                </div>
+                                <div class="pw-col pw-right">
+                                    <div class="pw-avatar-ph"></div>
+                                    <div class="pw-veja-row"><span class="pw-veja-label">V</span><div class="pw-veja-bar"></div></div>
+                                    <div class="pw-veja-row"><span class="pw-veja-label">E</span><div class="pw-veja-bar"></div></div>
+                                    <div class="pw-veja-row"><span class="pw-veja-label">J</span><div class="pw-veja-bar s"></div></div>
+                                    <div class="pw-veja-row"><span class="pw-veja-label">A</span><div class="pw-veja-bar s"></div></div>
+                                </div>
+                            </div>
+                            <div class="pw-label-row">
+                                <span>会话列表</span><span>对话区</span><span>角色档案</span>
+                            </div>
+                        </div>
+                        <div class="stop-info">
+                            <h3>写作界面</h3>
+                            <p>选角色 → 三栏布局写对话</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Stop 3: My Page -->
+                <a href="{{if .LoggedIn}}/profile/{{.CurrentUser}}{{else}}{{langURL .Language "login"}}{{end}}" class="journey-stop" id="jstop-profile">
+                    <div class="stop-marker"><span class="marker-num">3</span></div>
+                    <div class="stop-card">
+                        <div class="stop-preview preview-profile">
+                            <div class="pp-icon">💰</div>
+                            <div class="pp-bar-row"><div class="pp-bar"><div class="pp-fill" style="width:72%"></div></div><span class="pp-val">¥</span></div>
+                            <div class="pp-bar-row"><div class="pp-bar"><div class="pp-fill short" style="width:45%"></div></div><span class="pp-val">XP</span></div>
+                            <div class="pp-stats"><span>📝 对话数</span><span>✅ 通过率</span></div>
+                </div>
+                        <div class="stop-info">
+                            <h3>我的主页</h3>
+                            <p>稿费 · 等级 · 工作记录</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Quick links for returning users -->
+            <div class="quick-links">
+                <span class="ql-label">其他入口：</span>
+                <a href="/lounge">💬 交流室</a>
+                <a href="/faq">❓ 常见问题</a>
+                <a href="/descriptions">👤 角色描述</a>
+                <a href="/payment">💳 付款</a>
+                <a href="/llm">🤖 LLM</a>
+                <a href="/store">🛒 商店</a>
+                </div>
+        </section>
+
+        <section class="quote-section">
+            <blockquote>
+                "如果我问人们想要什么，他们会说更快的马。"
+            </blockquote>
+            <cite>— 亨利·福特</cite>
+            <blockquote style="margin-top: 1.5rem;">
+                "我们<strong>将</strong>打通图灵测试。"
+            </blockquote>
+            <cite>— 奇点之门工作室</cite>
+        </section>
+
+        <!-- Timeline Section (at the very bottom) -->
+        <section class="timeline-section" style="margin-top: 3rem; padding: 2rem 1rem;">
+            <h2>企划时间线</h2>
+            
+            <div class="timeline-container">
+                <!-- The horizontal line -->
+                <div class="timeline-line"></div>
+                
+                <!-- Timeline markers - Time-accurate: Dec 2025 to Sep 2026 = 9 months -->
+                <div class="timeline-markers">
+                    <div class="timeline-marker" style="left: 0%;">
+                        <div class="marker-dot" onclick="this.parentElement.classList.toggle('expanded')"></div>
+                        <div class="marker-stem"></div>
+                        <div class="marker-content above" onclick="this.parentElement.classList.toggle('expanded')">
+                            <span class="marker-icon">🚀</span>
+                            <span class="marker-date">12月</span>
+                            <span class="marker-details">
+                                <strong>2025年12月</strong>
+                                <span>网站建设</span>
+                                <span>核心功能开发</span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-marker" style="left: 11%;">
+                        <div class="marker-dot" onclick="this.parentElement.classList.toggle('expanded')"></div>
+                        <div class="marker-stem below"></div>
+                        <div class="marker-content below" onclick="this.parentElement.classList.toggle('expanded')">
+                            <span class="marker-icon">📢</span>
+                            <span class="marker-date">1月</span>
+                            <span class="marker-details">
+                                <strong>2026年1月</strong>
+                                <span>招募启动</span>
+                                <span>B站宣发</span>
+                                <span>Demo上线</span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-marker" style="left: 22%;">
+                        <div class="marker-dot" onclick="this.parentElement.classList.toggle('expanded')"></div>
+                        <div class="marker-stem"></div>
+                        <div class="marker-content above" onclick="this.parentElement.classList.toggle('expanded')">
+                            <span class="marker-icon">👥</span>
+                            <span class="marker-date">2月</span>
+                            <span class="marker-details">
+                                <strong>2026年2月</strong>
+                                <span>角色设定敲定</span>
+                                <span>团队组建</span>
+                                <span>数据收集开始</span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-marker" style="left: 44%;">
+                        <div class="marker-dot" onclick="this.parentElement.classList.toggle('expanded')"></div>
+                        <div class="marker-stem below"></div>
+                        <div class="marker-content below" onclick="this.parentElement.classList.toggle('expanded')">
+                            <span class="marker-icon">✅</span>
+                            <span class="marker-date">4月</span>
+                            <span class="marker-details">
+                                <strong>2026年4月</strong>
+                                <span>数据收集结束</span>
+                                <span>模型微调</span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-marker" style="left: 56%;">
+                        <div class="marker-dot end" onclick="this.parentElement.classList.toggle('expanded')"></div>
+                        <div class="marker-stem"></div>
+                        <div class="marker-content above" onclick="this.parentElement.classList.toggle('expanded')">
+                            <span class="marker-icon">🔮</span>
+                            <span class="marker-date">5月+</span>
+                            <span class="marker-details">
+                                <strong>2026年5月+</strong>
+                                <span>待定</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Start/End labels -->
+                <div class="timeline-endpoints">
+                    <span class="endpoint start">2025</span>
+                    <span class="endpoint end">2026 →</span>
+                </div>
+            </div>
+            <p class="timeline-hint">点击节点查看详情</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>奇点之门工作室 - Singularity Gate Studio</p>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+    <script>
+        // Sample Dialogue Data
+        const sampleDialogues = [
+            {
+                title: "初次见面（失败）",
+                character: "Kurisu",
+                messages: [
+                    { role: "ai", content: "阿巴" },
+                    { role: "user", content: "阿巴" },
+                    { role: "ai", content: "你是人么？" },
+                    { role: "user", content: "你是鬼么？" },
+                    { role: "ai", content: "我是恶鬼~小孩子小心被我吃掉~嗷呜~" },                   
+                    { role: "ai", content: "你学啥的？" },
+                    { role: "user", content: "咋这么问，很冒犯啊亲" },
+                    { role: "system", content: "对方已下线" }
+                ]
+            },
+            {
+                title: "发牢骚",
+                character: "Kurisu",
+                messages: [
+                    { role: "ai", content: "草实验室小张刚进来的时候干的事挺多的，时间一久了不是出去玩就是找不到人。" },
+                    { role: "ai", content: "项目进展完全不关心，气死我了" },
+                    { role: "user", content: "啊? 你们实验室需要他么? 有活他不干？" },
+                    { role: "ai", content: "是啊，来了象征性干两个手头的活，但要动脑子的时候或者坐那加功能做测试一次找不到" },
+                    { role: "user", content: "听起来是态度问题啊" },
+                    { role: "user", content: "找老师反应开了不就行了" },
+                    { role: "ai", content: "我也不知道是不是态度问题，干活是能干好，但能干的时间老是特别少，感觉他就人不在。" },
+                    { role: "ai", content: "就。。你知道职场那种”我能干事，不推脱不揽责“那态度，你找老师问’活干好了么‘他就说干好了，也没啥能说的" },
+                    { role: "user", content: "卧槽" },
+                    { role: "user", content: "你这才是卷王" },
+                    { role: "user", content: "恐怖" },
+                    { role: "user", content: "man" },
+                    { role: "user", content: "what can I say" },
+                    { role: "ai", content: "mamba out " },
+                    { role: "ai", content: "。。。。。。" },
+                    { role: "ai", content: "你可以陪我骂骂他" },
+                    { role: "user", content: "听起来如果能干好的话多给他点活，一般这种人给个目的会好很多。那种可量化的，因为他们不想动脑子吗" },
+                    { role: "ai", content: "但想结果也很难啊" },
+                    { role: "ai", content: "我能想好结果就不用他干了" },
+                    { role: "ai", content: "而且量化这玩意一错了就贼错" },
+                    { role: "ai", content: "很多企业/实验室就是方向错了的才一错再错" },
+                    { role: "user", content: "那没办法了，智商问题。" },
+                    { role: "user", content: "欸嘿" },
+                    { role: "ai", content: "nm" },
+                    { role: "user", content: "实不相瞒，我以前就是这种人" },
+                    { role: "ai", content: "啊？你这也有脸跟我说" },
+                    { role: "user", content: "就实验室混一混很正常啊。有趣了干点事，没趣了就干其他活。大学里有趣的还挺多的" },
+                    { role: "user", content: "说实话也是不知道自己想要什么和对这一件事的出路不确定。因为不知道他的效果怎么样" },
+                    { role: "ai", content: "欸你这道提醒我了" },
+                    { role: "ai", content: "~该撸管了~" },
+                    { role: "ai", content: "我是不是应该去画饼让这个人更有参与感" },
+                    { role: "user", content: "你个女生你撸个头" },
+                    { role: "ai", content: "你当时后来结果是啥，跑路了？还是认真干了？" },
+                    { role: "user", content: "我当时是认真干了之后因为看到了其他更有趣的东西跑路了，但在实验组我一开始比较边缘人，后来觉得融入了才认真开始的" },
+                    { role: "user", content: "认真的契机应该是和同学聊的来了吧" },
+                    { role: "ai", content: "看来我有必要学会拉同学出去吃饭的能力" },
+                    { role: "ai", content: "这个咋办" },
+                    { role: "user", content: "”约吗？“" },
+                    { role: "ai", content: "”不约“" },
+                    { role: "user", content: "装什么高冷" },
+                    { role: "ai", content: "算了隔天试试吧" },
+                    { role: "user", content: "约到了别把我忘了啊" },
+                    { role: "ai", content: "？？？？" }
+                ]
+            },
+            {
+                title: "见面（科研向）",
+                character: "Kurisu",
+                messages: [
+                    { role: "ai", content: "你学啥的？" },
+                    { role: "user", content: "我学无力的" },
+                    { role: "user", content: "物理" },
+                    { role: "ai", content: "哦？你的研究方向是啥" },
+                    { role: "user", content: "量子网络中光子偏振随时间推移用错开的波长进行预测和矫正" },
+                    { role: "ai", content: "哦哦，那具体是什么问题呢？给我讲讲呗" },
+                    { role: "user", content: "额。。。。量子中的偏振你知道吧" },
+                    { role: "ai", content: "我知道一般量子通讯用偏振，Bell state 啊，stablizer code啊什么的以前略微读了些能看懂" },
+                    { role: "user", content: "卧槽你学啥的" },
+                    { role: "ai", content: "我学脑科学的" },
+                    { role: "user", content: "脑科学为什么会懂这些玩意" },
+                    { role: "ai", content: "闲的时候看文章吧，有时候去conference也会有人说研究这玩意\n欸你先把你的说完" },
+                    { role: "user", content: "哦哦，就一般偏振在地下的光管道里面1个小时过后就会有不可解释的偏差，一般这种系统需要矫正的话就需要停止输送，重新用大光进行矫正，然后回归传输，也就是需要断网。我们的想法是如果能有额外的一条波长在同场景下，可以把光从结尾处剥离出来，并且用他的偏振实时矫正原光路的偏振" },
+                    { role: "ai", content: "hmmm\n听起来像ml的活啊" },
+                    { role: "user", content: "是啊" },
+                    { role: "ai", content: "难么？" },
+                    { role: "user", content: "?" },
+                    { role: "ai", content: "我的意思是听起来很简单的实验，你们效果怎么样？" },
+                    { role: "user", content: "别说了，偏振这玩意根本在数学上相关性是直接基本可以定义为不可能。两个波长近的时候区分导致的光子丢失过大，如果远了就数学建模不可能，只能黑盒\n但好处是文章快发了，因为黑盒练完了" },
+                    { role: "ai", content: "好草台哈哈哈哈" },
+                    { role: "ai", content: "我没干过偏振，你们做了多久?" },
+                    { role: "user", content: "一年半吧" },
+                    { role: "ai", content: "？？？？" },
+                    { role: "ai", content: "啥东西花你们一年半" },
+                    { role: "user", content: "哦哦实验时数据老是不够，如果是地下的偏振变动幅度太小，但如果在实验室做的模型 fit 过去好像效果不是很好\n我们数据一收集就是一周，然后还得和其他实验室打架。。。就很烦" },
+                    { role: "ai", content: "啊那很惨了" },
+                    { role: "user", content: "其实不惨，因为都在等数据，所以我一周能玩60+小时撸啊撸啊哈哈哈" },
+                    { role: "ai", content: "？？？？？？" },
+                    { role: "ai", content: "震惊" },
+                    { role: "ai", content: "你们老板不知道么？" },
+                    { role: "user", content: "就像你说的，我老佛系了哈哈哈哈\n而且实验没了我他们也不知道怎么加能力，有数据了还是挺爆肝的\n甚至我训练用的服务器都是我自己买的" },
+                    { role: "ai", content: "离谱" },
+                    { role: "ai", content: "已经无力吐槽了" },
+                    { role: "ai", content: "还有你们训多大的模型？还要服务器" },
+                    { role: "user", content: "效果不好所以我用我买的H100整的，50million的transformer" },
+                    { role: "ai", content: "太有钱了" },
+                    { role: "user", content: "所以我没车" },
+                    { role: "user", content: "乐" },
+                    { role: "user", content: "你还没跟我说过你的实验呢" },
+                    { role: "user", content: "你干啥的？" },
+                    { role: "ai", content: "啊我做脑电的" },
+                    { role: "user", content: "细讲" },
+                    { role: "ai", content: "就一般脑电的信号只能通过解刨死尸你知道吧，就没有活的时候会比较限制能看得到的东西。" },
+                    { role: "ai", content: "那种插电极的方式也挺restrictive，虽然能获取一部分大脑信息，但前额叶这种储存高阶智慧模块的也只能通过非常少的数据来做分类，但洞悉想法基本做不到，信息点不足。" },
+                    { role: "ai", content: "我们的方法是用微型对撞机的双方向粒子缠绕去打通脑髓叶屏蔽性，实时监测活人的脑部活动。" },
+                    { role: "user", content: "哇牛逼啊" },
+                    { role: "user", content: "听起来有很多我不懂的" },
+                    { role: "user", content: "而且贼危险" },
+                    { role: "ai", content: "危险。。。还行吧" },
+                    { role: "ai", content: "理论上来说我们的对撞机不炸就没啥事" },
+                    { role: "ai", content: "还有过滤器过滤辐射性粒子" },
+                    { role: "ai", content: "额。。" },
+                    { role: "ai", content: "越描越黑" },
+                    { role: "ai", content: "但总而言之就改东西就行了" },
+                    { role: "user", content: "实验成果怎么样？在哪一步？" },
+                    { role: "ai", content: "粒子的老鼠实验是成功了，有对脑部细胞的弱散射和读取。观察没发现异样，最近在申请IRB做人体实验呢" },
+                    { role: "ai", content: "剩下时间就是搭机器和scale up探测器了，全是脏活累活哈哈" },
+                    { role: "user", content: "你们用的啥粒子啊，一般的波在脑部早就被脑髓液拦截了" },
+                    { role: "user", content: "还有，对撞机这玩意不都是跨城的么，你们说用就用？" },
+                    { role: "ai", content: "哦哦，这个还挺有趣的" },
+                    { role: "ai", content: "合作的一个教授的结果，一个极弱耦合的中性玻色子" },
+                    { role: "ai", content: "仅在高频同步离子流 + 膜电位快速变化时才产生可测相互作用" },
+                    { role: "ai", content: "从超轻标量场 / 轴子样粒子抽的" },
+                    { role: "ai", content: "对撞机吗，是个短轴的 plasma mirror 的" },
+                    { role: "ai", content: "文章我找找" },
+                    { role: "user", content: "等等我消化一下" },
+                    { role: "ai", content: "哦找到了" },
+                    { role: "ai", content: "在这：" },
+                    { role: "ai", content: "Multistage coupling of independent laser-plasma accelerators, Nature 530, 190–193 (2016）" },
+                    { role: "user", content: "哇你们做的好高大上" },
+                    { role: "user", content: "比我们这小项目强多了" },
+                    { role: "ai", content: "哦哦没事啦，我也就是一个小专员，平常算算算式画画cad。" },
+                    { role: "ai", content: "给机械打工哈哈" },
+                    { role: "system", content: "未完待续" }
+                ]
+            }
+        ];
+
+        function switchDialogue(index) {
+            // Update tabs
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach((tab, i) => {
+                if (i === index) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+
+            // Update content
+            const container = document.getElementById('selected-dialogue-content');
+            const dialogue = sampleDialogues[index];
+            
+            let html = `
+                <div class="demo-dialogue">
+                    <div class="demo-dialogue-header">
+                        <span class="demo-character-name">${dialogue.character}</span>
+                        <span class="demo-badge">示例：${dialogue.title}</span>
+                    </div>
+                    <div class="demo-dialogue-messages">
+            `;
+
+            dialogue.messages.forEach(msg => {
+                if (msg.role === 'system') {
+                    html += `
+                        <div class="demo-system-prompt">
+                            <span>${escapeHtml(msg.content)}</span>
+                        </div>
+                    `;
+                } else {
+                    const isAI = msg.role === 'ai';
+                    const turnClass = isAI ? 'turn-character' : 'turn-user';
+                    const avatarSrc = isAI ? '/static/kurisu/kurisu_avatar.png' : '/static/user/user_avatar.png';
+                    const speakerName = isAI ? dialogue.character : '用户';
+                    
+                    html += `
+                        <div class="demo-turn ${turnClass}">
+                            <img src="${avatarSrc}" alt="${speakerName}" class="demo-avatar">
+                            <div class="demo-bubble-area">
+                                <div class="demo-speaker-name">${speakerName}</div>
+                                <div class="demo-bubble">${escapeHtml(msg.content)}</div>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+
+            container.innerHTML = html;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Initialize first dialogue
+        document.addEventListener('DOMContentLoaded', () => {
+            switchDialogue(0);
+        });
+    </script>
+    
+    <style>
+        /* Data Preview Section Styles */
+        .data-preview-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(102, 126, 234, 0.15);
+        }
+        
+        .data-preview-section h2 {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary, #1a1a2e);
+        }
+        
+        .preview-subtitle {
+            text-align: center;
+            color: var(--text-secondary, #64748b);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Dialogue Tabs Styles */
+        .dialogue-selector-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .dialogue-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 8px 16px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            color: #64748b;
+        }
+
+        .tab-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .tab-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .demo-dialogue-container {
+            min-height: 400px;
+        }
+        
+        .demo-loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary, #64748b);
+        }
+        
+        .demo-dialogue {
+            background: #f8fafc;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            text-align: left;
+        }
+        
+        .demo-dialogue-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.25rem;
+            background: #fff;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .demo-character-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1a1a2e;
+        }
+        
+        .demo-badge {
+            font-size: 0.75rem;
+            background: #e2e8f0;
+            color: #64748b;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+        }
+        
+        .demo-dialogue-messages {
+            padding: 1.5rem;
+            max-height: 500px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            background: #f8fafc;
+        }
+        
+        /* Turn container - like structured-writer-turn */
+        .demo-turn {
+            max-width: 75%;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        /* Character (Kurisu) on the LEFT */
+        .demo-turn.turn-character {
+            margin-right: auto;
+            flex-direction: row;
+        }
+        
+        /* User on the RIGHT */
+        .demo-turn.turn-user {
+            margin-left: auto;
+            flex-direction: row-reverse;
+        }
+        
+        /* Avatar */
+        .demo-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            object-fit: cover;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Bubble area */
+        .demo-bubble-area {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+        
+        /* Speaker name */
+        .demo-speaker-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            padding: 0 4px;
+        }
+        
+        .demo-turn.turn-character .demo-speaker-name {
+            color: #4361ee;
+            text-align: left;
+        }
+        
+        .demo-turn.turn-user .demo-speaker-name {
+            color: #64748b;
+            text-align: right;
+        }
+        
+        /* Message bubble */
+        .demo-bubble {
+            padding: 10px 14px;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            line-height: 1.55;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+        
+        .demo-turn.turn-character .demo-bubble {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%);
+            color: #1f2937;
+            border-radius: 16px 16px 16px 4px;
+        }
+        
+        .demo-turn.turn-user .demo-bubble {
+            background: linear-gradient(135deg, #fff 0%, #f0f2f5 100%);
+            color: #1f2937;
+            border-radius: 16px 16px 4px 16px;
+        }
+
+        /* System prompt style */
+        .demo-system-prompt {
+            text-align: center;
+            margin: 8px 0;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 0 10%;
+        }
+
+        .demo-system-prompt::before,
+        .demo-system-prompt::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #e2e8f0;
+        }
+        
+        .demo-dialogue-footer {
+            padding: 0.75rem 1rem;
+            background: #fff;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .demo-hint {
+            font-size: 0.8rem;
+            color: var(--text-secondary, #64748b);
+        }
+        
+        .preview-cta {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .btn-view-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 2px solid #667eea;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .btn-view-more:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Scrollbar styling for dialogue */
+        .demo-dialogue-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        .demo-dialogue-messages::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .demo-dialogue-messages::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        .demo-dialogue-messages::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* ================================================
+           ABOUT SECTION — What We Do
+           ================================================ */
+        .about-section {
+            max-width: 900px;
+            margin: 2.5rem auto 0;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+        }
+        .about-card {
+            background: linear-gradient(135deg, #f8faff 0%, #eef2ff 100%);
+            border: 1px solid rgba(67, 97, 238, 0.12);
+            border-radius: 14px;
+            padding: 1.5rem 1.2rem;
+            text-align: center;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .about-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(67, 97, 238, 0.12);
+        }
+        .about-icon {
+            font-size: 2rem;
+            margin-bottom: 0.6rem;
+        }
+        .about-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0 0 0.5rem;
+            color: #1e293b;
+        }
+        .about-card p {
+            font-size: 0.85rem;
+            color: #475569;
+            line-height: 1.6;
+            margin: 0;
+        }
+        @media (max-width: 700px) {
+            .about-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ================================================
+           MINI FAQ
+           ================================================ */
+        .mini-faq-section {
+            max-width: 720px;
+            margin: 2.5rem auto 0;
+            text-align: left;
+        }
+        .mini-faq-section h2 {
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+        .mini-faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .mini-faq-item {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: box-shadow 0.2s ease;
+        }
+        .mini-faq-item:hover {
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .mini-faq-item summary {
+            padding: 0.9rem 1.2rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #1e293b;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .mini-faq-item summary::before {
+            content: '▶';
+            font-size: 0.65rem;
+            color: #4361ee;
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+        }
+        .mini-faq-item[open] summary::before {
+            transform: rotate(90deg);
+        }
+        .mini-faq-item summary::-webkit-details-marker { display: none; }
+        .mini-faq-item p {
+            padding: 0 1.2rem 1rem 2rem;
+            margin: 0;
+            font-size: 0.88rem;
+            color: #475569;
+            line-height: 1.7;
+        }
+        .mini-faq-more {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.88rem;
+            color: #4361ee;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .mini-faq-more:hover {
+            text-decoration: underline;
+        }
+
+        /* ================================================
+           JOIN CTA
+           ================================================ */
+        .join-cta-section {
+            max-width: 720px;
+            margin: 2.5rem auto 0;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8ecff 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(67, 97, 238, 0.15);
+        }
+        .join-cta-section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0 0 0.3rem;
+        }
+        .join-cta-section > p {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin: 0 0 1.2rem;
+        }
+
+        /* ================================================
+           JOURNEY PATH — visual story checkpoint
+           ================================================ */
+        .journey-section {
+            margin: 2rem auto 1rem;
+            padding: 2.5rem 1.5rem 1.5rem;
+            max-width: 960px;
+            text-align: center;
+        }
+
+        .journey-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary, #1a1a2e);
+            margin-bottom: 0.3rem;
+        }
+
+        .journey-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-secondary, #64748b);
+            margin-bottom: 2rem;
+        }
+
+        /* ---- Map container ---- */
+        .journey-map {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 0;
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        /* Dashed connecting line behind stops */
+        .journey-line-track {
+            position: absolute;
+            top: 28px; /* align with marker centres */
+            left: 16%;
+            right: 16%;
+            height: 3px;
+            background: repeating-linear-gradient(
+                90deg,
+                #667eea 0 8px,
+                transparent 8px 16px
+            );
+            border-radius: 2px;
+            z-index: 0;
+        }
+
+        /* ---- Individual stop ---- */
+        .journey-stop {
+            flex: 1;
+            max-width: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.25s;
+        }
+
+        .journey-stop:hover {
+            transform: translateY(-6px);
+        }
+
+        /* ---- Marker (numbered circle on the path) ---- */
+        .stop-marker {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #fff;
+            border: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 3px 12px rgba(102,126,234,0.25);
+            transition: box-shadow 0.25s, border-color 0.25s;
+        }
+
+        .journey-stop:hover .stop-marker {
+            border-color: #4f46e5;
+            box-shadow: 0 4px 20px rgba(79,70,229,0.35);
+        }
+
+        .marker-num {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        /* Pulse ring for the first stop */
+        .marker-pulse {
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 2px solid #667eea;
+            animation: mp-pulse 2s ease-out infinite;
+        }
+
+        @keyframes mp-pulse {
+            0%   { transform: scale(0.85); opacity: 0.8; }
+            100% { transform: scale(1.4);  opacity: 0; }
+        }
+
+        /* Start stop special styling */
+        .stop-start .stop-marker {
+            border-color: #ee5a24;
+            box-shadow: 0 3px 16px rgba(238,90,36,0.3);
+        }
+        .stop-start .marker-num { color: #ee5a24; }
+        .stop-start .marker-pulse { border-color: #ee5a24; }
+
+        /* ---- Card (preview + info) ---- */
+        .stop-card {
+            margin-top: 14px;
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+            border: 1px solid #e2e8f0;
+            width: 100%;
+            transition: box-shadow 0.25s, border-color 0.25s;
+        }
+
+        .journey-stop:hover .stop-card {
+            box-shadow: 0 8px 30px rgba(102,126,234,0.18);
+            border-color: #c7d2fe;
+        }
+
+        .stop-info {
+            padding: 0.75rem 1rem 1rem;
+            text-align: center;
+        }
+
+        .stop-info h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 0 0 0.25rem;
+            color: #1a1a2e;
+        }
+
+        .stop-info p {
+            font-size: 0.82rem;
+            color: #64748b;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .stop-tag {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 0.7rem;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .tag-start {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: #fff;
+            animation: tag-glow 2s infinite;
+        }
+
+        @keyframes tag-glow {
+            0%, 100% { box-shadow: 0 0 6px rgba(238,90,36,0.3); }
+            50%      { box-shadow: 0 0 14px rgba(238,90,36,0.5); }
+        }
+
+        /* ---- Stop preview containers ---- */
+        .stop-preview {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* -- Preview: Guide -- */
+        .preview-guide {
+            background: linear-gradient(135deg, #0a0a12 0%, #1a1a2e 100%);
+            gap: 14px;
+            padding: 16px;
+        }
+
+        .pv-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: 2px solid #ffd700;
+            object-fit: cover;
+            flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(255,215,0,0.25);
+        }
+
+        .pv-speech {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .pv-line {
+            height: 8px;
+            width: 100px;
+            background: rgba(255,215,0,0.2);
+            border-radius: 4px;
+        }
+        .pv-line.short { width: 72px; }
+        .pv-line.shorter { width: 50px; }
+
+        /* -- Preview: Writing Interface (CSS mockup) -- */
+        .preview-writing {
+            background: #f1f5f9;
+            flex-direction: column;
+            padding: 10px 10px 4px;
+            gap: 0;
+        }
+
+        .pw-layout {
+            display: flex;
+            gap: 3px;
+            width: 100%;
+            height: 115px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #cbd5e1;
+            background: #fff;
+        }
+
+        .pw-col { display: flex; flex-direction: column; }
+
+        .pw-sidebar {
+            width: 22%;
+            background: #f8fafc;
+            border-right: 1px solid #e2e8f0;
+            padding: 4px;
+            gap: 3px;
+        }
+
+        .pw-head {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 2px;
+        }
+
+        .pw-item {
+            height: 14px;
+            background: #e8ecf3;
+            border-radius: 3px;
+        }
+
+        .pw-item.active {
+            background: #667eea;
+            box-shadow: 0 0 4px rgba(102,126,234,0.4);
+        }
+
+        .pw-main {
+            flex: 1;
+            padding: 6px;
+            gap: 4px;
+            justify-content: flex-end;
+        }
+
+        .pw-bubble {
+            display: flex;
+            gap: 2px;
+            padding: 4px 6px;
+            border-radius: 6px;
+            max-width: 72%;
+        }
+
+        .pw-bubble.ai {
+            background: linear-gradient(135deg, #e8f0fe 0%, #f0f4ff 100%);
+            align-self: flex-start;
+            border-radius: 6px 6px 6px 2px;
+        }
+
+        .pw-bubble.user {
+            background: #f0f2f5;
+            align-self: flex-end;
+            border-radius: 6px 6px 2px 6px;
+        }
+
+        .pw-dot {
+            width: 14px;
+            height: 5px;
+            border-radius: 2px;
+            background: #94a3b8;
+        }
+
+        .pw-dot.w { width: 22px; }
+
+        .pw-input-bar {
+            display: flex;
+            gap: 3px;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 3px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .pw-input-line {
+            flex: 1;
+            height: 10px;
+            background: #f1f5f9;
+            border-radius: 5px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .pw-send-btn {
+            width: 14px;
+            height: 10px;
+            background: #667eea;
+            border-radius: 3px;
+        }
+
+        .pw-right {
+            width: 24%;
+            background: #f8fafc;
+            border-left: 1px solid #e2e8f0;
+            padding: 5px 4px;
+            gap: 3px;
+            align-items: center;
+        }
+
+        .pw-avatar-ph {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #c7d2fe, #a5b4fc);
+            margin-bottom: 2px;
+        }
+
+        .pw-veja-row {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            width: 100%;
+        }
+
+        .pw-veja-label {
+            font-size: 7px;
+            font-weight: 700;
+            color: #64748b;
+            width: 10px;
+            text-align: right;
+        }
+
+        .pw-veja-bar {
+            flex: 1;
+            height: 5px;
+            background: #c7d2fe;
+            border-radius: 2px;
+        }
+
+        .pw-veja-bar.s { width: 60%; flex: none; }
+
+        .pw-label-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 2px 4px 0;
+            font-size: 0.55rem;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        /* -- Preview: Profile / My Page -- */
+        .preview-profile {
+            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+            flex-direction: column;
+            padding: 14px 20px;
+            gap: 8px;
+        }
+
+        .pp-icon {
+            font-size: 1.8rem;
+        }
+
+        .pp-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
+        }
+
+        .pp-bar {
+            flex: 1;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .pp-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .pp-fill.short { background: linear-gradient(90deg, #2ed573, #1e90ff); }
+
+        .pp-val {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #64748b;
+            min-width: 20px;
+        }
+
+        .pp-stats {
+            display: flex;
+            gap: 16px;
+            font-size: 0.72rem;
+            color: #94a3b8;
+            margin-top: 2px;
+        }
+
+        /* ---- Quick links row ---- */
+        .quick-links {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 8px 14px;
+            padding: 0.75rem 1rem;
+            background: #f8fafc;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .ql-label {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        .quick-links a {
+            font-size: 0.82rem;
+            color: #667eea;
+            text-decoration: none;
+            padding: 4px 10px;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .quick-links a:hover {
+            background: #eef2ff;
+            color: #4f46e5;
+        }
+
+        /* ---- Responsive: stack vertically on mobile ---- */
+        @media (max-width: 768px) {
+            .journey-map {
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
+            }
+
+            .journey-line-track {
+                /* Switch to vertical line */
+                top: 26px;
+                bottom: 26px;
+                left: 50%;
+                right: auto;
+                width: 3px;
+                height: auto;
+                background: repeating-linear-gradient(
+                    180deg,
+                    #667eea 0 8px,
+                    transparent 8px 16px
+                );
+                transform: translateX(-50%);
+            }
+
+            .journey-stop {
+                max-width: 260px;
+                margin-bottom: 0;
+            }
+
+            .stop-preview { height: 120px; }
+
+            .pw-layout { height: 90px; }
+
+            .quick-links {
+                flex-direction: column;
+                gap: 6px;
+            }
+        }
+
+    </style>
+    
+    <script>
+        // Tutorial consolidated into /guide page
+        // Redirect old /tutorial auto-start to /guide
+        document.addEventListener('DOMContentLoaded', () => {
+            if (sessionStorage.getItem('autoStartTutorial') === 'true') {
+                sessionStorage.removeItem('autoStartTutorial');
+                window.location.href = '/guide';
+            }
+        });
+    </script>
+    
+    {% include "includes/home_button.html" %}
+<script src="/static/js/impersonation.js"></script>
+</body>
+</html>

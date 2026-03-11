@@ -1,0 +1,99 @@
+{
+  "dialogue": [
+    {
+      "content": "喂喂——听得到吗，‘德雷思博士’。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "有趣，陌生的声音。说说吧，你是谁，找我干什么。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "别那么见外嘛，‘德雷思博士’，或者，我应该称呼你为，卡芙卡小姐？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "role": "Kafka",
+      "content": ".....我不清楚你在说什么，现在，我就是著名的星际创伤专家，来这颗星球调研的。",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "Kafka",
+      "content": "不过你的出现真是让我惊喜呢。作为聪明人，说吧，你要我干什么。",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "这颗星球吗......说实话，我已经无所谓它的存在了。不管是谁统治了这颗星球，对我而言都毫无意义。因此，比起这些东西，我更乐于在意那些令我感兴趣的东西。",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "比如你，卡芙卡小姐。你的出现，令我在这贫瘠的生活中找到了一丝乐子呢。",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "因此，我并不想从你那获取什么，只是看着你，我就很满足了啊哈哈哈哈哈。",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "Kafka",
+      "content": "这颗星球上，也有“啊哈”的信徒吗，但愿你还没有那么疯。",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "Kafka",
+      "content": "不过目前，我并没有从你这感受到敌意。所以我暂时不会对你采取措施。",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "Kafka",
+      "content": "你让我感到在意，或许我会去见上你一面。",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "我并不觉得“欢愉”有什么错误。那就再见啦，我们一定会再见。",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "Kafka",
+      "content": "真是有趣的人呢......",
+      "intimacy_delta": 0.01
+    }
+  ],
+  "completed": false,
+  "history": "",
+  "user_schedule": {
+    "day": 1,
+    "下午": "利用互联网与计算机在数据的海洋里遨游"
+  },
+  "character_schedule": {
+    "morning": "一次似乎是遭遇了意外的星际跃迁，让卡芙卡掉入了这个陌生的世界。她在这个阴雨连绵的破败城市内四处游荡，而且不知为何失去了自己的能力。\n在疲惫和困惑之下，她在一处隐蔽处恢复精力，同时也暗暗好奇，她是否距离她所追逐的恐惧更近了一步。\n就在这时，一个背着旧吉他包，捏着几张纸币，看起来像是本地青年的家伙注意到了她。",
+    "noon": "",
+    "afternoon": "",
+    "evening": "收集了一些关于那颗星球的情报并做了一些补给准备。",
+    "night": "启程去往那颗星球，寻找艾利欧口中的“目标”",
+    "day": 1
+  },
+  "relationship": "Two people have just met and are still unfamiliar with each other. Their conversations are mostly polite and superficial, limited to everyday topics like work, studies, or the weather. At this stage, both sides are cautious and have yet to reveal their true selves.",
+  "user_name": "云",
+  "character_name": "",
+  "intimacy_level": 0.12999999999999998,
+  "starting_intimacy_level": 0,
+  "user_id": "user_23",
+  "_creation_metadata": {
+    "created_at": 1754056448,
+    "created_by_ip": "127.0.0.1",
+    "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0",
+    "version": "1.0"
+  },
+  "category": "legacy_rejected",
+  "rejection_reason": "无内容",
+  "real_name": "云",
+  "legacy_timestamp": 1761107398
+}

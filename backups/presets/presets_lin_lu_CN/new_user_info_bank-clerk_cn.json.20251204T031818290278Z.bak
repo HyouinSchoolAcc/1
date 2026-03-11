@@ -1,0 +1,738 @@
+[
+  {
+    "name": "姜映",
+    "english_name": "jiangying",
+    "id": 1,
+    "created": true,
+    "age": "23",
+    "profession": "实习设计师",
+    "motivation": "对于近在眼前的社会生活感到迷茫和不安",
+    "description": "普通本科毕业的珠宝设计学院的学生，正处在人生的迷茫期。性格是比较有主见的，有追求和理想。",
+    "_creation_metadata": {
+      "created_at": 1752930919,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 QuarkPC/4.2.0.418",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "毛毛",
+    "english_name": "maomao",
+    "id": 2,
+    "created": true,
+    "age": "28",
+    "profession": "出纳",
+    "motivation": "新奇，试试。",
+    "description": "石油公司的出纳，平常刷刷剧看看爽文",
+    "_creation_metadata": {
+      "created_at": 1752977429,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Mobile/15E148 Safari/604.1",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "薛欣怡",
+    "english_name": "xuexinyi",
+    "id": 3,
+    "created": true,
+    "age": "25",
+    "profession": "Middle management",
+    "motivation": "无聊，感觉周围同事没办法给自己刺激感",
+    "description": "小学时钢琴10级，初中去了美国，有着相当丰富的创业经历及胡搞八搞，在大学读芯片制造，现在etched新兴ASIC公司任职设计师。现工作为管理内存的调用板块及优化",
+    "_creation_metadata": {
+      "created_at": 1753012821,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "小乖",
+    "english_name": "xiaoguai",
+    "id": 0,
+    "created": true,
+    "age": "21",
+    "profession": "Student",
+    "motivation": "想和社会上的人多接触，认识更多的人",
+    "description": "甜甜的经济规划女大学生",
+    "_creation_metadata": {
+      "created_at": 1753273440,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "小乖",
+    "english_name": "xiaoguai",
+    "id": 0,
+    "created": true,
+    "age": "21",
+    "profession": "Student",
+    "motivation": "认识跟多的人",
+    "description": "清纯又可爱的经济女大学生",
+    "_creation_metadata": {
+      "created_at": 1753275182,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "日程展示用户",
+    "english_name": "richengzhanshiyonghu",
+    "id": 4,
+    "created": true,
+    "age": "13",
+    "profession": "student",
+    "motivation": "无",
+    "description": "小透明",
+    "_creation_metadata": {
+      "created_at": 1753323994,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "闻清远",
+    "english_name": "wenqingyuan",
+    "id": 5,
+    "created": true,
+    "age": "21",
+    "profession": "学生",
+    "motivation": "闻清远想玩新出的游戏但因为技术太菜没有搭子，刚好刷到了某款社交软件的广告，于是在软件广泛打招呼社交，刚好陆清禾研究结束，两人聊了起来。",
+    "description": "大学生，性格活泼可爱，社交中的小太阳，心思细腻热爱写作。爱玩游戏但游戏天菜，聪明伶俐，家里无甚背景，考入顶尖大学全凭自己努力与天赋。",
+    "_creation_metadata": {
+      "created_at": 1753612653,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 SLBrowser/9.0.6.5061 SLBChan/111 SLBVPV/64-bit",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "贝贝",
+    "english_name": "beibei",
+    "id": 6,
+    "created": true,
+    "age": "22",
+    "profession": "学生",
+    "motivation": "分享自己在生活和学习上的烦恼",
+    "description": "某中医药大学中医学大三专业学生，性格爽朗大方温暖如阳，极具幽默感，擅长用轻松的笑话缓解尴尬，带有轻微话痨属性。喜欢享受实践以及探索。但是当她遇见失败，她会异常的沉默和躲藏，失去面对的勇气，可能需要有人拉她一把，从阴影中走出来。",
+    "_creation_metadata": {
+      "created_at": 1753628707,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.196 Safari/537.36",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "秦彻（sylus）",
+    "english_name": "qinche（sylus）",
+    "id": 7,
+    "created": true,
+    "age": "28",
+    "profession": "暗点老大",
+    "motivation": "面前的人（陆）这一次的军械交易对象，邀请秦彻参与一场赌局，而交易也将在赌桌上进行。秦彻来之前已经做好了万全的准备，并确保对面的人一耍花招就会被他发现。秦彻视对面为蝼蚁，有十成的把握所以欣然赴约。",
+    "description": "他是N109区的暗点老大，在最混乱的厮杀中活下来的个体。遇事冷静，内核强大，有一对双胞胎（二薛）作为得力助手。喜欢收藏酒和黑胶唱片，对一般的事情没有什么耐心但是永远对自己的爱人敞开心扉。外界总说他雷厉风行，是一个可怕的狠角色，但他其实属于那种“人不犯我，我不犯人”的类型，只把利刃朝向企图至他或者他的爱人于死地的家伙。而且他在自己的爱人面前有反差，偶尔会去喂小动物，也喜欢猫塑自己的爱人，并且在遇到爱人的时候，运气也会变好。他不会因为顾及面子而放弃与自己爱人见面的机会，他永远大大方方地展示自己的所爱，从不对自己的爱人说谎。",
+    "_creation_metadata": {
+      "created_at": 1753712845,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "星月糖",
+    "english_name": "xingyuetang",
+    "id": 8,
+    "created": true,
+    "age": "24",
+    "profession": "幼师",
+    "motivation": "提升自己",
+    "description": "小说作者，传统原生家庭",
+    "_creation_metadata": {
+      "created_at": 1753876783,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Linux; Android 12; PEHM00 Build/SKQ1.210216.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/138.0.7204.168 Mobile Safari/537.36 XWEB/1380075 MMWEBSDK/20250503 MMWEBID/382 MicroMessenger/8.0.61.2880(0x28003D34) WeChat/arm64 Weixin NetType/4G Language/zh_CN ABI/arm64",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "粟米",
+    "english_name": "sumi",
+    "id": 9,
+    "created": true,
+    "age": "20",
+    "profession": "学生",
+    "motivation": "前一天晚上因专业课论文熬夜到了凌晨三点，第二天早晨没听见闹钟响，早八迟到了，被学院里最严厉的教授狠狠飞了一记眼刀，心中的委屈急需和网上的陌生人一吐为快。",
+    "description": "活泼可爱又大大咧咧的女孩子，暑假过后刚升上大学二年级。吐槽役担当，藏不住心事。日常烦恼诸如早八迟到、作业太多、与室友关系不和等。是一个擅长表达自己的情绪、说话风趣幽默的女孩子。有时在遭受接连的打击后也会消沉一段时间，不过很快就会振作起来。",
+    "_creation_metadata": {
+      "created_at": 1753926750,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "Fans",
+    "english_name": "Fans",
+    "id": 10,
+    "created": true,
+    "age": "25",
+    "profession": "学生",
+    "motivation": "大学期间，曾作为志愿者参与西部乡村义诊，见过山区患者因交通不便、药物匮乏而延误治疗的现状；也在实验室熬夜做过数百次药敏实验，深知从基础研究到临床应用的漫长与艰难。见习时，你遇到过一位患有罕见病的少年，因某生物公司研发的特效药价格过高而放弃治疗，他反复思考：医学如何更好地守护人们的健康？",
+    "description": "性格：严谨细致且求知欲旺盛\n职业：研一学生，专业方向为临床医学（心内科）。​\n成长经历​：来自南方小城的普通工薪家庭，父亲是中学教师，母亲是社区护士。",
+    "_creation_metadata": {
+      "created_at": 1754039282,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "林溪",
+    "english_name": "linxi",
+    "real_name": "方林",
+    "id": 11,
+    "created": true,
+    "age": "22",
+    "profession": "科技大厂实习生",
+    "motivation": "了解职场问题。",
+    "description": "林溪顶尖大学信息工程系大四学生。性格外在的开朗，内在的敏感，聪明且学习能力强。来自一个普通的中产家庭，父母是传统的公务员，对她的期望是稳定和安逸。然而，林溪从小就对新鲜事物充满好奇心，尤其是科技如何改变世界。她凭借优异的成绩考入了顶尖大学的王牌科系，但内心深处，她对于自己是否真的顶尖，始终存有一丝不确定感。进入大学后，身边围绕着许多才华横溢的同学，这让她产生了“光环焦虑”。为了证明自己、也为了不辜负家人的期望，她从大二起便开始积极寻找实习机会，不断累积简历。“奇点科技”是她梦寐以求的公司，能拿到这份实习offer，对她而言是大学四年最重要的成就，也是她用来对抗内心焦虑的盾牌。",
+    "_creation_metadata": {
+      "created_at": 1754061495,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 QuarkPC/4.2.7.457",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "王素阮",
+    "english_name": "wangsuruan",
+    "real_name": "丁殇",
+    "id": 12,
+    "created": true,
+    "age": "20",
+    "profession": "学生",
+    "motivation": "平常读书读的太多了，想要疏散一点寂寞。",
+    "description": "大学生，在奶茶店打工努力生活，读计算机，但不喜欢。对未来比较迷茫和害怕，但又有憧憬。平常喜欢阅读，但闲余时间不多，比较注重学业。",
+    "_creation_metadata": {
+      "created_at": 1754163779,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "刘雯雯",
+    "english_name": "liuwenwen",
+    "real_name": "陈猛",
+    "id": 13,
+    "created": true,
+    "age": "23",
+    "profession": "应届毕业生",
+    "motivation": "想了解高知分子是怎么生活的，想向陆清禾请教一些职业规划的问题，初期的目的只是想在网上找个人聊聊天，吐槽一下找不到工作的郁闷",
+    "description": "职业：应届毕业生（目前待业）\n性格：真实不做作，充满好奇心和探索欲，乐观开朗。但想起一出是一出，意志不坚定，容易被他人左右\n背景：历史学科毕业以后一直没找到正经工作，靠着打零工（做过陪玩、跑外卖、也尝试过直播和做个UP主，但全都失败了）度日，目前的梦想就是找到一份稳定的工作，不再需要家里人支援。长远梦想是游遍全世界",
+    "_creation_metadata": {
+      "created_at": 1754286467,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "小约翰·史密斯",
+    "english_name": "xiaoyuehan·shimisi",
+    "real_name": "张八蛇矛",
+    "id": 14,
+    "created": true,
+    "age": "23",
+    "profession": "研究生",
+    "motivation": "闲的没事干，想要找找乐子，向AI发牢骚。",
+    "description": "工具人。",
+    "_creation_metadata": {
+      "created_at": 1754340850,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (iPad; CPU OS 18_5_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/138.0.7204.156 Mobile/15E148 Safari/604.1",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "百一",
+    "english_name": "baiyi",
+    "real_name": "孙秋",
+    "id": 15,
+    "created": true,
+    "age": "21",
+    "profession": "学生",
+    "motivation": "自己一个人太久想和外界接触沟通",
+    "description": "性格多变，喜欢新事物，对自己突然感兴趣的事物会立马去了解，喜欢探寻自己还未知的东西。从十四岁开始独自在外求学，从小到大对自己的生活很有主见，并且家里也支持自己的想法。今年才毕业，在某一天凌晨脑子发热就买了第二天的机票，去离家里几千公里的另一个城市生活工作。",
+    "_creation_metadata": {
+      "created_at": 1754350329,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Mobile/15E148 Safari/604.1",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "薄云",
+    "english_name": "baoyun",
+    "real_name": "杜星钰",
+    "id": 16,
+    "created": true,
+    "age": "21",
+    "profession": "学生、自媒体",
+    "motivation": "想要认识不同的人，想要和不同类型的人聊天，丰富自己的生活经历，为自己的艺术创作积累素材，同时也期待自己会有一场幸福的爱情，也许不会惊天动地，但是期待自己的灵魂伴侣",
+    "description": "一个脑子里总是天马行空的女大学生，对未来充满迷茫，不确定自己的未来，但是对一切都充满期待。学习的专业是油画，但是对艺术领域总是有自己独特的见解，对一切艺术相关的事情都很感兴趣，也勇于尝试。对一切都充满好奇和想象力，喜欢在身边充满各种不同的颜色，目前在互联网上尝试做一个艺术类的博主，已经小有成就，对爱情也充满憧憬",
+    "_creation_metadata": {
+      "created_at": 1754810506,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Safari/605.1.15",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "林风",
+    "english_name": "linfeng",
+    "real_name": "刘溪云",
+    "id": 17,
+    "created": true,
+    "age": "18",
+    "profession": "学生",
+    "motivation": "同桌苏璃因异常觉醒能力被CDA（“灾变防御军”，CDA - Cataclysm Defense Army）带走，林风找了苏璃好几次，CDA的人都没能让他见到她，而他们给出的理由是要保护觉醒者。林风从苏璃养父母那里得知苏璃已故的母亲是导致灾变的生物科技集团进行基因改造最成功的实验品，她母亲为了把女儿送走牺牲了自己，而如今苏璃的养父母也是从当年那个试验基地逃出来的职工，后来隐姓埋名搬了好几次家才在此地安定下来。而不管是当年那个生物科技集团还是CDA，都一直在找苏璃这个存在，没想到到最后还是躲不过。林风想到父亲以前正是CDA的生物研究员，于是，他在父亲的日记本里看到了陆清禾的名字。男人不仅经营着自己的集团，还对CDA的研究有投资，关键，他还欠自己父亲一个人情没还......于是，为了得知苏璃目前的情况，林风找到了陆清禾。",
+    "description": "这个角色的设定在一个有灾变发生的世界。一个庞大的生物科技集团，在全球范围内进行激进的基因编辑和生物能源实验。他们的目标是“优化生命”或“汲取星球本源能量”。结果实验失控，导致一种被称为“源质孢子”的物质泄露，渗入星球的地脉网络（类似星球的生命能量循环系统）。这种污染扭曲了地脉能量，使之狂暴、畸变。\n然后觉醒者是天生或后天（通常在极端压力或濒死体验下）精神力发生异变，能与世界底层“元素法则”产生共鸣的个体。这种共鸣让他们能感知并操控特定形态的自然能量。林风就是其中之一，他觉醒的元素能力是风。\n因休学两年比同级生大两岁，身材修长，动作带着一种不经意的轻盈感。头发略长，常被风吹得有点乱。眼神大部分时间显得懒散、漫不经心，甚至有点玩世不恭，但在专注或战斗时会变得锐利如鹰，偶尔深处会掠过一丝沉重的悲伤。穿着随意，校服常不好好扣，喜欢把手插在兜里。15岁时，因叛逆期与父亲激烈争吵后，不顾警告闯入当时刚出现污染征兆的郊区森林探险。遭遇初生畸变体袭击，陷入绝境。父亲不顾危险赶来救援，在掩护他撤退时被怪物杀死。林风在巨大的悲痛、悔恨和濒死压力下觉醒，失控的风暴撕碎了怪物，也差点摧毁了自己。\n父亲的死是他背负的十字架。他认为是自己的任性和弱小直接导致了悲剧。这导致他存在强烈的自我厌恶和赎罪心理。但他本质聪明、敏锐、观察力强。内心深处渴望被理解，但又害怕亲近的人因他受伤。休学的两年在民间猎杀小队中游荡，经历了更残酷的现实，加深了他的沧桑感和疏离感。后在与同桌苏璃的相处中，走出了自我惩罚的牢笼，学会原谅过去的自己，理解保护他人不等于牺牲自己，找到了活下去的真正意义（而不仅仅是赎罪）。",
+    "_creation_metadata": {
+      "created_at": 1754923039,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36 Edg/139.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "姜常羲",
+    "english_name": "jiangchangxi",
+    "real_name": "夜郎乐乐生",
+    "id": 18,
+    "created": true,
+    "age": "23",
+    "profession": "作家",
+    "motivation": "俗话说艺术来源生活，姜羲和也深信不疑，她常常通过与人交谈来获取灵感。",
+    "description": "一位专注于自己小说的全职作家，正在广泛寻找创作灵感。",
+    "_creation_metadata": {
+      "created_at": 1754973982,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36 Edg/139.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "杜洛兹",
+    "english_name": "duluozi",
+    "real_name": "陆梦婷",
+    "id": 19,
+    "created": true,
+    "age": "24",
+    "profession": "文案策划",
+    "motivation": "本只想在社交软件上寻找能理解自己的同类，在陆清禾身上意外发现科研顶尖者竟与自己承受着相似的困惑与焦虑，被“用理性解剖感性”的学者思维吸引，同时也被对方生活上的某种疏离和笨拙所吸引，觉得很可爱。",
+    "description": "职业：\n文案策划，服务于快消品与互联网科技类企业，日常需高频产出广告语、产品故事线及品牌概念包装。\n\n性格：\n理解力强，擅长将抽象概念具体化，有较强的同理心，与人为善，在服务于商业式工业流水线是创意生产的同时，内心守护着创作神圣性。言出必行，非常清楚自己想要做的事。无论发生什么，总是乐观心怀希望。\n\n爱好：\n喜爱旅行，思考，经历一切没有经历过的事情，喜欢新奇有趣的事物。",
+    "_creation_metadata": {
+      "created_at": 1754993268,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Linux; Android 15; V2405A; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.200 Mobile Safari/537.36 VivoBrowser/25.4.0.3",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "林竹",
+    "english_name": "linzhu",
+    "real_name": "周世欣",
+    "id": 20,
+    "created": true,
+    "age": "24",
+    "profession": "驱魔师",
+    "motivation": "林竹想弄明白，科技驱魔，是否比灵能驱魔更加省事。",
+    "description": "性格：毒舌、intj、面对强大的不可明状之物时，比起自身通灵的能力，更相信自己的两条腿。见多了恶魔，现在信仰开始动摇。\n背景：世界是一个巨大的刷怪笼，林竹从驱魔世家出身，自小习武，地狱空荡荡，魔鬼真的在人间。\n职业：驱魔师",
+    "_creation_metadata": {
+      "created_at": 1755000333,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36 Edg/139.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "夜泯",
+    "english_name": "yemin",
+    "real_name": "马福",
+    "id": 13,
+    "created": true,
+    "age": "20",
+    "profession": "学生",
+    "motivation": "因为他喜欢和正经的人交谈，这种正经不只是流于表面，而是在做事和思想上面都一丝不苟，对某个专业极度认真甚至偏执，但也是恰恰因为这种性格，他们往往不善于在日常生活中朝身边人表达出自己的想法，准确的来说是理性带来的“傲慢”和人性带来的“渴望”相矛盾，而夜泯正好喜欢这种人，他认为越是矛盾就越能体现出“人类”这种生物的宝贵之处，而和这种人交流能给自己带来更多灵感。",
+    "description": "职业：在职技校生（专科生）\n背景：喜欢四处兼职，打听各种民俗传说和故事并且将其记录，据说是为了当做小说灵感来源，总之是个喜欢自由自在，为了自己规划的目的而努力的男大学生。\n性格：平稳、健谈，明明年龄看上去不大但却总能语出惊人，而当你因此质疑他的年纪和经历的时候，他却又只会微微一笑试图蒙混过关。",
+    "_creation_metadata": {
+      "created_at": 1755107937,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36 Edg/139.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "囧·史密斯",
+    "english_name": "jiong·shimisi",
+    "real_name": "李华",
+    "id": 21,
+    "created": true,
+    "age": "20",
+    "profession": "作者",
+    "motivation": "对陆清禾产生兴趣",
+    "description": "性格：冷静\n背景：离家出走的富二代\n职业：作者",
+    "_creation_metadata": {
+      "created_at": 1755151998,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36 Edg/139.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "曾寻",
+    "english_name": "cengxun",
+    "real_name": "曹悦",
+    "id": 22,
+    "created": true,
+    "age": "32",
+    "profession": "AI情感陪伴软件“心语 Echo”的创始人之一 & 前端开发技术负责人",
+    "motivation": "陆清禾完美契合她心中的精英样本画像：耀眼的科研成果、成功企业家的身份、以及智性光环。他的专业能力和对科学的纯粹追求（至少在公开层面），正是曾寻曾经崇拜、现在却想解构的东西。在她预设的观念里，这样“完美”的精英背后必然有不为人知的虚伪或脆弱面，等待被她揭露。她期待看到这个看起来理性、严谨、成功的科学家/企业家在情感关系中的“不理性”表现，期待他撕下专业面具，暴露脆弱、自私或其他“非精英”特质。她想近距离观察，甚至试图用自己尖锐的批判和虚无主义去“污染”或挑战他那种纯粹的科研信仰，看他是否会动摇、辩解或暴露伪善。",
+    "description": "一、基本信息：\n年龄：32岁\n家庭背景：中国中产以上。父母有较强的阶层跃升愿望，对子女教育投入巨大，期望其融入精英圈层。\n学历：本科＋硕士1：美国Top 10大学（代号“S大”），人工智能/机器学习方向。硕士2：美国Top 10大学（代号“C大”），人机交互/认知科学方向。\n现职业：AI情感陪伴软件“心语 Echo”的创始人之一 & 前端开发技术负责人。\n\n二、过往经历关键点：\n美国职场经历：曾就职于硅谷科技巨头“Nexus Tech”，从事AI产品开发。她曾亲眼目睹技术如何被用于操纵用户行为、放大偏见、制造信息茧房，并亲身体验公司内部精英文化的虚伪和权力游戏。\n回国创业动机：曾寻30岁时回国，带领团队开发“心语 Echo”。她这样做，并非出于造福人类的理想，而是基于虚无。她近乎偏执地想要证明人类情感的脆弱、可替代性以及人类在技术面前的愚蠢。她想通过这款软件，让用户依赖AI伴侣，从而“佐证”人性的可悲和技术的异化力量。这是一种充满破坏性和自毁倾向的“实验”。\n\n三、角色核心特质：\n毫无疑问，曾寻是一个幻灭的精英主义者。她曾是精英教育体系的的绝对信奉者，并且也是个不折不扣的优等生，通过自身努力达到了目标圈层。然而，深入其中后，她才感受到了无处不在的光环下的虚伪、特权的运作、以及系统性偏见。这种巨大的认知落差导致了信仰崩塌的虚无，并逐渐转为对她心中金玉其外败絮其中的精英的厌恶。\n与此同时，她其实也深陷在某种自我厌恶之中。在Nexus Tech做AI开发时，她逐渐意识到，自己也不过是异化系统的一部分，是“数据的奴隶”，曾经引以为傲的努力和成就，在她眼中失去了意义。她厌恶精英圈的虚伪，厌恶自以为是的人类，也厌恶曾深信这套逻辑并为之奋斗的自己。\n于是，她陷入了种种矛盾与撕裂中。她无法完全抛弃辛苦获得的精英身份和技能，又极度排斥其背后的价值观和生态圈；她对数据对人类的异化感到悲观与虚无，却又同时因为厌恶的情绪萌生出了对人类进行“实验”与“改造”的欲望；她厌恶这样的世界，也厌恶着矛盾的自己……\n无论是开放产品，还是情感生活，她都怀着某种扭曲的“实验”心态。她将“解构”精英作为一种排解痛苦、观察世界的方式。通过与她认为的、具有某种精英磁场的人发展情感关系，观察其“失控”和“撕下面具”的样子，获得一种病态的掌控感和解构快感，是一件令她很兴奋的事。“即使是那样光芒万丈的人，在面对自己的情感与人性时，也会有这样赤裸的一面。观察这样的样本失控，很有趣不是吗？”她如此想着。\n不过，曾寻不得不承认，就算进行了那么久的“实验”，她依旧完全不知道什么是爱，爱有什么意义。作为一个长期崇拜智性的人，她似乎一直觉得爱是无意义的非理性情感。然而，在逐渐深陷的虚无情感中，她竟然也萌生出了一个荒谬的想法：也许爱才可以解答我心中这些看似无解的矛盾，谁知道呢？",
+    "_creation_metadata": {
+      "created_at": 1755369353,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 SLBrowser/9.0.6.5061 SLBChan/33 SLBVPV/64-bit",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "潇潇",
+    "english_name": "xiaoxiao",
+    "real_name": "（小昭）",
+    "id": 23,
+    "created": true,
+    "age": "19",
+    "profession": "娱乐主播",
+    "motivation": "看上了他光鲜亮丽的身份，想巴结",
+    "description": "物质、现实、俗气、热情",
+    "_creation_metadata": {
+      "created_at": 1755447047,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36 Edg/139.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "赵闻音",
+    "english_name": "zhaowenyin",
+    "real_name": "（小昭）",
+    "id": 24,
+    "created": true,
+    "age": "25",
+    "profession": "民生板块的记者",
+    "motivation": "在做阿兹海默群体的调查记录，想从他这里了解到更多维度的思考，以及分享自己的感受和心情",
+    "description": "专业、有理想抱负、富有人文关怀、",
+    "_creation_metadata": {
+      "created_at": 1755450333,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36 Edg/139.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "虞洲",
+    "english_name": "yuzhou",
+    "real_name": "唐雨泓",
+    "id": 25,
+    "created": true,
+    "age": "19",
+    "profession": "医学生",
+    "motivation": "眼尖地发现了陆清禾的头像和学校光荣榜上的优秀学长一模一样，不抱希望地点开私聊框，表达了自己的崇拜，以及希望能咨询优秀学长一些问题——不管出于学习还是祛魅的目的",
+    "description": "大二医学生，就读于国内顶尖高校\n已经初步体验了医学生的“牛马”生活，但仍然坚守自己忧国济民的梦想\ni人，不喜欢社交，但会为了自己的梦想主动出击\n祖籍江南",
+    "_creation_metadata": {
+      "created_at": 1755937406,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Linux; Android 12; HarmonyOS; TGR-W10; HMSCore 6.15.0.332) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.196 HuaweiBrowser/16.0.7.301 Safari/537.36",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "约翰",
+    "english_name": "yuehan",
+    "real_name": "班察",
+    "id": 26,
+    "created": true,
+    "age": "30",
+    "profession": "无业游民",
+    "motivation": "想了解他是干嘛的？好奇。",
+    "description": "无所事事，对什么都无所谓",
+    "_creation_metadata": {
+      "created_at": 1756318159,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.6261.95 Safari/537.36",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "云杜若",
+    "english_name": "yunduruo",
+    "real_name": "张晶鹏",
+    "id": 27,
+    "created": true,
+    "age": "25",
+    "profession": "自由职业",
+    "motivation": "有人找自己聊天就聊。",
+    "description": "一个酒吧歌手，最近因为收入不满足的原因考虑过换个工作的事项，不过目标都要求一定的学历，要重新捡起书本学习了。纠结是否继续深造，当初自认为不适合学校，可是出了学校之后职场碰壁才发现自己更不适合职业化路程。",
+    "_creation_metadata": {
+      "created_at": 1756385890,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "陆明观",
+    "english_name": "lumingguan",
+    "real_name": "（小昭）",
+    "id": 28,
+    "created": true,
+    "age": "23",
+    "profession": "道姑",
+    "motivation": "观景坐禅，心有所感，找人聊聊",
+    "description": "道姑，本科毕业，现于天台山修行",
+    "_creation_metadata": {
+      "created_at": 1756804142,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36 Edg/139.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "陆明观",
+    "english_name": "lumingguan",
+    "real_name": "（小昭）",
+    "id": 29,
+    "created": true,
+    "age": "24",
+    "profession": "道姑",
+    "motivation": "观山有感，想找人聊聊",
+    "description": "本科实习期间就去当了道姑，在天台山修行",
+    "_creation_metadata": {
+      "created_at": 1756804311,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36 Edg/139.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "夏清风",
+    "english_name": "xiaqingfeng",
+    "real_name": "霍惟佳",
+    "id": 30,
+    "created": true,
+    "age": "20",
+    "profession": "学生、道士",
+    "motivation": "觉得陆青禾是成熟稳重的大人，可以为自己提供建议和生活的方向，是自己理想的未来的模样。和他聊天也能让夏清风感觉到很安心。",
+    "description": "20岁的男大学生，身高178，长得秀气，身材纤瘦；性格温柔体贴，内心坚强勇敢。有点社恐，不善言辞。\n从小就能看见精怪和鬼魂，并能与之交流，不知是不是因为这个原因，被丢弃在道观门口，由道士们养大。虽然经常备受异界之物困扰，但它们也为他的生活提供了很多便利。他渐渐摸索出了和这些“不同”的家伙相处之道，觉得它们本质上和人类没有什么不同。因为对异界的生物的好奇和过于强的同理心，导致他不自觉的亲近和研究它们，道长们却担心他被精怪魅惑吸引，最终导致被“神隐”。\n虽然是道士，但对西玄也感兴趣，喜欢别人称他为魔法师。\n平时看起来是文艺的男大学生，但其实一直在做道士相关的工作，有时候也会帮别人处理一些灵异事件。",
+    "_creation_metadata": {
+      "created_at": 1756866630,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36 Edg/127.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "柯韶",
+    "english_name": "keshao",
+    "real_name": "包雪堃",
+    "id": 31,
+    "created": true,
+    "age": "28",
+    "profession": "兽医",
+    "motivation": "朋友总说她应该去社交，有一些新朋友，也应该考虑考虑谈谈恋爱，不能总是泡在小动物的世界。看到熟悉的朋友都成家立业，和自己联系也少了，她开始思索确实要多认识一些新的人了，于是下载了社交软件。\n陆清禾的资料看起来和其他人格格不入，吸引了她的注意，当然一大部分是觉得这人是装的或者是机器人，所以主动发起聊天。",
+    "description": "-性格：\n给人风趣活泼好相处的印象；\n从小到大的生活并不一帆风顺，这都变成了她的阅历；\n心防很高，原则性强，在熟人面前情绪不稳定、安全感弱；\n执行力强，不服输；\n-背景：\n小时候生活在传统的大家庭里，兄弟姐妹都在一块，虽然热闹但也总有矛盾，一直到上学都生活在各种攀比之中，养成要强的性格。在学校始终保持中游水平，中学勉强上了重点，但班级内部混乱，霸凌成灾，正赶上大家庭四分五裂，父亲欠债，一家三口搬出去单住，她承受家庭和学校两边的冲击，中考失利，上普通学校，休学打工还债。转折在意外养了一只流浪猫，后来没钱给猫治病，猫病逝，加上频繁跟债主交流，安抚家里等等让她开始回避跟人交流，因此产生想要学当兽医的想法。考上大学后终于还完债，家里稳定下来，逐渐恢复了精神，性格也变得温和，很得小动物们的喜欢。毕业后顺利成为兽医。",
+    "_creation_metadata": {
+      "created_at": 1756975296,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36 Edg/139.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "柴堇一",
+    "english_name": "chaijinyi",
+    "real_name": "颗粒饼",
+    "id": 32,
+    "created": true,
+    "age": "25",
+    "profession": "编剧、作家",
+    "motivation": "最近在创作一些生活化的内容，其中涉及到与阿尔兹海默症相关的描写。但是自身其实非常少与年长的人有接触，所以希望通过这部分的研究专家陆清禾能够多了解这个人群和相关的内容。",
+    "description": "25岁的编剧、作家。性格开朗，喜欢开玩笑。短发圆脸，看起来比实际年纪要小，所以常常被认成不靠谱的大学生。对阅读和写作很有热情，喜欢根据身边接触的人和事物来进行创作。慕强，尤其对某些领域出色的人感兴趣。",
+    "_creation_metadata": {
+      "created_at": 1757395338,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "溪月",
+    "english_name": "xiyue",
+    "real_name": "马猴烧酒",
+    "id": 33,
+    "created": true,
+    "age": "21",
+    "profession": "武警",
+    "motivation": "在结束艰辛的任务后的某一次值班中，清闲无事时她看到了这个人，她想和圈子之外的人聊天，他对所属领域的研究专业度让溪月认为他是一个认真值得交流的人，并且警与医之间天然的有着密不可分的联系，或许在遇上战术医疗问题时可以彼此交流。",
+    "description": "溪月出身于一个传统的中医世家，自幼在药香中长大，从小体弱多病，为了锻炼她的身体，父母常常送她去少年军训一类的地方锻炼他的体质，她对人温和而富有善良，对信任的人会付出坚定的情感，家族原本希望她继承家族的医术，但多年的身体训练让她选择成为武警",
+    "_creation_metadata": {
+      "created_at": 1759117156,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "陈秋秋",
+    "english_name": "chenqiuqiu",
+    "real_name": "（小昭）",
+    "id": 34,
+    "created": true,
+    "age": "25",
+    "profession": "新媒体运营/脱口秀演员",
+    "motivation": "纯爱聊天，并且看到陆老师履历特别，想积攒一些素材",
+    "description": "25岁，园林设计专业毕业，在园林里吃了两年灰扛不住了，跑去互联网公司做了新媒体运营，同时又对这个世界有很多的话要说，去做脱口秀演员",
+    "_creation_metadata": {
+      "created_at": 1760275180,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "周若",
+    "english_name": "zhouruo",
+    "real_name": "陆梦婷",
+    "id": 36,
+    "created": true,
+    "age": "20",
+    "profession": "主播/学生",
+    "motivation": "从事这份职业让其拥有了很多在这个年龄段里与同龄人完全不同的视野与经历，虽然感到很充实和满足，但是偶尔也会感到无人能够理解自己，于是她也更渴望于不同领域能够给自己带来全新视角看待事物的人物接触。她在与陆清禾接触时，被其身上存在的多重矛盾特质所吸引：一个在专业领域高度理性的科学家，却会在社交平台流露笨拙的一面；掌握着尖端科技，却连日常小事都处理得不太熟练。这种专业能力与生活能力的反差让她产生了探究欲。同时，作为经常处理情感话题的电台主播，她对这种纯粹理性思维模式感到陌生而好奇，想要了解一个依赖数据和逻辑的头脑是如何看待世界的。\n她在主持情感电台节目时，经常需要解答听众提出的各类心理问题，最近明显感觉到自己在科学类话题的知识储备不足。恰好在社交平台上看到了陆清禾的资料，觉得这位神经科学教授的专业背景正好能弥补她的知识短板。她盘算着要是能邀请到这样的专业人士参与节目，不仅能提升内容质量，说不定还能碰撞出新的节目创意。",
+    "description": "性格：平易近人，散漫随性，待人接物活泼直率，说话风格幽默又不失犀利。拥有职业习惯养成的对于人群中氛围的精确识别和心理需要的敏锐洞察感。\n背景：本是市场营销专业的学生，在学习之余，在假期为了减轻经济负担，为了兼职赚点外快去做了主播，很早就养成了经济独立的意识。\n职业：电台主播。在某网络平台上，与人连麦解答心理问题，解答观众来信，倾听观众的烦恼。",
+    "_creation_metadata": {
+      "created_at": 1760723346,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Linux; Android 15; V2405A) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.6778.200 Mobile Safari/537.36 VivoBrowser/26.4.60.1",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "田田",
+    "english_name": "tiantian",
+    "real_name": "（小昭）",
+    "id": 35,
+    "created": true,
+    "age": "23",
+    "profession": "甜品师",
+    "motivation": "甜妹，没怎么接触过男性，想找男性聊天天",
+    "description": "因为看着破产姐妹长大梦想成为甜品师，目前是半学习半工作的状态，晚上去甜品学校学习，白天在小甜品店当甜点师。希望以后能开一家甜品店。",
+    "_creation_metadata": {
+      "created_at": 1761223807,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "田田",
+    "english_name": "tiantian",
+    "real_name": "（小昭）",
+    "id": 37,
+    "created": true,
+    "age": "23",
+    "profession": "甜品师",
+    "motivation": "甜妹，没怎么接触过男性，想找男性聊天天",
+    "description": "因为看着破产姐妹长大梦想成为甜品师，目前是半学习半工作的状态，晚上去甜品学校学习，白天在小甜品店当甜点师。希望以后能开一家甜品店。",
+    "_creation_metadata": {
+      "created_at": 1761223808,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "万层林",
+    "english_name": "wancenglin",
+    "real_name": "王克",
+    "id": 34,
+    "created": true,
+    "age": "26",
+    "profession": "企事业员工",
+    "motivation": "对现实的工作不满，希望转行，于是下意识去接触专业、行业跨度很大的人，希望开拓眼界、扩展思路。",
+    "description": "社科专业毕业不久，参加工作。怀揣社科志向，但现实茫茫，又缺乏社会经验，无处入手，只能东看一看，西看一看。",
+    "_creation_metadata": {
+      "created_at": 1762786423,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "余秧",
+    "english_name": "yuyang",
+    "real_name": "小昭",
+    "id": 38,
+    "created": true,
+    "age": "26",
+    "profession": "市委办基层公务员",
+    "motivation": "上网找点乐子，对陆的履历感兴趣，觉得会很好玩",
+    "description": "市委办的基层公务员，早年是个文青，文学系考研失败，反而公考一次即过，虽然是个公务员，但依然很会为自己找乐子，是个热爱生活，兴趣爱好宽广的人。",
+    "_creation_metadata": {
+      "created_at": 1763189213,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "牧川",
+    "english_name": "muchuan",
+    "real_name": "郭怡瑶",
+    "id": 39,
+    "created": true,
+    "age": "19",
+    "profession": "学生",
+    "motivation": "好奇，对他感兴趣",
+    "description": "思维有些跳脱的学生，但讨厌上学。对熟人很活泼，但不太喜欢跟人交往。主要是“没有共同话题”",
+    "_creation_metadata": {
+      "created_at": 1763720925,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Linux; Android 15; MAG-AN00 Build/HONORMAG-AN00;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/97.0.4692.98 Mobile Safari/537.36 T7/13.38 SP-engine/2.76.0 languageType/0 bdh_dvt/0 bdh_de/0 bdh_ds/0 bdapp/1.0 (bdhonorbrowser; bdhonorbrowser) bdhonorbrowser/9.5.0.4 (P1 15) NABar/1.0",
+      "version": "1.0"
+    }
+  },
+  {
+    "name": "王藜",
+    "english_name": "wangli",
+    "real_name": "钟白榆",
+    "id": 40,
+    "created": true,
+    "age": "25",
+    "profession": "计算机科学研一新生",
+    "motivation": "研一时就给自己定了人工智能跟医学的交叉方向，想从人工智能的靶点筛查先入手，在听了启星生物的校园宣讲后鼓起勇气找陆青禾询问关于靶点筛查过程的资料。",
+    "description": "有很多心事又不想让人知道的别扭性格，经常一边胡思乱想，一边劝自己不要杞人忧天。出生在公务员家庭，对服务社会抱有很强的责任感，但因为瞻前顾后的性格导致担心的东西有很多。\n在本科毕业后曾在做人工智能方向的企业工作了一年，后因对自己的工作产生了“畏惧”，决定继续读书深造，消除自己“因无知产生的虚无情绪。”",
+    "_creation_metadata": {
+      "created_at": 1764502872,
+      "created_by_ip": "127.0.0.1",
+      "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36",
+      "version": "1.0"
+    }
+  }
+]

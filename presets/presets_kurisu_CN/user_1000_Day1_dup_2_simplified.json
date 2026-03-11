@@ -1,0 +1,470 @@
+{
+  "_creation_metadata": {
+    "created_at": 1736438400,
+    "created_by_ip": "127.0.0.1",
+    "created_by_user_agent": "admin2 - sample data from landing page",
+    "version": "1.0"
+  },
+  "abilities": "",
+  "assessment_timestamp": 0,
+  "category": "passed",
+  "character_name": "Kurisu",
+  "completed": true,
+  "dialogue": [
+    {
+      "content": "你学啥的？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:00"
+    },
+    {
+      "content": "我学无力的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:01"
+    },
+    {
+      "content": "物理",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:02"
+    },
+    {
+      "content": "哦？你的研究方向是啥",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:03"
+    },
+    {
+      "content": "量子网络中光子偏振随时间推移用错开的波长进行预测和矫正",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:04"
+    },
+    {
+      "content": "哦哦，那具体是什么问题呢？给我讲讲呗",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:05"
+    },
+    {
+      "content": "额。。。。量子中的偏振你知道吧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:06"
+    },
+    {
+      "content": "我知道一般量子通讯用偏振，Bell state 啊，stablizer code啊什么的以前略微读了些能看懂",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:07"
+    },
+    {
+      "content": "卧槽你学啥的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:08"
+    },
+    {
+      "content": "我学脑科学的",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:09"
+    },
+    {
+      "content": "脑科学为什么会懂这些玩意",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:10"
+    },
+    {
+      "content": "闲的时候看文章吧，有时候去conference也会有人说研究这玩意\n欸你先把你的说完",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:11"
+    },
+    {
+      "content": "哦哦，就一般偏振在地下的光管道里面1个小时过后就会有不可解释的偏差，一般这种系统需要矫正的话就需要停止输送，重新用大光进行矫正，然后回归传输，也就是需要断网。我们的想法是如果能有额外的一条波长在同场景下，可以把光从结尾处剥离出来，并且用他的偏振实时矫正原光路的偏振",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:12"
+    },
+    {
+      "content": "hmmm\n听起来像ml的活啊",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:13"
+    },
+    {
+      "content": "是啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:14"
+    },
+    {
+      "content": "难么？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:15"
+    },
+    {
+      "content": "?",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:16"
+    },
+    {
+      "content": "我的意思是听起来很简单的实验，你们效果怎么样？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:17"
+    },
+    {
+      "content": "别说了，偏振这玩意根本在数学上相关性是直接基本可以定义为不可能。两个波长近的时候区分导致的光子丢失过大，如果远了就数学建模不可能，只能黑盒\n但好处是文章快发了，因为黑盒练完了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:18"
+    },
+    {
+      "content": "好草台哈哈哈哈",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:19"
+    },
+    {
+      "content": "我没干过偏振，你们做了多久?",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:20"
+    },
+    {
+      "content": "一年半吧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:21"
+    },
+    {
+      "content": "？？？？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:22"
+    },
+    {
+      "content": "啥东西花你们一年半",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:23"
+    },
+    {
+      "content": "哦哦实验时数据老是不够，如果是地下的偏振变动幅度太小，但如果在实验室做的模型 fit 过去好像效果不是很好\n我们数据一收集就是一周，然后还得和其他实验室打架。。。就很烦",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:24"
+    },
+    {
+      "content": "啊那很惨了",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:25"
+    },
+    {
+      "content": "其实不惨，因为都在等数据，所以我一周能玩60+小时撸啊撸啊哈哈哈",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:26"
+    },
+    {
+      "content": "？？？？？？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:27"
+    },
+    {
+      "content": "震惊",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:28"
+    },
+    {
+      "content": "你们老板不知道么？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:29"
+    },
+    {
+      "content": "就像你说的，我老佛系了哈哈哈哈\n而且实验没了我他们也不知道怎么加能力，有数据了还是挺爆肝的\n甚至我训练用的服务器都是我自己买的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:30"
+    },
+    {
+      "content": "离谱",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:31"
+    },
+    {
+      "content": "已经无力吐槽了",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:32"
+    },
+    {
+      "content": "还有你们训多大的模型？还要服务器",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:33"
+    },
+    {
+      "content": "效果不好所以我用我买的H100整的，50million的transformer",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:34"
+    },
+    {
+      "content": "太有钱了",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:35"
+    },
+    {
+      "content": "所以我没车",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:36"
+    },
+    {
+      "content": "乐",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:37"
+    },
+    {
+      "content": "你还没跟我说过你的实验呢",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:38"
+    },
+    {
+      "content": "你干啥的？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:39"
+    },
+    {
+      "content": "啊我做脑电的",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:40"
+    },
+    {
+      "content": "细讲",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:41"
+    },
+    {
+      "content": "就一般脑电的信号只能通过解刨死尸你知道吧，就没有活的时候会比较限制能看得到的东西。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:42"
+    },
+    {
+      "content": "那种插电极的方式也挺restrictive，虽然能获取一部分大脑信息，但前额叶这种储存高阶智慧模块的也只能通过非常少的数据来做分类，但洞悉想法基本做不到，信息点不足。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:43"
+    },
+    {
+      "content": "我们的方法是用微型对撞机的双方向粒子缠绕去打通脑髓叶屏蔽性，实时监测活人的脑部活动。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:44"
+    },
+    {
+      "content": "哇牛逼啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:45"
+    },
+    {
+      "content": "听起来有很多我不懂的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:46"
+    },
+    {
+      "content": "而且贼危险",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:47"
+    },
+    {
+      "content": "危险。。。还行吧",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:48"
+    },
+    {
+      "content": "理论上来说我们的对撞机不炸就没啥事",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:49"
+    },
+    {
+      "content": "还有过滤器过滤辐射性粒子",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:50"
+    },
+    {
+      "content": "额。。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:51"
+    },
+    {
+      "content": "越描越黑",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:52"
+    },
+    {
+      "content": "但总而言之就改东西就行了",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:53"
+    },
+    {
+      "content": "实验成果怎么样？在哪一步？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:54"
+    },
+    {
+      "content": "粒子的老鼠实验是成功了，有对脑部细胞的弱散射和读取。观察没发现异样，最近在申请IRB做人体实验呢",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:55"
+    },
+    {
+      "content": "剩下时间就是搭机器和scale up探测器了，全是脏活累活哈哈",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:56"
+    },
+    {
+      "content": "你们用的啥粒子啊，一般的波在脑部早就被脑髓液拦截了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:57"
+    },
+    {
+      "content": "还有，对撞机这玩意不都是跨城的么，你们说用就用？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:58"
+    },
+    {
+      "content": "哦哦，这个还挺有趣的",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "16:59"
+    },
+    {
+      "content": "合作的一个教授的结果，一个极弱耦合的中性玻色子",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "17:00"
+    },
+    {
+      "content": "仅在高频同步离子流 + 膜电位快速变化时才产生可测相互作用",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "17:01"
+    },
+    {
+      "content": "从超轻标量场 / 轴子样粒子抽的",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "17:02"
+    },
+    {
+      "content": "对撞机吗，是个短轴的 plasma mirror 的",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "17:03"
+    },
+    {
+      "content": "文章我找找",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "17:04"
+    },
+    {
+      "content": "等等我消化一下",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "17:05"
+    },
+    {
+      "content": "哦找到了",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "17:06"
+    },
+    {
+      "content": "在这：",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "17:07"
+    },
+    {
+      "content": "Multistage coupling of independent laser-plasma accelerators, Nature 530, 190–193 (2016）",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "17:08"
+    },
+    {
+      "content": "哇你们做的好高大上",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "17:09"
+    },
+    {
+      "content": "比我们这小项目强多了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "17:10"
+    },
+    {
+      "content": "哦哦没事啦，我也就是一个小专员，平常算算算式画画cad。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "17:11"
+    },
+    {
+      "content": "给机械打工哈哈",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "17:12"
+    }
+  ],
+  "experiences": "",
+  "history": "未完待续",
+  "intimacy_level": 0.76,
+  "is_sample_data": true,
+  "judgements": "",
+  "problems_count": 0,
+  "real_name": "样本用户",
+  "relationship": "Two researchers meeting for the first time, discussing their work in a casual yet intellectually engaging manner.",
+  "sample_title": "见面（科研向）",
+  "starting_intimacy_level": 0,
+  "user_id": "user_1000",
+  "user_name": "样本用户",
+  "user_schedule": {
+    "day": 1,
+    "下午": "首页示例：见面（科研向）"
+  },
+  "values": ""
+}

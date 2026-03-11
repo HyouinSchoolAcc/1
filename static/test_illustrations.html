@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Illustration Test</title>
+<style>
+body { background: #1a1a2e; color: #e2e8f0; font-family: system-ui; padding: 2rem; }
+.test-panel { background: rgba(30,30,50,0.95); border: 1px solid rgba(255,215,0,0.3); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; max-width: 800px; }
+h2 { color: #ffd700; }
+
+/* Copy of illustration CSS from guide.html */
+.illustration-box { margin: 0.6rem 0 0.3rem; border-radius: 10px; overflow: hidden; font-size: 0.82rem; line-height: 1.5; }
+.illust-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.3rem; }
+.illust-label.bad { color: #ef4444; }
+.illust-label.good { color: #22c55e; }
+.illust-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+.illust-compare-col { padding: 0.7rem; border-radius: 8px; }
+.illust-compare-col.bad-col { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); }
+.illust-compare-col.good-col { background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); }
+.illust-thought { background: rgba(148,163,184,0.15); border-left: 3px solid #94a3b8; padding: 0.35rem 0.6rem; margin-bottom: 0.4rem; border-radius: 0 6px 6px 0; font-style: italic; color: #94a3b8; font-size: 0.78rem; }
+.illust-chat-bubble { background: rgba(67,97,238,0.12); border-radius: 8px; padding: 0.4rem 0.6rem; color: #e2e8f0; font-size: 0.8rem; }
+.illust-panel-mockup { background: #1e293b; border-radius: 10px; padding: 0.7rem; display: flex; flex-direction: column; gap: 0.4rem; border: 1px solid rgba(255,215,0,0.3); }
+.illust-panel-header { display: flex; align-items: center; gap: 0.4rem; font-weight: 600; color: #f1f5f9; font-size: 0.85rem; margin-bottom: 0.2rem; }
+.illust-veja-row { display: flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.5rem; border-radius: 6px; transition: all 0.3s; }
+.illust-veja-row.highlighted { background: rgba(255,215,0,0.15); border: 1px solid rgba(255,215,0,0.4); animation: veja-glow 1.5s infinite; }
+.illust-veja-row:not(.highlighted) { background: rgba(255,255,255,0.03); border: 1px solid transparent; }
+.illust-veja-letter { font-weight: 800; font-size: 0.9rem; width: 22px; text-align: center; }
+.illust-veja-letter.v { color: #f59e0b; }
+.illust-veja-letter.e { color: #3b82f6; }
+.illust-veja-letter.j { color: #a855f7; }
+.illust-veja-letter.a { color: #22c55e; }
+.illust-veja-bar { flex: 1; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
+.illust-veja-bar-fill { height: 100%; border-radius: 3px; }
+.illust-veja-bar-fill.v { background: #f59e0b; }
+.illust-veja-bar-fill.e { background: #3b82f6; }
+.illust-veja-bar-fill.j { background: #a855f7; }
+.illust-veja-bar-fill.a { background: #22c55e; }
+.illust-veja-label { font-size: 0.7rem; color: #94a3b8; min-width: 40px; }
+.illust-arrow-label { text-align: center; color: #ffd700; font-size: 0.75rem; font-weight: 600; margin-top: 0.3rem; animation: arrow-bounce 1s infinite; }
+.illust-3col { display: grid; grid-template-columns: 0.8fr 1.2fr 1fr; gap: 0.3rem; margin-top: 0.5rem; }
+.illust-3col-pane { border-radius: 6px; padding: 0.4rem; text-align: center; font-size: 0.7rem; font-weight: 600; }
+.illust-3col-pane.left { background: rgba(255,255,255,0.05); color: #94a3b8; border: 1px dashed rgba(255,255,255,0.1); }
+.illust-3col-pane.mid { background: rgba(255,255,255,0.05); color: #94a3b8; border: 1px dashed rgba(255,255,255,0.1); }
+.illust-3col-pane.right { background: rgba(255,215,0,0.1); color: #ffd700; border: 1px solid rgba(255,215,0,0.3); }
+@keyframes veja-glow { 0%,100% { box-shadow: 0 0 4px rgba(255,215,0,0.2); } 50% { box-shadow: 0 0 12px rgba(255,215,0,0.4); } }
+@keyframes arrow-bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+</style>
+</head>
+<body>
+<h2>Thought Process Illustration</h2>
+<div class="test-panel">
+<div class="illustration-box"><div class="illust-compare"><div class="illust-compare-col bad-col"><div class="illust-label bad">❌ 平淡回复</div><div class="illust-chat-bubble" style="color:#334155">好的，我帮你。</div></div><div class="illust-compare-col good-col"><div class="illust-label good">✅ 带思考过程</div><div class="illust-thought">她让我帮忙......是在试探我，还是真的需要？</div><div class="illust-chat-bubble" style="color:#334155">......行吧，你说。</div></div></div><div class="illust-arrow-label">👆 灰色区块 = 写在对话中的内心想法</div></div>
+</div>
+
+<h2>VEJA Panel Illustration</h2>
+<div class="test-panel">
+<div class="illustration-box"><div class="illust-3col"><div class="illust-3col-pane left">📋 会话列表</div><div class="illust-3col-pane mid">💬 对话区</div><div class="illust-3col-pane right">👉 角色档案</div></div><div class="illust-panel-mockup" style="margin-top:0.5rem"><div class="illust-panel-header">📝 角色档案 — 结束前必须更新！</div><div class="illust-veja-row highlighted"><span class="illust-veja-letter v">V</span><span class="illust-veja-label">价值观</span><div class="illust-veja-bar"><div class="illust-veja-bar-fill v" style="width:70%"></div></div></div><div class="illust-veja-row highlighted"><span class="illust-veja-letter e">E</span><span class="illust-veja-label">经历</span><div class="illust-veja-bar"><div class="illust-veja-bar-fill e" style="width:45%"></div></div></div><div class="illust-veja-row highlighted"><span class="illust-veja-letter j">J</span><span class="illust-veja-label">判断</span><div class="illust-veja-bar"><div class="illust-veja-bar-fill j" style="width:55%"></div></div></div><div class="illust-veja-row highlighted"><span class="illust-veja-letter a">A</span><span class="illust-veja-label">能力</span><div class="illust-veja-bar"><div class="illust-veja-bar-fill a" style="width:60%"></div></div></div><div class="illust-arrow-label">👆 右侧面板 — 每天必须更新 V·E·J·A</div></div></div>
+</div>
+</body>
+</html>

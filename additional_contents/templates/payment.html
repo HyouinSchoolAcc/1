@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="{{if eq .Language "en"}}en{{else}}zh-CN{{end}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{if eq .Language "en"}}Payment - Writer Portal{{else}}付款 - 写手门户{{end}}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Payment Page Specific Styles */
+        :root {
+            --gold: #FFD700;
+            --gold-dark: #DAA520;
+            --silver: #C0C0C0;
+            --bronze: #CD7F32;
+            --success-green: #28a745;
+            --earnings-purple: #7C3AED;
+        }
+
+        .payment-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        /* Stats Overview Cards */
+        .stats-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+            transition: var(--transition-smooth);
+            border: 1px solid var(--border-light);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .stat-card.earnings {
+            background: linear-gradient(135deg, var(--earnings-purple) 0%, #9333EA 100%);
+            color: white;
+        }
+
+        .stat-card.earnings .stat-label {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .stat-value {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-card.earnings .stat-value {
+            color: white;
+        }
+
+        .stat-label {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Main Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Leaderboard Section */
+        .leaderboard-section {
+            background: var(--bg-white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-light);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-light);
+        }
+
+        .section-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .section-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Leaderboard List */
+        .leaderboard-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            border-radius: 12px;
+            background: var(--bg-cream);
+            transition: var(--transition-smooth);
+        }
+
+        .leaderboard-item:hover {
+            background: var(--accent-light);
+            transform: translateX(4px);
+        }
+
+        .leaderboard-item.rank-1 {
+            background: linear-gradient(135deg, #FEF9E7 0%, #FCF3CF 100%);
+            border: 2px solid var(--gold);
+        }
+
+        .leaderboard-item.rank-2 {
+            background: linear-gradient(135deg, #F8F9F9 0%, #EAEDED 100%);
+            border: 2px solid var(--silver);
+        }
+
+        .leaderboard-item.rank-3 {
+            background: linear-gradient(135deg, #FDF2E9 0%, #FAE5D3 100%);
+            border: 2px solid var(--bronze);
+        }
+
+        .rank-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .rank-1 .rank-badge {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+        }
+
+        .rank-2 .rank-badge {
+            background: linear-gradient(135deg, var(--silver) 0%, #A6A6A6 100%);
+            color: white;
+        }
+
+        .rank-3 .rank-badge {
+            background: linear-gradient(135deg, var(--bronze) 0%, #A0522D 100%);
+            color: white;
+        }
+
+        .rank-badge.normal {
+            background: var(--accent-light);
+            color: var(--primary);
+        }
+
+        .writer-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .writer-name {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .writer-stats-inline {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .writer-earnings {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--earnings-purple);
+            margin-left: 1rem;
+        }
+
+        /* Best Works Section */
+        .best-works-section {
+            background: var(--bg-white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-light);
+        }
+
+        .best-works-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .best-work-card {
+            background: linear-gradient(135deg, var(--bg-cream) 0%, var(--accent-light) 100%);
+            border-radius: 12px;
+            padding: 1.25rem;
+            border-left: 4px solid var(--accent);
+            transition: var(--transition-smooth);
+        }
+
+        .best-work-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .best-work-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .best-work-author {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .best-work-trait {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .best-work-preview {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .best-work-stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Earnings Summary Section */
+        .earnings-summary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .earnings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .earnings-item {
+            text-align: center;
+        }
+
+        .earnings-item .label {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .earnings-item .value {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .earnings-item .value.currency::before {
+            content: '¥';
+            font-size: 1.5rem;
+            opacity: 0.8;
+        }
+
+        /* My Earnings Card */
+        .my-earnings-card {
+            background: var(--bg-white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-soft);
+            border: 2px solid var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        .my-earnings-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .my-earnings-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .my-earnings-info h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin: 0 0 0.25rem 0;
+        }
+
+        .my-earnings-info p {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .my-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .my-stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .my-stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-cream);
+            border-radius: 12px;
+        }
+
+        .my-stat-item .value {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .my-stat-item .label {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+        }
+
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border: 3px solid var(--accent);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 1rem;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .empty-state-text {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        /* Approval Rate Bar */
+        .approval-bar {
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .approval-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success-green) 0%, #20c997 100%);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <header class="top-header">
+        <div class="menu-container">
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <nav class="dropdown-menu" id="dropdownMenu">
+                <a href="/navigation" class="dropdown-item">
+                    <span>{{if eq .Language "en"}}Writing{{else}}写作{{end}}</span>
+                </a>
+                <a href="/faq" class="dropdown-item">
+                    <span>{{if eq .Language "en"}}FAQ{{else}}常见问题{{end}}</span>
+                </a>
+                <a href="/descriptions" class="dropdown-item">
+                    <span>{{if eq .Language "en"}}Character Descriptions{{else}}角色描述{{end}}</span>
+                </a>
+                <a href="/payment" class="dropdown-item">
+                    <span>{{if eq .Language "en"}}Payment{{else}}付款{{end}}</span>
+                </a>
+            </nav>
+        </div>
+
+        <a class="logo-container" href="/landing">
+            <div class="logo-icon"></div>
+            <span class="logo-text">{{if eq .Language "en"}}Writer Portal{{else}}写手门户{{end}}</span>
+        </a>
+
+        <div class="account-container">
+            <button class="account-btn" id="accountBtn" aria-label="Account menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </button>
+            <div class="account-dropdown" id="accountDropdown">
+                <div class="account-dropdown-header">
+                    <span class="account-name" id="accountName">{{if .LoggedIn}}{{.CurrentUser}}{{else}}{{if eq .Language "en"}}Visitor{{else}}访客{{end}}{{end}}</span>
+                </div>
+                {{if .LoggedIn}}
+                <a href="/logout" class="account-dropdown-item">{{if eq .Language "en"}}Logout{{else}}退出登录{{end}}</a>
+                {{else}}
+                <a href="/login/e" class="account-dropdown-item">{{if eq .Language "en"}}Login{{else}}登录{{end}}</a>
+                {{end}}
+            </div>
+        </div>
+    </header>
+
+    <div class="payment-container">
+        <h1 class="page-title">💰 {{if eq .Language "en"}}Writer Compensation Center{{else}}写手报酬中心{{end}}</h1>
+        <p class="page-subtitle">{{if eq .Language "en"}}View your earnings statistics, leaderboard, and featured works{{else}}查看您的收入统计、排行榜和优秀作品展示{{end}}</p>
+
+        <!-- My Earnings Card (for logged in user) -->
+        <div class="my-earnings-card" id="myEarningsCard" style="display: none;">
+            <div class="my-earnings-header">
+                <div class="my-earnings-avatar">✍️</div>
+                <div class="my-earnings-info">
+                    <h3 id="myUsername">{{.CurrentUser}}</h3>
+                    <p>{{if eq .Language "en"}}Your Writing Achievement Overview{{else}}您的写作成就总览{{end}}</p>
+                </div>
+            </div>
+            <div class="my-stats-grid">
+                <div class="my-stat-item">
+                    <div class="value" id="myApprovedChars">0</div>
+                    <div class="label">{{if eq .Language "en"}}Approved Characters{{else}}已通过字数{{end}}</div>
+                </div>
+                <div class="my-stat-item">
+                    <div class="value" id="myEarnings">¥0</div>
+                    <div class="label">{{if eq .Language "en"}}Total Earnings{{else}}总收入{{end}}</div>
+                </div>
+                <div class="my-stat-item">
+                    <div class="value" id="myApprovalRate">0%</div>
+                    <div class="label">{{if eq .Language "en"}}Approval Rate{{else}}通过率{{end}}</div>
+                </div>
+                <div class="my-stat-item">
+                    <div class="value" id="myDialogues">0</div>
+                    <div class="label">{{if eq .Language "en"}}Completed Dialogues{{else}}完成对话{{end}}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Overview -->
+        <div class="stats-overview">
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-value" id="totalWriters">-</div>
+                <div class="stat-label">{{if eq .Language "en"}}Active Writers{{else}}活跃写手{{end}}</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📝</div>
+                <div class="stat-value" id="totalChars">-</div>
+                <div class="stat-label">{{if eq .Language "en"}}Approved Characters{{else}}已通过字数{{end}}</div>
+            </div>
+            <div class="stat-card earnings">
+                <div class="stat-icon">💎</div>
+                <div class="stat-value" id="totalEarnings">-</div>
+                <div class="stat-label">{{if eq .Language "en"}}Total Compensation Issued{{else}}总发放报酬{{end}}</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⏳</div>
+                <div class="stat-value" id="pendingPayments">-</div>
+                <div class="stat-label">{{if eq .Language "en"}}Pending Settlement{{else}}待结算{{end}}</div>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="content-grid">
+            <!-- Leaderboard -->
+            <div class="leaderboard-section">
+                <div class="section-header">
+                    <span class="section-icon">🏆</span>
+                    <h2 class="section-title">{{if eq .Language "en"}}Writer Leaderboard{{else}}写手排行榜{{end}}</h2>
+                </div>
+                <div id="leaderboardContent">
+                    <div class="loading">{{if eq .Language "en"}}Loading...{{else}}加载中...{{end}}</div>
+                </div>
+            </div>
+
+            <!-- Best Works -->
+            <div class="best-works-section">
+                <div class="section-header">
+                    <span class="section-icon">⭐</span>
+                    <h2 class="section-title">{{if eq .Language "en"}}Featured Works Showcase{{else}}优秀作品展示{{end}}</h2>
+                </div>
+                <div id="bestWorksContent">
+                    <div class="loading">{{if eq .Language "en"}}Loading...{{else}}加载中...{{end}}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings Breakdown -->
+        <div class="earnings-summary">
+            <div class="earnings-grid">
+                <div class="earnings-item">
+                    <div class="label">{{if eq .Language "en"}}Issued This Month{{else}}本月发放{{end}}</div>
+                    <div class="value currency" id="monthlyPaid">0</div>
+                </div>
+                <div class="earnings-item">
+                    <div class="label">{{if eq .Language "en"}}Works Pending Audit{{else}}待审核作品{{end}}</div>
+                    <div class="value" id="pendingWorks">0</div>
+                </div>
+                <div class="earnings-item">
+                    <div class="label">{{if eq .Language "en"}}Approved Works{{else}}已通过作品{{end}}</div>
+                    <div class="value" id="passedWorks">0</div>
+                </div>
+                <div class="earnings-item">
+                    <div class="label">{{if eq .Language "en"}}Avg Characters/Dialogue{{else}}平均字数/对话{{end}}</div>
+                    <div class="value" id="avgCharsPerDialogue">0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>Divergence 2% {{if eq .Language "en"}}Writer Portal{{else}}写手门户{{end}}</p>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+    <script>
+        // Hamburger menu toggle
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        hamburgerBtn?.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('show');
+        });
+
+        // Account dropdown toggle
+        const accountBtn = document.getElementById('accountBtn');
+        const accountDropdown = document.getElementById('accountDropdown');
+        accountBtn?.addEventListener('click', () => {
+            accountDropdown.classList.toggle('show');
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.menu-container')) {
+                dropdownMenu?.classList.remove('show');
+            }
+            if (!e.target.closest('.account-container')) {
+                accountDropdown?.classList.remove('show');
+            }
+        });
+
+        // Load payment data
+        async function loadPaymentData() {
+            const isEnglish = document.documentElement.lang === 'en';
+            try {
+                const response = await fetch('/api/payment/summary');
+                if (!response.ok) {
+                    throw new Error('Failed to load payment data');
+                }
+                const data = await response.json();
+                renderPaymentData(data);
+            } catch (error) {
+                console.error('Error loading payment data:', error);
+                document.getElementById('leaderboardContent').innerHTML = 
+                    `<div class="empty-state"><div class="empty-state-icon">📊</div><div class="empty-state-text">${isEnglish ? 'No Data' : '暂无数据'}</div></div>`;
+                document.getElementById('bestWorksContent').innerHTML = 
+                    `<div class="empty-state"><div class="empty-state-icon">✨</div><div class="empty-state-text">${isEnglish ? 'No Featured Works' : '暂无优秀作品'}</div></div>`;
+            }
+        }
+
+        function formatNumber(num) {
+            const isEnglish = document.documentElement.lang === 'en';
+            if (num >= 10000) {
+                if (isEnglish) {
+                    return (num / 1000).toFixed(1) + 'k';
+                }
+                return (num / 10000).toFixed(1) + '万';
+            }
+            return num.toLocaleString();
+        }
+
+        function formatCurrency(amount) {
+            return '¥' + amount.toFixed(2);
+        }
+
+        function renderPaymentData(data) {
+            // Update stats overview
+            document.getElementById('totalWriters').textContent = data.total_writers;
+            document.getElementById('totalChars').textContent = formatNumber(data.total_approved_chars);
+            document.getElementById('totalEarnings').textContent = formatCurrency(data.total_earnings);
+            document.getElementById('pendingPayments').textContent = formatCurrency(data.pending_payments);
+
+            // Update earnings summary
+            document.getElementById('monthlyPaid').textContent = formatNumber(Math.round(data.paid_amount));
+            
+            // Calculate additional stats
+            let totalDialogues = 0;
+            let passedDialogues = 0;
+            data.leaderboard.forEach(w => {
+                totalDialogues += w.total_dialogues;
+                passedDialogues += w.approved_dialogues;
+            });
+            document.getElementById('pendingWorks').textContent = totalDialogues - passedDialogues;
+            document.getElementById('passedWorks').textContent = passedDialogues;
+            document.getElementById('avgCharsPerDialogue').textContent = 
+                passedDialogues > 0 ? Math.round(data.total_approved_chars / passedDialogues) : 0;
+
+            // Render leaderboard
+            renderLeaderboard(data.leaderboard);
+
+            // Render best works
+            renderBestWorks(data.best_works);
+
+            // Check if current user is in leaderboard and show their card
+            const currentUser = '{{.CurrentUser}}';
+            if (currentUser) {
+                const myStats = data.leaderboard.find(w => 
+                    w.username === currentUser || w.real_name === currentUser
+                );
+                if (myStats) {
+                    document.getElementById('myEarningsCard').style.display = 'block';
+                    document.getElementById('myApprovedChars').textContent = formatNumber(myStats.approved_chars);
+                    document.getElementById('myEarnings').textContent = formatCurrency(myStats.earnings);
+                    document.getElementById('myApprovalRate').textContent = myStats.approval_rate.toFixed(1) + '%';
+                    document.getElementById('myDialogues').textContent = myStats.approved_dialogues;
+                }
+            }
+        }
+
+        function renderLeaderboard(leaderboard) {
+            const isEnglish = document.documentElement.lang === 'en';
+            if (!leaderboard || leaderboard.length === 0) {
+                document.getElementById('leaderboardContent').innerHTML = 
+                    `<div class="empty-state"><div class="empty-state-icon">🏆</div><div class="empty-state-text">${isEnglish ? 'No Ranking Data' : '暂无排行数据'}</div></div>`;
+                return;
+            }
+
+            let html = '<ul class="leaderboard-list">';
+            leaderboard.slice(0, 10).forEach((writer, index) => {
+                const rank = index + 1;
+                const rankClass = rank <= 3 ? `rank-${rank}` : '';
+                const badgeClass = rank <= 3 ? '' : 'normal';
+                const displayName = writer.real_name || writer.username || writer.user_id;
+                
+                html += `
+                    <li class="leaderboard-item ${rankClass}">
+                        <div class="rank-badge ${badgeClass}">${rank <= 3 ? ['🥇', '🥈', '🥉'][rank-1] : rank}</div>
+                        <div class="writer-info">
+                            <div class="writer-name">${displayName}</div>
+                            <div class="writer-stats-inline">
+                                ${formatNumber(writer.approved_chars)} ${isEnglish ? 'chars' : '字'} · ${writer.approved_dialogues} ${isEnglish ? 'dialogues' : '篇对话'} · ${writer.approval_rate.toFixed(0)}% ${isEnglish ? 'rate' : '通过率'}
+                            </div>
+                            <div class="approval-bar">
+                                <div class="approval-fill" style="width: ${Math.min(writer.approval_rate, 100)}%"></div>
+                            </div>
+                        </div>
+                        <div class="writer-earnings">${formatCurrency(writer.earnings)}</div>
+                    </li>
+                `;
+            });
+            html += '</ul>';
+            document.getElementById('leaderboardContent').innerHTML = html;
+        }
+
+        function renderBestWorks(bestWorks) {
+            const isEnglish = document.documentElement.lang === 'en';
+            if (!bestWorks || bestWorks.length === 0) {
+                document.getElementById('bestWorksContent').innerHTML = 
+                    `<div class="empty-state"><div class="empty-state-icon">⭐</div><div class="empty-state-text">${isEnglish ? 'No Featured Works' : '暂无优秀作品'}</div></div>`;
+                return;
+            }
+
+            let html = '<div class="best-works-list">';
+            bestWorks.slice(0, 5).forEach(work => {
+                const displayName = work.real_name || work.character_name || work.user_id;
+                const previewText = work.preview && work.preview.length > 0 
+                    ? work.preview.join(' ') 
+                    : (isEnglish ? 'No preview' : '暂无预览');
+                
+                html += `
+                    <div class="best-work-card">
+                        <div class="best-work-header">
+                            <span class="best-work-author">${displayName}</span>
+                            <span class="best-work-trait">${work.dialogue_trait || (isEnglish ? 'Excellent' : '优秀对话')}</span>
+                        </div>
+                        <div class="best-work-preview">"${previewText.substring(0, 150)}${previewText.length > 150 ? '...' : ''}"</div>
+                        <div class="best-work-stats">
+                            <span>📝 ${formatNumber(work.char_count)} ${isEnglish ? 'chars' : '字'}</span>
+                            <span>💬 ${work.dialogue_count} ${isEnglish ? 'rounds' : '轮对话'}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            document.getElementById('bestWorksContent').innerHTML = html;
+        }
+
+        // Load data on page load
+        document.addEventListener('DOMContentLoaded', loadPaymentData);
+        
+        // Language-aware link updater
+        (function() {
+            const isEnglish = document.documentElement.lang === 'en';
+            if (isEnglish) {
+                document.querySelectorAll('a[href^="/"]').forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href.startsWith('/static/') || href.endsWith('/e') || href.includes('/e#') || href === '/logout') return;
+                    if (href.includes('#')) {
+                        const [path, hash] = href.split('#');
+                        link.setAttribute('href', path + '/e#' + hash);
+                    } else {
+                        link.setAttribute('href', href + '/e');
+                    }
+                });
+            }
+        })();
+    </script>
+    
+{% include "includes/home_button.html" %}
+
+</body>
+</html>

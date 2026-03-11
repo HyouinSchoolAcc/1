@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="{{if eq .Language "en"}}en{{else}}zh-CN{{end}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{if eq .Language "en"}}LLM Usage - Divergence 2%{{else}}LLM 使用 - Divergence 2%{{end}}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+    <style>
+        .llm-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .llm-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .llm-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #e8e6e3;
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .status-badge.online {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+        
+        .status-badge.offline {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        .status-dot.online {
+            background: #22c55e;
+        }
+        
+        .status-dot.offline {
+            background: #ef4444;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* Developer Panel */
+        .developer-panel {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .developer-panel-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .developer-badge {
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .developer-panel h3 {
+            color: #e8e6e3;
+            font-size: 1.25rem;
+            margin: 0;
+        }
+        
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 32px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 32px;
+            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 24px;
+            width: 24px;
+            left: 4px;
+            bottom: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        
+        .toggle-switch input:checked + .toggle-slider {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+        }
+        
+        .toggle-switch input:checked + .toggle-slider:before {
+            transform: translateX(28px);
+        }
+        
+        .toggle-label {
+            color: #a8a29e;
+            font-size: 0.875rem;
+        }
+        
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .config-item {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        
+        .config-item label {
+            display: block;
+            color: #a8a29e;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .config-item input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 0.75rem;
+            color: #e8e6e3;
+            font-size: 0.875rem;
+        }
+        
+        .config-item input:focus {
+            outline: none;
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+        
+        /* Chat Interface */
+        .chat-container {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .chat-header {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .chat-avatar {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .chat-info h3 {
+            color: #e8e6e3;
+            margin: 0;
+            font-size: 1.125rem;
+        }
+        
+        .chat-info p {
+            color: #a8a29e;
+            margin: 0;
+            font-size: 0.875rem;
+        }
+        
+        .chat-messages {
+            height: 400px;
+            overflow-y: auto;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 1rem;
+            border-radius: 12px;
+            line-height: 1.5;
+        }
+        
+        .message.user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .message.assistant {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.1);
+            color: #e8e6e3;
+            border-bottom-left-radius: 4px;
+        }
+        
+        .message.system {
+            align-self: center;
+            background: rgba(139, 92, 246, 0.2);
+            color: #c4b5fd;
+            font-size: 0.875rem;
+            max-width: 90%;
+        }
+        
+        .message-time {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 0.5rem;
+        }
+        
+        .chat-input-container {
+            padding: 1rem 1.5rem;
+            background: rgba(0, 0, 0, 0.4);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .chat-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            color: #e8e6e3;
+            font-size: 1rem;
+            resize: none;
+        }
+        
+        .chat-input:focus {
+            outline: none;
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+        
+        .chat-input::placeholder {
+            color: #78716c;
+        }
+        
+        .send-btn {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .send-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+        
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .lora-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #a8a29e;
+            font-size: 0.875rem;
+        }
+        
+        .lora-toggle input:checked + .lora-label {
+            color: #f59e0b;
+        }
+        
+        .fast-forward-btn {
+            background: rgba(168, 162, 158, 0.15);
+            color: #a8a29e;
+            border: 1px solid rgba(168, 162, 158, 0.4);
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: not-allowed;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            opacity: 0.6;
+        }
+        
+        .fast-forward-btn.active {
+            background: rgba(251, 191, 36, 0.25);
+            color: #fbbf24;
+            border: 1px solid rgba(251, 191, 36, 0.5);
+            cursor: pointer;
+            opacity: 1;
+            animation: pulse-glow 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(251, 191, 36, 0.3); }
+            50% { box-shadow: 0 0 15px rgba(251, 191, 36, 0.5); }
+        }
+        
+        .fast-forward-btn.active:hover {
+            background: rgba(251, 191, 36, 0.35);
+            border-color: rgba(251, 191, 36, 0.6);
+            transform: scale(1.05);
+        }
+        
+        .fast-forward-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+        
+        /* Speak Again Button */
+        .speak-again-btn {
+            background: rgba(168, 85, 247, 0.15);
+            color: #a855f7;
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: not-allowed;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            opacity: 0.5;
+        }
+        
+        .speak-again-btn.active {
+            cursor: pointer;
+            opacity: 1;
+        }
+        
+        .speak-again-btn.active:hover {
+            background: rgba(168, 85, 247, 0.25);
+            border-color: rgba(168, 85, 247, 0.6);
+            transform: scale(1.02);
+        }
+        
+        .speak-again-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        /* Loading indicator */
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 1rem;
+            align-self: flex-start;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #a8a29e;
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+        
+        /* Info Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .info-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+        
+        .info-card-label {
+            color: #78716c;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-card-value {
+            color: #e8e6e3;
+            font-size: 1rem;
+            font-weight: 500;
+            word-break: break-all;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Header -->
+    <header class="top-header">
+        <!-- Hamburger Menu (Left) -->
+        <div class="menu-container">
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <!-- Dropdown Menu -->
+            <nav class="dropdown-menu" id="dropdownMenu">
+                <a href="/navigation" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                        <path d="M2 2l7.586 7.586"></path>
+                        <circle cx="11" cy="11" r="2"></circle>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Writing{{else}}写作{{end}}</span>
+                </a>
+                <a href="/lounge" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Writer's Lounge{{else}}写手交流室{{end}}</span>
+                </a>
+                <a href="/faq" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    <span>{{if eq .Language "en"}}FAQ{{else}}常见问题{{end}}</span>
+                </a>
+                <a href="/llm" class="dropdown-item active">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"></path>
+                        <circle cx="7.5" cy="14.5" r="1.5"></circle>
+                        <circle cx="16.5" cy="14.5" r="1.5"></circle>
+                    </svg>
+                    <span>{{if eq .Language "en"}}LLM Usage{{else}}LLM 使用{{end}}</span>
+                </a>
+                <a href="/store" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Store{{else}}商店{{end}}</span>
+                </a>
+                {{if .LoggedIn}}
+                <a href="/profile/{{.CurrentUser}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>{{if eq .Language "en"}}My Profile{{else}}我的主页{{end}}</span>
+                </a>
+                {{end}}
+</nav>
+        </div>
+        
+        <!-- Logo (Center) -->
+        <a class="logo-container" href="/landing">
+            <div class="logo-icon"></div>
+            <span class="logo-text">{{if eq .Language "en"}}Writer Portal{{else}}写手门户{{end}}</span>
+        </a>
+        
+        <!-- Account Menu (Right) -->
+        <div class="account-container">
+            <button class="account-btn" id="accountBtn" aria-label="Account menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </button>
+            
+            <!-- Account Dropdown -->
+            <div class="account-dropdown" id="accountDropdown">
+                {{if .LoggedIn}}
+                <div class="account-dropdown-header">
+                    <span class="account-name">{{.CurrentUser}}</span>
+                </div>
+                <a href="/logout" class="account-dropdown-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Logout{{else}}退出{{end}}</span>
+                </a>
+                {{else}}
+                <a href="/login/e" class="account-dropdown-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                        <polyline points="10 17 15 12 10 7"></polyline>
+                        <line x1="15" y1="12" x2="3" y2="12"></line>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Login{{else}}登录{{end}}</span>
+                </a>
+                {{end}}
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="llm-container">
+            <!-- Header -->
+            <div class="llm-header">
+                <h1 class="llm-title">🤖 {{if eq .Language "en"}}LLM Usage{{else}}LLM 使用{{end}}</h1>
+                <div class="status-badge {{if .LLMStatus.ServerRunning}}online{{else}}offline{{end}}" id="statusBadge">
+                    <span class="status-dot {{if .LLMStatus.ServerRunning}}online{{else}}offline{{end}}"></span>
+                    <span id="statusText">{{if .LLMStatus.ServerRunning}}{{if eq .Language "en"}}Online{{else}}在线{{end}}{{else}}{{if eq .Language "en"}}Offline{{else}}离线{{end}}{{end}}</span>
+                </div>
+            </div>
+
+            <!-- Developer Panel (only shown to developers) -->
+            {{if .IsDeveloper}}
+            <div class="developer-panel">
+                <div class="developer-panel-header">
+                    <span class="developer-badge">{{if eq .Language "en"}}Developer{{else}}开发者{{end}}</span>
+                    <h3>{{if eq .Language "en"}}Model Control Panel{{else}}模型控制面板{{end}}</h3>
+                </div>
+                
+                <div class="toggle-container">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="modelToggle" {{if .LLMStatus.Enabled}}checked{{end}}>
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="toggle-label" id="toggleLabel">
+                        {{if .LLMStatus.Enabled}}{{if eq .Language "en"}}Model Running{{else}}模型运行中{{end}}{{else}}{{if eq .Language "en"}}Model Stopped{{else}}模型已停止{{end}}{{end}}
+                    </span>
+                </div>
+                
+                <div class="config-grid">
+                    <div class="config-item">
+                        <label>{{if eq .Language "en"}}Base Model{{else}}基础模型{{end}}</label>
+                        <input type="text" id="baseModel" value="{{.LLMStatus.ModelPath}}" placeholder="Qwen/Qwen3-14B">
+                    </div>
+                    <div class="config-item">
+                        <label>{{if eq .Language "en"}}LoRA Path{{else}}LoRA 路径{{end}}</label>
+                        <input type="text" id="loraPath" value="{{.LLMStatus.LoRAPath}}" placeholder="/path/to/lora">
+                    </div>
+                    <div class="config-item">
+                        <label>{{if eq .Language "en"}}Port{{else}}端口{{end}}</label>
+                        <input type="text" id="port" value="{{.LLMStatus.Port}}" placeholder="8000">
+                    </div>
+                </div>
+                
+                <button class="send-btn" style="margin-top: 1rem;" id="saveConfigBtn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                        <polyline points="7 3 7 8 15 8"></polyline>
+                    </svg>
+                    {{if eq .Language "en"}}Save Config{{else}}保存配置{{end}}
+                </button>
+            </div>
+            {{end}}
+
+            <!-- Info Cards -->
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-card-label">{{if eq .Language "en"}}Character{{else}}角色{{end}}</div>
+                    <div class="info-card-value">{{if eq .Language "en"}}Lin Lu{{else}}林路{{end}}</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">{{if eq .Language "en"}}Model{{else}}模型{{end}}</div>
+                    <div class="info-card-value">Qwen3-14B + LoRA</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">{{if eq .Language "en"}}Training Data{{else}}训练数据{{end}}</div>
+                    <div class="info-card-value">{{if eq .Language "en"}}459 Dialogues (Timestamped){{else}}459 对话 (带时间戳){{end}}</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">{{if eq .Language "en"}}Final Loss{{else}}最终损失{{end}}</div>
+                    <div class="info-card-value">1.57</div>
+                </div>
+            </div>
+
+            <!-- Chat Interface -->
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="chat-avatar">{{if eq .Language "en"}}L{{else}}路{{end}}</div>
+                    <div class="chat-info">
+                        <h3>{{if eq .Language "en"}}Lin Lu{{else}}林路{{end}}</h3>
+                        <p>{{if eq .Language "en"}}Literature Professor · Fine-tuned Qwen3-14B{{else}}文学系大学老师 · Fine-tuned Qwen3-14B{{end}}</p>
+                    </div>
+                </div>
+                
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message system">
+                        {{if eq .Language "en"}}Welcome to the LLM dialogue system. This is the Lin Lu character model fine-tuned based on Qwen3-14B.{{else}}欢迎使用 LLM 对话系统。这是基于 Qwen3-14B 微调的林路角色模型。{{end}}
+                        {{if not .LLMStatus.ServerRunning}}
+                        <br><br>{{if eq .Language "en"}}⚠️ Note: Model server is not currently running.{{else}}⚠️ 注意：模型服务器当前未运行。{{end}} {{if .IsDeveloper}}{{if eq .Language "en"}}Please use the developer panel to start the model.{{else}}请使用开发者面板启动模型。{{end}}{{else}}{{if eq .Language "en"}}Please contact the administrator to start the service.{{else}}请联系管理员启动服务。{{end}}{{end}}
+                        {{end}}
+                    </div>
+                </div>
+                
+                <div class="chat-input-container">
+                    <label class="lora-toggle">
+                        <input type="checkbox" id="useLoRA" checked>
+                        <span class="lora-label">{{if eq .Language "en"}}Use LoRA{{else}}使用 LoRA{{end}}</span>
+                    </label>
+                    <button class="fast-forward-btn" id="fastForwardBtn" title="{{if eq .Language "en"}}Skip delays{{else}}跳过延迟{{end}}">
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="5,4 15,12 5,20"></polygon>
+                            <polygon points="13,4 23,12 13,20"></polygon>
+                        </svg>
+                        <span>{{if eq .Language "en"}}FF{{else}}快进{{end}}</span>
+                    </button>
+                    <button class="speak-again-btn" id="speakAgainBtn" title="{{if eq .Language "en"}}Regenerate response{{else}}重新生成回复{{end}}">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 4v6h6"></path>
+                            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                        </svg>
+                        <span>{{if eq .Language "en"}}Again{{else}}再说一次{{end}}</span>
+                    </button>
+                    <textarea class="chat-input" id="chatInput" placeholder="{{if eq .Language "en"}}Enter message...{{else}}输入消息...{{end}}" rows="1" {{if not .LLMStatus.ServerRunning}}disabled{{end}}></textarea>
+                    <button class="send-btn" id="sendBtn" {{if not .LLMStatus.ServerRunning}}disabled{{end}}>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                        {{if eq .Language "en"}}Send{{else}}发送{{end}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>{{if eq .Language "en"}}Divergence 2% Writer Portal{{else}}Divergence 2% 写手门户{{end}}</p>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+    <script>
+        // Chat functionality - TIMESTAMPED VERSION with real-time simulation
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const useLoRA = document.getElementById('useLoRA');
+        const isEnglish = document.documentElement.lang === 'en';
+        
+        // Conversation state
+        let conversationHistory = [];  // Only contains DISPLAYED messages
+        let pendingAssistantMessages = [];  // Queue of messages waiting to be displayed
+        let isProcessingQueue = false;
+        let lastDisplayedAssistantTimestamp = null;
+        let fastForwardMode = false;  // Skip delays when true
+        let lastUserMessage = null;  // Store last user message for "speak again"
+        let canSpeakAgain = false;  // Track if we can regenerate
+        const fastForwardBtn = document.getElementById('fastForwardBtn');
+        const speakAgainBtn = document.getElementById('speakAgainBtn');
+        
+        // System prompt - EXACTLY matching training format from final dataset
+        // Training format: each message is standalone with [HH:MM] timestamp, NO EOT markers
+        // Multi-turn = multiple consecutive assistant messages as separate entries
+        // CRITICAL: Model must output in Chinese (中文)
+        const systemPrompt = {
+            role: "system",
+            content: "你是林路。请始终用中文回复。两个人刚刚认识，正在互相了解。他们的对话友好，涵盖日常生活到更深层话题。你的第一天日程：上午：复习讲义，准备上课；下午：教文学课，与学生见面；晚上：喝茶放松，查看消息。用户的第一天日程：上午：工作中；下午：处理日常事务；晚上：休息，浏览社交软件。\n\n重要提示：所有回复必须使用中文。"
+        };
+        
+        // Parse timestamp to minutes for comparison
+        function timestampToMinutes(ts) {
+            const [h, m] = ts.split(':').map(Number);
+            return h * 60 + m;
+        }
+        
+        // Parse timestamped response from the model
+        // Training format: [HH:MM] content (no EOT markers)
+        // Model may output multiple lines, each is a separate message
+        function parseTimestampedResponse(response) {
+            const messages = [];
+            const lines = response.split('\n');
+            
+            for (const line of lines) {
+                const trimmed = line.trim();
+                // Skip empty lines and any legacy EOT markers the model might still output
+                if (trimmed === '' || trimmed === '[EOT]') continue;
+                
+                const match = trimmed.match(/^\[(\d{2}:\d{2})\]\s*(.+)$/);
+                if (match) {
+                    messages.push({ timestamp: match[1], content: match[2] });
+                } else if (trimmed) {
+                    // Fallback: use current time if no timestamp
+                    messages.push({ timestamp: getCurrentTimestamp(), content: trimmed });
+                }
+            }
+            return messages;
+        }
+        
+        // Format a single message for history (training format: [HH:MM] content)
+        // No EOT markers - matches 1_18_data.jsonl format
+        function formatMessageForHistory(msg) {
+            return `[${msg.timestamp}] ${msg.content}`;
+        }
+        
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        
+        // Update fast-forward button state (always visible, active when messages pending)
+        function updateFastForwardButton() {
+            if (pendingAssistantMessages.length > 0 && isProcessingQueue) {
+                fastForwardBtn.classList.add('active');
+                fastForwardBtn.disabled = false;
+            } else {
+                fastForwardBtn.classList.remove('active');
+                fastForwardBtn.disabled = true;
+                fastForwardMode = false;
+            }
+        }
+        
+        // Process the pending message queue one at a time
+        async function processMessageQueue() {
+            if (isProcessingQueue || pendingAssistantMessages.length === 0) return;
+            
+            isProcessingQueue = true;
+            updateFastForwardButton();
+            
+            console.log(`Processing ${pendingAssistantMessages.length} messages...`);
+            
+            while (pendingAssistantMessages.length > 0) {
+                const msg = pendingAssistantMessages[0];
+                
+                // Calculate delay based on timestamp difference
+                let delay = 800;  // Base delay for first message
+                
+                if (fastForwardMode) {
+                    delay = 50;  // Minimal delay in FF mode
+                } else if (lastDisplayedAssistantTimestamp) {
+                    const lastMins = timestampToMinutes(lastDisplayedAssistantTimestamp);
+                    const currMins = timestampToMinutes(msg.timestamp);
+                    const diffMinutes = currMins - lastMins;
+                    
+                    console.log(`Timestamp diff: ${lastDisplayedAssistantTimestamp} -> ${msg.timestamp} = ${diffMinutes} min`);
+                    
+                    if (diffMinutes > 0) {
+                        // Scale: 1 minute = 1500ms delay, max 8 seconds
+                        delay = Math.min(1000 + diffMinutes * 1500, 8000);
+                    } else {
+                        // Same or earlier timestamp = typing delay (800-1200ms)
+                        delay = 800 + Math.random() * 400;
+                    }
+                }
+                
+                console.log(`Delay for message: ${delay}ms (FF mode: ${fastForwardMode})`);
+                
+                // Show typing indicator during delay
+                if (!fastForwardMode) {
+                    showTypingIndicator();
+                }
+                
+                // Actually wait for the delay
+                await sleep(delay);
+                
+                hideTypingIndicator();
+                
+                // Check if queue was cleared (user interrupted or FF mode changed)
+                if (pendingAssistantMessages.length === 0 || pendingAssistantMessages[0] !== msg) {
+                    console.log('Queue interrupted');
+                    break;
+                }
+                
+                // Display the message
+                addMessageWithTimestamp(msg.content, 'assistant', msg.timestamp);
+                lastDisplayedAssistantTimestamp = msg.timestamp;
+                
+                // Remove from pending and add to displayed history
+                pendingAssistantMessages.shift();
+                
+                // Update conversation history with this single message
+                updateAssistantHistory(msg);
+                
+                updateFastForwardButton();
+            }
+            
+            isProcessingQueue = false;
+            updateFastForwardButton();
+            updateSpeakAgainButton();  // Enable speak again after queue completes
+            hideTypingIndicator();
+            console.log('Queue processing complete');
+        }
+        
+        // Fast-forward button handler
+        fastForwardBtn.addEventListener('click', function() {
+            if (pendingAssistantMessages.length > 0 && isProcessingQueue) {
+                console.log('Fast-forward activated!');
+                fastForwardMode = true;
+            }
+        });
+        
+        // Update speak again button state
+        function updateSpeakAgainButton() {
+            // Enable if we have any conversation history and not currently processing
+            const hasHistory = conversationHistory.length > 0;
+            const shouldEnable = canSpeakAgain && hasHistory && !isProcessingQueue;
+            console.log(`updateSpeakAgainButton: canSpeakAgain=${canSpeakAgain}, hasHistory=${hasHistory}, isProcessingQueue=${isProcessingQueue}, shouldEnable=${shouldEnable}`);
+            if (shouldEnable) {
+                speakAgainBtn.classList.add('active');
+                speakAgainBtn.disabled = false;
+                console.log('✅ Speak again button ENABLED');
+            } else {
+                speakAgainBtn.classList.remove('active');
+                speakAgainBtn.disabled = true;
+            }
+        }
+        
+        // Speak again button handler - prompt the model to continue speaking
+        speakAgainBtn.addEventListener('click', async function() {
+            if (!canSpeakAgain || isProcessingQueue) return;
+            
+            console.log('Speak again triggered - requesting additional turn!');
+            
+            // Clear any pending messages
+            pendingAssistantMessages = [];
+            hideTypingIndicator();
+            
+            // Request another turn from the model
+            await requestAdditionalTurn();
+        });
+        
+        // Request the model to speak again (continue the conversation)
+        async function requestAdditionalTurn() {
+            showTypingIndicator();
+            sendBtn.disabled = true;
+            canSpeakAgain = false;
+            updateSpeakAgainButton();
+            
+            // Reset current assistant turn tracker
+            currentAssistantTurnMessages = [];
+            
+            // Build request with system prompt + full history (including previous assistant messages)
+            // The model will continue from where it left off
+            const messages = [systemPrompt, ...conversationHistory];
+            
+            console.log('Requesting additional turn with history:', messages.length, 'messages');
+            
+            try {
+                const response = await fetch('/api/llm/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        messages: messages,
+                        use_lora: useLoRA.checked,
+                        max_tokens: 1024,
+                        temperature: 0.8  // Slightly higher temperature for variety
+                    })
+                });
+                
+                hideTypingIndicator();
+                
+                if (!response.ok) {
+                    const error = await response.json();
+                    addMessage(`${isEnglish ? 'Error' : '错误'}: ${error.error || (isEnglish ? 'Request failed' : '请求失败')}`, 'system');
+                    sendBtn.disabled = false;
+                    canSpeakAgain = true;
+                    updateSpeakAgainButton();
+                    return;
+                }
+                
+                const data = await response.json();
+                if (data.choices && data.choices.length > 0) {
+                    const rawResponse = data.choices[0].message.content;
+                    const parsedMessages = parseTimestampedResponse(rawResponse);
+                    
+                    if (parsedMessages.length > 0) {
+                        pendingAssistantMessages = parsedMessages;
+                        console.log(`Got ${parsedMessages.length} additional messages:`, parsedMessages);
+                        processMessageQueue();
+                    } else {
+                        const ts = getCurrentTimestamp();
+                        const cleanResponse = rawResponse.replace('[EOT]', '').trim();
+                        addMessageWithTimestamp(cleanResponse, 'assistant', ts);
+                        conversationHistory.push({ role: 'assistant', content: `[${ts}] ${cleanResponse}` });
+                        updateSpeakAgainButton();
+                    }
+                    canSpeakAgain = true;
+                }
+            } catch (error) {
+                hideTypingIndicator();
+                addMessage(`${isEnglish ? 'Network Error' : '网络错误'}: ${error.message}`, 'system');
+                canSpeakAgain = true;
+            } finally {
+                sendBtn.disabled = false;
+                updateSpeakAgainButton();
+            }
+        }
+        
+        // Track displayed assistant messages for current turn
+        let currentAssistantTurnMessages = [];
+        
+        // Training format: each assistant message is a SEPARATE entry in the messages array
+        // Not combined into one entry with newlines
+        function updateAssistantHistory(msg) {
+            currentAssistantTurnMessages.push(msg);
+            
+            // Add each assistant message as a separate conversation history entry
+            // This matches the training format where consecutive assistant messages
+            // are separate objects in the messages array
+            conversationHistory.push({
+                role: 'assistant',
+                content: formatMessageForHistory(msg)
+            });
+        }
+        
+        function addMessageWithTimestamp(content, role, timestamp) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${role}`;
+            messageDiv.textContent = content;
+            
+            const timeDiv = document.createElement('div');
+            timeDiv.className = 'message-time';
+            timeDiv.textContent = timestamp || getCurrentTimestamp();
+            messageDiv.appendChild(timeDiv);
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function addMessage(content, role) {
+            addMessageWithTimestamp(content, role, getCurrentTimestamp());
+        }
+        
+        function showTypingIndicator() {
+            hideTypingIndicator();
+            const indicator = document.createElement('div');
+            indicator.className = 'typing-indicator';
+            indicator.id = 'typingIndicator';
+            indicator.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            chatMessages.appendChild(indicator);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function hideTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) indicator.remove();
+        }
+        
+        function getCurrentTimestamp() {
+            const now = new Date();
+            return `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+        }
+        
+        async function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+            
+            const userTimestamp = getCurrentTimestamp();
+            const userMinutes = timestampToMinutes(userTimestamp);
+            
+            // Check if user is interrupting pending assistant messages
+            if (pendingAssistantMessages.length > 0) {
+                const nextPendingTimestamp = pendingAssistantMessages[0].timestamp;
+                const nextPendingMinutes = timestampToMinutes(nextPendingTimestamp);
+                
+                if (userMinutes < nextPendingMinutes) {
+                    // User sent message BEFORE next pending message timestamp
+                    // Discard all pending assistant messages and regenerate
+                    console.log(`User interrupted at ${userTimestamp}, discarding ${pendingAssistantMessages.length} pending messages starting at ${nextPendingTimestamp}`);
+                    pendingAssistantMessages = [];
+                    hideTypingIndicator();
+                }
+            }
+            
+            // Display user message
+            addMessageWithTimestamp(message, 'user', userTimestamp);
+            chatInput.value = '';
+            
+            // Store for "speak again" feature
+            lastUserMessage = { content: message, timestamp: userTimestamp };
+            canSpeakAgain = false;
+            updateSpeakAgainButton();
+            
+            // Format user message with timestamp (training format: [HH:MM] content, no EOT)
+            const formattedUserMessage = `[${userTimestamp}] ${message}`;
+            conversationHistory.push({ role: 'user', content: formattedUserMessage });
+            
+            // Reset current assistant turn tracker
+            currentAssistantTurnMessages = [];
+            
+            // Build request with system prompt + history
+            const messages = [systemPrompt, ...conversationHistory];
+            
+            showTypingIndicator();
+            sendBtn.disabled = true;
+            
+            try {
+                const response = await fetch('/api/llm/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        messages: messages,
+                        use_lora: useLoRA.checked,
+                        max_tokens: 1024,
+                        temperature: 0.7
+                    })
+                });
+                
+                hideTypingIndicator();
+                
+                if (!response.ok) {
+                    const error = await response.json();
+                    addMessage(`${isEnglish ? 'Error' : '错误'}: ${error.error || (isEnglish ? 'Request failed' : '请求失败')}`, 'system');
+                    sendBtn.disabled = false;
+                    return;
+                }
+                
+                const data = await response.json();
+                if (data.choices && data.choices.length > 0) {
+                    const rawResponse = data.choices[0].message.content;
+                    const parsedMessages = parseTimestampedResponse(rawResponse);
+                    
+                    // Enable speak again - the button will become active once queue finishes
+                    canSpeakAgain = true;
+                    
+                    if (parsedMessages.length > 0) {
+                        // Queue messages for timed display
+                        pendingAssistantMessages = parsedMessages;
+                        console.log(`Queued ${parsedMessages.length} messages:`, parsedMessages);
+                        // Start processing the queue (button enabled when queue completes)
+                        processMessageQueue();
+                    } else {
+                        // Fallback: display raw response (strip any legacy EOT markers)
+                        const ts = getCurrentTimestamp();
+                        const cleanResponse = rawResponse.replace('[EOT]', '').trim();
+                        addMessageWithTimestamp(cleanResponse, 'assistant', ts);
+                        conversationHistory.push({ role: 'assistant', content: `[${ts}] ${cleanResponse}` });
+                        // No queue, so enable button immediately
+                        updateSpeakAgainButton();
+                    }
+                }
+            } catch (error) {
+                hideTypingIndicator();
+                addMessage(`${isEnglish ? 'Network Error' : '网络错误'}: ${error.message}`, 'system');
+                canSpeakAgain = true;  // Allow retry on error
+                updateSpeakAgainButton();
+            } finally {
+                sendBtn.disabled = false;
+            }
+        }
+        
+        sendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+        
+        chatInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+        });
+        
+        // Developer controls
+        const modelToggle = document.getElementById('modelToggle');
+        const toggleLabel = document.getElementById('toggleLabel');
+        const statusBadge = document.getElementById('statusBadge');
+        const statusText = document.getElementById('statusText');
+        
+        if (modelToggle) {
+            modelToggle.addEventListener('change', async function() {
+                const enable = this.checked;
+                toggleLabel.textContent = enable ? (isEnglish ? 'Starting...' : '启动中...') : (isEnglish ? 'Stopping...' : '停止中...');
+                
+                try {
+                    const response = await fetch('/api/llm/toggle', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ enable })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.error) {
+                        alert((isEnglish ? 'Operation failed: ' : '操作失败: ') + data.error);
+                        this.checked = !enable;
+                        toggleLabel.textContent = enable ? (isEnglish ? 'Model Stopped' : '模型已停止') : (isEnglish ? 'Model Running' : '模型运行中');
+                        return;
+                    }
+                    
+                    // Update UI
+                    toggleLabel.textContent = data.enabled ? (isEnglish ? 'Model Running' : '模型运行中') : (isEnglish ? 'Model Stopped' : '模型已停止');
+                    
+                    if (data.server_running) {
+                        statusBadge.className = 'status-badge online';
+                        statusText.textContent = isEnglish ? 'Online' : '在线';
+                        chatInput.disabled = false;
+                        sendBtn.disabled = false;
+                    } else {
+                        statusBadge.className = 'status-badge offline';
+                        statusText.textContent = isEnglish ? 'Offline' : '离线';
+                        chatInput.disabled = true;
+                        sendBtn.disabled = true;
+                    }
+                } catch (error) {
+                    alert((isEnglish ? 'Request failed: ' : '请求失败: ') + error.message);
+                    this.checked = !enable;
+                    toggleLabel.textContent = enable ? (isEnglish ? 'Model Stopped' : '模型已停止') : (isEnglish ? 'Model Running' : '模型运行中');
+                }
+            });
+        }
+        
+        // Save config button
+        const saveConfigBtn = document.getElementById('saveConfigBtn');
+        if (saveConfigBtn) {
+            saveConfigBtn.addEventListener('click', async function() {
+                const config = {
+                    base_model: document.getElementById('baseModel').value,
+                    lora_path: document.getElementById('loraPath').value,
+                    port: document.getElementById('port').value
+                };
+                
+                try {
+                    const response = await fetch('/api/llm/config', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(config)
+                    });
+                    
+                    const data = await response.json();
+                    if (data.error) {
+                        alert((isEnglish ? 'Save failed: ' : '保存失败: ') + data.error);
+                    } else {
+                        alert(isEnglish ? 'Configuration saved' : '配置已保存');
+                    }
+                } catch (error) {
+                    alert((isEnglish ? 'Request failed: ' : '请求失败: ') + error.message);
+                }
+            });
+        }
+        
+        // Poll status every 10 seconds
+        setInterval(async () => {
+            try {
+                const response = await fetch('/api/llm/status');
+                const data = await response.json();
+                
+                if (data.server_running) {
+                    statusBadge.className = 'status-badge online';
+                    statusText.textContent = isEnglish ? 'Online' : '在线';
+                    chatInput.disabled = false;
+                    sendBtn.disabled = false;
+                } else {
+                    statusBadge.className = 'status-badge offline';
+                    statusText.textContent = isEnglish ? 'Offline' : '离线';
+                    chatInput.disabled = true;
+                    sendBtn.disabled = true;
+                }
+                
+                if (modelToggle) {
+                    modelToggle.checked = data.enabled;
+                    toggleLabel.textContent = data.enabled ? (isEnglish ? 'Model Running' : '模型运行中') : (isEnglish ? 'Model Stopped' : '模型已停止');
+                }
+            } catch (error) {
+                console.error('Status check failed:', error);
+            }
+        }, 10000);
+    </script>
+</body>
+</html>
+

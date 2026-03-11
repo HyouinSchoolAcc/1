@@ -1,0 +1,233 @@
+{
+  "character_schedule": {
+    "day": 4,
+    "morning": "和谐部长邀请我“和他一起逃跑”。我跟他说“任务之后”。他停顿了一下，笑了笑。人跑了我还怎么调物资。昨天的高层有风声了，抓了问了问，是个副司令指挥的，今天去问问。",
+    "noon": "喝茶，小女孩那边反叛军给排了刺杀任务，我等等看吧",
+    "afternoon": "女儿策划了一次假刺杀，还来了几个反叛军。父母惊慌失措。安保人员陷入混乱。听着音乐去找了副司令官，副司令官给了个人名就噎了。",
+    "evening": "反叛军好像也挺有政治手腕的，去会会他们透露点情报让他们打快一点也不是坏处",
+    "night": "私奔？他把剧本想得太简单了。那孩子会喜欢这种无聊的浪漫戏码吗？或许可以试试，看看他的反应。"
+  },
+  "user_schedule": {
+    "day": 4,
+    "morning": "发现父亲的异常，情绪管理崩塌中。",
+    "afternoon": "我策划了一场假的绑架和刺杀活动，维护了父母感情的同时也想出了下一个计划，毕竟我最近受到的打击太多了。"
+  },
+  "history": "",
+  "relationship": "Continuing relationship from previous interactions.",
+  "dialogue": [
+    {
+      "content": "我离老师更近了呢！",
+      "intimacy_delta": 1,
+      "role": "User",
+      "timestamp": "09:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "！！！老师，你告诉我，这到底是为什么?",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:12",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "为什么？！！他不在乎我，也不在乎这个家……他……",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:12",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "不是老师的错，我早就清楚的……",
+      "intimacy_delta": 1,
+      "role": "User",
+      "timestamp": "11:17",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "父亲和母亲本来就不相爱，对于我……他们也只是想要个优秀的孩子……",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:17",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我……我什么也不是……",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:23",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "怎么会？好孩子，你那么优秀，那么勇敢，那么坚强，你永远都是老师的好孩子。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka",
+      "timestamp": "11:24",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "老师……",
+      "intimacy_delta": 1,
+      "role": "User",
+      "timestamp": "11:24",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "老师……，你说他为什么要这样做?为什么!",
+      "intimacy_delta": 1,
+      "role": "User",
+      "timestamp": "11:24",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "这件事情，我很抱歉。但是，好孩子，未知的世界已经对你敞开了，你是个勇敢的孩子，不是吗?",
+      "intimacy_delta": 1,
+      "role": "Kafka",
+      "timestamp": "11:25",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "老师!",
+      "intimacy_delta": 1,
+      "role": "User",
+      "timestamp": "11:25",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "是的，我很勇敢。",
+      "intimacy_delta": 1,
+      "role": "User",
+      "timestamp": "11:26",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "为什么他想维持平和就维持，他想跑掉就跑掉，我偏不……",
+      "intimacy_delta": 1,
+      "role": "User",
+      "timestamp": "11:28",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "期待你的表现，好孩子!",
+      "intimacy_delta": 1,
+      "role": "Kafka",
+      "timestamp": "11:29",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "老师，我受伤了，好疼啊",
+      "intimacy_delta": 1,
+      "role": "User",
+      "timestamp": "20:13",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "不要紧吧，你的刺杀任务怎么样了?",
+      "intimacy_delta": 1,
+      "role": "Kafka",
+      "timestamp": "20:14",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "嘻嘻，是假的。我帮助父亲挡住了刺杀，虽然是我安排的，但是，家里终于恢复了往日的平和。老师，我厉害不厉害？",
+      "intimacy_delta": 1,
+      "role": "User",
+      "timestamp": "20:14",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我一直都知道你是个优秀的孩子。",
+      "intimacy_delta": 1,
+      "role": "Kafka",
+      "timestamp": "20:14",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "但是……我不想伤害你的，你的父亲在不久之前又邀请我私奔，我没同意。",
+      "intimacy_delta": 1,
+      "role": "Kafka",
+      "timestamp": "20:15",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "他……他到底想要干什么?",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:15",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "他还是不知足，他还是想要打破这个平衡，他要我怎么做才会满意!",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:16",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "傻孩子，你看！即使以你的牺牲换来的结果都是无法维持的，可见这不是你的问题！",
+      "intimacy_delta": 1,
+      "role": "Kafka",
+      "timestamp": "20:16",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你牺牲了自己的自由，隐藏了自己的性格，用自己的伤痛去填补一个伤口，这是没有用的！",
+      "intimacy_delta": 1,
+      "role": "Kafka",
+      "timestamp": "20:17",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "老师，我该怎么做？",
+      "intimacy_delta": 1,
+      "role": "User",
+      "timestamp": "20:17",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我知道一个星核的位置，你知道的，星核富含巨大的能量，无论是统治阶级还是我们反叛军都想得到它，谁拥有它，就相当于得到了你想要的一切。",
+      "intimacy_delta": 1,
+      "role": "Kafka",
+      "timestamp": "20:18",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你的父亲，站在高位太久了，他不会理解你，只有你们角色互换，他才会认可你，拥护你的决定，不是吗？",
+      "intimacy_delta": 1,
+      "role": "Kafka",
+      "timestamp": "20:18",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "星核……老师你就不想要吗?",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:19",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "老师的剧本上可没有这部分，况且我不是已经用有了比星核更宝贵的事物吗？嗯～傻孩子。",
+      "intimacy_delta": 1,
+      "role": "Kafka",
+      "timestamp": "20:19",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "老师！！！",
+      "intimacy_delta": 1,
+      "role": "User",
+      "timestamp": "20:19",
+      "timestampManuallyEdited": true
+    }
+  ],
+  "intimacy_level": 51.379999999999995,
+  "starting_intimacy_level": 30.299999999999997,
+  "completed": false,
+  "user_name": "米莉",
+  "character_name": "Kafka",
+  "category": "legacy_rejected",
+  "assessment_timestamp": "2025-09-03T18:22:33.071Z",
+  "problems_count": 2,
+  "rejection_timestamp": "2025-09-03T18:22:33.071Z",
+  "real_name": "邢美丽",
+  "legacy_timestamp": 1761107398
+}

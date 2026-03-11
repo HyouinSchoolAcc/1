@@ -1,0 +1,778 @@
+ <!-- Add Character Modal -->
+<div id="addCharacterModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="addCharacterModalTitle" data-i18n="Add Your Character">Add Your Character</h3>
+        <button class="modal-close" onclick="hideAddCharacterModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="addCharacterForm">
+          <div class="form-group mb-3">
+            <label for="newCharacterName" class="form-label" data-i18n="Character Name:">Character Name:</label>
+            <input type="text" id="newCharacterName" class="form-control" placeholder="Enter character name (e.g., John Smith, 约翰·史密斯)" required>
+          </div>
+          
+          <div class="form-group mb-3">
+            <label for="newCharacterRealName" class="form-label" data-i18n="Your Real Name:">作者真实姓名：</label>
+            <input type="text" id="newCharacterRealName" class="form-control"
+                  placeholder="请输入你的真实姓名（例如，张三）"
+                  required>
+          </div>
+          
+          <div class="form-group mb-3">
+            <label for="newCharacterDescription" class="form-label" data-i18n="Character Description:">Character Description:</label>
+            <textarea id="newCharacterDescription" class="form-control" rows="4" 
+              placeholder="Describe what this character is like, their personality, background, etc." required></textarea>
+          </div>
+          
+
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="newCharacterAge" class="form-label" data-i18n="Age:">年龄:</label>
+                <input type="number" id="newCharacterAge" class="form-control" placeholder="请输入年龄（例如，25）" min="1" max="120" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="newCharacterProfession" class="form-label" data-i18n="Profession:">职业:</label>
+                <input type="text" id="newCharacterProfession" class="form-control" placeholder="请输入职业（例如，学生、工程师）" required>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group mb-3">
+            <label for="newCharacterMotivation" class="form-label" data-i18n="What does this person want most right now?">What does this person want most right now?</label>
+            <textarea id="newCharacterMotivation" class="form-control" rows="3" 
+              placeholder="Describe what this person desires or needs most at this moment..." required></textarea>
+          </div>
+          
+          <div class="form-group mb-4">
+            <label class="form-label" data-i18n="Day 1 Schedule (Click time periods to add events):">Day 1 Schedule (Click time periods to add events):</label>
+            <div class="schedule-builder">
+              <div class="time-period-buttons">
+                <button type="button" class="btn btn-outline-info btn-sm time-period-btn" data-period="morning" data-i18n="Morning">Morning</button>
+                <button type="button" class="btn btn-outline-info btn-sm time-period-btn" data-period="noon" data-i18n="Noon">Noon</button>
+                <button type="button" class="btn btn-outline-info btn-sm time-period-btn" data-period="afternoon" data-i18n="Afternoon">Afternoon</button>
+                <button type="button" class="btn btn-outline-info btn-sm time-period-btn" data-period="evening" data-i18n="Evening">Evening</button>
+                <button type="button" class="btn btn-outline-info btn-sm time-period-btn" data-period="night" data-i18n="Night">Night</button>
+              </div>
+              
+              <div class="schedule-inputs" style="margin-top: 1rem;">
+                <div class="schedule-input-group" id="morning-input" style="display: none;">
+                  <label class="form-label" data-i18n="Day 1 Morning Event:">Day 1 Morning Event:</label>
+                  <textarea class="form-control schedule-textarea" data-period="morning" rows="2" 
+                    data-i18n-placeholder="What does this character do in the morning?" placeholder="What does this character do in the morning?"></textarea>
+                </div>
+                
+                <div class="schedule-input-group" id="noon-input" style="display: none;">
+                  <label class="form-label" data-i18n="Day 1 Noon Event:">Day 1 Noon Event:</label>
+                  <textarea class="form-control schedule-textarea" data-period="noon" rows="2" 
+                    data-i18n-placeholder="What does this character do at noon?" placeholder="What does this character do at noon?"></textarea>
+                </div>
+                
+                <div class="schedule-input-group" id="afternoon-input" style="display: none;">
+                  <label class="form-label" data-i18n="Day 1 Afternoon Event:">Day 1 Afternoon Event:</label>
+                  <textarea class="form-control schedule-textarea" data-period="afternoon" rows="2" 
+                    data-i18n-placeholder="What does this character do in the afternoon?" placeholder="What does this character do in the afternoon?"></textarea>
+                </div>
+                
+                <div class="schedule-input-group" id="evening-input" style="display: none;">
+                  <label class="form-label" data-i18n="Day 1 Evening Event:">Day 1 Evening Event:</label>
+                  <textarea class="form-control schedule-textarea" data-period="evening" rows="2" 
+                    data-i18n-placeholder="What does this character do in the evening?" placeholder="What does this character do in the evening?"></textarea>
+                </div>
+                
+                <div class="schedule-input-group" id="night-input" style="display: none;">
+                  <label class="form-label" data-i18n="Day 1 Night Event:">Day 1 Night Event:</label>
+                  <textarea class="form-control schedule-textarea" data-period="night" rows="2" 
+                    data-i18n-placeholder="What does this character do at night?" placeholder="What does this character do at night?"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-actions d-flex justify-content-end gap-2">
+            <button type="button" class="btn btn-secondary" onclick="hideAddCharacterModal()" data-i18n="Cancel">Cancel</button>
+            <button type="submit" class="btn btn-primary" data-i18n="Create Character">Create Character</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Add Day Modal -->
+  <div id="addDayModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="addDayModalTitle" data-i18n="Add Day">Add Day</h3>
+        <button class="modal-close" onclick="hideAddDayModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-info mb-3">
+          <strong>ℹ️ Info:</strong> Add a new day to an existing character. Select the character and day number, then fill in the schedule.
+        </div>
+        
+
+        
+
+        
+        <div id="addDayCharacterInfo" class="card mb-3" style="display: none;">
+          <div class="card-header">
+            <h6 class="mb-0">Adding New Day</h6>
+          </div>
+          <div class="card-body">
+            <p><strong>Character:</strong> <span id="addDayCharacterName"></span></p>
+            <p><strong>User ID:</strong> <span id="addDayUserId"></span></p>
+            <p><strong>Existing Days:</strong> <span id="addDayExistingDays"></span></p>
+            <p><strong>Adding Day:</strong> <span id="addDayNextDayNumber"></span></p>
+          </div>
+        </div>
+        
+        <!-- Day Schedule Form (checkbox-based like Add Character) -->
+        <div class="form-group mb-4">
+          <div class="form-label" data-i18n="Day Schedule (Click time periods to add events):">Day Schedule (Click time periods to add events):</div>
+          <div class="time-periods-container">
+            <button type="button" class="time-period-btn" data-period="morning" data-i18n="Morning">Morning</button>
+            <button type="button" class="time-period-btn" data-period="noon" data-i18n="Noon">Noon</button>
+            <button type="button" class="time-period-btn" data-period="afternoon" data-i18n="Afternoon">Afternoon</button>
+            <button type="button" class="time-period-btn" data-period="evening" data-i18n="Evening">Evening</button>
+            <button type="button" class="time-period-btn" data-period="night" data-i18n="Night">Night</button>
+          </div>
+          <div id="addDayScheduleDetails" class="schedule-details-container" style="display: none;">
+            <div id="addDayMorningDetail" class="schedule-detail" style="display: none;">
+              <label for="addDayMorning" class="form-label" data-i18n="Morning Activity:">Morning Activity:</label>
+              <textarea id="addDayMorning" class="form-control" rows="2" data-i18n-placeholder="What does this character do in the morning?" placeholder="What does this character do in the morning?"></textarea>
+            </div>
+            <div id="addDayNoonDetail" class="schedule-detail" style="display: none;">
+              <label for="addDayNoon" class="form-label" data-i18n="Noon Activity:">Noon Activity:</label>
+              <textarea id="addDayNoon" class="form-control" rows="2" data-i18n-placeholder="What does this character do at noon?" placeholder="What does this character do at noon?"></textarea>
+            </div>
+            <div id="addDayAfternoonDetail" class="schedule-detail" style="display: none;">
+              <label for="addDayAfternoon" class="form-label" data-i18n="Afternoon Activity:">Afternoon Activity:</label>
+              <textarea id="addDayAfternoon" class="form-control" rows="2" data-i18n-placeholder="What does this character do in the afternoon?" placeholder="What does this character do in the afternoon?"></textarea>
+            </div>
+            <div id="addDayEveningDetail" class="schedule-detail" style="display: none;">
+              <label for="addDayEvening" class="form-label" data-i18n="Evening Activity:">Evening Activity:</label>
+              <textarea id="addDayEvening" class="form-control" rows="2" data-i18n-placeholder="What does this character do in the evening?" placeholder="What does this character do in the evening?"></textarea>
+            </div>
+            <div id="addDayNightDetail" class="schedule-detail" style="display: none;">
+              <label for="addDayNight" class="form-label" data-i18n="Night Activity:">Night Activity:</label>
+              <textarea id="addDayNight" class="form-control" rows="2" data-i18n-placeholder="What does this character do at night?" placeholder="What does this character do at night?"></textarea>
+            </div>
+          </div>
+          <small class="form-text text-muted">Select at least one time period. Only selected periods need to be filled in.</small>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-secondary" onclick="hideAddDayModal()" data-i18n="Cancel">Cancel</button>
+        <button type="button" id="btnConfirmAddDay" class="btn btn-info" data-i18n="Add Day">Add Day</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Character Modal -->
+  <div id="deleteCharacterModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="deleteCharacterModalTitle">Delete Character</h3>
+        <button class="modal-close" onclick="hideDeleteCharacterModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-warning mb-3">
+          <strong>⚠️ Warning:</strong> This action will permanently delete the selected character and all their conversation data. This cannot be undone.
+        </div>
+        
+        <div class="form-group mb-3">
+          <label for="characterToDelete" class="form-label">Select Character to Delete:</label>
+          <select id="characterToDelete" class="form-control" required>
+            <option value="">-- Choose a character --</option>
+          </select>
+        </div>
+        
+        <div id="characterDetailsPreview" class="card" style="display: none;">
+          <div class="card-header">
+            <h6 class="mb-0">Character Details</h6>
+          </div>
+          <div class="card-body">
+            <p><strong>Name:</strong> <span id="previewCharacterName"></span></p>
+            <p><strong>User ID:</strong> <span id="previewUserId"></span></p>
+            <p><strong>Created:</strong> <span id="previewCreationTime"></span></p>
+            <p><strong>Files to be deleted:</strong> <span id="previewFileCount"></span></p>
+            <div id="previewFileList" class="small text-muted"></div>
+          </div>
+        </div>
+        
+        <div class="form-check mt-3" style="display: none;" id="confirmationCheckGroup">
+          <input class="form-check-input" type="checkbox" id="confirmDeletion">
+          <label class="form-check-label" for="confirmDeletion">
+            I understand this action cannot be undone and I want to delete this character
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-secondary" onclick="hideDeleteCharacterModal()">Cancel</button>
+        <button type="button" id="btnConfirmDelete" class="btn btn-danger" disabled>Delete Character</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Schedule Modal -->
+  <div id="editScheduleModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="editScheduleModalTitle">Edit Schedule</h3>
+        <button class="modal-close" onclick="hideEditScheduleModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-info mb-3">
+          <strong>ℹ️ Info:</strong> Edit the schedule for the current day. Click time periods to add or modify events.
+        </div>
+        
+        <!-- Day Schedule Form -->
+        <div class="form-group mb-4">
+          <div class="form-label">Day Schedule (Click time periods to add events):</div>
+          <div class="time-periods-container">
+            <button type="button" class="time-period-btn" data-period="morning">Morning</button>
+            <button type="button" class="time-period-btn" data-period="noon">Noon</button>
+            <button type="button" class="time-period-btn" data-period="afternoon">Afternoon</button>
+            <button type="button" class="time-period-btn" data-period="evening">Evening</button>
+            <button type="button" class="time-period-btn" data-period="night">Night</button>
+          </div>
+          <div id="editScheduleDetails" class="schedule-details-container" style="display: none;">
+            <div id="editMorningDetail" class="schedule-detail" style="display: none;">
+              <label for="editMorning" class="form-label">Morning Activity:</label>
+              <textarea id="editMorning" class="form-control" rows="2" placeholder="What does this character do in the morning?"></textarea>
+            </div>
+            <div id="editNoonDetail" class="schedule-detail" style="display: none;">
+              <label for="editNoon" class="form-label">Noon Activity:</label>
+              <textarea id="editNoon" class="form-control" rows="2" placeholder="What does this character do at noon?"></textarea>
+            </div>
+            <div id="editAfternoonDetail" class="schedule-detail" style="display: none;">
+              <label for="editAfternoon" class="form-label">Afternoon Activity:</label>
+              <textarea id="editAfternoon" class="form-control" rows="2" placeholder="What does this character do in the afternoon?"></textarea>
+            </div>
+            <div id="editEveningDetail" class="schedule-detail" style="display: none;">
+              <label for="editEvening" class="form-label">Evening Activity:</label>
+              <textarea id="editEvening" class="form-control" rows="2" placeholder="What does this character do in the evening?"></textarea>
+            </div>
+            <div id="editNightDetail" class="schedule-detail" style="display: none;">
+              <label for="editNight" class="form-label">Night Activity:</label>
+              <textarea id="editNight" class="form-control" rows="2" placeholder="What does this character do at night?"></textarea>
+            </div>
+          </div>
+          <small class="form-text text-muted">Select time periods to edit. Only selected periods will be saved.</small>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-between">
+        <div id="scheduleImportSection" style="display: none;">
+          <button type="button" id="btnImportScheduleFromDescriptions" class="btn btn-info" onclick="importScheduleFromDescriptions()">
+            📥 从角色描述导入 / Import from Descriptions
+          </button>
+        </div>
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-secondary" onclick="hideEditScheduleModal()">Cancel</button>
+          <button type="button" id="btnSaveSchedule" class="btn btn-primary">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Edit Day Modal -->
+  <div id="editDayModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content" style="max-width: 800px; max-height: 90vh; overflow-y: auto;">
+      <div class="modal-header">
+        <h3 id="editDayModalTitle">Edit Day Data</h3>
+        <button class="modal-close" onclick="hideEditDayModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-info mb-3">
+          <strong>ℹ️ Info:</strong> Edit all JSON fields for the current day. Changes will be saved when you click "Save Changes".
+        </div>
+        
+        <!-- Character Name -->
+        <div class="form-group mb-3">
+          <label for="editCharacterName" class="form-label">Character Name:</label>
+          <input type="text" id="editCharacterName" class="form-control" placeholder="Character name">
+        </div>
+        
+        <!-- User Name -->
+        <div class="form-group mb-3">
+          <label for="editUserName" class="form-label">User Name:</label>
+          <input type="text" id="editUserName" class="form-control" placeholder="User name">
+        </div>
+        
+        <!-- Real Name -->
+        <div class="form-group mb-3">
+          <label for="editRealName" class="form-label">Real Name (Author):</label>
+          <input type="text" id="editRealName" class="form-control" placeholder="Real name of the author">
+        </div>
+        
+        <!-- Character Schedule -->
+        <div class="form-group mb-3">
+          <label for="editCharacterSchedule" class="form-label">Character Schedule:</label>
+          <textarea id="editCharacterSchedule" class="form-control" rows="4" placeholder="Character's daily schedule"></textarea>
+        </div>
+        
+        <!-- User Schedule -->
+        <div class="form-group mb-3">
+          <label for="editUserSchedule" class="form-label">User Schedule:</label>
+          <textarea id="editUserSchedule" class="form-control" rows="4" placeholder="User's daily schedule"></textarea>
+        </div>
+        
+        <!-- Profile Fields (replacing History) -->
+        <div class="form-group mb-3">
+          <label for="editValues" class="form-label">Values:</label>
+          <textarea id="editValues" class="form-control" rows="3" placeholder="Character values"></textarea>
+        </div>
+        <div class="form-group mb-3">
+          <label for="editExperiences" class="form-label">Experiences:</label>
+          <textarea id="editExperiences" class="form-control" rows="3" placeholder="Character experiences"></textarea>
+        </div>
+        <div class="form-group mb-3">
+          <label for="editJudgements" class="form-label">Judgements/Thoughts:</label>
+          <textarea id="editJudgements" class="form-control" rows="3" placeholder="Character judgements and thoughts"></textarea>
+        </div>
+        <div class="form-group mb-3">
+          <label for="editAbilities" class="form-label">Abilities:</label>
+          <textarea id="editAbilities" class="form-control" rows="3" placeholder="Character abilities"></textarea>
+        </div>
+        
+        <!-- Relationship -->
+        <div class="form-group mb-3">
+          <label for="editRelationship" class="form-label">Relationship:</label>
+          <textarea id="editRelationship" class="form-control" rows="3" placeholder="Relationship description"></textarea>
+        </div>
+        
+        <!-- Intimacy Levels -->
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group mb-3">
+              <label for="editStartingIntimacy" class="form-label">Starting Intimacy Level:</label>
+              <input type="number" id="editStartingIntimacy" class="form-control" step="0.01" min="0" max="100" placeholder="0.00">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group mb-3">
+              <label for="editCurrentIntimacy" class="form-label">Current Intimacy Level:</label>
+              <input type="number" id="editCurrentIntimacy" class="form-control" step="0.01" min="0" max="100" placeholder="0.00">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Character Description -->
+        <div class="form-group mb-3">
+          <label for="editCharacterDescription" class="form-label">Character Description:</label>
+          <textarea id="editCharacterDescription" class="form-control" rows="3" placeholder="Character description"></textarea>
+        </div>
+        
+        <!-- Character Motivation -->
+        <div class="form-group mb-3">
+          <label for="editCharacterMotivation" class="form-label">Character Motivation:</label>
+          <textarea id="editCharacterMotivation" class="form-control" rows="3" placeholder="Character motivation"></textarea>
+        </div>
+        
+        <!-- Completed Status -->
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" id="editCompleted">
+          <label class="form-check-label" for="editCompleted">
+            Mark as completed
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-secondary" onclick="hideEditDayModal()">Cancel</button>
+        <button type="button" id="btnSaveEditDay" class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+<!-- Add Real Name Modal -->
+<div id="addRealNameModal" class="modal-overlay" style="display: none;">
+  <div class="modal-content" style="max-width: 500px;">
+    <div class="modal-header">
+      <h3 id="addRealNameModalTitle">添加真实姓名 / Add Real Name</h3>
+      <button class="modal-close" onclick="hideAddRealNameModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="alert alert-info mb-3">
+        <strong>ℹ️ 提示 / Info:</strong> 请输入您的真实姓名，用于作者署名。<br>
+        Please enter your real name for author attribution.
+      </div>
+      
+      <div class="form-group mb-3">
+        <label for="addRealNameCharacter" class="form-label">角色名称 / Character:</label>
+        <input type="text" id="addRealNameCharacter" class="form-control" readonly>
+      </div>
+      
+      <div class="form-group mb-3">
+        <label for="addRealNameInput" class="form-label">真实姓名 / Real Name: <span style="color: red;">*</span></label>
+        <input type="text" id="addRealNameInput" class="form-control" placeholder="请输入您的真实姓名 / Enter your real name" required>
+      </div>
+    </div>
+    <div class="modal-footer d-flex justify-content-end gap-2">
+      <button type="button" class="btn btn-secondary" onclick="hideAddRealNameModal()">取消 / Cancel</button>
+      <button type="button" id="btnSaveRealName" class="btn btn-primary">保存 / Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- 使用说明模态窗口 -->
+<div id="usageGuideModal" class="modal fade" tabindex="-1"
+     style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
+            width: 95vw; max-width: 760px; max-height: 85vh; overflow: hidden; background: #fff;
+            border: 1px solid #ddd; border-radius: 14px; box-shadow:0 12px 40px rgba(0,0,0,.25); z-index:1060;">
+  <div class="modal-header"
+       style="cursor:move; padding:14px 16px; background:linear-gradient(180deg,#fafbfc,#f1f3f5);
+              border-bottom:1px solid #e9ecef; display:flex; justify-content:space-between; align-items:center;">
+    <h5 class="modal-title">📘 在线聊天写作指南</h5>
+    <button type="button" class="btn-close" id="closeUsageGuide" aria-label="Close" style="font-size:1.2rem;"></button>
+  </div>
+
+  <!-- 新的文字容器 -->
+  <div class="modal-body" id="guideContentContainer"
+       style="padding: 0; overflow-y: auto; max-height: calc(85vh - 58px);">
+    <!-- 内容将由 writing_main.html 里的 <template> 注入 -->
+  </div>
+</div>
+
+<!-- Edit Profile Field Modal -->
+<div id="editProfileFieldModal" class="modal-overlay" style="display: none;">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="editProfileFieldModalTitle">Edit Profile Field</h3>
+      <button class="modal-close" onclick="hideEditProfileFieldModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label id="editProfileFieldLabel" class="form-label">Content:</label>
+        <textarea id="editProfileFieldContent" class="form-control" rows="10" placeholder="Enter content..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer d-flex justify-content-end gap-2">
+      <button type="button" class="btn btn-secondary" onclick="hideEditProfileFieldModal()">Cancel</button>
+      <button type="button" id="btnSaveProfileField" class="btn btn-primary">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- Writer Tutorial Modal -->
+<div id="writerTutorialModal" class="modal-overlay" style="display: none;">
+  <div class="modal-content" style="max-width: 700px; max-height: 90vh; overflow-y: auto;">
+    <div class="modal-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+      <h3 id="tutorialModalTitle">
+        <span class="tutorial-step-indicator">步骤 <span id="tutorialCurrentStep">1</span> / <span id="tutorialTotalSteps">5</span></span>
+        成为写手教程
+      </h3>
+      <button class="modal-close" onclick="closeTutorialModal()" style="color: white;">&times;</button>
+    </div>
+    <div class="modal-body" id="tutorialContent">
+      <!-- Step content will be dynamically loaded -->
+    </div>
+    <div class="modal-footer d-flex justify-content-between">
+      <button type="button" class="btn btn-secondary" id="btnTutorialPrev" onclick="prevTutorialStep()" style="display: none;">
+        <i class="fas fa-arrow-left me-1"></i> 上一步
+      </button>
+      <div class="tutorial-progress" style="flex: 1; text-align: center;">
+        <div id="tutorialProgressDots"></div>
+      </div>
+      <button type="button" class="btn btn-primary" id="btnTutorialNext" onclick="nextTutorialStep()">
+        下一步 <i class="fas fa-arrow-right ms-1"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Viewing Mode Banner (for non-writers) -->
+<div id="viewingModeBanner" style="display: none;">
+  <div class="viewing-mode-banner">
+    <div class="viewing-mode-content">
+      <i class="fas fa-eye me-2"></i>
+      <span class="viewing-mode-text">{{if eq .Language "en"}}You are in viewing mode · Register and complete tutorial to start writing{{else}}您正在浏览模式 · 注册并完成教程后可以开始写作{{end}}</span>
+      <button class="btn btn-sm btn-light ms-3" onclick="startWriterTutorial()">
+        <i class="fas fa-graduation-cap me-1"></i>{{if eq .Language "en"}}Become a writer{{else}}成为写手{{end}}
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Viewing Mode Banner */
+.viewing-mode-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 8px 20px;
+  z-index: 1050;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.viewing-mode-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.viewing-mode-text {
+  font-size: 0.9rem;
+}
+
+/* When viewing mode is active, add top padding to body */
+body.viewing-mode-active {
+  padding-top: 44px;
+}
+
+/* Hide all banners and reset padding when in iframe (tutorial mode) */
+html.in-iframe #viewingModeBanner,
+html.in-iframe .viewing-mode-banner {
+  display: none !important;
+}
+html.in-iframe body,
+html.in-iframe body.viewing-mode-active {
+  padding-top: 0 !important;
+}
+
+/* Tutorial Modal Styles */
+.tutorial-step-indicator {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin-right: 12px;
+  padding: 4px 12px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 20px;
+}
+
+#tutorialProgressDots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.tutorial-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  transition: all 0.3s;
+}
+
+.tutorial-dot.active {
+  background: #667eea;
+  transform: scale(1.2);
+}
+
+.tutorial-dot.completed {
+  background: #10b981;
+}
+
+.tutorial-step {
+  padding: 20px 0;
+}
+
+.tutorial-step h4 {
+  color: #1a1a2e;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.tutorial-step p {
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.tutorial-step .highlight-box {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  border-left: 4px solid #667eea;
+  padding: 15px 20px;
+  border-radius: 0 8px 8px 0;
+  margin: 15px 0;
+}
+
+.tutorial-step .example-dialogue {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 15px;
+  margin: 15px 0;
+}
+
+.tutorial-step .example-message {
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.tutorial-step .example-message.user {
+  background: #e2e8f0;
+  margin-left: 30px;
+}
+
+.tutorial-step .example-message.ai {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+  margin-right: 30px;
+}
+
+.tutorial-step .checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+.tutorial-step .checklist-item i {
+  color: #10b981;
+  margin-top: 3px;
+}
+
+.tutorial-quiz {
+  background: #fef3c7;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 15px;
+}
+
+.tutorial-quiz h5 {
+  color: #92400e;
+  margin-bottom: 15px;
+}
+
+.quiz-option {
+  display: block;
+  padding: 12px 15px;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.quiz-option:hover {
+  border-color: #667eea;
+}
+
+.quiz-option.selected {
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.05);
+}
+
+.quiz-option.correct {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.quiz-option.incorrect {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.sticker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.sticker-item {
+  border: 2px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.sticker-item:hover {
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.05);
+}
+
+.sticker-item img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.sticker-label {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 4px;
+  text-align: center;
+}
+
+.role-selector {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.role-btn {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.role-btn.active {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+</style>
+
+<!-- Sticker Picker Modal -->
+<div id="stickerPickerModal" class="modal-overlay" style="display: none;">
+  <div class="modal-content" style="max-width: 700px;">
+    <div class="modal-header">
+      <h3 id="stickerPickerTitle">{{if eq .Language "en"}}Choose a Sticker{{else}}选择贴纸{{end}}</h3>
+      <button class="modal-close" onclick="hideStickerPicker()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="role-selector" style="margin-bottom: 15px;">
+        <button type="button" class="role-btn active" id="roleUser" onclick="selectStickerRole('User')">
+          {{if eq .Language "en"}}User{{else}}用户{{end}}
+        </button>
+        <button type="button" class="role-btn" id="roleCharacter" onclick="selectStickerRole('Character')">
+          {{if eq .Language "en"}}Character{{else}}角色{{end}}
+        </button>
+        <button type="button" class="btn btn-outline-primary btn-sm" onclick="toggleStickerUpload()" style="margin-left: auto;">
+          📤 {{if eq .Language "en"}}Upload New{{else}}上传新贴纸{{end}}
+        </button>
+      </div>
+      
+      <!-- Upload Section (hidden by default) -->
+      <div id="stickerUploadSection" style="display: none; background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+        <h5 style="margin-bottom: 10px;">{{if eq .Language "en"}}Upload New Sticker{{else}}上传新贴纸{{end}}</h5>
+        <div class="form-group mb-2">
+          <label class="form-label">{{if eq .Language "en"}}Image File{{else}}图片文件{{end}}</label>
+          <input type="file" id="stickerUploadInput" class="form-control" accept=".png,.gif,.jpg,.jpeg,.webp">
+        </div>
+        <div class="mb-2">
+          <label class="form-label">{{if eq .Language "en"}}Sticker Name{{else}}贴纸名称{{end}}</label>
+          <input type="text" id="stickerUploadDescription" class="form-control" placeholder="{{if eq .Language "en"}}e.g. Happy / 开心{{else}}例如 Happy / 开心{{end}}">
+          <small class="text-muted">{{if eq .Language "en"}}Use format: English / 中文{{else}}格式：English / 中文{{end}}</small>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="uploadSticker()">
+          {{if eq .Language "en"}}Upload{{else}}上传{{end}}
+        </button>
+      </div>
+      
+      <div id="stickerGrid" class="sticker-grid">
+        <!-- Stickers will be loaded here -->
+      </div>
+      <div id="stickerLoadingMessage" style="text-align: center; padding: 20px;">
+        {{if eq .Language "en"}}Loading stickers...{{else}}加载贴纸中...{{end}}
+      </div>
+    </div>
+  </div>
+</div>

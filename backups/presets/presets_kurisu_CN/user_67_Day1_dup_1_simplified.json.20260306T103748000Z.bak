@@ -1,0 +1,67 @@
+{
+  "_creation_metadata": {
+    "created_at": 1772431592,
+    "created_by_ip": "180.165.6.254",
+    "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+    "version": "1.0"
+  },
+  "abilities": "",
+  "assessment_timestamp": 1772706445,
+  "category": "rejected",
+  "character_name": "Kurisu",
+  "comments": [],
+  "completed": false,
+  "dialogue": [
+    {
+      "content": "这是用户的第一句话",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "这是角色的第一句话",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu"
+    }
+  ],
+  "experiences": "",
+  "history": "",
+  "intimacy_level": 0.02,
+  "judgements": "",
+  "personnel_id": "20251226035531",
+  "personnel_username": "林友德",
+  "problems_count": 1,
+  "quality_checklist": {
+    "checklist": {
+      "check-character-consistency": true,
+      "check-context-coherent": true,
+      "check-dialogue-natural": true,
+      "check-emotional-depth": true,
+      "check-format-correct": false,
+      "check-intimacy-appropriate": true,
+      "check-timestamp-accurate": true
+    },
+    "last_updated": "2026-03-05T04:27:25-06:00",
+    "reasons": {
+      "check-character-consistency": "",
+      "check-context-coherent": "",
+      "check-dialogue-natural": "",
+      "check-emotional-depth": "",
+      "check-format-correct": "放到不通过里",
+      "check-intimacy-appropriate": "",
+      "check-timestamp-accurate": ""
+    },
+    "selected_trait": "",
+    "updated_by": "2601:240:8300:6f90:8dc5:fcf7:8bb:9a25"
+  },
+  "real_name": "林朝圣",
+  "rejection_timestamp": 1772706445,
+  "relationship": "Two people have just met and are still unfamiliar with each other. Their conversations are mostly polite and superficial, limited to everyday topics like work, studies, or the weather. At this stage, both sides are cautious and have yet to reveal their true selves.",
+  "starting_intimacy_level": 0,
+  "user_id": "user_67",
+  "user_name": "测试专员",
+  "user_schedule": {
+    "day": 1,
+    "早晨": "1"
+  },
+  "values": ""
+}

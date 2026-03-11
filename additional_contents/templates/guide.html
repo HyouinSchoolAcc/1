@@ -1,0 +1,2495 @@
+<!DOCTYPE html>
+<html lang="{{if eq .Language "en"}}en{{else}}zh-CN{{end}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{if eq .Language "en"}}Writer's Guide - Cao Cao's Tutorial{{else}}写手指南 - 曹操的教程{{end}}</title>
+    <link rel="icon" href="/static/favicon/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a12;
+            --bg-panel: #12121a;
+            --gold: #ffd700;
+            --text: #e8e8e8;
+            --text-dim: #888;
+            --cao-cao: #ffa657;
+            --user: #79c0ff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; overflow: hidden; }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+        }
+
+        /* Main layout: iframe + overlay */
+        .tutorial-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* The iframe that loads actual pages */
+        .page-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: var(--bg-dark);
+        }
+
+        /* Navigation blocker - blocks clicks during dialogue */
+        .nav-blocker {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 180px; /* Leave space for dialogue panel */
+            z-index: 998;
+            cursor: pointer;
+            background: transparent;
+            display: none;
+        }
+
+        .nav-blocker.active {
+            display: block;
+        }
+
+        /* Placeholder cover before first page loads */
+        .tutorial-placeholder {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-dark);
+            z-index: 800;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s;
+        }
+
+        .tutorial-placeholder.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .placeholder-avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid var(--gold);
+            object-fit: cover;
+            animation: float 3s ease-in-out infinite;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.3);
+        }
+
+        .placeholder-title {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-top: 1.5rem;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .placeholder-particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .placeholder-particles::before,
+        .placeholder-particles::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            animation: drift 8s ease-in-out infinite;
+        }
+
+        .placeholder-particles::before {
+            top: 10%;
+            left: 10%;
+        }
+
+        .placeholder-particles::after {
+            bottom: 20%;
+            right: 15%;
+            animation-delay: -4s;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -20px) scale(1.1); }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Highlight overlay - only visible when highlighting an element */
+        .highlight-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 900;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .highlight-overlay.visible {
+            opacity: 1;
+        }
+
+        /* Highlight circle around target element */
+        .highlight-circle {
+            position: fixed;
+            border: 4px solid var(--gold);
+            border-radius: 12px;
+            z-index: 901;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s, top 0.3s, left 0.3s, width 0.3s, height 0.3s;
+            /* Animated dashed border */
+            background: transparent;
+            box-shadow: 
+                0 0 0 4px rgba(255, 215, 0, 0.3),
+                0 0 20px var(--gold),
+                0 0 40px rgba(255, 215, 0, 0.3);
+            animation: circle-pulse 1.5s infinite;
+        }
+
+        .highlight-circle.visible {
+            opacity: 1;
+        }
+
+        .highlight-circle::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border: 2px dashed var(--gold);
+            border-radius: 16px;
+            animation: rotate-dash 10s linear infinite;
+        }
+
+        @keyframes circle-pulse {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 0 4px rgba(255, 215, 0, 0.3),
+                    0 0 20px var(--gold),
+                    0 0 40px rgba(255, 215, 0, 0.3);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 0 8px rgba(255, 215, 0, 0.4),
+                    0 0 30px var(--gold),
+                    0 0 60px rgba(255, 215, 0, 0.4);
+            }
+        }
+
+        @keyframes rotate-dash {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Arrow pointing to the element */
+        .highlight-arrow {
+            position: fixed;
+            z-index: 902;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 2rem;
+            color: var(--gold);
+            text-shadow: 0 0 10px var(--gold);
+            animation: arrow-bounce 1s infinite;
+        }
+
+        .highlight-arrow.visible {
+            opacity: 1;
+        }
+
+        @keyframes arrow-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Click instruction tooltip */
+        .highlight-tooltip {
+            position: fixed;
+            z-index: 903;
+            background: var(--bg-panel);
+            border: 2px solid var(--gold);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            color: var(--text);
+            font-size: 0.95rem;
+            max-width: 250px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .highlight-tooltip.visible {
+            opacity: 1;
+        }
+
+        /* Multiple arrows for highlighting multiple elements */
+        .multi-arrow {
+            position: fixed;
+            z-index: 902;
+            pointer-events: none;
+            font-size: 3rem;
+            color: var(--gold);
+            text-shadow: 0 0 20px var(--gold), 0 0 40px rgba(255, 215, 0, 0.5);
+            animation: big-arrow-bounce 0.8s infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .multi-arrow.visible {
+            opacity: 1;
+        }
+
+        @keyframes big-arrow-bounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+
+        /* Staggered animation delays */
+        .multi-arrow:nth-child(2) { animation-delay: 0.15s; }
+        .multi-arrow:nth-child(3) { animation-delay: 0.3s; }
+        .multi-arrow:nth-child(4) { animation-delay: 0.45s; }
+
+        /* Practice mode banner */
+        .practice-banner {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 140, 0, 0.15));
+            border: 2px solid var(--gold);
+            border-radius: 12px;
+            padding: 0.75rem 1.5rem;
+            color: var(--gold);
+            font-size: 1rem;
+            z-index: 905;
+            display: none;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .practice-banner.visible {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .practice-banner .icon {
+            font-size: 1.3rem;
+        }
+
+        /* Dialogue panel - floats at bottom, doesn't block iframe interaction */
+        .dialogue-panel {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(150%);
+            width: 90%;
+            max-width: 850px;
+            background: linear-gradient(135deg, rgba(10, 10, 18, 0.95), rgba(18, 18, 26, 0.92));
+            border: 2px solid var(--gold);
+            border-radius: 16px;
+            z-index: 1002;
+            min-height: 160px;
+            max-height: 35vh;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+        }
+
+        .dialogue-panel.visible {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dialogue-header {
+            border-radius: 14px 14px 0 0;
+        }
+
+        .dialogue-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.6rem 1.5rem;
+            background: rgba(255, 215, 0, 0.05);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .speaker-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid var(--cao-cao);
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .speaker-avatar:hover { transform: scale(1.1); }
+        .speaker-avatar.user { border-color: var(--user); }
+
+        .speaker-name {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 1.2rem;
+            color: var(--cao-cao);
+            flex: 1;
+        }
+
+        .speaker-name.user { color: var(--user); }
+
+        .progress-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        .progress-bar {
+            width: 100px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), #ff8c00);
+            transition: width 0.3s;
+        }
+
+        .exit-btn, .back-btn {
+            padding: 0.35rem 0.8rem;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .exit-btn:hover, .back-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .back-btn {
+            margin-right: 0.5rem;
+        }
+
+        .back-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .back-btn:disabled:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            color: var(--text-dim);
+        }
+
+        .dialogue-content {
+            flex: 1;
+            padding: 0.8rem 1.5rem;
+            overflow-y: auto;
+        }
+
+        .dialogue-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background: var(--gold);
+            margin-left: 2px;
+            animation: blink 0.7s infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .continue-hint {
+            padding: 0.4rem 1.5rem 0.8rem;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            display: none;
+            animation: pulse 2s infinite;
+        }
+
+        .continue-hint.visible { display: block; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .choices {
+            padding: 0 1.5rem 0.8rem;
+            display: none;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .choices.visible { display: flex; }
+
+        .choice-btn {
+            padding: 0.7rem 1rem;
+            background: rgba(255, 215, 0, 0.08);
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            border-radius: 6px;
+            color: var(--text);
+            font-size: 0.95rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .choice-btn::before {
+            content: '▸ ';
+            color: var(--gold);
+        }
+
+        .choice-btn:hover {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: var(--gold);
+            transform: translateX(4px);
+        }
+
+        /* Intro screen before tutorial starts */
+        .intro-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-dark);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            transition: opacity 0.5s;
+        }
+
+        .intro-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .intro-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            margin-bottom: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .intro-title {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .intro-subtitle {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .intro-btn {
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, var(--gold), #ff8c00);
+            border: none;
+            border-radius: 30px;
+            color: var(--bg-dark);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .intro-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+        }
+
+        .skip-link {
+            margin-top: 1.5rem;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .skip-link:hover {
+            color: var(--text);
+        }
+
+        /* Mode selection buttons */
+        .mode-selection {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .mode-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 180px;
+        }
+
+        .mode-btn:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold);
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .mode-btn.discovery-mode:hover {
+            border-color: #3fb950;
+            background: rgba(63, 185, 80, 0.1);
+        }
+
+        .mode-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .mode-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .mode-desc {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            text-align: center;
+        }
+
+        /* Chapter navigation menu */
+        .chapter-nav-btn {
+            padding: 0.35rem 0.6rem;
+            background: transparent;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 6px;
+            color: var(--gold);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-right: 0.5rem;
+        }
+
+        .chapter-nav-btn:hover {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: var(--gold);
+        }
+
+        .chapter-menu {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(18, 18, 26, 0.98);
+            border: 2px solid var(--gold);
+            border-radius: 16px;
+            padding: 1.5rem;
+            z-index: 2500;
+            min-width: 320px;
+            max-height: 80vh;
+            overflow-y: auto;
+            display: none;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .chapter-menu.visible {
+            display: block;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .chapter-menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2499;
+            display: none;
+        }
+
+        .chapter-menu-overlay.visible {
+            display: block;
+        }
+
+        .chapter-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chapter-menu-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .chapter-menu-close {
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.25rem;
+        }
+
+        .chapter-menu-close:hover {
+            color: var(--text);
+        }
+
+        .chapter-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.15s;
+            margin-bottom: 0.25rem;
+        }
+
+        .chapter-item:hover {
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .chapter-item.current {
+            background: rgba(255, 215, 0, 0.15);
+            border-left: 3px solid var(--gold);
+        }
+
+        .chapter-item.completed {
+            opacity: 0.7;
+        }
+
+        .chapter-num {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 215, 0, 0.2);
+            border-radius: 50%;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .chapter-item.completed .chapter-num {
+            background: #3fb950;
+            color: white;
+        }
+
+        .chapter-name {
+            flex: 1;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        /* Objectives panel */
+        .objectives-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 280px;
+            background: rgba(18, 18, 26, 0.95);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            padding: 1rem;
+            z-index: 1010;
+            display: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .objectives-panel.visible {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .objectives-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .objectives-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .objective-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+
+        .objective-item:last-child {
+            border-bottom: none;
+        }
+
+        .objective-item.completed {
+            opacity: 0.6;
+        }
+
+        .objective-item.current {
+            background: rgba(255, 215, 0, 0.08);
+            margin: 0 -0.5rem;
+            padding: 0.6rem 0.5rem;
+            border-radius: 8px;
+        }
+
+        .objective-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--text-dim);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.7rem;
+            transition: all 0.3s;
+        }
+
+        .objective-item.completed .objective-checkbox {
+            background: #3fb950;
+            border-color: #3fb950;
+            color: white;
+        }
+
+        .objective-item.current .objective-checkbox {
+            border-color: var(--gold);
+            animation: pulse-ring 1.5s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
+            50% { box-shadow: 0 0 0 6px rgba(255, 215, 0, 0); }
+        }
+
+        .objective-text {
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        .objective-item.completed .objective-text {
+            text-decoration: line-through;
+            color: var(--text-dim);
+        }
+
+        .objective-hint {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-top: 0.25rem;
+            font-style: italic;
+        }
+
+        /* Discovery mode minimal dialogue */
+        .discovery-bubble {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(18, 18, 26, 0.95);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 0.75rem 1.5rem;
+            z-index: 1005;
+            display: none;
+            max-width: 400px;
+            text-align: center;
+            animation: bubblePop 0.3s ease-out;
+        }
+
+        .discovery-bubble.visible {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        @keyframes bubblePop {
+            from { opacity: 0; transform: translateX(-50%) scale(0.9); }
+            to { opacity: 1; transform: translateX(-50%) scale(1); }
+        }
+
+        .discovery-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+        }
+
+        .discovery-text {
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        /* Celebration effect */
+        .celebration {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 2000;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            animation: confetti-fall 1s ease-out forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Enhanced intro scene */
+        .intro-scene {
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-character {
+            position: relative;
+            display: inline-block;
+        }
+
+        .intro-speech-bubble {
+            position: absolute;
+            top: -20px;
+            left: 110%;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 140, 0, 0.1));
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 0.75rem 1.25rem;
+            white-space: nowrap;
+            animation: bubble-appear 0.5s ease-out 0.3s both;
+        }
+
+        .intro-speech-bubble::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 8px solid transparent;
+            border-right-color: var(--gold);
+        }
+
+        .speech-text {
+            font-size: 1.1rem;
+            color: var(--gold);
+        }
+
+        @keyframes bubble-appear {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Register prompt button in tutorial - now inside choices area */
+        .register-prompt {
+            display: none;
+        }
+
+        .register-prompt.visible {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 0 1.5rem 0.8rem;
+        }
+
+        .register-btn {
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, #3fb950, #238636);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 15px rgba(63, 185, 80, 0.3);
+        }
+
+        .register-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(63, 185, 80, 0.4);
+        }
+
+        .register-skip {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        .register-skip:hover {
+            color: var(--text);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .dialogue-panel { min-height: 160px; }
+            .dialogue-text { font-size: 0.95rem; }
+            .intro-title { font-size: 2rem; }
+            .progress-bar { width: 60px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Intro screen - welcoming -->
+    <div class="intro-screen" id="intro">
+        <div class="intro-scene">
+            <div class="intro-character">
+                <img src="/static/caocao.png" alt="曹操" class="intro-avatar">
+                <div class="intro-speech-bubble">
+                    <span class="speech-text">{{if eq .Language "en"}}Welcome, new writer!{{else}}欢迎你，新写手！{{end}}</span>
+                </div>
+            </div>
+        </div>
+        <h1 class="intro-title">{{if eq .Language "en"}}Cao Cao's Writer Guide{{else}}曹操的写手指南{{end}}</h1>
+        <p class="intro-subtitle">
+            {{if eq .Language "en"}}Let me show you how everything works. It'll only take a few minutes!{{else}}让我带你了解一下这里的工作流程，只需要几分钟！{{end}}
+        </p>
+        <div class="mode-selection">
+            <button class="mode-btn discovery-mode" onclick="startTutorial('discovery')">
+                <span class="mode-icon">🎯</span>
+                <span class="mode-title">{{if eq .Language "en"}}Discovery Mode{{else}}探索模式{{end}}</span>
+                <span class="mode-desc">{{if eq .Language "en"}}Learn by doing. Task-based.{{else}}边做边学，只给目标{{end}}</span>
+            </button>
+            <button class="mode-btn guided-mode" onclick="startTutorial('guided')">
+                <span class="mode-icon">📖</span>
+                <span class="mode-title">{{if eq .Language "en"}}Full Guide{{else}}完整指南{{end}}</span>
+                <span class="mode-desc">{{if eq .Language "en"}}Cao Cao walks you through{{else}}曹操详细讲解{{end}}</span>
+            </button>
+        </div>
+        <a href="{{if eq .Language "en"}}/navigation/e{{else}}/navigation{{end}}" class="skip-link">
+            {{if eq .Language "en"}}I already know what I'm doing, skip →{{else}}我知道怎么操作，跳过 →{{end}}
+        </a>
+    </div>
+
+    <div class="tutorial-wrapper">
+        <!-- Placeholder cover shown during initial dialogue before first page loads -->
+        <div class="tutorial-placeholder" id="tutorialPlaceholder">
+            <div class="placeholder-particles"></div>
+            <img src="/static/caocao.png" alt="曹操" class="placeholder-avatar">
+            <div class="placeholder-title">{{if eq .Language "en"}}Cao Cao is speaking...{{else}}曹操正在说话...{{end}}</div>
+        </div>
+        
+        <!-- iframe loads actual pages - fully interactive -->
+        <iframe class="page-frame" id="pageFrame" src="about:blank"></iframe>
+        
+        <!-- Navigation blocker - prevents clicks during dialogue steps -->
+        <div class="nav-blocker" id="navBlocker"></div>
+        
+        <!-- Dark overlay - only visible during highlight steps -->
+        <div class="highlight-overlay" id="highlightOverlay"></div>
+        
+        <!-- Highlight circle around target element -->
+        <div class="highlight-circle" id="highlightCircle"></div>
+        
+        <!-- Arrow pointing to element -->
+        <div class="highlight-arrow" id="highlightArrow">👆</div>
+        
+        <!-- Multiple arrows for character cards -->
+        <div class="multi-arrow" id="multiArrow1">👆</div>
+        <div class="multi-arrow" id="multiArrow2">👆</div>
+        <div class="multi-arrow" id="multiArrow3">👆</div>
+        
+        <!-- Tooltip near highlight -->
+        <div class="highlight-tooltip" id="highlightTooltip"></div>
+        
+        <!-- Practice mode banner -->
+            <div class="practice-banner" id="practiceBanner">
+            <span class="icon">✏️</span>
+            <span>{{if eq .Language "en"}}Practice Mode - Give it a try!{{else}}练习模式 - 试着写点什么！{{end}}</span>
+        </div>
+        
+        
+        <!-- Objectives panel (Discovery mode) -->
+        <div class="objectives-panel" id="objectivesPanel">
+            <div class="objectives-header">
+                <span>🎯</span>
+                <span class="objectives-title">{{if eq .Language "en"}}Objectives{{else}}任务目标{{end}}</span>
+            </div>
+            <div id="objectivesList"></div>
+        </div>
+
+        <!-- Discovery mode mini dialogue bubble -->
+        <div class="discovery-bubble" id="discoveryBubble">
+            <img src="/static/caocao.png" alt="Cao Cao" class="discovery-avatar">
+            <span class="discovery-text" id="discoveryText"></span>
+        </div>
+
+        <!-- Chapter navigation menu -->
+        <div class="chapter-menu-overlay" id="chapterMenuOverlay" onclick="closeChapterMenu()"></div>
+        <div class="chapter-menu" id="chapterMenu">
+            <div class="chapter-menu-header">
+                <span class="chapter-menu-title">{{if eq .Language "en"}}Jump to Section{{else}}跳转到章节{{end}}</span>
+                <button class="chapter-menu-close" onclick="closeChapterMenu()">✕</button>
+            </div>
+            <div id="chapterList"></div>
+        </div>
+
+        <!-- Dialogue panel -->
+        <div class="dialogue-panel" id="dialoguePanel">
+            <div class="dialogue-header">
+                <img src="/static/caocao.png" alt="曹操" class="speaker-avatar" id="avatar" onclick="onAvatarClick()">
+                <span class="speaker-name" id="speakerName">曹操</span>
+                <div class="progress-info">
+                    <button class="chapter-nav-btn" onclick="openChapterMenu()" title="{{if eq .Language "en"}}Jump to section{{else}}跳转章节{{end}}">☰</button>
+                    <span>{{if eq .Language "en"}}Ch. {{else}}第{{end}}<span id="chapter">1</span>{{if eq .Language "en"}}{{else}}章{{end}}</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                    </div>
+                </div>
+                <button class="back-btn" id="backBtn" onclick="goBack()" disabled title="{{if eq .Language "en"}}Go back one step{{else}}返回上一步{{end}}">← {{if eq .Language "en"}}Back{{else}}返回{{end}}</button>
+                <button class="exit-btn" onclick="exitTutorial()">{{if eq .Language "en"}}Exit{{else}}退出{{end}} ✕</button>
+            </div>
+            <div class="dialogue-content" onclick="advance()">
+                <div class="dialogue-text" id="text"></div>
+            </div>
+            <div class="continue-hint" id="hint">{{if eq .Language "en"}}Click to continue...{{else}}点击继续...{{end}}</div>
+            <div class="choices" id="choices"></div>
+            <!-- Register prompt - now inside dialogue panel -->
+            <div class="register-prompt" id="registerPrompt">
+                <button class="register-btn" onclick="goToRegister()">
+                    {{if eq .Language "en"}}📝 Sign Up to Save Your Work{{else}}📝 注册账号保存你的作品{{end}}
+                </button>
+                <span class="register-skip" onclick="skipRegister()">
+                    {{if eq .Language "en"}}Skip for now →{{else}}先不保存，继续 →{{end}}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // ========== TUTORIAL SCRIPT ==========
+    // Each step can: show dialogue, load a page, highlight an element
+    const STEPS = [
+        // === SECTION 1: Greetings ===
+        { id: 'section1', type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Welcome! Welcome! Glad to have you here!{{else}}欢迎欢迎！热烈欢迎！{{end}}', chapter: 1 },
+        { type: 'choice', choices: [
+            { text: '{{if eq .Language "en"}}Wow, so enthusiastic? That doesn\'t seem like you.{{else}}这么热情吗，还真挺不像你的{{end}}', goto: 'fun_intro' },
+            { text: '{{if eq .Language "en"}}Just tell me what to do (Skip to business){{else}}就告诉我怎么办吧（只看介绍）{{end}}', goto: 'business_intro' }
+        ]},
+        
+        // Fun path
+        { id: 'fun_intro', type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}We\'re short on writers, hehe.{{else}}咱缺写手吗，欸嘿。{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Honestly, I hate doing recruitment. But the data quality issues forced me into it.{{else}}说实话我原来挺抗拒做公关的，这不是被数据质量逼得被迫下海了{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}User{{else}}用户{{end}}', text: '{{if eq .Language "en"}}Recruitment... is that really the right word for this?{{else}}下海。。。这词用的对吗？{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}...Anyway.{{else}}。。。。少废话{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Let\'s cut to the chase. For our data, you need to play two roles.{{else}}开门见山吧，我们现阶段的数据需要一人分饰两角{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}You\'ll be both "the person chatting with the AI" and "the AI itself."{{else}}同时扮演「和AI聊天的那个人」和扮演「AI本身」{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}User{{else}}用户{{end}}', text: '{{if eq .Language "en"}}...That sounds like writing a novel.{{else}}...这听起来像在写小说{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}No, no, no. Novels have narration.{{else}}不不不，小说是旁白叙述{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}This is pure chat logs.{{else}}我们是纯聊天记录{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Just like venting to a friend—real, down-to-earth, emotional.{{else}}就像你跟朋友吐槽一样，真实、接地气、有情绪{{end}}' },
+        { type: 'goto', target: 'section2' },
+
+        // Business path  
+        { id: 'business_intro', type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Alright, the short version:{{else}}好，简洁版：{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}We need you to write dialogue between AI characters and users.{{else}}我们需要你写AI角色和用户之间的对话数据{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}You play both sides. Simulate real conversations.{{else}}一人分饰两角，模拟真实聊天{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Pass quality review, get paid.{{else}}质量过关就能拿稿费{{end}}' },
+        { type: 'goto', target: 'section2' },
+
+        // === SECTION 2: What we do ===
+        { id: 'section2', type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Alright, let\'s go over the process.{{else}}正式说一下流程{{end}}', chapter: 2 },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Step 1: Understand the system and review character settings.{{else}}第一步：了解文案系统，看角色设定{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Step 2: Create a "User" persona (the person chatting with the character).{{else}}第二步：创建一个「用户」（就是和角色聊天的人）{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Step 3: Simulate a day\'s worth of conversation.{{else}}第三步：模拟一整天的聊天{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Step 4: Submit for review and get paid.{{else}}第四步：提交审核，拿钱{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}User{{else}}用户{{end}}', text: '{{if eq .Language "en"}}That\'s it?{{else}}就这？{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}That\'s it.{{else}}就这{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}But "natural dialogue" is harder than it looks.{{else}}但「自然对话」比你想的难{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Ever tried pretending to be someone else and chatting for 30 minutes straight?{{else}}你试过假装不是自己跟人聊三十分钟吗？{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}User{{else}}用户{{end}}', text: '{{if eq .Language "en"}}No.{{else}}没有{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Well, you\'re about to find out.{{else}}那你马上就要体验了{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}The core of this job is "immersion."{{else}}这活儿的核心是「代入感」{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}The reviewer needs to read it and think, "This actually looks like two real people talking."{{else}}你得让审稿人看完觉得「这确实像两个真人在聊天」{{end}}' },
+
+        // === SECTION 3: Navigation page ===
+        { id: 'section3', type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Alright, let me show you the actual interface.{{else}}接下来我带你看看实际的操作界面{{end}}', chapter: 3 },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}First, let\'s go to the character selection page.{{else}}我们先去角色选择页面{{end}}' },
+        { type: 'load', url: '{{if eq .Language "en"}}/navigation/e{{else}}/navigation{{end}}', wait: 1500 },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}This is the character selection page.{{else}}这就是角色选择页面{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Right now, there are two characters you can write for.{{else}}目前有两个角色可以写{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Kurisu and Lin Lu.{{else}}牧濑红莉栖、还有林路{{end}}' },
+        
+        // Just mention home button exists
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Oh, and there\'s a Home button on every page.{{else}}顺便说一下，页面上有个Home按钮{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Click it if you get lost and need to return to the main page.{{else}}迷路了就点它回主页{{end}}' },
+        
+        // Show 3 arrows pointing at character cards - require clicking one
+        { type: 'highlight-multi', selector: '.character-select-card', tooltip: '{{if eq .Language "en"}}Pick any character!{{else}}选一个角色！{{end}}' },
+        { type: 'wait-click-no-nav', selector: '.character-select-card', message: '{{if eq .Language "en"}}Click any character card to continue{{else}}点击任意一个角色卡片继续{{end}}' },
+
+        // === SECTION 4: Character descriptions (BEFORE writing - understand who you're writing for) ===
+        // Load descriptions immediately to prevent flash from character card navigation
+        { id: 'section4', type: 'load', url: '{{if eq .Language "en"}}/descriptions/e{{else}}/descriptions{{end}}', wait: 500, chapter: 4 },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Before you start writing, you need to understand the character.{{else}}开始写之前，先了解一下角色{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Here\'s where you\'ll find detailed settings for each character.{{else}}这里有每个角色的详细设定{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Take a moment to look through them.{{else}}你先看一会儿{{end}}' },
+        { type: 'browse-pause', duration: 8000, message: '{{if eq .Language "en"}}Browse the settings...{{else}}随便看看设定...{{end}}' },
+        
+        // Emphasize key settings
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Done? Let me highlight the key parts.{{else}}看完了？来说说重点{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Before writing, you must check two things:{{else}}写作前必须看两个东西：{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}"Background Settings" — The character\'s worldview and relationships.{{else}}「背景设定」—— 角色的世界观和人物关系{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}"Daily Settings" — What happened that day.{{else}}「当日设定」—— 那天发生了什么事{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}These shape the direction and tone of your dialogue.{{else}}这些会影响对话的走向和语气{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}User{{else}}用户{{end}}', text: '{{if eq .Language "en"}}Got it. Write based on what happened that day.{{else}}懂了，结合当天情况来写{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Exactly. Now that you understand the character, let\'s start writing!{{else}}没错。了解角色之后，开始写吧！{{end}}' },
+
+        // === SECTION 5: Writing interface (NOW with context from settings) ===
+        { id: 'section5', type: 'load', url: '{{if eq .Language "en"}}/kurisu/e{{else}}/kurisu{{end}}', wait: 1500, chapter: 5 },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Alright, here\'s the writing interface.{{else}}这就是写作界面{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}First, you need to create a user persona. See that button on the left?{{else}}先创建一个用户角色。看到左边的按钮了吗？{{end}}' },
+        { type: 'highlight-arrow', selector: '#btnAddTempCharacter, .add-temp-character, [onclick*="addTemp"], .add-character-btn', tooltip: '{{if eq .Language "en"}}Click here{{else}}点这里{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Think about who would chat with this character and what they want from the conversation.{{else}}想想谁会和这个角色聊天，ta想要什么？{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Go ahead. I\'ll wait.{{else}}去吧，我等你{{end}}' },
+        // Hide dialogue and wait for character creation
+        { type: 'wait-character-creation', message: '{{if eq .Language "en"}}Fill the form...{{else}}填写表单...{{end}}' },
+        
+        // After character created
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Nice! Now click on your new character in the sidebar.{{else}}好了！点击侧边栏里你刚创建的角色{{end}}' },
+        { type: 'highlight-arrow', selector: '.list-group-item-action, [data-day-key], li[onclick]', tooltip: '{{if eq .Language "en"}}Click{{else}}点击{{end}}' },
+        { type: 'wait-click', selector: '.list-group-item-action, [data-day-key], li[onclick]', message: '{{if eq .Language "en"}}Click to continue{{else}}点击继续{{end}}' },
+        
+        // Shortcuts - simplified
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Quick tip: Enter = new line, Shift+Enter = switch speaker.{{else}}快捷键：Enter换行，Shift+Enter切人{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Also, always check "Daily Settings" before writing. What happened that day shapes the conversation.{{else}}记得写之前看「当日设定」！今天发生的事会影响对话方向{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Go ahead and try writing something.{{else}}试试写点东西吧{{end}}' },
+        { type: 'highlight-arrow', selector: 'textarea, .message-input, [contenteditable], input[type="text"]', tooltip: '{{if eq .Language "en"}}Write here{{else}}在这里写{{end}}' },
+        { type: 'practice-minimal', message: '{{if eq .Language "en"}}Enter = new line, Shift+Enter = switch{{else}}Enter换行，Shift+Enter切人{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}How was it?{{else}}怎么样？{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}User{{else}}用户{{end}}', text: '{{if eq .Language "en"}}Pretty straightforward.{{else}}挺简单的{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Good. Now don\'t forget to save.{{else}}行。别忘了保存{{end}}' },
+        { type: 'highlight-arrow', selector: '#btnSaveStructuredWriter, .save-btn, button[onclick*="save"], .btn-save', tooltip: '{{if eq .Language "en"}}Save{{else}}保存{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Oh, one more thing: this is a temporary character. You\'ll need to register to keep your work permanently.{{else}}对了，这是临时角色。注册才能保存{{end}}' },
+        { type: 'register-prompt' },
+
+        // === SECTION 6: Lounge (brief mention) ===
+        { id: 'section6', type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Oh, by the way—there\'s a Writer\'s Lounge where you can chat with other writers.{{else}}对了，有个写手交流室可以跟其他人聊{{end}}', chapter: 6 },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Also, check out the buttons in the bottom-left corner. You can share and export your data there.{{else}}左下角的按钮可以分享和导出数据{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}User{{else}}用户{{end}}', text: '{{if eq .Language "en"}}Got it.{{else}}好的{{end}}' },
+
+        // === SECTION 7: Summary (simplified) ===
+        { id: 'section7', type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}That\'s the whole process: pick a character → read settings → create user → write → save.{{else}}就这样：选角色 → 看设定 → 建用户 → 写 → 保存{{end}}', chapter: 7 },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}User{{else}}用户{{end}}', text: '{{if eq .Language "en"}}Got it.{{else}}懂了{{end}}' },
+        
+        // Quiz mention
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}There\'s also a quiz, but it\'s open-book. Just to make sure you actually read the settings.{{else}}有个测验，开卷的。主要是确认你看了设定{{end}}' },
+            { type: 'choice', choices: [
+            { text: '{{if eq .Language "en"}}Take the quiz now{{else}}去做测验{{end}}', action: 'quiz' },
+            { text: '{{if eq .Language "en"}}Review the settings first{{else}}先看看设定{{end}}', action: 'descriptions' },
+            { text: '{{if eq .Language "en"}}Skip and start writing{{else}}直接开写{{end}}', action: 'skip' }
+        ]},
+
+        // === ENDING ===
+        { id: 'ending', type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}Alright, you\'re all set.{{else}}行了，可以开始了{{end}}', chapter: 8 },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}If you have questions, just come find me.{{else}}有问题来找我{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}User{{else}}用户{{end}}', text: '{{if eq .Language "en"}}Thanks.{{else}}谢了{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}...Why are you still staring at me?{{else}}...你还看着我干嘛？{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}User{{else}}用户{{end}}', text: '{{if eq .Language "en"}}Nothing. Nice outfit.{{else}}没事。衣服挺好看的{{end}}' },
+        { type: 'dialogue', speaker: '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}', text: '{{if eq .Language "en"}}...Get lost.{{else}}...滚{{end}}' },
+        { type: 'choice', choices: [
+            { text: '{{if eq .Language "en"}}🖊️ Start Writing{{else}}🖊️ 开始写作{{end}}', action: 'write' },
+            { text: '{{if eq .Language "en"}}📖 Review Settings{{else}}📖 再看看设定{{end}}', action: 'descriptions' }
+        ]}
+    ];
+
+    // ========== DISCOVERY MODE - Objective-based learning ==========
+    const OBJECTIVES = [
+        {
+            id: 'read_settings',
+            text: '{{if eq .Language "en"}}Read the character story{{else}}阅读角色故事{{end}}',
+            hint: '{{if eq .Language "en"}}Click the "Character Story" tab{{else}}点击"角色故事"标签查看{{end}}'
+        },
+        {
+            id: 'pick_character',
+            text: '{{if eq .Language "en"}}Choose a character to write for{{else}}选择一个要写的角色{{end}}',
+            hint: '{{if eq .Language "en"}}Click any character card{{else}}点击任意角色卡片{{end}}'
+        },
+        {
+            id: 'create_user',
+            text: '{{if eq .Language "en"}}Create a user persona{{else}}创建一个用户角色{{end}}',
+            hint: '{{if eq .Language "en"}}Click "Add Temporary Character"{{else}}点击「添加临时角色」{{end}}'
+        },
+        {
+            id: 'write_message',
+            text: '{{if eq .Language "en"}}Write your first message{{else}}写下你的第一条消息{{end}}',
+            hint: '{{if eq .Language "en"}}Type in the text field{{else}}在文本框中输入{{end}}'
+        },
+        {
+            id: 'save_work',
+            text: '{{if eq .Language "en"}}Save your work{{else}}保存你的作品{{end}}',
+            hint: '{{if eq .Language "en"}}Click the Save button{{else}}点击保存按钮{{end}}'
+        }
+    ];
+
+    const DISCOVERY_STEPS = [
+        // Start with a quick greeting
+        { type: 'discovery-intro' },
+        
+        // 1. First load descriptions page - understand who you're writing for
+        { type: 'load', url: '{{if eq .Language "en"}}/descriptions/e{{else}}/descriptions{{end}}', wait: 1000 },
+        { type: 'objective', id: 'read_settings', detectAction: 'scroll' },
+        
+        // 2. Show button to proceed to character selection
+        { type: 'discovery-proceed-button', 
+          buttonText: '{{if eq .Language "en"}}Go to Character Selection{{else}}前往角色选择{{end}}',
+          targetUrl: '{{if eq .Language "en"}}/navigation/e{{else}}/navigation{{end}}' },
+        
+        // 3. Wait for user to click a character card
+        { type: 'objective', id: 'pick_character', detectAction: 'click', selector: '.character-select-card' },
+        
+        // 4. Load writing interface
+        { type: 'load', url: '{{if eq .Language "en"}}/kurisu/e{{else}}/kurisu{{end}}', wait: 1500 },
+        
+        // 5. Wait for user to create a character
+        { type: 'objective', id: 'create_user', detectAction: 'character-created' },
+        
+        // 6. Wait for user to write something
+        { type: 'objective', id: 'write_message', detectAction: 'input', selector: 'textarea' },
+        
+        // 7. Wait for user to click save
+        { type: 'objective', id: 'save_work', detectAction: 'click', selector: '#btnSaveStructuredWriter' },
+        
+        // Done!
+        { type: 'discovery-complete' }
+    ];
+
+    const DISCOVERY_REACTIONS = {
+        'read_settings': '{{if eq .Language "en"}}Great! Now you know the character\'s story.{{else}}好！现在你了解角色故事了。{{end}}',
+        'pick_character': '{{if eq .Language "en"}}Nice choice!{{else}}选得好！{{end}}',
+        'create_user': '{{if eq .Language "en"}}Perfect! Your character is ready.{{else}}角色创建好了！{{end}}',
+        'write_message': '{{if eq .Language "en"}}You\'ve got the hang of it! 🎉{{else}}上手了！🎉{{end}}',
+        'save_work': '{{if eq .Language "en"}}Saved! Smart move.{{else}}保存了！聪明{{end}}'
+    };
+
+    // ========== STATE ==========
+    let state = {
+        stepIndex: 0,
+        typing: false,
+        typeTimer: null,
+        avatarClicks: 0,
+        currentChapter: 1,
+        history: [], // Track visited step indices for back navigation
+        mode: 'guided', // 'guided' or 'discovery'
+        currentObjective: 0,
+        completedObjectives: []
+    };
+
+    const TOTAL_CHAPTERS = 8;
+    const $ = id => document.getElementById(id);
+    const frame = () => $('pageFrame');
+
+    // ========== INIT ==========
+    function startTutorial(mode = 'guided') {
+        state.mode = mode;
+        $('intro').classList.add('hidden');
+        
+        if (mode === 'discovery') {
+            // Discovery mode: show objectives panel, hide full dialogue
+            $('objectivesPanel').classList.add('visible');
+            $('dialoguePanel').classList.remove('visible');
+            // Ensure navBlocker is disabled in discovery mode - allow all clicks
+            $('navBlocker').classList.remove('active');
+            state.stepIndex = 0;
+            renderObjectives();
+            runDiscoveryStep();
+        } else {
+            // Guided mode: traditional tutorial
+            $('dialoguePanel').classList.add('visible');
+            state.stepIndex = 0;
+            runStep();
+        }
+    }
+
+    function exitTutorial() {
+        hideHighlight();
+        $('dialoguePanel').classList.remove('visible');
+        window.location.href = '{{if eq .Language "en"}}/navigation/e{{else}}/navigation{{end}}';
+    }
+
+    // ========== STEP EXECUTION ==========
+    async function runStep() {
+        const step = STEPS[state.stepIndex];
+        if (!step) {
+            // End of tutorial
+            return;
+        }
+
+        // Update chapter if specified
+        if (step.chapter) {
+            state.currentChapter = step.chapter;
+            $('chapter').textContent = step.chapter;
+            $('progressFill').style.width = (step.chapter / TOTAL_CHAPTERS * 100) + '%';
+        }
+
+        // Hide previous highlights (only visible during highlight steps)
+        hideHighlight();
+        
+        // Block navigation during dialogue/passive steps, allow during interactive steps
+        const interactiveSteps = ['practice', 'practice-minimal', 'wait-click', 'wait-click-no-nav', 'wait-character-creation', 'browse-pause'];
+        if (interactiveSteps.includes(step.type)) {
+            $('navBlocker').classList.remove('active');
+        } else {
+            $('navBlocker').classList.add('active');
+        }
+
+        switch (step.type) {
+            case 'dialogue':
+                showDialogue(step);
+                break;
+
+            case 'choice':
+                showChoices(step.choices);
+                break;
+
+            case 'load':
+                await loadPage(step.url, step.wait || 1000);
+                state.history.push(state.stepIndex);
+                updateBackButton();
+                state.stepIndex++;
+                runStep();
+                break;
+
+            case 'highlight':
+                // Highlight shows with dialogue - user clicks to continue
+                highlightElement(step.selector, step.tooltip);
+                // Show hint to click the highlighted element or continue
+                $('text').innerHTML = step.tooltip || '{{if eq .Language "en"}}Look here ☝️{{else}}看这里 ☝️{{end}}';
+                $('hint').classList.add('visible');
+                break;
+
+            case 'highlight-arrow':
+                // Just show arrow pointing at element, no overlay/circle
+                highlightWithArrowOnly(step.selector, step.tooltip);
+                $('text').innerHTML = step.tooltip || '{{if eq .Language "en"}}Look here{{else}}看这里{{end}}';
+                $('hint').classList.add('visible');
+                break;
+
+            case 'highlight-multi':
+                // Show multiple arrows pointing at multiple elements (e.g., character cards)
+                highlightMultipleElements(step.selector, step.tooltip);
+                $('text').innerHTML = step.tooltip || '{{if eq .Language "en"}}Pick one!{{else}}选一个！{{end}}';
+                $('hint').classList.add('visible');
+                break;
+
+            case 'practice':
+                // Practice mode - let user interact with the iframe
+                startPracticeMode(step.message);
+                break;
+
+            case 'practice-minimal':
+                // Minimal practice mode - hide dialogue panel completely
+                startPracticeMinimal(step.message);
+                break;
+
+            case 'browse-pause':
+                // Let user browse for a few seconds, then auto-continue
+                startBrowsePause(step.duration || 5000, step.message);
+                break;
+
+            case 'wait-click':
+                // Wait for user to click on a specific element
+                waitForClick(step.selector, step.message);
+                break;
+
+            case 'wait-click-no-nav':
+                // Wait for click but prevent iframe navigation
+                waitForClickNoNav(step.selector, step.message);
+                break;
+
+            case 'register-prompt':
+                // Show register/login prompt
+                showRegisterPrompt();
+                break;
+
+            case 'wait-character-creation':
+                // Hide dialogue panel and wait for character to be created
+                waitForCharacterCreation(step.message);
+                break;
+
+            case 'lounge-conditional':
+                // Only load lounge if user appears to be logged in (check for auth indicators)
+                // For now, skip loading the lounge - just continue with explanation
+                state.history.push(state.stepIndex);
+                updateBackButton();
+                state.stepIndex++;
+                runStep();
+                break;
+
+            case 'goto':
+                // Jump to a labeled step
+                state.history.push(state.stepIndex);
+                updateBackButton();
+                const targetIndex = STEPS.findIndex(s => s.id === step.target);
+                if (targetIndex !== -1) {
+                    state.stepIndex = targetIndex;
+                    runStep();
+                }
+                break;
+        }
+    }
+
+    // ========== DIALOGUE ==========
+    function showDialogue(step) {
+        const isCaoCao = step.speaker === '{{if eq .Language "en"}}Cao Cao{{else}}曹操{{end}}';
+        
+        $('speakerName').textContent = step.speaker;
+        $('speakerName').className = 'speaker-name' + (isCaoCao ? '' : ' user');
+        $('avatar').src = isCaoCao ? '/static/caocao.png' : '/static/user/user_avatar.png';
+        $('avatar').className = 'speaker-avatar' + (isCaoCao ? '' : ' user');
+        
+        $('hint').classList.remove('visible');
+        $('choices').classList.remove('visible');
+
+        typeText(step.text, () => {
+            $('hint').classList.add('visible');
+        });
+    }
+
+    function typeText(text, callback) {
+        state.typing = true;
+        const el = $('text');
+        el.innerHTML = '';
+        let i = 0;
+
+        function type() {
+            if (i < text.length) {
+                el.innerHTML = text.substring(0, i + 1) + '<span class="cursor"></span>';
+                i++;
+                state.typeTimer = setTimeout(type, 30);
+            } else {
+                el.innerHTML = text;
+                state.typing = false;
+                if (callback) callback();
+            }
+        }
+        type();
+    }
+
+    function skipType() {
+        if (state.typeTimer) {
+            clearTimeout(state.typeTimer);
+            state.typeTimer = null;
+        }
+        const step = STEPS[state.stepIndex];
+        if (step && step.text) {
+            $('text').innerHTML = step.text;
+            $('hint').classList.add('visible');
+        }
+        state.typing = false;
+    }
+
+    function advance() {
+        if (state.typing) {
+            skipType();
+            return;
+        }
+        // Save current step to history before advancing
+        state.history.push(state.stepIndex);
+        state.stepIndex++;
+        updateBackButton();
+        runStep();
+    }
+
+    // ========== BACK NAVIGATION ==========
+    function goBack() {
+        if (state.history.length === 0) return;
+        
+        // Cancel any typing in progress
+        if (state.typing) {
+            skipType();
+        }
+        
+        // Cancel any character creation waiting
+        if (characterCreationCheckInterval) {
+            clearInterval(characterCreationCheckInterval);
+            characterCreationCheckInterval = null;
+            hideCharacterCreationWaitingIndicator();
+            $('dialoguePanel').classList.add('visible');
+        }
+        
+        // Remove any click catcher overlays
+        const clickCatcher = document.getElementById('clickCatcherOverlay');
+        if (clickCatcher) clickCatcher.remove();
+        
+        // Hide any highlights
+        hideHighlight();
+        
+        // Pop the last step from history
+        state.stepIndex = state.history.pop();
+        
+        // If the step we're going back to is wait-character-creation, go back one more
+        // to skip it entirely (user would be stuck otherwise)
+        const targetStep = STEPS[state.stepIndex];
+        if (targetStep && targetStep.type === 'wait-character-creation' && state.history.length > 0) {
+            state.stepIndex = state.history.pop();
+        }
+        
+        // Also skip wait-click and wait-click-no-nav steps when going back
+        if (targetStep && (targetStep.type === 'wait-click' || targetStep.type === 'wait-click-no-nav') && state.history.length > 0) {
+            state.stepIndex = state.history.pop();
+        }
+        
+        updateBackButton();
+        
+        // Re-run the step
+        runStep();
+    }
+
+    function updateBackButton() {
+        const backBtn = $('backBtn');
+        if (backBtn) {
+            backBtn.disabled = state.history.length === 0;
+        }
+    }
+
+    // ========== CHOICES ==========
+    function showChoices(choices) {
+        $('hint').classList.remove('visible');
+        const el = $('choices');
+        el.innerHTML = choices.map((c, i) => 
+            `<button class="choice-btn" onclick="selectChoice(${i})">${c.text}</button>`
+        ).join('');
+        el.classList.add('visible');
+    }
+
+    window.selectChoice = function(i) {
+        const step = STEPS[state.stepIndex];
+        const choice = step.choices[i];
+        $('choices').classList.remove('visible');
+
+        // Save current step to history before jumping
+        state.history.push(state.stepIndex);
+        updateBackButton();
+
+        if (choice.goto) {
+            // Jump to labeled step
+            const targetIndex = STEPS.findIndex(s => s.id === choice.goto);
+            if (targetIndex !== -1) {
+                state.stepIndex = targetIndex;
+                runStep();
+            }
+        } else if (choice.action) {
+            // Special actions
+            switch (choice.action) {
+                case 'quiz':
+                    window.location.href = '{{if eq .Language "en"}}/quiz/e{{else}}/quiz{{end}}';
+                    break;
+                case 'descriptions':
+                    window.location.href = '{{if eq .Language "en"}}/descriptions/e{{else}}/descriptions{{end}}';
+                    break;
+                case 'write':
+                    window.location.href = '{{if eq .Language "en"}}/navigation/e{{else}}/navigation{{end}}';
+                    break;
+                case 'skip':
+                    // Jump to ending
+                    const endingIndex = STEPS.findIndex(s => s.id === 'ending');
+                    if (endingIndex !== -1) {
+                        state.stepIndex = endingIndex;
+                        runStep();
+                    }
+                    break;
+            }
+        }
+    };
+
+    // ========== PAGE LOADING ==========
+    function loadPage(url, waitTime) {
+        return new Promise(resolve => {
+            // Show loading state
+            $('text').innerHTML = '{{if eq .Language "en"}}Loading...{{else}}加载中...{{end}}';
+            
+            let resolved = false;
+            const doResolve = () => {
+                if (resolved) return;
+                resolved = true;
+                // Hide the placeholder on first page load
+                const placeholder = $('tutorialPlaceholder');
+                if (placeholder && !placeholder.classList.contains('hidden')) {
+                    placeholder.classList.add('hidden');
+                }
+                setTimeout(resolve, waitTime);
+            };
+            
+            // Attach onload handler BEFORE setting src (to avoid race condition)
+            frame().onload = doResolve;
+            
+            // Fallback timeout in case onload doesn't fire
+            setTimeout(doResolve, 5000);
+            
+            // Now set the src
+            frame().src = url;
+        });
+    }
+
+    // ========== HIGHLIGHTING ==========
+    function hideHighlight() {
+        $('highlightOverlay').classList.remove('visible');
+        $('highlightCircle').classList.remove('visible');
+        $('highlightArrow').classList.remove('visible');
+        $('highlightTooltip').classList.remove('visible');
+        $('highlightTooltip').style.transform = ''; // Reset any transform
+        // Hide multi-arrows too
+        ['multiArrow1', 'multiArrow2', 'multiArrow3'].forEach(id => {
+            $(id).classList.remove('visible');
+        });
+        // Hide practice banner
+        $('practiceBanner').classList.remove('visible');
+    }
+
+    function highlightElement(selector, tooltip) {
+        try {
+            const iframeDoc = frame().contentDocument || frame().contentWindow.document;
+            const el = iframeDoc.querySelector(selector);
+            
+            if (el) {
+                const rect = el.getBoundingClientRect();
+                const frameRect = frame().getBoundingClientRect();
+                
+                // Calculate positions relative to the main window
+                const top = frameRect.top + rect.top;
+                const left = frameRect.left + rect.left;
+                const padding = 12;
+                
+                // Show dark overlay
+                $('highlightOverlay').classList.add('visible');
+                
+                // Position and show the highlight circle
+                const circle = $('highlightCircle');
+                circle.style.top = (top - padding) + 'px';
+                circle.style.left = (left - padding) + 'px';
+                circle.style.width = (rect.width + padding * 2) + 'px';
+                circle.style.height = (rect.height + padding * 2) + 'px';
+                circle.classList.add('visible');
+                
+                // Position arrow above the element
+                const arrow = $('highlightArrow');
+                arrow.style.top = (top - 50) + 'px';
+                arrow.style.left = (left + rect.width / 2 - 15) + 'px';
+                arrow.classList.add('visible');
+                
+                // Show tooltip if provided
+                if (tooltip) {
+                    const tooltipEl = $('highlightTooltip');
+                    tooltipEl.textContent = tooltip;
+                    // Position tooltip to the right of the element, or below if not enough space
+                    const tooltipLeft = left + rect.width + 20;
+                    if (tooltipLeft + 250 < window.innerWidth) {
+                        tooltipEl.style.top = (top + rect.height / 2 - 20) + 'px';
+                        tooltipEl.style.left = tooltipLeft + 'px';
+                    } else {
+                        tooltipEl.style.top = (top + rect.height + 20) + 'px';
+                        tooltipEl.style.left = (left) + 'px';
+                    }
+                    tooltipEl.classList.add('visible');
+                }
+                
+                // Scroll the element into view in the iframe
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                console.log('Element not found for selector:', selector);
+            }
+        } catch (e) {
+            // Cross-origin issues - can't highlight
+            console.log('Cannot highlight element in iframe:', e);
+        }
+    }
+
+    function highlightMultipleElements(selector, tooltip) {
+        try {
+            const iframeDoc = frame().contentDocument || frame().contentWindow.document;
+            const elements = iframeDoc.querySelectorAll(selector);
+            
+            if (elements.length > 0) {
+                const frameRect = frame().getBoundingClientRect();
+                
+                // Don't show dark overlay - it doesn't help when elements are in iframe
+                // Just show arrows pointing at the elements
+                
+                // Position arrows above each element (up to 3)
+                const arrowIds = ['multiArrow1', 'multiArrow2', 'multiArrow3'];
+                elements.forEach((el, i) => {
+                    if (i >= 3) return; // Max 3 arrows
+                    
+                    const rect = el.getBoundingClientRect();
+                    // Account for iframe position
+                    const top = frameRect.top + rect.top;
+                    const left = frameRect.left + rect.left;
+                    
+                    const arrow = $(arrowIds[i]);
+                    arrow.style.top = (top - 60) + 'px';
+                    arrow.style.left = (left + rect.width / 2 - 25) + 'px';
+                    arrow.classList.add('visible');
+                });
+                
+                // Don't show centered tooltip - it's confusing
+                // The dialogue panel already shows the message
+                
+                // Scroll first element into view
+                elements[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                console.log('No elements found for selector:', selector);
+            }
+        } catch (e) {
+            console.log('Cannot highlight multiple elements in iframe:', e);
+        }
+    }
+
+    function hideMultiArrows() {
+        ['multiArrow1', 'multiArrow2', 'multiArrow3'].forEach(id => {
+            $(id).classList.remove('visible');
+        });
+    }
+
+    function highlightWithArrowOnly(selector, tooltip) {
+        // Only show arrow pointing at element, no dark overlay or circle
+        try {
+            const iframeDoc = frame().contentDocument || frame().contentWindow.document;
+            const el = iframeDoc.querySelector(selector);
+            
+            if (el) {
+                const rect = el.getBoundingClientRect();
+                const frameRect = frame().getBoundingClientRect();
+                const top = frameRect.top + rect.top;
+                const left = frameRect.left + rect.left;
+                
+                // Position arrow above the element
+                const arrow = $('highlightArrow');
+                arrow.style.top = (top - 50) + 'px';
+                arrow.style.left = (left + rect.width / 2 - 15) + 'px';
+                arrow.classList.add('visible');
+                
+                // Scroll the element into view
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        } catch (e) {
+            console.log('Cannot highlight element in iframe:', e);
+        }
+    }
+
+    // ========== PRACTICE MODE ==========
+    function startPracticeMode(message) {
+        // Hide the dark overlay so user can interact with iframe
+        hideHighlight();
+        
+        // Show practice banner
+        $('practiceBanner').classList.add('visible');
+        
+        // Update dialogue text
+        $('text').innerHTML = message || '{{if eq .Language "en"}}Try writing something up there!{{else}}试着在上面写点东西！{{end}}';
+        $('hint').textContent = '{{if eq .Language "en"}}Done? Click here to continue{{else}}写完了？点击这里继续{{end}}';
+        $('hint').classList.add('visible');
+        
+        // The dialogue panel stays visible but user can interact with iframe
+        // User clicks to continue when done practicing
+    }
+
+    function endPracticeMode() {
+        $('practiceBanner').classList.remove('visible');
+    }
+
+    function startPracticeMinimal(message) {
+        // Hide dialogue panel completely so user can practice without obstruction
+        hideHighlight();
+        $('dialoguePanel').classList.remove('visible');
+        
+        // Show a small floating indicator with continue button
+        showPracticeIndicator(message);
+    }
+
+    function showPracticeIndicator(message) {
+        let indicator = $('practiceIndicator');
+        if (!indicator) {
+            indicator = document.createElement('div');
+            indicator.id = 'practiceIndicator';
+            indicator.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, rgba(255, 215, 0, 0.95), rgba(255, 140, 0, 0.95));
+                color: #0a0a12;
+                padding: 10px 18px;
+                border-radius: 25px;
+                font-size: 0.85rem;
+                font-weight: 600;
+                z-index: 1003;
+                box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+                cursor: pointer;
+                max-width: 250px;
+            `;
+            document.body.appendChild(indicator);
+        }
+        indicator.innerHTML = `<span style="font-size: 0.8rem;">${message || '{{if eq .Language "en"}}Try it!{{else}}试试吧！{{end}}'}</span><br><span style="opacity: 0.8; font-size: 0.75rem;">{{if eq .Language "en"}}Click here when done{{else}}完成后点这里{{end}}</span>`;
+        indicator.style.display = 'block';
+        indicator.onclick = () => {
+            hidePracticeIndicator();
+            $('dialoguePanel').classList.add('visible');
+            state.history.push(state.stepIndex);
+            updateBackButton();
+            state.stepIndex++;
+            runStep();
+        };
+    }
+
+    function hidePracticeIndicator() {
+        const indicator = $('practiceIndicator');
+        if (indicator) {
+            indicator.style.display = 'none';
+        }
+    }
+
+    function startBrowsePause(duration, message) {
+        // Let user browse freely for a while, then auto-continue
+        hideHighlight();
+        
+        $('text').innerHTML = message || '{{if eq .Language "en"}}Just browsing...{{else}}随便看看...{{end}}';
+        $('hint').textContent = '{{if eq .Language "en"}}Please wait...{{else}}请稍等...{{end}}';
+        $('hint').classList.add('visible');
+        
+        let remaining = Math.ceil(duration / 1000);
+        const updateHint = () => {
+            if (remaining > 0) {
+                $('hint').textContent = `${remaining} {{if eq .Language "en"}}seconds... (or click to skip){{else}}秒后继续...（或点击跳过）{{end}}`;
+                remaining--;
+            }
+        };
+        updateHint();
+        const countdownTimer = setInterval(updateHint, 1000);
+        
+        // Auto-continue after duration
+        const autoTimer = setTimeout(() => {
+            clearInterval(countdownTimer);
+            state.history.push(state.stepIndex);
+            updateBackButton();
+            state.stepIndex++;
+            runStep();
+        }, duration);
+        
+        // Allow clicking to skip
+        const skipHandler = () => {
+            clearTimeout(autoTimer);
+            clearInterval(countdownTimer);
+            $('dialoguePanel').querySelector('.dialogue-content').removeEventListener('click', skipHandler);
+            state.history.push(state.stepIndex);
+            updateBackButton();
+            state.stepIndex++;
+            runStep();
+        };
+        $('dialoguePanel').querySelector('.dialogue-content').addEventListener('click', skipHandler, { once: true });
+    }
+
+    // ========== WAIT FOR CLICK ==========
+    function waitForClick(selector, message) {
+        // Show the highlight on the elements
+        highlightMultipleElements(selector, message);
+        
+        // Update dialogue
+        $('text').innerHTML = message || '{{if eq .Language "en"}}Click to continue{{else}}点击继续{{end}}';
+        $('hint').classList.remove('visible'); // Hide normal continue hint
+        
+        // We're not waiting for actual click in iframe due to cross-origin
+        // User clicks in the dialogue panel to continue
+        // After a short delay, show the hint
+        setTimeout(() => {
+            $('hint').textContent = '{{if eq .Language "en"}}(Click dialog to continue){{else}}（点击对话框继续教程）{{end}}';
+            $('hint').classList.add('visible');
+        }, 2000);
+    }
+
+    function waitForClickNoNav(selector, message) {
+        // Show the highlight on the elements (arrows only, no dimming)
+        highlightMultipleElements(selector, message);
+        
+        // Update dialogue
+        $('text').innerHTML = message || '{{if eq .Language "en"}}Click to continue{{else}}点击继续{{end}}';
+        $('hint').classList.remove('visible');
+        
+        // Block iframe navigation during this step by overlaying a transparent click catcher
+        // Leave space at bottom for dialogue panel so back button stays accessible
+        const overlay = document.createElement('div');
+        overlay.id = 'clickCatcherOverlay';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 200px;
+            z-index: 999;
+            cursor: pointer;
+            background: transparent;
+        `;
+        document.body.appendChild(overlay);
+        
+        // When user clicks the overlay, continue tutorial
+        const continueHandler = () => {
+            overlay.remove();
+            hideHighlight();
+            state.history.push(state.stepIndex);
+            updateBackButton();
+            state.stepIndex++;
+            runStep();
+        };
+        
+        overlay.addEventListener('click', continueHandler, { once: true });
+        
+        // Also allow clicking the dialogue content to continue
+        const dialogueClickHandler = (e) => {
+            // Don't continue if clicking back button or exit button
+            if (e.target.closest('.back-btn') || e.target.closest('.exit-btn')) return;
+            
+            e.stopPropagation();
+            overlay.remove();
+            hideHighlight();
+            state.history.push(state.stepIndex);
+            updateBackButton();
+            state.stepIndex++;
+            runStep();
+        };
+        $('dialoguePanel').querySelector('.dialogue-content').addEventListener('click', dialogueClickHandler, { once: true });
+        
+        // Show hint after delay
+        setTimeout(() => {
+            $('hint').textContent = '{{if eq .Language "en"}}(Click anywhere to continue){{else}}（点击任意位置继续）{{end}}';
+            $('hint').classList.add('visible');
+        }, 1500);
+    }
+
+    // ========== WAIT FOR CHARACTER CREATION ==========
+    let characterCreationCheckInterval = null;
+    let initialCharacterNames = new Set();
+    
+    function waitForCharacterCreation(message) {
+        // Hide the dialogue panel so it doesn't block the modal
+        $('dialoguePanel').classList.remove('visible');
+        hideHighlight();
+        
+        // Show a small floating indicator with manual skip option immediately
+        showCharacterCreationWaitingIndicator();
+        
+        // Record initial character names (not just count - handles registered users with existing chars)
+        initialCharacterNames = new Set();
+        try {
+            const iframeDoc = frame().contentDocument || frame().contentWindow.document;
+            const items = iframeDoc.querySelectorAll('.list-group-item-action, [data-day-key], li[onclick], .sidebar-item');
+            items.forEach(item => {
+                const text = item.textContent || item.innerText || '';
+                if (text.trim()) initialCharacterNames.add(text.trim());
+            });
+        } catch (e) {
+            console.log('Cannot access iframe for initial names:', e);
+        }
+        
+        // Track if modal was opened (to detect it closing)
+        let modalWasOpened = false;
+        
+        // Poll every 500ms to check if a new character was created
+        characterCreationCheckInterval = setInterval(() => {
+            try {
+                const iframeDoc = frame().contentDocument || frame().contentWindow.document;
+                
+                // Check if modal is currently visible
+                const modal = iframeDoc.querySelector('#addCharacterModal, .modal, .add-character-modal, [class*="modal"]');
+                const modalVisible = modal && (
+                    modal.style.display === 'block' || 
+                    modal.style.display === 'flex' ||
+                    modal.classList.contains('show') ||
+                    modal.classList.contains('visible') ||
+                    modal.classList.contains('active')
+                );
+                
+                if (modalVisible) {
+                    modalWasOpened = true;
+                }
+                
+                // Check for new sidebar items
+                const currentItems = iframeDoc.querySelectorAll('.list-group-item-action, [data-day-key], li[onclick], .sidebar-item');
+                let hasNewItem = false;
+                
+                currentItems.forEach(item => {
+                    const text = (item.textContent || item.innerText || '').trim();
+                    if (text && !initialCharacterNames.has(text)) {
+                        hasNewItem = true;
+                    }
+                });
+                
+                // Character was created if: modal was opened then closed, OR new items appeared
+                const modalJustClosed = modalWasOpened && !modalVisible;
+                
+                if ((hasNewItem || modalJustClosed) && !modalVisible) {
+                    clearInterval(characterCreationCheckInterval);
+                    characterCreationCheckInterval = null;
+                    hideCharacterCreationWaitingIndicator();
+                    
+                    // Show dialogue panel again and continue
+                    $('dialoguePanel').classList.add('visible');
+                    state.history.push(state.stepIndex);
+                    updateBackButton();
+                    state.stepIndex++;
+                    runStep();
+                }
+            } catch (e) {
+                // Cross-origin - can't check
+                console.log('Cannot check iframe for character creation:', e);
+            }
+        }, 500);
+        
+        // Show manual skip option after 10 seconds (reduced from 30)
+        setTimeout(() => {
+            if (characterCreationCheckInterval) {
+                showManualContinueOption();
+            }
+        }, 10000);
+    }
+    
+    function showCharacterCreationWaitingIndicator() {
+        // Create a floating indicator if it doesn't exist
+        let indicator = $('characterCreationIndicator');
+        if (!indicator) {
+            indicator = document.createElement('div');
+            indicator.id = 'characterCreationIndicator';
+            indicator.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 140, 0, 0.9));
+                color: #0a0a12;
+                padding: 12px 24px;
+                border-radius: 30px;
+                font-size: 0.95rem;
+                font-weight: 600;
+                z-index: 1003;
+                box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            `;
+            indicator.innerHTML = `
+                <span class="spinner" style="display: inline-block; width: 16px; height: 16px; border: 2px solid #0a0a12; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></span>
+                <span>{{if eq .Language "en"}}Creating character... Fill out the form above{{else}}创建角色中... 填写上方表单{{end}}</span>
+            `;
+            document.body.appendChild(indicator);
+        }
+        indicator.style.display = 'flex';
+    }
+    
+    function hideCharacterCreationWaitingIndicator() {
+        const indicator = $('characterCreationIndicator');
+        if (indicator) {
+            indicator.style.display = 'none';
+        }
+    }
+    
+    function showManualContinueOption() {
+        const indicator = $('characterCreationIndicator');
+        if (indicator) {
+            indicator.innerHTML = `
+                <span>{{if eq .Language "en"}}Done? Click here to continue{{else}}完成了？点击这里继续{{end}}</span>
+            `;
+            indicator.style.cursor = 'pointer';
+            indicator.onclick = () => {
+                if (characterCreationCheckInterval) {
+                    clearInterval(characterCreationCheckInterval);
+                    characterCreationCheckInterval = null;
+                }
+                hideCharacterCreationWaitingIndicator();
+                $('dialoguePanel').classList.add('visible');
+                // Don't add to history here - the wait-character-creation step handles it
+                state.stepIndex++;
+                runStep();
+            };
+        }
+    }
+    
+    // Special handling: when going back from after character creation, skip 2 steps
+    // to go back before the wait-character-creation step
+    function isAfterCharacterCreationStep() {
+        const step = STEPS[state.stepIndex];
+        const prevStep = state.stepIndex > 0 ? STEPS[state.stepIndex - 1] : null;
+        return prevStep && prevStep.type === 'wait-character-creation';
+    }
+
+    // ========== REGISTER PROMPT ==========
+    function showRegisterPrompt() {
+        // Show the register prompt inside dialogue panel
+        $('registerPrompt').classList.add('visible');
+        $('hint').classList.remove('visible');
+        $('choices').classList.remove('visible');
+    }
+
+    function hideRegisterPrompt() {
+        $('registerPrompt').classList.remove('visible');
+    }
+
+    function goToRegister() {
+        // Save tutorial state to sessionStorage before navigating
+        sessionStorage.setItem('tutorialReturnStep', state.stepIndex + 1);
+        sessionStorage.setItem('tutorialInProgress', 'true');
+        
+        // Navigate to login page with redirect back to guide
+        const lang = document.documentElement.lang === 'en' ? '/e' : '';
+        window.location.href = '/login' + lang + '?redirect=/guide' + lang;
+    }
+
+    function skipRegister() {
+        hideRegisterPrompt();
+        state.stepIndex++;
+        runStep();
+    }
+
+    // Check if returning from login
+    function checkTutorialReturn() {
+        const inProgress = sessionStorage.getItem('tutorialInProgress');
+        const returnStep = sessionStorage.getItem('tutorialReturnStep');
+        
+        if (inProgress === 'true' && returnStep) {
+            sessionStorage.removeItem('tutorialInProgress');
+            sessionStorage.removeItem('tutorialReturnStep');
+            
+            // Skip intro and resume from saved step
+            $('intro').classList.add('hidden');
+            $('dialoguePanel').classList.add('visible');
+            state.stepIndex = parseInt(returnStep, 10);
+            runStep();
+            return true;
+        }
+        return false;
+    }
+
+    // ========== DISCOVERY MODE FUNCTIONS ==========
+    function renderObjectives() {
+        const list = $('objectivesList');
+        list.innerHTML = OBJECTIVES.map((obj, i) => {
+            const isCompleted = state.completedObjectives.includes(obj.id);
+            const isCurrent = i === state.currentObjective && !isCompleted;
+            return `
+                <div class="objective-item ${isCompleted ? 'completed' : ''} ${isCurrent ? 'current' : ''}" data-id="${obj.id}">
+                    <div class="objective-checkbox">${isCompleted ? '✓' : (i + 1)}</div>
+                    <div>
+                        <div class="objective-text">${obj.text}</div>
+                        ${isCurrent ? `<div class="objective-hint">${obj.hint}</div>` : ''}
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function showDiscoveryBubble(text, duration = 3000) {
+        const bubble = $('discoveryBubble');
+        $('discoveryText').textContent = text;
+        bubble.classList.add('visible');
+        
+        setTimeout(() => {
+            bubble.classList.remove('visible');
+        }, duration);
+    }
+
+    // Simple discovery mode - just show objectives list and Continue button
+    async function runDiscoveryStep() {
+        const step = DISCOVERY_STEPS[state.stepIndex];
+        if (!step) {
+            showDiscoveryComplete();
+            return;
+        }
+
+        switch (step.type) {
+            case 'discovery-intro':
+                showDiscoveryBubble('{{if eq .Language "en"}}Figure it out yourself. I believe in you.{{else}}自己摸索吧，我相信你。{{end}}', 2500);
+                setTimeout(() => {
+                    state.stepIndex++;
+                    runDiscoveryStep();
+                }, 2000);
+                break;
+
+            case 'load':
+                await loadPage(step.url, step.wait || 1000);
+                state.stepIndex++;
+                runDiscoveryStep();
+                break;
+
+            case 'objective':
+                // Just show objectives and a Continue button - no detection logic
+                renderObjectives();
+                showContinueButton();
+                break;
+
+            case 'discovery-proceed-button':
+                showProceedButton(step.buttonText, step.targetUrl);
+                break;
+
+            case 'discovery-complete':
+                showDiscoveryComplete();
+                break;
+        }
+    }
+
+    function showContinueButton() {
+        const isEnglish = '{{.Language}}' === 'en';
+        const panel = $('objectivesPanel');
+        
+        // Remove any existing continue button
+        const existing = document.getElementById('discoveryContinueBtn');
+        if (existing) existing.remove();
+        
+        const btnContainer = document.createElement('div');
+        btnContainer.id = 'discoveryContinueBtn';
+        btnContainer.style.cssText = 'margin-top: 1rem; text-align: center;';
+        btnContainer.innerHTML = `
+            <button style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, var(--gold), #ff8c00); border: none; border-radius: 20px; color: #0a0a12; font-weight: 600; cursor: pointer;">
+                ${isEnglish ? 'Continue →' : '继续 →'}
+            </button>
+        `;
+        panel.appendChild(btnContainer);
+        
+        btnContainer.querySelector('button').onclick = () => {
+            btnContainer.remove();
+            // Mark current objective as complete
+            const step = DISCOVERY_STEPS[state.stepIndex];
+            if (step && step.id && !state.completedObjectives.includes(step.id)) {
+                state.completedObjectives.push(step.id);
+                state.currentObjective++;
+            }
+            state.stepIndex++;
+            runDiscoveryStep();
+        };
+    }
+
+    function showProceedButton(buttonText, targetUrl) {
+        const panel = $('objectivesPanel');
+        const btnContainer = document.createElement('div');
+        btnContainer.style.cssText = 'margin-top: 1rem; text-align: center;';
+        btnContainer.innerHTML = `
+            <button id="discoveryProceedBtn" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, var(--gold), #ff8c00); border: none; border-radius: 20px; color: #0a0a12; font-weight: 600; cursor: pointer;">
+                ${buttonText} →
+            </button>
+        `;
+        panel.appendChild(btnContainer);
+        
+        document.getElementById('discoveryProceedBtn').onclick = async () => {
+            btnContainer.remove();
+            await loadPage(targetUrl, 1000);
+            state.stepIndex++;
+            runDiscoveryStep();
+        };
+    }
+
+    function triggerCelebration() {
+        const colors = ['#ffd700', '#3fb950', '#58a6ff', '#f78166', '#bc8cff'];
+        for (let i = 0; i < 15; i++) {
+            setTimeout(() => {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDuration = (0.8 + Math.random() * 0.5) + 's';
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 1500);
+            }, i * 50);
+        }
+    }
+
+    function showDiscoveryComplete() {
+        $('objectivesPanel').innerHTML = `
+            <div class="objectives-header">
+                <span>🎉</span>
+                <span class="objectives-title">{{if eq .Language "en"}}All Done!{{else}}完成！{{end}}</span>
+            </div>
+            <div style="padding: 1rem 0; text-align: center;">
+                <p style="margin-bottom: 1rem; color: var(--text);">
+                    {{if eq .Language "en"}}You figured it out. Not bad.{{else}}你搞定了，不错嘛。{{end}}
+                </p>
+                <button onclick="window.location.href='{{if eq .Language "en"}}/navigation/e{{else}}/navigation{{end}}'" 
+                    style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, var(--gold), #ff8c00); border: none; border-radius: 20px; color: #0a0a12; font-weight: 600; cursor: pointer;">
+                    {{if eq .Language "en"}}Start Writing{{else}}开始写作{{end}}
+                </button>
+            </div>
+        `;
+        
+        showDiscoveryBubble('{{if eq .Language "en"}}Welcome to the team, Researcher.{{else}}欢迎加入，研究员。{{end}}', 4000);
+        triggerCelebration();
+    }
+
+    // ========== CHAPTER NAVIGATION ==========
+    const CHAPTERS = [
+        { id: 'section1', num: 1, name: '{{if eq .Language "en"}}Welcome & Introduction{{else}}欢迎与介绍{{end}}' },
+        { id: 'section2', num: 2, name: '{{if eq .Language "en"}}The Process{{else}}工作流程{{end}}' },
+        { id: 'section3', num: 3, name: '{{if eq .Language "en"}}Character Selection{{else}}角色选择{{end}}' },
+        { id: 'section4', num: 4, name: '{{if eq .Language "en"}}Character Settings{{else}}角色设定{{end}}' },
+        { id: 'section5', num: 5, name: '{{if eq .Language "en"}}Writing Interface{{else}}写作界面{{end}}' },
+        { id: 'section6', num: 6, name: '{{if eq .Language "en"}}Writer\'s Lounge{{else}}写手交流室{{end}}' },
+        { id: 'section7', num: 7, name: '{{if eq .Language "en"}}Summary & Quiz{{else}}总结与测验{{end}}' },
+        { id: 'ending', num: 8, name: '{{if eq .Language "en"}}Ending{{else}}结束{{end}}' }
+    ];
+
+    function openChapterMenu() {
+        renderChapterList();
+        $('chapterMenuOverlay').classList.add('visible');
+        $('chapterMenu').classList.add('visible');
+    }
+
+    function closeChapterMenu() {
+        $('chapterMenuOverlay').classList.remove('visible');
+        $('chapterMenu').classList.remove('visible');
+    }
+
+    function renderChapterList() {
+        const list = $('chapterList');
+        list.innerHTML = CHAPTERS.map(ch => {
+            const isCurrent = ch.num === state.currentChapter;
+            const isCompleted = ch.num < state.currentChapter;
+            return `
+                <div class="chapter-item ${isCurrent ? 'current' : ''} ${isCompleted ? 'completed' : ''}" 
+                     onclick="jumpToChapter('${ch.id}')">
+                    <div class="chapter-num">${isCompleted ? '✓' : ch.num}</div>
+                    <div class="chapter-name">${ch.name}</div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function jumpToChapter(sectionId) {
+        closeChapterMenu();
+        
+        // Find the step index for this section
+        const targetIndex = STEPS.findIndex(s => s.id === sectionId);
+        if (targetIndex !== -1) {
+            state.stepIndex = targetIndex;
+            
+            // Update chapter tracking
+            const chapter = CHAPTERS.find(c => c.id === sectionId);
+            if (chapter) {
+                state.currentChapter = chapter.num;
+                $('chapter').textContent = chapter.num;
+                $('progressFill').style.width = (chapter.num / TOTAL_CHAPTERS * 100) + '%';
+            }
+            
+            runStep();
+        }
+    }
+
+    // ========== AVATAR CLICK ==========
+    const avatarMessages = [
+        '{{if eq .Language "en"}}Why are you poking me?{{else}}你戳我干啥{{end}}',
+        "...",
+        '{{if eq .Language "en"}}Poke me again and I will kick you out.{{else}}再戳我把你踢出去{{end}}',
+        "...",
+        '{{if eq .Language "en"}}Okay okay, I know you are bored. Let us continue the tutorial.{{else}}行行行知道你无聊了，继续教程吧{{end}}'
+    ];
+
+    function onAvatarClick() {
+        state.avatarClicks++;
+        if (state.avatarClicks <= avatarMessages.length) {
+            $('text').innerHTML = avatarMessages[state.avatarClicks - 1];
+        }
+    }
+
+    // ========== KEYBOARD ==========
+    document.addEventListener('keydown', e => {
+        if (e.key === ' ' || e.key === 'Enter' || e.key === 'ArrowRight') {
+            e.preventDefault();
+            advance();
+        }
+        if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
+            e.preventDefault();
+            goBack();
+        }
+        if (e.key === 'Escape') {
+            exitTutorial();
+        }
+    });
+
+    // ========== INITIALIZATION ==========
+    document.addEventListener('DOMContentLoaded', () => {
+        // Check if returning from login/register
+        if (!checkTutorialReturn()) {
+            // Not returning, show intro screen normally
+            // (intro is visible by default)
+        }
+        
+        // Navigation blocker also advances dialogue when clicked
+        $('navBlocker').addEventListener('click', () => {
+            advance();
+        });
+    });
+    </script>
+</body>
+</html>

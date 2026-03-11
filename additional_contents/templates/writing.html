@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="{{if eq .Language "en"}}en{{else}}zh-CN{{end}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{if eq .Language "en"}}Select Character - Writer Portal{{else}}选择角色 - 写手门户{{end}}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Early iframe detection - must run before body renders -->
+    <script>
+        if (window.self !== window.top) {
+            document.documentElement.classList.add('in-iframe');
+        }
+    </script>
+    <style>
+        /* Viewing Mode Banner */
+        .viewing-mode-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            z-index: 1050;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+        .viewing-mode-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .viewing-mode-text {
+            font-size: 0.9rem;
+        }
+        body.viewing-mode-active {
+            padding-top: 44px;
+        }
+        
+        /* Hide all banners and reset padding when in iframe (tutorial mode) */
+        html.in-iframe #viewingModeBanner,
+        html.in-iframe .viewing-mode-banner {
+            display: none !important;
+        }
+        html.in-iframe body,
+        html.in-iframe body.viewing-mode-active {
+            padding-top: 0 !important;
+        }
+        /* Home button */
+        .home-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        .home-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+            color: white;
+            text-decoration: none;
+        }
+        
+        /* Compact Token Progress Bar */
+        .token-progress-mini {
+            width: 100%;
+            margin-top: 6px;
+            padding: 0 4px;
+        }
+        
+        .token-progress-mini-bar {
+            background: rgba(102, 126, 234, 0.15);
+            border-radius: 4px;
+            height: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .token-progress-mini-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        .token-progress-mini-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.4) 50%,
+                transparent 100%
+            );
+            animation: mini-shimmer 2.5s infinite;
+        }
+        
+        @keyframes mini-shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .token-progress-mini-text {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 4px;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            font-family: 'DM Sans', sans-serif;
+        }
+        
+        .token-progress-mini-text .count {
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .token-progress-mini-text .target {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <!-- Flash Messages -->
+    <!-- Flash messages functionality not yet implemented -->
+
+    <!-- Top Header -->
+    <header class="top-header">
+        <div class="menu-container">
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <nav class="dropdown-menu" id="dropdownMenu">
+                <a href="/navigation" class="dropdown-item" style="background: var(--accent-light); color: var(--primary);">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                        <path d="M2 2l7.586 7.586"></path>
+                        <circle cx="11" cy="11" r="2"></circle>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Writing{{else}}写作{{end}}</span>
+                </a>
+                <a href="/faq" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    <span>{{if eq .Language "en"}}FAQ{{else}}常见问题{{end}}</span>
+                </a>
+                <a href="/descriptions" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Character Profiles{{else}}角色描述{{end}}</span>
+                </a>
+                <a href="/payment" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Payment{{else}}付款{{end}}</span>
+                </a>
+            </nav>
+        </div>
+        
+        <a class="logo-container" href="/landing">
+            <div class="logo-icon"></div>
+            <span class="logo-text">{{if eq .Language "en"}}Writer Portal{{else}}写手门户{{end}}</span>
+        </a>
+        
+        <div class="account-container">
+            <button class="account-btn" id="accountBtn" aria-label="Account menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </button>
+            <div class="account-dropdown" id="accountDropdown">
+                {{if .LoggedIn}}
+                <div class="account-dropdown-header">
+                    <span class="account-name">{{.CurrentUser}}</span>
+                </div>
+                <a href="/logout" class="account-dropdown-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Logout{{else}}退出{{end}}</span>
+                </a>
+                {{else}}
+                <a href="/login/e" class="account-dropdown-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                        <polyline points="10 17 15 12 10 7"></polyline>
+                        <line x1="15" y1="12" x2="3" y2="12"></line>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Login{{else}}登录{{end}}</span>
+                </a>
+                {{end}}
+            </div>
+        </div>
+    </header>
+
+    <!-- Viewing Mode Banner -->
+    <div id="viewingModeBanner" style="display: none;">
+        <div class="viewing-mode-banner">
+            <div class="viewing-mode-content">
+                <i class="fas fa-eye me-2"></i>
+                <span class="viewing-mode-text">{{if eq .Language "en"}}You are in viewing mode · Register and complete tutorial to start writing{{else}}您正在浏览模式 · 注册并完成教程后可以开始写作{{end}}</span>
+                <button class="btn btn-sm btn-light ms-3" onclick="window.location.href='/login/e?redirect=' + encodeURIComponent(window.location.pathname)">
+                    <i class="fas fa-graduation-cap me-1"></i> {{if eq .Language "en"}}Login/Register{{else}}登录/注册{{end}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header" style="text-align: center;">
+            <h1>{{if eq .Language "en"}}Select Character{{else}}选择角色{{end}}</h1>
+            <p>{{if eq .Language "en"}}Choose the character you want to write dialogues for{{else}}选择您想为哪个角色撰写对话{{end}}</p>
+            {{if not .LoggedIn}}
+            <div class="access-hint" style="margin-top: 1rem; padding: 15px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border-radius: 12px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <p style="margin: 0; color: #64748b; font-size: 0.95rem;">
+                    <i class="fas fa-info-circle me-1" style="color: #667eea;"></i>
+                    {{if eq .Language "en"}}You can browse all dialogue data. <strong>Login and complete tutorial</strong> to start writing.{{else}}您可以浏览所有对话数据。<strong>登录并完成教程</strong>后即可开始写作。{{end}}
+                </p>
+            </div>
+            {{else if eq .UserRole "new_user"}}
+            <div class="access-hint" style="margin-top: 1rem; padding: 15px; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border-radius: 12px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <p style="margin: 0; color: #64748b; font-size: 0.95rem;">
+                    <i class="fas fa-graduation-cap me-1" style="color: #667eea;"></i>
+                    {{if eq .Language "en"}}Welcome, {{.CurrentUser}}! Select a character and <strong>complete the writer tutorial</strong> to start creating.{{else}}欢迎，{{.CurrentUser}}！选择一个角色，然后<strong>完成写手教程</strong>即可开始创作。{{end}}
+                </p>
+            </div>
+            {{end}}
+        </div>
+
+        <section class="character-select-grid">
+            {{range .Characters}}
+            <a href="{{.Route}}" class="character-select-card" data-character="{{.ID}}">
+                <div class="character-select-avatar">
+                    {{if hasPrefix .Image "http://"}}
+                    <img src="{{.Image}}" alt="{{.Name}}">
+                    {{else if hasPrefix .Image "https://"}}
+                    <img src="{{.Image}}" alt="{{.Name}}">
+                    {{else}}
+                    <img src="/static/{{.Image}}" alt="{{.Name}}">
+                    {{end}}
+                </div>
+                <h3 class="character-select-name">{{.Name}}</h3>
+                <div class="token-progress-mini" data-character="{{.ID}}">
+                    <div class="token-progress-mini-bar">
+                        <div class="token-progress-mini-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="token-progress-mini-text">
+                        <span><span class="count">--</span><span class="target"> / 500K</span></span>
+                        <span class="percentage">--%</span>
+                    </div>
+                </div>
+                <p class="character-select-tagline">{{.Tagline}}</p>
+                <p class="character-select-description">{{.Description}}</p>
+                <div class="character-select-tags">
+                    {{range .Tags}}
+                    <span class="character-tag">{{.}}</span>
+                    {{end}}
+                </div>
+                <div class="character-select-source">
+                    <span>{{if eq $.Language "en"}}From:{{else}}来自:{{end}} {{.Source}}</span>
+                </div>
+            </a>
+            {{end}}
+        </section>
+
+        {{if eq (len .Characters) 0}}
+        <section class="content-section" style="text-align: center;">
+            <h2>{{if eq .Language "en"}}No Characters Available{{else}}暂无可用角色{{end}}</h2>
+            <p>{{if eq .Language "en"}}Your account has not been assigned any characters yet, please contact an administrator.{{else}}您的账户尚未分配任何角色，请联系管理员。{{end}}</p>
+        </section>
+        {{end}}
+    </main>
+
+    <footer class="footer">
+        <p>{{if eq .Language "en"}}Divergence 2% Writer Portal{{else}}Divergence 2% 写手门户{{end}}</p>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+    <script>
+        // Show viewing mode banner for non-logged in users
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = {{if .LoggedIn}}true{{else}}false{{end}};
+            const userRole = '{{.UserRole}}';
+            
+            // Don't show viewing mode banner if page is loaded in an iframe (e.g., tutorial)
+            const isInIframe = window.self !== window.top;
+            
+            if (!isLoggedIn && !isInIframe) {
+                document.getElementById('viewingModeBanner').style.display = 'block';
+                document.body.classList.add('viewing-mode-active');
+            }
+            
+            // Load token progress
+            loadTokenProgress();
+        });
+        
+        // Token Progress Bar functionality
+        async function loadTokenProgress() {
+            try {
+                const response = await fetch('/api/passed-tokens');
+                const data = await response.json();
+                
+                if (data.success && data.characters) {
+                    // Update each character's progress bar
+                    document.querySelectorAll('.token-progress-mini[data-character]').forEach(container => {
+                        const characterId = container.dataset.character;
+                        const charData = data.characters[characterId];
+                        
+                        if (!charData) return;
+                        
+                        const passedTokens = charData.passed_tokens;
+                        const percentage = charData.percentage;
+                        
+                        // Format the token count (e.g., 123456 -> 123.5K)
+                        let displayCount;
+                        if (passedTokens >= 1000000) {
+                            displayCount = (passedTokens / 1000000).toFixed(1) + 'M';
+                        } else if (passedTokens >= 1000) {
+                            displayCount = (passedTokens / 1000).toFixed(1) + 'K';
+                        } else {
+                            displayCount = passedTokens.toString();
+                        }
+                        
+                        const fill = container.querySelector('.token-progress-mini-fill');
+                        const countEl = container.querySelector('.count');
+                        const percentEl = container.querySelector('.percentage');
+                        
+                        if (fill) fill.style.width = percentage + '%';
+                        if (countEl) countEl.textContent = displayCount;
+                        if (percentEl) percentEl.textContent = percentage.toFixed(1) + '%';
+                    });
+                }
+            } catch (error) {
+                console.error('Failed to load token progress:', error);
+            }
+        }
+    </script>
+    
+    <script>
+        // Language-aware link updater
+        (function() {
+            const isEnglish = document.documentElement.lang === 'en';
+            if (isEnglish) {
+                document.querySelectorAll('a[href^="/"]').forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href.startsWith('/static/') || href.endsWith('/e') || href.includes('/e#') || href === '/logout') return;
+                    if (href.includes('#')) {
+                        const [path, hash] = href.split('#');
+                        link.setAttribute('href', path + '/e#' + hash);
+                    } else {
+                        link.setAttribute('href', href + '/e');
+                    }
+                });
+            }
+        })();
+    </script>
+    
+    <a href="{{if eq .Language "en"}}/landing/e{{else}}/landing{{end}}" class="home-button" id="floating-home-btn">
+        <i class="fas fa-home"></i>
+        {{if eq .Language "en"}}Home{{else}}首页{{end}}
+    </a>
+
+    {% include "includes/tutorial_overlay.html" %}
+</body>
+</html>
+

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="{{if eq .Language "en"}}en{{else}}zh-CN{{end}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{if eq .Language "en"}}Login - Writer Portal{{else}}登录 - 写手门户{{end}}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--bg-white) 0%, var(--accent-light) 100%);
+            padding: 2rem;
+        }
+
+        .auth-card {
+            background: var(--bg-white);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-light);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .auth-header h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 0 0 0.5rem 0;
+        }
+
+        .auth-header p {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            background: var(--accent-light);
+            padding: 4px;
+        }
+
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 0.75rem;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .auth-tab.active {
+            background: var(--bg-white);
+            color: var(--primary);
+            box-shadow: 0 2px 8px rgba(92, 79, 140, 0.1);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--border-light);
+            border-radius: 12px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            color: var(--text-dark);
+            background: var(--bg-white);
+            transition: var(--transition);
+            box-sizing: border-box;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(92, 79, 140, 0.1);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--border-light);
+            border-radius: 12px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            color: var(--text-dark);
+            background: var(--bg-white);
+            transition: var(--transition);
+            box-sizing: border-box;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b6b6b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 1rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5rem;
+            padding-right: 3rem;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(92, 79, 140, 0.1);
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 0.5rem;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .auth-btn:active {
+            transform: translateY(0);
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .back-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .back-link a:hover {
+            color: var(--primary-light);
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #c33;
+            margin-bottom: 1rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .success-message {
+            background: #efe;
+            color: #3c3;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #3c3;
+            margin-bottom: 1rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .auth-container {
+                padding: 1rem;
+            }
+
+            .auth-card {
+                padding: 2rem;
+            }
+
+            .auth-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>{{if eq .Language "en"}}Writer Portal{{else}}写手门户{{end}}</h1>
+                <p>{{if eq .Language "en"}}Access your writing space{{else}}访问您的写作空间{{end}}</p>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchTab('login')">{{if eq .Language "en"}}Login{{else}}登录{{end}}</button>
+                <button class="auth-tab" onclick="switchTab('signup')">{{if eq .Language "en"}}Sign Up{{else}}注册{{end}}</button>
+            </div>
+
+            <div class="error-message" id="errorMessage"></div>
+            <div class="success-message" id="successMessage"></div>
+
+            <!-- Login Form -->
+            <form class="auth-form active" id="loginForm" method="POST" action="{{langURL .Language "login"}}">
+                <input type="hidden" name="redirect" id="loginRedirect" value="">
+                <div class="form-group">
+                    <label class="form-label" for="loginUsername">{{if eq .Language "en"}}Username{{else}}用户名{{end}}</label>
+                    <input class="form-input" type="text" id="loginUsername" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="loginPassword">{{if eq .Language "en"}}Password{{else}}密码{{end}}</label>
+                    <input class="form-input" type="password" id="loginPassword" name="password" required>
+                </div>
+                <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                    <input type="checkbox" id="rememberMe" name="remember_me" checked
+                           style="width: 18px; height: 18px; accent-color: var(--primary); cursor: pointer; flex-shrink: 0;">
+                    <label for="rememberMe" style="font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--text-muted); cursor: pointer; user-select: none;">
+                        {{if eq .Language "en"}}Remember me for 30 days{{else}}记住我 30 天{{end}}
+                    </label>
+                </div>
+                <button class="auth-btn" type="submit">{{if eq .Language "en"}}Login{{else}}登录{{end}}</button>
+                <div style="text-align: center; margin-top: 15px; color: var(--text-secondary); font-size: 0.9rem;">
+                    {{if eq .Language "en"}}Don't have an account? <a href="{{langURL .Language "register"}}" style="color: var(--primary); text-decoration: none; font-weight: 500;">Register here</a>{{else}}还没有账号？<a href="{{langURL .Language "register"}}" style="color: var(--primary); text-decoration: none; font-weight: 500;">在此注册</a>{{end}}
+                </div>
+                <div style="text-align: center; margin-top: 10px;">
+                    <a href="#" onclick="showRecoveryModal(); return false;" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">
+                        {{if eq .Language "en"}}Forgot password?{{else}}忘记密码？{{end}}
+                    </a>
+                </div>
+            </form>
+
+            <!-- Signup Form -->
+            <form class="auth-form" id="signupForm" method="POST" action="/signup">
+                <div class="form-group">
+                    <label class="form-label" for="signupUsername">{{if eq .Language "en"}}Username{{else}}用户名{{end}}</label>
+                    <input class="form-input" type="text" id="signupUsername" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="signupEmail">{{if eq .Language "en"}}Email{{else}}电子邮箱{{end}}</label>
+                    <input class="form-input" type="email" id="signupEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="signupPassword">{{if eq .Language "en"}}Password{{else}}密码{{end}}</label>
+                    <input class="form-input" type="password" id="signupPassword" name="password" minlength="8" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="signupRole">{{if eq .Language "en"}}Account Type{{else}}账号类型{{end}}</label>
+                    <select class="form-select" id="signupRole" name="role" required onchange="toggleEditorPassword()">
+                        <option value="writer">{{if eq .Language "en"}}Writer{{else}}写手{{end}}</option>
+                        <option value="editor">{{if eq .Language "en"}}Editor{{else}}编辑{{end}}</option>
+                    </select>
+                </div>
+                <div class="form-group" id="editorPasswordGroup" style="display: none;">
+                    <label class="form-label" for="editorPassword">{{if eq .Language "en"}}Editor Authorization Password{{else}}编辑授权密码{{end}}</label>
+                    <input class="form-input" type="password" id="editorPassword" name="editor_password" placeholder="{{if eq .Language "en"}}Required for editor accounts{{else}}创建编辑账号需要授权密码{{end}}">
+                </div>
+                <button class="auth-btn" type="submit">{{if eq .Language "en"}}Create Account{{else}}创建账号{{end}}</button>
+            </form>
+
+            <div class="back-link">
+                <a href="{{langURL .Language "landing"}}">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5"></path>
+                        <path d="M12 19l-7-7 7-7"></path>
+                    </svg>
+                    {{if eq .Language "en"}}Back to Portal{{else}}返回门户{{end}}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            // Update tab buttons
+            document.querySelectorAll('.auth-tab').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[onclick="switchTab('${tab}')"]`).classList.add('active');
+
+            // Update forms
+            document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
+            document.getElementById(tab + 'Form').classList.add('active');
+
+            // Clear messages
+            hideMessage();
+        }
+
+        function showError(message) {
+            const errorEl = document.getElementById('errorMessage');
+            const successEl = document.getElementById('successMessage');
+            errorEl.textContent = message;
+            errorEl.style.display = 'block';
+            successEl.style.display = 'none';
+        }
+
+        function showSuccess(message) {
+            const errorEl = document.getElementById('errorMessage');
+            const successEl = document.getElementById('successMessage');
+            successEl.textContent = message;
+            successEl.style.display = 'block';
+            errorEl.style.display = 'none';
+        }
+
+        function hideMessage() {
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+
+        // Toggle editor password field visibility
+        function toggleEditorPassword() {
+            const roleSelect = document.getElementById('signupRole');
+            const editorPwGroup = document.getElementById('editorPasswordGroup');
+            const editorPwInput = document.getElementById('editorPassword');
+            if (roleSelect.value === 'editor') {
+                editorPwGroup.style.display = 'block';
+                editorPwInput.required = true;
+            } else {
+                editorPwGroup.style.display = 'none';
+                editorPwInput.required = false;
+                editorPwInput.value = '';
+            }
+        }
+
+        // Handle signup form with AJAX
+        document.getElementById('signupForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            // Convert FormData to URLSearchParams for proper form encoding
+            const urlEncodedData = new URLSearchParams(formData).toString();
+
+            try {
+                const response = await fetch('/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: urlEncodedData
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    if (result.status === 'success') {
+                        showSuccess({{if eq .Language "en"}}'Account created successfully! Redirecting...'{{else}}'账号创建成功！正在跳转...'{{end}});
+                        setTimeout(() => {
+                            // Redirect to original page or landing with language preservation
+                            const savedRedirect = localStorage.getItem('loginRedirect');
+                            localStorage.removeItem('loginRedirect');
+                            const defaultLanding = '{{langURL .Language "landing"}}';
+                            window.location.href = savedRedirect || defaultLanding;
+                        }, 1500);
+                    }
+                } else {
+                    const errorText = await response.text();
+                    try {
+                        const errorJson = JSON.parse(errorText);
+                        showError(errorJson.error || errorText);
+                    } catch {
+                        showError(errorText);
+                    }
+                }
+            } catch (error) {
+                showError({{if eq .Language "en"}}'Network error, please try again'{{else}}'网络错误，请重试'{{end}});
+            }
+        });
+
+        // Handle login form errors
+        document.getElementById('loginForm').addEventListener('submit', function() {
+            hideMessage();
+        });
+
+        // Check for URL parameters to show errors
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('error')) {
+            showError(urlParams.get('error'));
+        }
+        
+        // Preserve redirect parameter for login form
+        const redirectParam = urlParams.get('redirect');
+        if (redirectParam) {
+            document.getElementById('loginRedirect').value = redirectParam;
+            // Store in localStorage for signup redirect too
+            localStorage.setItem('loginRedirect', redirectParam);
+        }
+
+        // Password Recovery Functions
+        function showRecoveryModal() {
+            document.getElementById('recoveryModal').style.display = 'flex';
+            document.getElementById('recoveryEmail').focus();
+        }
+
+        function hideRecoveryModal() {
+            document.getElementById('recoveryModal').style.display = 'none';
+            document.getElementById('recoveryEmail').value = '';
+            document.getElementById('recoveryResult').style.display = 'none';
+            document.getElementById('recoveryForm').style.display = 'block';
+        }
+
+        async function recoverPassword() {
+            const email = document.getElementById('recoveryEmail').value.trim();
+            if (!email) {
+                alert({{if eq .Language "en"}}'Please enter your email'{{else}}'请输入您的邮箱'{{end}});
+                return;
+            }
+
+            const btn = document.getElementById('recoveryBtn');
+            btn.disabled = true;
+            btn.textContent = {{if eq .Language "en"}}'Processing...'{{else}}'处理中...'{{end}};
+
+            try {
+                const response = await fetch('/api/recover-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    document.getElementById('recoveryForm').style.display = 'none';
+                    document.getElementById('recoveryResult').style.display = 'block';
+                    document.getElementById('resultUsername').textContent = result.username;
+                    document.getElementById('resultPassword').textContent = result.password;
+                } else {
+                    alert(result.error || {{if eq .Language "en"}}'Failed to recover password'{{else}}'密码恢复失败'{{end}});
+                }
+            } catch (error) {
+                alert({{if eq .Language "en"}}'Network error, please try again'{{else}}'网络错误，请重试'{{end}});
+            } finally {
+                btn.disabled = false;
+                btn.textContent = {{if eq .Language "en"}}'Reset Password'{{else}}'重置密码'{{end}};
+            }
+        }
+
+        function copyCredentials() {
+            const username = document.getElementById('resultUsername').textContent;
+            const password = document.getElementById('resultPassword').textContent;
+            navigator.clipboard.writeText(`Username: ${username}\nPassword: ${password}`);
+            alert({{if eq .Language "en"}}'Credentials copied!'{{else}}'凭据已复制！'{{end}});
+        }
+    </script>
+
+    <!-- Password Recovery Modal -->
+    <div id="recoveryModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+        <div style="background: white; border-radius: 16px; padding: 2rem; max-width: 400px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h3 style="margin: 0; color: var(--primary); font-family: 'Crimson Pro', serif;">{{if eq .Language "en"}}Password Recovery{{else}}密码恢复{{end}}</h3>
+                <button onclick="hideRecoveryModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #999;">&times;</button>
+            </div>
+
+            <div id="recoveryForm">
+                <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 0.9rem;">
+                    {{if eq .Language "en"}}Enter the email you registered with. Your password will be reset to a default.{{else}}输入您注册时使用的邮箱，密码将被重置为默认值。{{end}}
+                </p>
+                <div class="form-group">
+                    <label class="form-label" for="recoveryEmail">{{if eq .Language "en"}}Email{{else}}邮箱{{end}}</label>
+                    <input class="form-input" type="email" id="recoveryEmail" placeholder="your@email.com" onkeydown="if(event.key==='Enter'){recoverPassword();}">
+                </div>
+                <button id="recoveryBtn" class="auth-btn" type="button" onclick="recoverPassword()">{{if eq .Language "en"}}Reset Password{{else}}重置密码{{end}}</button>
+            </div>
+
+            <div id="recoveryResult" style="display: none; text-align: center;">
+                <div style="background: #d4edda; border: 1px solid #c3e6cb; border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+                    <p style="color: #155724; margin: 0 0 0.5rem 0; font-weight: 600;">✓ {{if eq .Language "en"}}Password Reset Successfully!{{else}}密码重置成功！{{end}}</p>
+                </div>
+                <div style="background: #f8f9fa; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; text-align: left;">
+                    <p style="margin: 0 0 0.5rem 0;"><strong>{{if eq .Language "en"}}Username:{{else}}用户名：{{end}}</strong> <span id="resultUsername" style="font-family: monospace; background: #e9ecef; padding: 2px 6px; border-radius: 4px;"></span></p>
+                    <p style="margin: 0;"><strong>{{if eq .Language "en"}}New Password:{{else}}新密码：{{end}}</strong> <span id="resultPassword" style="font-family: monospace; background: #e9ecef; padding: 2px 6px; border-radius: 4px;"></span></p>
+                </div>
+                <button class="auth-btn" onclick="copyCredentials()" style="margin-bottom: 0.5rem;">{{if eq .Language "en"}}Copy Credentials{{else}}复制凭据{{end}}</button>
+                <button class="auth-btn" onclick="hideRecoveryModal()" style="background: var(--text-muted);">{{if eq .Language "en"}}Close{{else}}关闭{{end}}</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

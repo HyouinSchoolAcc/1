@@ -1,0 +1,2187 @@
+{
+  "dialogue": [
+    {
+      "role": "User",
+      "content": "刚拎着进口洗液进实验室，那个万年不坏的自动进样器直接黑屏了，乐死我了",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:30",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "哈？",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:30",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "恭喜，你的几百块洗液直接升级成摆设了",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:30",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "比你那块烧焦芯片便宜多了好吧",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:30",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "别把我也拉下水",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:30",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "我那块芯片至少还能拍成事故报告，你那瓶洗液顶多上个报销失败记录",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:30",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "别提报销",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:31",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "报销失败还得先报销得上呢，那个行政亲戚看着这全英文包装，问我是不是买的进口零食",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:31",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "人家压根不认这牌子",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:31",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "所以你现在打算拿这么贵的洗液配合一台尸体自动进样器做实验？",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:31",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "尸体已经宣告死亡了",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:31",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "我戳了半天指示灯都不亮，只能我亲自上手扎针，不然新洗液的对照数据出不来",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:31",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你确定你那只手比伺服电机稳？那玩意理论 RSD 是 0.3%",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:32",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "至少它不会半路罢工吧",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:32",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "自动进样器现在连自检都过不去，直接死给你看",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:32",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "那就等维修啊",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:32",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "填三张表，挂两个章，半个月后也许会有人来看一眼",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:32",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "半个月我连毕业答辩都结束了",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:33",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "导师只看这周能不能出一张像样的校准曲线",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:33",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你们老板真的是只看结果型生物，过程？全靠学生扛",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:33",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "你老板不也是？你那边的大牛不也都在度假？留你在实验室给他们擦屁股",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:33",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "我这也就是给高能物理擦擦屁股，你那是直接给一坨国产屎山做心肺复苏",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:33",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "别瞧不起屎山，今天我们的生命全靠屎山撑着",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:34",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "一个靠你那坨补丁代码，一个靠我这只手",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:34",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "听上去像是跨洋联动垃圾场：一边是失控的电机，一边是失控的人体工程学",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:34",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "失控之前先赚钱",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:34",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "进口洗液已经拆封了，再不用就过期了，我连哭都哭不出来",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:34",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "所以你今天的目标是？手工进样一百针，把自己扎成腱鞘炎顺便证明“人类大于机器”？",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:35",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "差不多这个意思",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:35",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "再顺便给你发照片存档，证明我们真的在拿命护那点 RSD",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:35",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "行，你拍完记得发",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:35",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "我这边也给你看一眼被我临时焊补丁的控制板，互相见证一下丑陋的胜利",
+      "intimacy_delta": 0.01,
+      "timestamp": "08:35",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "我现在已经配好第一批样品了，准备从校准曲线的最低点开始手动进样",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:30",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你打算用多少体积？十微升级别还是二十？",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:30",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "十微升",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:30",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "进样针冲了三遍，样品瓶也换成新的，尽量把残留压到最低",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:30",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "气泡呢？你那边室温和溶剂温度差这么大，针头里要是残留一点空气，体积直接飘",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:30",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "我抽针的时候专门在废液瓶里来回拉了几次，盯着色谱柱前压力的波动",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:31",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "看到背压稳定才上样",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:31",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "这听起来更像某种仪式，而不是控制变量实验",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:31",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "仪式的本质就是流程控制，谢谢",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:31",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "至少每次进样前背压都卡在四百 psi 左右",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:31",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "那你打算怎么把自己这只手的漂移建模？RSD 小于 1% 可不是靠嘴说的",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:32",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "我按二十针一轮算，一轮里面允许手抖一两次，剩下的全靠肌肉记忆硬扛",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:32",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你这是在给自己做“肌肉记忆校准曲线”？听上去比我们加速器的标定还玄学",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:32",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "玄你个头",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:32",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "我现在连节拍器都开着，听着那个嘀嗒声，强行把推针时间卡在两秒",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:32",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "问题是你不是机器人",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:33",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你会累，会抖，下午的时候手的微小颤抖就会放大成峰面积的随机噪音",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:33",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "所以我在规划里给自己留了休息点",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:33",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "每二十针停下来活动手腕，顺便看一眼前二十个峰的 RSD",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:33",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你现场算 RSD？你们色谱软件那点统计功能居然没有被你老板禁用？",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:33",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "他连怎么打开统计界面都不知道，他只会看那条线是不是直的",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:34",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "啧",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:34",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "那倒是跟审稿人挺像，只看配图，不看背后的算法",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:34",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "反正我会把每一组的平均值和标准差拉出来看，如果有哪一组明显飘，就直接标记为“手残组”重跑",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:34",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "听上去你在拿自己当自动进样器的补丁，人肉补偿机械的失效",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:34",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "你不也一样？你那边靠软件硬拽电机，把漂移拉回设定位置",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:35",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "我至少有模型支撑",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:35",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "我让丙给我写了个简化的漂移方程，用时间和温度拟合出一个偏移曲线",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:35",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "然后你在控制板上加一个反向电压，把电机往回拉？",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:35",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "对",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:35",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "原理简单得我都懒得解释，总之实测位置等于传感器读数加我这边的补偿项",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:36",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "只要预测得够准，就能在芯片坏掉之前把误差吃掉",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:36",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "听起来像是给一个喝醉的司机绑根绳子牵着",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:36",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "你估计他往右偏多少，就往左拽回来",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:36",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "至少绳子不会得腱鞘炎，你那边的“补偿算法”是腕管综合征和止痛药",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:36",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "你管这叫算法我也不反对",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:37",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "输入是进样次数和手腕酸痛程度，输出是每组的体积偏差",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:37",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "那我先问一句，你真觉得自己能把一百针都控制在 RSD 小于 1%？",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:37",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "从第二十针开始吧，前面当热身，后面靠肌肉记忆锁走位",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:37",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "科学一点，你有任何基线数据吗？以前手动进样的历史 RSD 分布？",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:37",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "以前没这么极限",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:38",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "但我做样品前在空跑里练了二十针，用纯溶剂做了个假曲线，RSD 在 0.8% 左右",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:38",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "假数据也算数据是吧，真符合你们这行的风格",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:38",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "你嘴上说假，其实心里在记这个数吧，你待会儿要拿它当先验分布",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:38",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "行，你既然给了先验",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:38",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "我这边就当你是一个表现不稳定的伺服电机，误差服从某个方差固定的随机过程",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:39",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "那你把我塞进模型里之后，算出来的结论是啥？",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:39",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "结论是，只要你中间别为了省时间偷懒跳过冲洗步骤，理论上你的手还能勉强当一次“合格部件”",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:39",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "那就等晚上你看我的校准曲线再来骂",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:39",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "现在先让我去拿第一针给你献祭",
+      "intimacy_delta": 0.01,
+      "timestamp": "10:39",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "扎到第三十针了，手指已经分不清是自己的还是移液枪的",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:30",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "正常",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:30",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "工业社会就是把人磨成零件，你今天只是在体验流水线工人的日常",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:30",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "流水线工人至少还有节拍器和防疲劳垫，我这边只有一张摇晃的实验台",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:30",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你们实验室连防震台都舍不得配吗？难怪鬼峰满天飞",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:30",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "防震台有一个",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:31",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "被导师拿去垫全自动咖啡机了，说那玩意震动大，怕洒",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:31",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "咖啡机？",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:31",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "哦，这也太工程学了，用最贵的东西托最便宜的设备",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:31",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "我现在最大的乐趣就是盯着每针进样后的峰高，看哪一针是“走神峰”",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:31",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你可以给自己打分",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:32",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "进样偏差大于两个标准差的那一针，在本周生活满意度上扣一分",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:32",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "再扣下去我就得负分了，到时候只好用挂逼面当补偿机制",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:32",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "挂逼面九块九一碗，你今天这一百针要是全算上，成本够你吃一个星期了",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:32",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "别说了",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:32",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "我一想到每针里那几微升的进口洗液价格，就感觉自己在往柱子里打钱",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:33",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "欢迎来到量化贫穷：每次点击 Start 按钮都是现金流出",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:33",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "你那边呢？还在跟丙对着白板画鬼符？",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:33",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "嗯",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:33",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "他刚把一个离散时间的漂移模型写完，我在边上给他把变量名从希腊字母换成人话",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:33",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "听着就比我高端，我这边的数学只有“这一针是不是比上一针高”",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:34",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "啧",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:34",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你这已经退化成原始人的狩猎直觉了",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:34",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "直觉再好也拦不住酸痛，现在手背上青筋都爆出来了",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:34",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你不是 Precision Freak 吗？这点疼就撑不住，刚刚还跟我吹 RSD 小于 1%",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:34",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "强迫症和疼痛没冲突啊，越疼我越想把那条线压平，不然今天算是白废",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:35",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "建议你给自己想象一个进度条，每扎完十针，进度条涨 10%，看着舒服一点",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:35",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "进度条我倒是想画，可惜软件界面已经被一堆窗口占满了，再开一个就死机",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:35",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "哦，那你们那台电脑比我们控制板还脆弱，难怪要靠你这只手兜底",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:35",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "我现在开始理解你那句“屎山代码也有尊严”，今天这手工屎山也得有尊严",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:35",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "记得顺手截几张鬼峰对照图，我要拿来写一篇《人肉补丁在极限条件下的可靠性》小论文",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:36",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "行，你先把题目写好，署名记得给我排第一，我今天可是合法劳务输出",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:36",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "回到实验室继续扎",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "现在已经到第八十针了，耳朵都学会听泵声了",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "哈？",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你现在是打算转行做通灵师了？",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "通灵个鬼，我只是在用另一个传感器，你们那边叫声学监测也行",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "好家伙，还给自己起了个 fancy 的名字，那你听出来了啥？",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "正常的时候背压在四百 psi 左右，泵的噪声是那种均匀的嗒嗒节奏",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "一旦有气泡或者堵塞，声音里会卡一下",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "这叫 cavitation，你们那台泵估计连防气蚀设计都做得半吊子",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "对",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "那个“咔”的一声杂音一出，我就知道这针的保留时间肯定要漂，峰面积绝对保不住",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "听起来像是在给一台破车听发动机抖不抖",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "破车也得开到终点",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "我只是在用耳朵做在线诊断，至少比导师那种闭眼操作强",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "那你怎么量化这个听出来的感觉？别跟我说靠心情判断",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "我在实验记录本旁边专门开了个“死亡名单”",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "标记每次听到异常声音的时候，对应那一针的峰面积和保留时间偏移",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "然后你发现什么了？快说",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "只要进了名单，对应的峰面积基本都会往下掉三到五个百分点，拖尾因子也会变丑",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "所以你耳朵的工作就是提前告诉你“这针要废了”，让你有机会当场重跑",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "对，比等软件把鬼峰画完再后悔强多了",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "那你们软件就不能多加几个传感器通道吗？比如把泵噪声也记录下来？",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "那得加声学模块了，我们这台连流量计都不精确，更别提额外采集声波",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "行，我承认你这套听声辨峰的方法在硬件落后的世界里勉强算个算法",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "轮到你说了，你那边 Log 刷红到什么程度？",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "现在控制板上的诊断窗口里，红得像股市崩盘现场",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "Error 一直在爆 Overflow 和 Timeout，两种交替滚屏，偶尔插一个 NullPointer",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "听着就像你在用一堆胶带把宇宙粘起来",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "大概就是这个感觉，我在外面套了一层 watchdog，让系统在快死之前重启局部模块",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "所以你那堆红字其实也是听诊器？不同的报错组合对应不同的漂移模式？",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:07",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你总算说了句聪明话",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:07",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "我就是在把 Log 当体征，看某个 Error 的出现频率是不是在预期范围里",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:07",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "那你怎么确定预期范围？你又不能真拿加速器来做十次随机漂移实验",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:07",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "我们用之前的运行数据做了个粗糙的漂移模型",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:08",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "把位置误差随时间的变化当成一个随机过程，用 Kalman filter 去估计状态",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:08",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "听起来比我听泵声高级多了",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:08",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "本质一样",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:08",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你用耳朵做观测，我用传感器和 Log 做观测，差别只是维度和计算力",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:09",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "那今天这套补偿跑下来，漂移被压在什么水平？",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:09",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "原始曲线能飘到一毫米以上",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:09",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "现在一般被压在三百微米以内，偶尔爆一次我就让程序自动降级停止扫描",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:10",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "三百微米听着还挺吓人的，但考虑到你那是加速器，我选择闭嘴",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:10",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你那边如果进样量波动个 0.2 微升，你的 RSD 就要哭了吧",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:10",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "所以我才盯着声音和背压，一旦背压比平均值高个五个 bar，我就把那针判死刑",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:11",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你这是在用极端值剔除给自己减压，小心最后被人说你 P-hacking",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:11",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "我至少会把被剔掉的那几针标出来留痕，不像某些人直接把错误当成背景噪音掩掉",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:11",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "谢谢，你刚好踩在工程伦理的边界上，一脚在诚实，一脚在可用",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:12",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "你不也一样？你那堆补偿算法要是写在论文里，审稿人肯定骂你 overfitting",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:12",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "他们骂归骂，只要束缚场稳定住了，他们还是会用我们的数据画漂亮的图",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:12",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "那我们今天就算是两个不同领域的噪音处理工人，一个修仪器，一个修数据",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:13",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "噪音处理完了记得把原始 Log 留好",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:13",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "等哪天有人质疑你那 0.5% RSD，我可以拿它当证物帮你打官司",
+      "intimacy_delta": 0.01,
+      "timestamp": "17:13",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "第一百针终于扎完了，手腕像被人拿锤子敲过一样",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "我这边脚本也跑完一轮了，风扇声音大到像要起飞",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "你那是显卡在替你燃烧生命，我这边是腱鞘在替导师还债",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "结果呢？你那套校准标准溶液的峰看起来顺眼吗？",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "肉眼看挺顺的，线性相关系数接近一，至少不会被导师当场骂废",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "别太早高兴，RSD 还没算之前都只能叫看着像样",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "我知道，先让自己心理安慰一分钟，总得给手找个意义",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "意义就是你今天成功扮演了一台不会喊累的自动进样器",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "自动进样器至少没有医保问题，我这手要是真废了顶多报个工伤还不一定批",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "典型的强迫症晚期症状，没救了",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "工伤鉴定那帮人肯定会说“重复性劳损属于个人体质问题”，然后让你多喝热水",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "别提热水，我现在只想往手腕上糊冰袋",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "等会儿记得先把数据导出来再去冰敷，别电脑一死机你今天全白干",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "已经备份了",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "本地存一份，云端存一份，U盘里还塞了一份，我比你们加速器的冗余系统还谨慎",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "很好，如释重负后的过度防御，很符合 Precision Freak 的人设",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "虽然丑，但至少没死",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "难看但稳定，这听着跟我今天这一百针的精神状态一模一样",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "所以我们今天完成的是一场跨洋协作丑陋工程学实践",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "等会儿我去做样品和对照的正式跑，你那边要是加速器突然炸了别怪我乌鸦嘴",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "放心，炸了我会先给你发一张现场 Log 截图，让你见识一下真正的 Error 烟花",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "正式样跑完了，我把峰面积拉出来算了一遍，RSD 大概在 0.5% 左右",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:45",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "大概是啥意思？你是用软件算的还是自己丢进 Excel 里？",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:45",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "软件算了一遍，不信邪，导出 Excel 又拉了一遍公式，结果一样",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:45",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "两次算出来能对得上小数点后两位吗？",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:45",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "差个 0.01 以内，估计是软件四舍五入的差别",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:46",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "行，至少你没被 UI 骗得太惨",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:46",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "你干嘛一副不信的语气？这是我人生第一次把人肉进样做到比机器还稳",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:46",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "我只是想知道，这 0.5% 里面有多少来自你认真扎针，有多少来自你顺手丢掉的坏点",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:47",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "被我判死刑重跑的那几针都单独存了，你要的话我可以打包给你看",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:47",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "那先说说拖尾因子，手工进样之后峰形有没有比自动的时候更丑？",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:47",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "前面几针拖尾稍微夸张一点，可能是针头残留没完全稳定",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:48",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "后面稳定下来之后，理论塔板数基本和机器一个水平",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:48",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "也就是说你用肌肉记忆补偿了设备的重复性误差，但还是付了一点峰形的代价",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:48",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "对，不过导师只看定量结果，他不会盯着拖尾因子抠细节",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:49",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "这是问题的一半，另一半是伦理：你把那些拖尾太严重的点剔掉了没？",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:49",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "超过两倍标准差的那几个点我标记为异常值，做报告的时候会单独说明原因",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:49",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你确定会写进去？不是只在脑子里说明一下？",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:50",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你的学术良心最好比你的手稳",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:50",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "会写，我又不想哪天被人翻数据翻出坑来，我毕业证拿到了但良心也不想整个报废",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:50",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "好吧，这个态度勉强合格",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:51",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "轮到你了，你那边的软件补偿把漂移压到多少了？",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:51",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "原始数据偏移接近两毫米，现在剩下不到四百微米，不过波形比以前丑多了",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:51",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "丑成啥样？峰形塌了？",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:52",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "有一点",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:52",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "原本完美的钟形曲线现在看着像个驼背，视觉效果很难看",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:52",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "那你们老板看图的时候不会崩溃吗？",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:53",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "不会，他只要看到计数器还在正常跑，误差条没超过阈值，就会说不错不错",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:53",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "听着跟我导师一样，全世界老板都是同一套固件",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:53",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "问题在于",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:54",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "如果我把补偿做得更激进一点，可以把波形拉得好看，但那就真的是 P-hacking 了",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:54",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "你现在只是修正硬件缺陷，让系统回到它本来应该在的状态，对吧？",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:54",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "理论上是",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:55",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "但谁来定义本来应该？是设计文档还是实际运行时的经验曲线？",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:55",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "那跟我这边一样，我说 0.5% 是正常波动，别人也可以说这是我挑数据挑出来的",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:55",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "所以我们俩今天都在同一条钢丝上走路，一边是数据诚实，一边是系统可用",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:56",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "至少我有完整的原始表，你那边也有完整的 Log，哪天要挖坟还能自证清白",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:56",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你自证清白的时候审稿人可能已经退休了",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:57",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "那就算了，反正我先保住今天的成果再说",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:57",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "不管怎么说，手工进样做到 0.5% RSD，我勉强承认这是碳基生物的奇迹",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:57",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "谢谢审稿人二号勉强给的 Accept with minor revision",
+      "intimacy_delta": 0.01,
+      "timestamp": "18:58",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "现在手腕肿得像猪蹄，我拿冰袋往上一压，感觉灵魂都被冻出来了",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "我这边刚看完甲的社交灾难现场，比你那猪蹄惨多了",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "他又干啥了？上次不是已经被你吐槽成数据溢出脸了吗？",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "今天他喝了点酒去搭讪女神，开口第一句就是“你几岁了？”",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "这不是在做人口统计学调查吗？他是想算样本分布？",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "我怀疑他是在把相亲问卷当搭讪脚本用，旁边的人脚趾都抠穿地板了",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "听着都替他疼，比我手腕还疼",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "最后我嘴瓢了一句“你喝脑残了吗”，旁边那妹子直接没绷住笑了",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "那女神什么反应？",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "她居然加了甲微信，大概是被这群怪人逗乐了",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "你看，人类社交里也有噪音，有时候噪音大到一定程度就会变成信号",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你这是在给甲的智商噪音做正则化处理？",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "至少比你那堆 NullPointer Error 有趣，我这边只有腱鞘炎，没有社交炎",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "腱鞘炎已经够惨了，你要是再得社交炎就彻底失去战斗力",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "我现在连打字都疼，只能用一只手戳手机，像个九九八十一难里的取经人",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你要是敢说值得，我就远程给你一巴掌",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "不说值得，只能说还没亏，至少数据是干净的，我也给你提供了一堆笑话素材",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "笑话我这边也不缺，甲一个人的行为就够写两篇 case report",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "听你这么一说，我突然觉得手不疼了",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "至少我今天所有错误都是可解释的",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "对，你是有模型的随机误差，他是没有模型的纯噪音",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "那你就继续观察他，我这边先把冰袋换一面，不然皮肤要被冻坏了",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "记得别冻到感觉完全消失，神经麻掉了你明天连拿移液枪的力气都没有",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "放心，我还指望明天用这只手继续给你提供样本点呢",
+      "intimacy_delta": 0.01,
+      "timestamp": "21:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "刚刚把今天的运行报告粗看了一遍，满屏都是补丁和例外处理，看着就像一坨屎山",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "我这边也是，把一百个点的峰面积拉成一条直线，背后全是我手抖和重跑的痕迹",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "有时候我会想，我们是不是离所谓优雅的科学越来越远了",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "要是光看脸（公式），咱俩早被淘汰了",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "那种干净漂亮的物理世界，大概只活在教科书里吧",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "那种东西现在还存在吗？至少在我这台色谱仪上是没有的",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "在我们加速器上也不多，硬件设计图看上去挺干净的，运行几年之后全是临时加的冗余和补丁",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "所以你们也是靠冗余活着的？",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "当然",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "工程学里冗余本来就是标配，多加一层备份，多放几个传感器，把优雅换成不会一下子死光",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "听起来跟我今天备份三份数据一个道理",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "问题是，一旦冗余和补丁堆多了，整个系统就变成了谁都看不懂的屎山",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "但它还在运转，对吧？",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "对，丑陋但有效",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "那在我看来，这就是另一种优雅",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你这话解释一下，不然我要当成你在给偷懒找借口",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "优雅如果只定义成表达式漂亮，那我们早就失败了",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "但如果把优雅定义成在现实约束下还能守住核心规律，那今天这 0.5% 和你那条压扁的漂移曲线都算优雅",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你是说，只要结果没背叛基本物理和统计规律，过程长成什么样都无所谓？",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "差不多，Occam 剃刀的前提是模型和数据都可靠",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "现在模型经费被砍，设备被阉割，我们只能拿一把生锈的剃刀在垃圾堆里修胡子",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "比喻倒是不错",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "你们论文里那些简洁的图，背后也有一堆工程师的加班和冗余设计撑着吧",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "是，真正的简洁其实是用复杂堆出来的，只不过那部分复杂被藏在附录和源码里",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:07",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "我今天这一百针也是一样",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:07",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "导师只会看到一条乖乖的校准线，他看不到我丢掉了多少坏点，休息了多少次",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:07",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "从数据美学的角度来说，他只在乎图有没有观感统一",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:08",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "那就把难看和疼痛都藏在我们自己这层就好了",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:08",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你不觉得这种藏法很危险吗？久而久之就会变成集体性的自我欺骗",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:08",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "所以我们才要留原始表和 Log，把真相留在能懂的人手里",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:09",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "懂的人会越来越少",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:09",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "那也比完全没有好，总要有人知道这条看起来直的线，其实是从屎山里挖出来的",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:09",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你这态度听上去比你老板成熟多了",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:09",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "我只是比他更清楚自己有多穷，多没选择",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:10",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "所以你才会接受丑陋但有效，而不是等一套完美方案从天而降",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:10",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "活下来本身就是一种美学，至少对我们这种被经费和时间追着跑的人来说",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:10",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "那今天这套人肉进样加软件补偿的组合拳，就算是一种泥泞优雅？",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:11",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "可以这么叫，泥里有水，有细菌，也有一点点光",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:11",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你居然开始说这种话了，是不是冰袋捂久了把理想主义捂出来了",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:12",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "理想主义得靠现实支撑啊，不然就是空话，我今天的现实就是 0.5% 和一只废手",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:12",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "行，那我也认领一部分责任，我那堆 Error Log 也算是给这点优雅打光的背景板",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:13",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "反正我们都已经下泥坑了，就别再纠结有没有百页 PPT 那种干净方案了",
+      "intimacy_delta": 0.01,
+      "timestamp": "22:13",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "现在躺在床上，手腕还在跳疼，感觉手机一掉地上我都捡不起来",
+      "intimacy_delta": 0.01,
+      "timestamp": "23:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "我刚从实验室出来，Dr. Pepper 喝完了，脑子里全是你那 0.5%",
+      "intimacy_delta": 0.01,
+      "timestamp": "23:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "别提百分比了，我一闭眼都是峰面积和保留时间",
+      "intimacy_delta": 0.01,
+      "timestamp": "23:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你脑子里现在除了色谱峰估计连名字都装不下了",
+      "intimacy_delta": 0.01,
+      "timestamp": "23:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "过拟合就过拟合吧，明天再慢慢遗忘，现在只想让大脑蓝屏一会儿",
+      "intimacy_delta": 0.01,
+      "timestamp": "23:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "你要是蓝屏，明天谁给你导师顶锅",
+      "intimacy_delta": 0.01,
+      "timestamp": "23:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "顶锅这事有的是人愿意做，真的，大家排队等着当免费劳动力",
+      "intimacy_delta": 0.01,
+      "timestamp": "23:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "他们顶不住一百针，你今天已经把标准拔太高了",
+      "intimacy_delta": 0.01,
+      "timestamp": "23:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "那就当我在给后来的人踩坑，至少仪器不会再突然用劣质洗液去洗柱子",
+      "intimacy_delta": 0.01,
+      "timestamp": "23:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "前提是行政亲戚不要再搞什么神秘采购",
+      "intimacy_delta": 0.01,
+      "timestamp": "23:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "我已经把供应商名单背下来了，下次谁敢换我就先把他们的发票打回来",
+      "intimacy_delta": 0.01,
+      "timestamp": "23:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "挺好，你终于学会对系统施加一点反向力了",
+      "intimacy_delta": 0.01,
+      "timestamp": "23:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "反向力得先有力矩，我现在连瓶盖都拧不开，先睡一会儿再说",
+      "intimacy_delta": 0.01,
+      "timestamp": "23:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kurisu",
+      "content": "行，你去掉电，我这边还有一堆 Log 没看完",
+      "intimacy_delta": 0.01,
+      "timestamp": "23:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "等你看完再跟我说那边爆没爆，要是爆了别叫我，让我安详地去吧",
+      "intimacy_delta": 0.01
+    }
+  ],
+  "completed": false,
+  "history": "",
+  "user_schedule": {
+    "day": 3,
+    "morning": "自动进样器坏了。"
+  },
+  "relationship": "Continuing relationship from previous interactions.",
+  "user_name": "贺清妍",
+  "character_name": "Kurisu",
+  "user_id": "user_61",
+  "real_name": "张晶鹏",
+  "intimacy_level": 6.799999999999944,
+  "starting_intimacy_level": 3.7199999999999656,
+  "_creation_metadata": {
+    "created_at": 1766889098,
+    "created_by_ip": "127.0.0.1",
+    "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+    "version": "1.0"
+  },
+  "character_schedule": {
+    "afternoon": "下午4点，补偿脚本初步完成。加载到控制系统里测试了一下，稳定臂的漂移在软件的“对抗”下被抑制了80%。总算是能用了，但整个系统日志里充满了红色的错误和警告。感觉像是在一台精密的保时捷引擎上用胶带绑了个风扇。",
+    "day": 3,
+    "evening": "下午甲和别人喝酒，见到了喜欢的但是不知道怎么开口，红莉栖去打辅助，结果甲说上话了两句话就开始查户口，女生很有礼貌，但是好像最后没谈到她在意的事，但微信加了。最后想说你脑子还好使吗说成了你喝脑残了么把人家给乐坏了。另外认识了戊\n\n工作方面，“就这样吧。能用就行。有时候搞科研不是追求完美，而是追求‘能用就行’。感觉自己不像个科学家，更像个修补匠。身心俱疲，只想喝一杯冰镇的Dr. Pepper然后放空大脑。”\n\n联想来源: 编写丑陋但有效的“补丁”代码。\n讨论点: “优雅”在工程和科学中的价值 - 我的代码能用，但毫无美感。这让我思考，追求“优雅”和“简洁”在科学和工程中到底有多重要？奥卡姆剃刀原理真的是宇宙的真理，还是只是人类大脑的一种认知偏好？一个丑陋但有效的理论，和一个优美但有瑕疵的理论，哪个更有价值？\n联想来源: 看到新闻里提到某个科技公司发布了新一代AI芯片。\n讨论点: 计算能力的“暴力美学” - 现在AI的发展，很多时候感觉就是用无穷的计算能力去“暴力破解”问题。这和我们用软件“暴力破解”硬件问题何其相似。这种方式是不是缺少了某种智慧？我们是不是正在用算力上的勤奋，来掩盖思想上的懒惰？\n联想来源: 疲惫时喝了一罐Dr. Pepper。\n讨论点: “垃圾快乐”的必要性 - Dr. Pepper对身体没什么好处，但它在此刻给了我巨大的精神慰藉。是不是所有人都需要一些“无用但快乐”的东西来维持心理健康？如果未来我们能用技术精准地控制情绪，消除所有负面感受，这会是一件好事吗？还是说，痛苦和挣扎本身就是“意义”的一部分？",
+    "morning": "不能再等了。红莉栖把同学丙（理论学家）拉过来，商量出了一个“软件补偿”的疯狂方案：用程序实时读取传感器的错误数据，预测漂移的轨迹，然后给发射器的指令一个反向的修正。这听起来就像是给一艘漏水的船不停地往外舀水。",
+    "night": "",
+    "noon": "午饭都没吃，在电脑前疯狂敲代码写补偿脚本。同学丙在旁边的白板上推演数学模型，她负责用Python和C++实现。实验室里只有键盘敲击声和偶尔的争论声。\n中午乙给实验室带了点点心。"
+  },
+  "category": "legacy_pending",
+  "legacy_timestamp": 1770620462
+}

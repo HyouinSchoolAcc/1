@@ -1,0 +1,81 @@
+{
+  "user_schedule": {
+    "day": 3,
+    "morning": "上班",
+    "afternoon": "上班",
+    "evening": "久违地看书"
+  },
+  "history": "",
+  "relationship": "Continuing relationship from previous interactions.",
+  "dialogue": [
+    {
+      "content": "你对罗马黑暗时代了解如何",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾"
+    },
+    {
+      "content": "惭愧，没什么涉猎。是指中世纪早期吗",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "是",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾"
+    },
+    {
+      "content": "我也了解不多。只是今天看到那时技术失传和文化损失，觉得惋惜",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾"
+    },
+    {
+      "content": "确实。大概乱世难免如此，有人欢喜有人忧",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "给我问住了真是。我去补点中世纪知识，一直说想看一直没看",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "你还对中世纪感兴趣",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾"
+    },
+    {
+      "content": "之前大学有个英语外教大学是学中世纪历史的，和我们说中世纪历史怎么复杂怎么丰富，就想了解了解。结果到毕业都没看成",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "您行动力有待加强",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾"
+    },
+    {
+      "content": "托您的福，今晚就看。看不进去倒头就睡",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "那么祝你成功",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾"
+    }
+  ],
+  "intimacy_level": 0.37,
+  "starting_intimacy_level": 0.26,
+  "completed": false,
+  "user_name": "万层林",
+  "character_name": "陆清禾",
+  "character_schedule": {
+    "afternoon": "",
+    "day": 3,
+    "evening": "",
+    "morning": "他没有去实验室，而是待在私人书房里阅读罗马历史。关于“黑暗时代”、罗马工程技术的失传和图书馆的焚毁。",
+    "night": "去天文台观星，看到了百年难得一遇到星象。心想要不要买一个天文级别的天文望远镜放家里，但这样 似乎又太符合外界对他这类人群的刻板印象了。",
+    "noon": "重温了经典科幻电影《星际穿越》"
+  },
+  "ready_for_qc": true
+}

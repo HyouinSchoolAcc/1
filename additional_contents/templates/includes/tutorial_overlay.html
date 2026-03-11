@@ -1,0 +1,695 @@
+<!-- Tutorial Overlay System - Include this on pages that need tutorial guidance -->
+<style>
+    /* ========== Tutorial Overlay Styles ========== */
+    .tutorial-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+        pointer-events: auto;
+        display: none;
+    }
+    
+    .tutorial-backdrop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.75);
+        cursor: pointer;
+    }
+    
+    .tutorial-highlight {
+        position: absolute;
+        border: 3px solid #fbbf24;
+        border-radius: 8px;
+        box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.7), 0 0 30px #fbbf24;
+        transition: all 0.4s ease;
+        pointer-events: none;
+        display: none;
+        z-index: 10000;
+    }
+    
+    .tutorial-dialogue-box {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, #0f0c29 0%, #1a1a2e 100%);
+        border-top: 3px solid #ffd700;
+        padding: 0;
+        z-index: 10001;
+        min-height: 180px;
+        max-height: 40vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .tutorial-dialogue-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 20px;
+        background: rgba(255, 215, 0, 0.1);
+        border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    }
+    
+    .tutorial-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 2px solid #ffd700;
+        object-fit: cover;
+        background: #2d3748;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+    
+    .tutorial-avatar:hover {
+        transform: scale(1.1);
+    }
+    
+    .tutorial-speaker-name {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #ffa657;
+        flex: 1;
+    }
+    
+    .tutorial-speaker-name.user {
+        color: #79c0ff;
+    }
+    
+    .tutorial-progress {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #888;
+        font-size: 0.8rem;
+    }
+    
+    .tutorial-progress-bar {
+        width: 100px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+        overflow: hidden;
+    }
+    
+    .tutorial-progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #ffd700, #bc8cff);
+        transition: width 0.3s ease;
+    }
+    
+    .tutorial-close-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: #888;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: all 0.2s;
+    }
+    
+    .tutorial-close-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+    }
+    
+    .tutorial-dialogue-content {
+        flex: 1;
+        padding: 16px 24px;
+        overflow-y: auto;
+    }
+    
+    .tutorial-text {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: #e2e8f0;
+        white-space: pre-wrap;
+    }
+    
+    .tutorial-text .typing-cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1.1em;
+        background: #ffd700;
+        animation: tutorial-blink 0.7s infinite;
+        vertical-align: text-bottom;
+        margin-left: 2px;
+    }
+    
+    @keyframes tutorial-blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+    }
+    
+    .tutorial-choices {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 12px;
+    }
+    
+    .tutorial-choice-btn {
+        padding: 12px 16px;
+        background: rgba(255, 215, 0, 0.1);
+        border: 1px solid rgba(255, 215, 0, 0.3);
+        border-radius: 8px;
+        color: #fff;
+        font-size: 0.95rem;
+        text-align: left;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .tutorial-choice-btn:hover {
+        background: rgba(255, 215, 0, 0.2);
+        border-color: #ffd700;
+        transform: translateX(4px);
+    }
+    
+    .tutorial-choice-btn::before {
+        content: '▸ ';
+        color: #ffd700;
+    }
+    
+    .tutorial-click-hint {
+        padding: 8px 24px 12px;
+        color: #666;
+        font-size: 0.85rem;
+        text-align: center;
+        animation: tutorial-pulse 2s infinite;
+    }
+    
+    @keyframes tutorial-pulse {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 1; }
+    }
+    
+    .tutorial-highlighted {
+        position: relative;
+        z-index: 10002 !important;
+        box-shadow: 0 0 20px #ffd700 !important;
+    }
+    
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+        .tutorial-dialogue-box {
+            min-height: 150px;
+            max-height: 50vh;
+        }
+        
+        .tutorial-text {
+            font-size: 0.95rem;
+        }
+        
+        .tutorial-avatar {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .tutorial-progress {
+            display: none;
+        }
+    }
+</style>
+
+<div id="tutorial-overlay" class="tutorial-overlay">
+    <!-- Dark overlay background -->
+    <div class="tutorial-backdrop" onclick="TutorialSystem.advance()"></div>
+    
+    <!-- Highlight box that will be positioned over elements -->
+    <div id="tutorial-highlight" class="tutorial-highlight"></div>
+    
+    <!-- Dialogue Box at bottom -->
+    <div class="tutorial-dialogue-box" onclick="TutorialSystem.handleDialogueClick(event)">
+        <div class="tutorial-dialogue-header">
+            <img id="tutorial-avatar" src="/static/caocao.png" alt="曹操" class="tutorial-avatar" onclick="TutorialSystem.onAvatarClick(event)">
+            <span id="tutorial-speaker" class="tutorial-speaker-name">曹操</span>
+            <div class="tutorial-progress">
+                <span id="tutorial-section-label">第1章</span>
+                <div class="tutorial-progress-bar">
+                    <div id="tutorial-progress-fill" class="tutorial-progress-fill" style="width: 0%"></div>
+                </div>
+            </div>
+            <button class="tutorial-close-btn" onclick="TutorialSystem.end()" title="退出教程">✕</button>
+        </div>
+        <div class="tutorial-dialogue-content">
+            <div id="tutorial-text" class="tutorial-text"></div>
+            <div id="tutorial-choices" class="tutorial-choices" style="display: none;"></div>
+        </div>
+        <div class="tutorial-click-hint" id="tutorial-click-hint">点击继续...</div>
+    </div>
+</div>
+
+<script>
+// ========== Tutorial System ==========
+const TutorialSystem = {
+    state: {
+        active: false,
+        currentSection: null,
+        dialogueIndex: 0,
+        isTyping: false,
+        typeTimeout: null,
+        avatarClicks: 0,
+        highlightedElement: null,
+        mode: 'fun' // 'fun' or 'business'
+    },
+    
+    // Current page context
+    currentPage: window.location.pathname.replace(/\/e$/, '').replace(/^\//, '') || 'landing',
+    
+    // Initialize tutorial for current page
+    init() {
+        // Check if we should auto-start (coming from another page mid-tutorial)
+        const savedState = sessionStorage.getItem('tutorialState');
+        if (savedState) {
+            try {
+                const parsed = JSON.parse(savedState);
+                if (parsed.active && parsed.targetPage === this.currentPage) {
+                    this.state = { ...this.state, ...parsed };
+                    sessionStorage.removeItem('tutorialState');
+                    this.show();
+                    this.playCurrentDialogue();
+                }
+            } catch (e) {
+                console.log('No saved tutorial state');
+            }
+        }
+    },
+    
+    // Start tutorial from beginning or specific section
+    start(section = 'section1') {
+        this.state.active = true;
+        this.state.currentSection = section;
+        this.state.dialogueIndex = 0;
+        this.state.avatarClicks = 0;
+        
+        this.show();
+        this.playCurrentDialogue();
+        
+        // Save to API if logged in
+        this.saveProgress();
+    },
+    
+    // Show the overlay
+    show() {
+        document.getElementById('tutorial-overlay').style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    },
+    
+    // Hide the overlay
+    hide() {
+        document.getElementById('tutorial-overlay').style.display = 'none';
+        document.body.style.overflow = '';
+        this.resetHighlight();
+    },
+    
+    // End tutorial completely
+    end() {
+        this.state.active = false;
+        this.hide();
+        sessionStorage.removeItem('tutorialState');
+    },
+    
+    // Get current section data
+    getCurrentSection() {
+        return TUTORIAL_SCRIPT[this.state.currentSection];
+    },
+    
+    // Play current dialogue line
+    playCurrentDialogue() {
+        const section = this.getCurrentSection();
+        if (!section) {
+            this.end();
+            return;
+        }
+        
+        const dialogues = section.dialogues || [];
+        
+        // Update progress
+        this.updateProgress();
+        
+        // Check if we've finished all dialogues in this section
+        if (this.state.dialogueIndex >= dialogues.length) {
+            // Check for choices
+            if (section.choices) {
+                this.showChoices(section.choices);
+                return;
+            }
+            
+            // Check for highlight instruction
+            if (section.highlight && !section._highlightShown) {
+                section._highlightShown = true;
+                this.highlightElements(section.highlight);
+            }
+            
+            // Check for next section
+            if (section.next) {
+                this.goToSection(section.next);
+                return;
+            }
+            
+            // Check for navigation
+            if (section.navigate) {
+                this.navigateTo(section.navigate);
+                return;
+            }
+            
+            // Tutorial complete
+            if (section.ending) {
+                this.complete();
+                return;
+            }
+            
+            return;
+        }
+        
+        const dialogue = dialogues[this.state.dialogueIndex];
+        this.displayDialogue(dialogue);
+    },
+    
+    // Display a single dialogue line
+    displayDialogue(dialogue) {
+        const speakerEl = document.getElementById('tutorial-speaker');
+        const avatarEl = document.getElementById('tutorial-avatar');
+        const textEl = document.getElementById('tutorial-text');
+        const hintEl = document.getElementById('tutorial-click-hint');
+        const choicesEl = document.getElementById('tutorial-choices');
+        
+        // Update speaker
+        const isCaoCao = dialogue.speaker === '曹操';
+        speakerEl.textContent = dialogue.speaker;
+        speakerEl.className = 'tutorial-speaker-name' + (isCaoCao ? '' : ' user');
+        avatarEl.src = isCaoCao ? '/static/caocao.png' : '/static/user/user_avatar.png';
+        
+        // Hide choices
+        choicesEl.style.display = 'none';
+        hintEl.style.display = 'none';
+        
+        // Typewriter effect
+        this.typeText(textEl, dialogue.text, () => {
+            hintEl.style.display = 'block';
+        });
+    },
+    
+    // Typewriter effect
+    typeText(element, text, callback) {
+        this.state.isTyping = true;
+        element.innerHTML = '';
+        let i = 0;
+        
+        const type = () => {
+            if (i < text.length) {
+                element.innerHTML = text.substring(0, i + 1) + '<span class="typing-cursor"></span>';
+                i++;
+                this.state.typeTimeout = setTimeout(type, 35);
+            } else {
+                element.innerHTML = text;
+                this.state.isTyping = false;
+                if (callback) callback();
+            }
+        };
+        
+        type();
+    },
+    
+    // Skip typewriter effect
+    skipTyping() {
+        if (this.state.typeTimeout) {
+            clearTimeout(this.state.typeTimeout);
+            this.state.typeTimeout = null;
+        }
+        
+        const section = this.getCurrentSection();
+        const dialogues = section?.dialogues || [];
+        const dialogue = dialogues[this.state.dialogueIndex];
+        
+        if (dialogue) {
+            document.getElementById('tutorial-text').innerHTML = dialogue.text;
+            document.getElementById('tutorial-click-hint').style.display = 'block';
+        }
+        
+        this.state.isTyping = false;
+    },
+    
+    // Advance to next dialogue
+    advance() {
+        if (!this.state.active) return;
+        
+        if (this.state.isTyping) {
+            this.skipTyping();
+            return;
+        }
+        
+        this.state.dialogueIndex++;
+        this.playCurrentDialogue();
+    },
+    
+    // Handle click on dialogue box
+    handleDialogueClick(event) {
+        if (event.target.closest('.tutorial-choice-btn') || 
+            event.target.closest('.tutorial-close-btn') ||
+            event.target.closest('.tutorial-avatar')) {
+            return;
+        }
+        this.advance();
+    },
+    
+    // Show choices
+    showChoices(choices) {
+        const choicesEl = document.getElementById('tutorial-choices');
+        const hintEl = document.getElementById('tutorial-click-hint');
+        
+        hintEl.style.display = 'none';
+        
+        choicesEl.innerHTML = choices.map((choice, i) => 
+            `<button class="tutorial-choice-btn" onclick="TutorialSystem.selectChoice(${i})">${choice.text}</button>`
+        ).join('');
+        
+        choicesEl.style.display = 'flex';
+    },
+    
+    // Handle choice selection
+    async selectChoice(index) {
+        const section = this.getCurrentSection();
+        const choice = section.choices[index];
+        
+        document.getElementById('tutorial-choices').style.display = 'none';
+        
+        // Handle different choice actions
+        if (choice.action === 'goToSection') {
+            this.goToSection(choice.target);
+        } else if (choice.action === 'setMode') {
+            this.state.mode = choice.mode;
+            if (choice.then) this.goToSection(choice.then);
+        } else if (choice.action === 'skipWithDialogue') {
+            await this.playDialogueSequence(choice.dialogue);
+            if (choice.then === 'exitTutorial') {
+                this.navigateTo('/navigation');
+            }
+        } else if (choice.action === 'navigate') {
+            this.navigateTo(choice.target);
+        } else if (choice.action === 'checkpoint') {
+            this.saveProgress();
+            if (choice.then) this.goToSection(choice.then);
+        } else if (choice.action === 'answer') {
+            await this.playDialogueSequence(choice.dialogue);
+            // Show choices again for repeatable
+            this.showChoices(section.choices);
+        } else if (choice.action === 'resumeFromCheckpoint') {
+            this.resumeFromSaved();
+        }
+    },
+    
+    // Play a sequence of dialogues (for choice responses)
+    playDialogueSequence(dialogues) {
+        return new Promise(resolve => {
+            let index = 0;
+            
+            const playNext = () => {
+                if (index >= dialogues.length) {
+                    resolve();
+                    return;
+                }
+                
+                this.displayDialogue(dialogues[index]);
+                
+                const handler = () => {
+                    if (this.state.isTyping) {
+                        this.skipTyping();
+                    } else {
+                        document.getElementById('tutorial-overlay').removeEventListener('click', handler);
+                        index++;
+                        playNext();
+                    }
+                };
+                
+                setTimeout(() => {
+                    document.getElementById('tutorial-overlay').addEventListener('click', handler);
+                }, 100);
+            };
+            
+            playNext();
+        });
+    },
+    
+    // Go to a specific section
+    goToSection(sectionId) {
+        this.state.currentSection = sectionId;
+        this.state.dialogueIndex = 0;
+        this.playCurrentDialogue();
+    },
+    
+    // Navigate to a different page
+    navigateTo(path) {
+        // Save state for resuming on next page
+        sessionStorage.setItem('tutorialState', JSON.stringify({
+            ...this.state,
+            targetPage: path.replace(/^\//, '').replace(/\/e$/, '')
+        }));
+        
+        window.location.href = path;
+    },
+    
+    // Highlight elements on page
+    highlightElements(config) {
+        const highlightEl = document.getElementById('tutorial-highlight');
+        
+        // config can be { elements: ['id1', 'id2'], tooltip: 'text' }
+        // or just an element ID string
+        const elementIds = typeof config === 'string' ? [config] : (config.elements || [config]);
+        
+        // Find first valid element
+        for (const id of elementIds) {
+            const el = document.getElementById(id) || document.querySelector(`.${id}`);
+            if (el) {
+                const rect = el.getBoundingClientRect();
+                
+                highlightEl.style.display = 'block';
+                highlightEl.style.top = (rect.top - 5) + 'px';
+                highlightEl.style.left = (rect.left - 5) + 'px';
+                highlightEl.style.width = (rect.width + 10) + 'px';
+                highlightEl.style.height = (rect.height + 10) + 'px';
+                
+                el.classList.add('tutorial-highlighted');
+                this.state.highlightedElement = el;
+                
+                break;
+            }
+        }
+    },
+    
+    // Reset highlight
+    resetHighlight() {
+        document.getElementById('tutorial-highlight').style.display = 'none';
+        
+        if (this.state.highlightedElement) {
+            this.state.highlightedElement.classList.remove('tutorial-highlighted');
+            this.state.highlightedElement = null;
+        }
+        
+        document.querySelectorAll('.tutorial-highlighted').forEach(el => {
+            el.classList.remove('tutorial-highlighted');
+        });
+    },
+    
+    // Update progress display
+    updateProgress() {
+        const sectionNum = this.state.currentSection?.match(/\d+/)?.[0] || 1;
+        const totalSections = 8;
+        const progress = (parseInt(sectionNum) / totalSections) * 100;
+        
+        document.getElementById('tutorial-section-label').textContent = `第${sectionNum}章`;
+        document.getElementById('tutorial-progress-fill').style.width = progress + '%';
+    },
+    
+    // Save progress to API
+    async saveProgress() {
+        try {
+            await fetch('/api/tutorial/update', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    current_step: parseInt(this.state.currentSection?.match(/\d+/)?.[0] || 1),
+                    completed_steps: []
+                })
+            });
+        } catch (e) {
+            console.log('Could not save tutorial progress');
+        }
+    },
+    
+    // Resume from saved checkpoint
+    async resumeFromSaved() {
+        try {
+            const response = await fetch('/api/tutorial/progress');
+            const data = await response.json();
+            if (data.has_progress && data.progress?.current_step) {
+                this.goToSection('section' + data.progress.current_step);
+            } else {
+                this.goToSection('section1');
+            }
+        } catch (e) {
+            this.goToSection('section1');
+        }
+    },
+    
+    // Complete tutorial
+    async complete() {
+        try {
+            await fetch('/api/tutorial/complete', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({})
+            });
+        } catch (e) {}
+        
+        // Show completion message
+        const textEl = document.getElementById('tutorial-text');
+        textEl.innerHTML = '🎉 教程完成！欢迎成为写手！<br><br>现在去选择一个角色开始创作吧。';
+        
+        const choicesEl = document.getElementById('tutorial-choices');
+        choicesEl.innerHTML = `
+            <button class="tutorial-choice-btn" onclick="window.location.href='/navigation'">开始写作</button>
+            <button class="tutorial-choice-btn" onclick="window.location.href='/descriptions'">先看角色设定</button>
+        `;
+        choicesEl.style.display = 'flex';
+        document.getElementById('tutorial-click-hint').style.display = 'none';
+    },
+    
+    // Avatar click easter egg
+    onAvatarClick(event) {
+        event.stopPropagation();
+        this.state.avatarClicks++;
+        
+        const messages = [
+            "你戳我干啥",
+            "...",
+            "再戳我把你踢出去",
+            "...",
+            "行行行知道你无聊了，继续教程吧"
+        ];
+        
+        if (this.state.avatarClicks <= messages.length) {
+            const textEl = document.getElementById('tutorial-text');
+            textEl.innerHTML = messages[this.state.avatarClicks - 1];
+        }
+    }
+};
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    TutorialSystem.init();
+});
+</script>
+
+<!-- Load tutorial script data -->
+<script src="/static/js/tutorial_script.js"></script>

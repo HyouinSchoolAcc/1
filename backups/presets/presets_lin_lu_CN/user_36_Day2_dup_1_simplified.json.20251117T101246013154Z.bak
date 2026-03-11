@@ -1,0 +1,696 @@
+{
+  "user_schedule": {
+    "morning": "休息",
+    "noon": "中午：刷到美食，于是欣然前往去吃了一碗粉",
+    "afternoon": "去商业街和附近的公园逛了逛，购买了一些食材",
+    "evening": "开始工作，直播",
+    "night": "",
+    "day": 2
+  },
+  "history": "",
+  "relationship": "Continuing relationship from previous interactions.",
+  "dialogue": [
+    {
+      "content": "在网上刷到广西的老友粉，馋死我了，恨不得马上买张机票飞过去吃",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "12:36",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "但是我发现本地也有卖的，听说很好吃，我马上坐地铁20公里去吃了一碗",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "12:36",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "太好吃了，好幸福，要长翅膀飞走了(*/ω＼*)",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "12:36",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你很喜欢吃粉吗？",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "12:37",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "还行吧，主要是我对没吃过的东西总有很多探索的兴趣哈哈",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "12:37",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "那你真是行动力拉满啊，说走就走",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "12:38",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我对日常的饮食似乎没有什么太大兴趣，吃饭能维持人体正常进的运作就行了",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "12:38",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "可是感觉这样会错失好多乐趣耶，吃到好吃的东西是我活着的动力之一了qwq",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "12:38",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "当然我理解人类有这样享乐的欲望，否则就会萎靡不振",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "12:39",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "所以下午我给工作状态不太好的同事们安排了度假活动",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "12:39",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "！！！我去，你也太大方了吧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "12:39",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "当你同事也太幸福了吧，如果可以的话我也想去凑个热闹",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "12:40",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "都有些什么活动啊？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "12:40",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "就是打保龄球，高尔夫什么的，还有个泳池可以游泳",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "12:40",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "有300多种自助的美食，当然也可以自己烧烤",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "12:41",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "好豪华哦……（没体验过）",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "12:41",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "主要是想让大家放松放松，休息好了才有更充沛的精力去投入工作",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "12:41",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "那你们好好享受吧∽我在逛街，晚上见！",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "12:42",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "好。",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "12:42",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我在给小羊们剃毛[图片]",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:42",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "尝试之前我以为很容易，但是没想到实操起来是需要一定技巧的",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:42",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你得先从肚子开始剃，剔出一个缺口之后，让你的手和皮肤保持大概3~5毫米左右的距离，不然会割伤小羊",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:42",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "然后再慢慢去剃背部，四肢还有头部",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:43",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "而这个过程中一定要匀速，不然的话剔下的羊毛的话会断裂掉，那就没用了",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:43",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "很神奇啊……果然任何劳动里都藏着智慧呢",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:43",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "小羊软乎乎的，想摸，好治愈啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:44",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你不是在度假嘛，怎么去剃羊毛啦哈哈",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:44",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "是这边庄园主人邀请我去试一试的",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:44",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "他们在那边玩，下午我跟他们打了桥牌，但我对这些娱乐活动其实不太感兴趣",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:45",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "所以你正好找个借口逃离人群清静一下是吧哈哈",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:45",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "嗯，我发现比起人，我更喜欢和动物相处",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:45",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我有时候也会有类似的感觉，因为人总是善变难懂的，但是小动物感觉总是那么通透，那么干净",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:46",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我今天下午逛街的时候还遇见猫咖了，我还进去逛了逛，看到猫猫狗狗，我真的心情变好了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:46",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "其中有一只特别威武的像老虎一样的猫，后来才知道是缅因，好喜欢(*╹▽╹*)",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:46",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我之前也想过要养猫",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:47",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "但是又想到，工作那么忙，应该没有什么闲暇去陪伴照料宠物",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:47",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你可以请个阿姨替你照顾嘛",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:47",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我一个亲戚就这样啊，他天天忙着上班，在家里请了个阿姨，帮他买菜遛狗烧饭之类的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:48",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "而且猫的独立性很强，它不像狗一样那么需要人，大多数时候猫会跟自己玩",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:48",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "不像养了狗，大多会有分离焦虑",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:48",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "那还要再雇个人，更麻烦了",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:49",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你说的我都知道，我只是在想那照你说的，那到底是我养猫还是我养个人去养猫",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:49",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "笑死，其实有时候我连人都不想管",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:49",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "但是我又觉得作为一个上司，如果跟大家产生隔阂的话，不利于工作推进，所以适度和大家参与一些活动是有必要的",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:50",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "有那种亲民人设的领导，但是也有那种只做好自己的事，不跟大家搞好关系的那种领导吧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:50",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "大家应该更在乎项目跟报酬的问题",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:50",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "所以不用担心，如果你想给自己留一定的独处空间的话，他们会理解你的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:51",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "毕竟你的本职工作已经做得很好了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:51",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "哦，是吗，你也是这么想的吗？",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:51",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我在以你的角度去思考，但是我这个工作性质会不太一样，所以难免要跟观众多多联络感情",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:52",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "有的时候也会因为要跟大家保持联络而占用过多时间而没办法独处而烦恼吧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:52",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "但路都是自己选的，能说什么呢",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:52",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "对，所以也没什么，其实我现在刚下播，还好我现在能在你这喘口气哈哈",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:53",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "今天直播打了艾尔登法环，我晕3D，现在头好痛+_+这种3A大作真是玩不了一点",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:53",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "既然你玩了会有生理不适，干嘛非要玩这个游戏？",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:53",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "还不是观众要求的-.-之前跟观众打赌，开盲盒是亏还是赚，结果观众赢了，所以只能来老头环坐牢了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:54",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "那很坏了",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:54",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "之前我听说过这个游戏，前些年很火，我有些朋友也在玩，剧情确实很精彩啊",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:54",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "嗯嗯。美术风格也是很赞的，只不过被折磨得已经无暇观赏剧情+_+",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:55",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "玩了快六个小时第1个boss还打不过去，我手残啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:55",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "不过观众应该很乐意看到你吃瘪吧，毕竟这也是节目效果的一环",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:55",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "Wow，看来你很懂直播嘛，你还说你很少看的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:56",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我是不怎么看，但是可以想象",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:56",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "毕竟受苦也算是现在互联网的流量的密码之一了",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:56",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "比如说一些吃播挑战，不吃饭还有吃变态辣的东西，还有极限生存挑战什么的",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:57",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "大家总是对没见过的东西有特殊的兴趣",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:57",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "嗯，是的，毕竟人类的本质是猎奇",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:57",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "还有就是。大家生活压力都很大，所以看到别人的自我折磨，就心理平衡一点吧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:58",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "这个时候就会意识到自己是在互联网当小丑逗大家开心罢了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:58",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "可是也不是所有人都能当小丑的，就像剪羊毛一样，也需要一定的技巧的",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:58",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "而且我觉得做喜剧是一件非常难的事，想逗笑大家也是一件非常难的事",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:59",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你能给观众带来情绪上的满足，这本身就是你的价值",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "10:59",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "所以有时候我迷思，工作是不是就是让渡自己的价值去成就别人的价值",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:59",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "不过有的时候我也想去玩那种自己和大家都享受的游戏",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:00",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我比较擅长策略类和卡牌类还有解谜类的单机游戏，这种要动脑子的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:00",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "上上次玩了炉石传说，太上瘾了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:00",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "还有邪恶冥刻也好好玩……",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:01",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我想问，你打牌的时候你会算到对面会出什么牌，会去套路对方吗",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "11:01",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "不会吧，我就是凭感觉瞎打，我这脑子的容量要是计算超过三步以外的东西就爆炸了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:01",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "直觉型玩家吗？有意思",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "11:02",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我就是想起下午打桥牌赢得很爽",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "11:02",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "打牌的同时也是在跟系统博弈，叫牌的时候要判断对手手里还剩几张王牌",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "11:02",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "这本质是个计算概率的游戏",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "11:03",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "所以我想象不太出来你说的凭感觉是什么样的",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "11:03",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "嗐，我没有你那么厉害了，而且这些游戏也很简单，凭心情瞎打就行了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:03",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你玩游戏可能是为了赢吧，但是我玩游戏主要是为了开心哈哈",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:04",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "但是总感觉你的状态比我更接近游戏的本质吧",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "11:04",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "User",
+      "content": "什么本质不本质的，嗐，每个人玩游戏都有不同的目的啊，开心就好",
+      "intimacy_delta": 0.01,
+      "timestamp": "11:04",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我很少为了纯粹的开心去做什么事，但是我觉得，现在这样似乎很不错[星空]",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "11:04",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你说的这几个游戏我有空的话回头会去试试的",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "11:05",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "好耶！！入坑之后说不定还可以一起玩",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:05",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "今天由于过于狼狈，我犯了好多低级错误，切片素材又有了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:05",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "苦哈哈回去剪视频喽！",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:06",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "bye bye∽",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "11:06",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "安[月亮]",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "11:06",
+      "timestampManuallyEdited": false
+    }
+  ],
+  "intimacy_level": 1.7700000000000011,
+  "starting_intimacy_level": 0.8200000000000005,
+  "completed": false,
+  "user_name": "周若",
+  "character_name": "陆清禾",
+  "character_schedule": {
+    "afternoon": "上班时间见同事们工作不态个住，当场安排了邓区庄园的度假活动，庄园可以打保龄球，有私人泳池、自助餐点，同事们在一起打桥牌，邀请他秀一波计算能力。他也不推脱，大杀四方后，拿出副卡让同事们刷。",
+    "day": 2,
+    "evening": "远离了同事们，在庄园的草坪上静静坐着，看着在吃草的羊群，在主人的邀请下，为小羊们剃毛。延伸讨论：作为一个优秀的上司，是否不该参与同事们的娱乐活动；想要放松的放忪，和小动物们相处，似乎是个错的选择。",
+    "morning": "在启星生物。他出席董事会，让商业伙伴处理金融术语，自己则在关键时刻介入，用一番令人眼花缭乱的科学愿景让投资人心甘情愿地签字。",
+    "night": "",
+    "noon": ""
+  },
+  "category": "rejected",
+  "assessment_timestamp": "2025-10-29T14:13:59.097Z",
+  "problems_count": 1,
+  "rejection_timestamp": "2025-10-29T14:13:59.097Z"
+}

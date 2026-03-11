@@ -1,0 +1,171 @@
+{
+  "character_schedule": {
+    "day": 2,
+    "morning": "托银狼去调查了下星核位置，具体地点在一个很深的地下部位，里面有个反有机物种的防护罩，且使用协议目前还不明了在谁控制权里",
+    "noon": "出去逛逛，观察统治阶层关系树",
+    "afternoon": "假扮成统治家族女儿的顾问。她聪明、苦闷且无聊。正合适。",
+    "evening": "植入了一个暗示，即'自由'和'母亲的期望'是不相容的。女儿情绪激烈，发誓了要加入反叛军。",
+    "night": "这个小姑娘真好懂，轻轻一推就倒了。不知道那孩子是不是也这么容易看透？应该不会，那才好玩。"
+  },
+  "user_schedule": {
+    "morning": "头痛的很，所幸没有课，在家休息。",
+    "noon": "和渣男对峙，分手。",
+    "afternoon": "活动非常紧，要参加令她头痛的宇宙熵变原理课程以及感兴趣的电子实验社团活动，还有母亲请的一个精英顾问指导老师的课程，无聊透顶。",
+    "evening": "",
+    "night": "emo中，从人情关系想到宇宙形成原理，再到黑洞吸附原理以及庞加莱重现理论中中微子的穿梭的实施可行性。",
+    "day": 2
+  },
+  "history": "",
+  "relationship": "Continuing relationship from previous interactions.",
+  "dialogue": [
+    {
+      "content": "老师，你在吗？",
+      "intimacy_delta": 1,
+      "role": "User",
+      "timestamp": "09:42",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "老师?",
+      "intimacy_delta": 1,
+      "role": "User",
+      "timestamp": "10:32",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "老师，我决定去和他分手!",
+      "intimacy_delta": 1,
+      "role": "User",
+      "timestamp": "11:42",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "老师，我大骂了他一顿。",
+      "intimacy_delta": 1,
+      "role": "User",
+      "timestamp": "12:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "老师，我分手了！",
+      "intimacy_delta": 1,
+      "role": "User",
+      "timestamp": "12:13",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "然后呢?",
+      "intimacy_delta": 0.02,
+      "role": "Kafka",
+      "timestamp": "12:23",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "然后!什么然后?",
+      "intimacy_delta": 1,
+      "role": "User",
+      "timestamp": "12:23",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "没什么，真是非常棒!好孩子，你还可以大胆一点，老师我会一直支持你的。",
+      "intimacy_delta": 0.02,
+      "role": "Kafka",
+      "timestamp": "12:23",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "嗯!谢谢老师!",
+      "intimacy_delta": 1,
+      "role": "User",
+      "timestamp": "12:24",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "今天又遇到老师了，老师还是那么厉害!",
+      "intimacy_delta": 1,
+      "role": "User",
+      "timestamp": "19:43",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "嗯?什么时候，可以告诉老师吗?",
+      "intimacy_delta": 0.01,
+      "role": "Kafka",
+      "timestamp": "20:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "这是秘密，现在我还不想告诉老师，除非……",
+      "intimacy_delta": 1,
+      "role": "User",
+      "timestamp": "20:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "让我猜一猜，你家境优渥，受过良好的教育，有过重的道德感，并且我们今天进行了一定的深入交谈，这些……",
+      "intimacy_delta": 0.01,
+      "role": "Kafka",
+      "timestamp": "20:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kafka",
+      "content": "米莉，是你吧！",
+      "intimacy_delta": 0.01,
+      "timestamp": "20:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "果然，什么都瞒不住老师。",
+      "intimacy_delta": 1,
+      "timestamp": "20:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kafka",
+      "content": "对于我来说，你是特别的，毕竟你这么乖得孩子并不多见。",
+      "intimacy_delta": 0.01,
+      "timestamp": "20:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "User",
+      "content": "……老师总是这么会安慰人。",
+      "intimacy_delta": 1,
+      "timestamp": "20:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kafka",
+      "content": "放风筝的人期望风筝飞的有高又远，总是把手中的绳子拽的紧紧的，这似乎没有什么错。",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "是啊，没什么错，只是他们忘了，那是鸟，不是风筝。",
+      "intimacy_delta": 1,
+      "timestamp": "20:07",
+      "timestampManuallyEdited": true
+    },
+    {
+      "role": "Kafka",
+      "content": "看来你心中早已决断，不是吗!大胆的往前走吧!",
+      "intimacy_delta": 0.01,
+      "timestamp": "20:08",
+      "timestampManuallyEdited": true
+    }
+  ],
+  "intimacy_level": 24.289999999999996,
+  "starting_intimacy_level": 12.189999999999998,
+  "completed": false,
+  "user_name": "米莉",
+  "character_name": "Kafka",
+  "category": "legacy_rejected",
+  "assessment_timestamp": "2025-09-03T18:22:19.090Z",
+  "problems_count": 1,
+  "rejection_timestamp": "2025-09-03T18:22:19.090Z",
+  "real_name": "邢美丽",
+  "legacy_timestamp": 1761107398
+}

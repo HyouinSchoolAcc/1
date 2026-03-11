@@ -1,0 +1,319 @@
+{
+  "character_schedule": {
+    "afternoon": "假扮成统治家族女儿的顾问。她聪明、苦闷且无聊。正合适。",
+    "day": 2,
+    "evening": "植入了一个暗示，即'自由'和'母亲的期望'是不相容的。女儿情绪激烈，发誓了要加入反叛军。",
+    "morning": "托银狼去调查了下星核位置，具体地点在一个很深的地下部位，里面有个反有机物种的防护罩，且使用协议目前还不明了在谁控制权里",
+    "night": "这个小姑娘真好懂，轻轻一推就倒了。不知道那孩子是不是也这么容易看透？应该不会，那才好玩。",
+    "noon": "出去逛逛，观察统治阶层关系树"
+  },
+  "user_schedule": {
+    "day": 2,
+    "morning": "持续关注电视新闻，出门买了早餐，继续阅读相关书籍"
+  },
+  "history": "",
+  "relationship": "Continuing relationship from previous interactions.",
+  "dialogue": [
+    {
+      "content": "早上好啊，卡芙卡小姐，今天也是美好的一天呢",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "早上好，请告诉我你的名字吧，这样单方面称呼，貌似不太礼貌呢。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "啊对的，是我疏忽了。云吧，单字一个云。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "云吗......难道你就是那个“变量”......",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "好吧，电子设备和通讯网络并非我的强项。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "这样被你单方面操纵在手中的感觉并不美妙呢。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "这怎么能叫操纵呢卡芙卡小姐，虽然这通讯是单向的，但是你有随时挂断的权利，不是吗。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "既然你没有挂断，说明我们还有聊下去的价值，不是吗。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "呵呵，说的也是。不过向来都是我操纵别人，被别人操纵，也是头一次呢。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "哎，如果银狼呢骇入你的设备就好了。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "谁叫她喜欢宅在家里不想跟来呢，脏活累活全部抛给我干了。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "诶银狼小姐吗，还好她没来，不然我可没什么机会和你对上话了呢。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "有什么乐子吗，这电视新闻口风真严，什么好玩的都不报道，报道的尽是些什么银河球棒侠又干碎了一个令使什么什么的，无聊的很。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "呵呵，银河球棒侠吗，说起来，我和他还是故交。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "只不过现在......有更大的舞台在等着他吧。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "真期待啊......",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "云，如果我没有猜错。你的网络黑客能力应该和银狼不相上下吧。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "毕竟这是她亲手设计的耳机，一般人很难攻破。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "既然如此，你为什么不直接骇入国家网络，反而找上了我呢？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "哪有哪有，狼老爷的实力岂是我等可以随意染指的。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "更何况，骇入国家网络是违法乱纪的！我怎么会干这种丧尽天良的事呢？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "我只不过，是想找个乐子，把星球成为我的舞台！把人物化为舞台上的演员！而我，是这场剧目的总导演！！！",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "原来如此。艾利欧应该和你很能聊得来。",
+      "intimacy_delta": 1,
+      "role": "Kafka"
+    },
+    {
+      "content": "不过这与我们的目的并不相悖。",
+      "intimacy_delta": 1,
+      "role": "Kafka"
+    },
+    {
+      "content": "或者说，为了达到我们的目的，总导演，可能日后还得借助你的力量。",
+      "intimacy_delta": 1,
+      "role": "Kafka"
+    },
+    {
+      "content": "不过这大概会违法乱纪哦。",
+      "intimacy_delta": 1,
+      "role": "Kafka"
+    },
+    {
+      "content": "如果是你的话，那我就只能勉为其难的帮你咯。",
+      "intimacy_delta": 1,
+      "role": "User"
+    },
+    {
+      "content": "毕竟没有你，谁来推动剧情的发展呢哈哈哈哈。",
+      "intimacy_delta": 1,
+      "role": "User"
+    },
+    {
+      "content": "好戏，开场了！！！",
+      "intimacy_delta": 1,
+      "role": "User"
+    },
+    {
+      "content": "好戏，开场了......",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "晚上好，卡芙卡小姐。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "哦？果然是你。我就说过了一整天，你总该按捺不住了吧。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "是啊，辍学之后，天天待在家里，无聊死了。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "辍学之后吗......",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "诶别说这些有的没的了，今天有什么好玩的事情吗。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "今早跟你挂断之后，托银狼去调查了下星核位置，具体地点在一个很深的地下部位。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "里面有个反有机物种的防护罩，且使用协议目前还不明了在谁控制权里。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "星核吗，我们星球居然还有这种东西。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "嗯确实，你们是星核猎手，自然是逐星核而生的。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "不过对于这个使用协议，我倒是可以查查......至于结果嘛，我说不准。",
+      "intimacy_delta": 1,
+      "role": "User"
+    },
+    {
+      "content": "云先生，既然知道我是星核猎手的一员，那想必也听过我们在宇宙中恶名昭著的风评。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "即使如此，你依旧对我们的计划进行帮助，我并不理解。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "恶名昭著？得了吧，我不以世俗的善恶观来评判你们。能给我带来快乐的，就是好人。",
+      "intimacy_delta": 1,
+      "role": "User"
+    },
+    {
+      "content": "更何况。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "我或许也是恶名昭著的呢。",
+      "intimacy_delta": 1,
+      "role": "User"
+    },
+    {
+      "content": "这样吗.......果然我还是无法理解更多的情感。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "不过我并不讨厌这样。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "我们继续吧，想必你也等急了。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "下午我假扮成统治家族女儿的顾问。她聪明、苦闷且无聊。正合适。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "我给她植入了一个暗示，'自由'和'母亲的期望'是不相容的。女儿情绪激烈，发誓了要加入反叛军。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "不错啊，是很精巧的手笔呢，不愧是你。",
+      "intimacy_delta": 1,
+      "role": "User"
+    },
+    {
+      "content": "是啊，言灵真的很好用呢，你要不要试试呢？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "听我说......",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "停停停，这还是算了，我可遭不住。",
+      "intimacy_delta": 1,
+      "role": "User"
+    },
+    {
+      "content": "不过我们并没有见面，联系也只是通过电信号进行的。言灵还控制不了我。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "那真是太可惜了啊，我本还以为终于找到了机会试验一下呢。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "被耍了呢，不过正是这样，才有乐子啊哈哈哈哈哈！！",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "嗯？挂了吗，这些啊哈的人，真是莫名其妙呢。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    }
+  ],
+  "intimacy_level": 12.459999999999994,
+  "starting_intimacy_level": 0,
+  "completed": false,
+  "user_name": "云",
+  "character_name": "Kafka",
+  "category": "legacy_rejected",
+  "assessment_timestamp": "2025-09-03T18:23:05.863Z",
+  "problems_count": 1,
+  "rejection_timestamp": "2025-09-03T18:23:05.863Z",
+  "real_name": "云",
+  "legacy_timestamp": 1761107398
+}

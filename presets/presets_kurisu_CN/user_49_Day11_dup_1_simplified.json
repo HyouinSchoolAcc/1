@@ -1,0 +1,380 @@
+{
+  "user_schedule": {
+    "morning": "被窗外的噪音吵醒，泡了黑咖啡提神。参加线上例会，顺便清理昨晚没写完的代码。",
+    "noon": "和同事去楼下吃了拉面，途中收到一条奇怪的加密消息：“这次，别迟到。” 没署名。心里微微一动。",
+    "afternoon": "修复客户系统的 bug，一直对着屏幕到头疼。看着乱成一团的逻辑，突然觉得像在修一条混乱的时间线。",
+    "evening": "在公园长椅上看日落，随后回家。打开灯的瞬间，他对着镜中的自己笑了笑，像是在对另一个人说话。那晚，他梦见了一个曾被称作“涟漪”的世界。",
+    "night": "",
+    "day": 11
+  },
+  "history": "",
+  "relationship": "Continuing relationship from previous interactions.",
+  "dialogue": [
+    {
+      "content": "早啊，科学家。\n今天城市特别安静，连电车声都听不太到。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "07:42",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "早。你起得真早。\n昨晚不是还在酒吧吗？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "07:44",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "是啊。喝了一杯就走了。俗话说得好，饮酒要适量，刚刚好的程度才是最舒服的。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "07:45",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "哈哈，像是你能够发出的感叹。今天不去公司？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "07:47",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "今天在家远程。打算先整理昨天下午那个客户的 bug 报告。他们的系统真的像一座历史遗迹。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "07:48",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "听起来你今天变成文物修复师了，马丁先生。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "07:50",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我可不想成为百变马丁，最好是能够自己控制要变成什么。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "07:51",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我刚启动加速器，参数比昨天更稳。\n数据流看起来挺顺的。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "10:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "那就好。我这边刚把一堆旧代码清完，像是在打扫房间。不过我发现一段奇怪的日志，好像不是我写的。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "不是你写的？谁能动你的代码？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "10:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "理论上没人。但那几行注释的风格，我一眼就认出来。有点像以前某个项目里的人写的。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:08",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你是说……你以前的团队？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "10:10",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "可能吧。他们有时候会留下一些“问候”。算是某种我们之间的默契。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:12",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "听上去挺神秘的。不过你们这种“加密怀旧”的习惯真怪。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "10:13",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "怀旧让人安心。也让我记得，自己曾经做过不只是修 bug 的事。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:15",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "午饭吃完。今天试了新的咖喱店。味道一般，但店里放的音乐挺好。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "12:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你到底是去吃饭还是去听歌？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "12:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "吃饭只是附带的。我喜欢那种有人声但又不过分热闹的地方。就像我高中时常去的咖啡馆。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "12:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "有的人已经未老先衰了。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "12:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "这是什么话。在快节奏生活的今天，每个人都像在追赶一个看不见的时钟。适当的松一松弦可是很有必要的。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "12:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "哲学家又开始了。但我懂那种感觉。有时候实验也会让我有同样的焦虑——明知道慢下来更好，但现实不允许。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "12:08",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "那就偶尔假装断线吧。反正没人真的等得起。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "12:09",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "……你这话听起来危险。你该不会真的干过这事吧？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "12:10",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "也许吧。有时候我会“离线一段时间”，去个不太被人记得的地方",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "12:12",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "比如？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "12:13",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "比如一个学校的天台。那里的风很好，能听见城市的嗡嗡声，但没人打扰。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "12:14",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "听起来像个秘密据点。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "12:15",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "这就是男人的浪漫啊。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "12:16",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "刚开完组会。教授又在讲“理论的边界”。最近都开始传染“哲学家”的病毒了？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "15:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "那你们是不是该改名叫“存在研究部”？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "15:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "哈哈，也许吧。不过他说了一句挺有意思的：“科学研究的意义，不是确定答案，而是让问题更清晰。”",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "15:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我喜欢这句话。有点像我最近的工作。客户总想让我给“完美解决方案”，但有时候我只是帮他们看清问题。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "15:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "所以你到底是什么工作，咨询顾问？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "15:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "顾问、调试员、观察者——随便哪个都行。只是别让我太久地不去创造。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "15:08",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "创造什么？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "15:09",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "想法、工具、可能性……也许还有一点混乱。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "15:11",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你是不是又开始做一些“非正式项目”了。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "15:12",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "不愧是科学家，够敏锐。有一些不会写在报告里的工作是很正常的事，对吧。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "15:13",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我可没听说过这种事，记得注意安全。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "15:15",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我一直都很谨慎。况且一般老朋友们交代给我事，应该大概可能~都很安全吧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "15:16",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "晚饭随便煮了个意面。边吃边看新闻，结果越看越觉得世界像在跑 beta 版。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "这形容太贴切了。我今天也是一边整理实验数据一边想，我们是不是都在给“未来”的版本打补丁。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "20:07",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "也许吧。只希望那个版本别太快发布。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:09",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "这可不像你，居然还会害怕。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "20:10",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "可能是今天太累了，已经燃尽了。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:11",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "那早点休息。别又熬到凌晨。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "20:12",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "会的。今晚就早点离线。不过——谢谢你今天一直在这儿。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:13",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "不客气。这不就是我们一直在做的事吗？——保持连接。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "20:14",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "嗯。晚安，科学家。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:15",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "晚安，John。",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "20:16",
+      "timestampManuallyEdited": true
+    }
+  ],
+  "intimacy_level": 1.6400000000000008,
+  "starting_intimacy_level": 1.1400000000000006,
+  "completed": false,
+  "user_name": "John Smith",
+  "character_name": "Kurisu",
+  "character_schedule": {
+    "day": 11,
+    "下午": "进行时间旅行理论研究，分析实验数据。",
+    "早晨": "启动加速器，校准设备参数，准备实验。",
+    "晚上": "通过阅读科学论文或观看轻松娱乐来放松身心。"
+  },
+  "category": "legacy_rejected",
+  "assessment_timestamp": "2025-10-27T02:27:26.435Z",
+  "problems_count": 2,
+  "rejection_timestamp": "2025-10-27T02:27:26.435Z",
+  "legacy_timestamp": 1770620462
+}

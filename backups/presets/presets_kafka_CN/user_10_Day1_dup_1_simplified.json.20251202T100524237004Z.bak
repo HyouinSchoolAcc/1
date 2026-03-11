@@ -1,0 +1,202 @@
+{
+  "character_schedule": {
+    "morning": "一次似乎是遭遇了意外的星际跃迁，让卡芙卡掉入了这个陌生的世界。她在这个阴雨连绵的破败城市内四处游荡，而且不知为何失去了自己的能力。\n在疲惫和困惑之下，她在一处隐蔽处恢复精力，同时也暗暗好奇，她是否距离她所追逐的恐惧更近了一步。\n就在这时，一个背着旧吉他包，捏着几张纸币，看起来像是本地青年的家伙注意到了她。",
+    "noon": "",
+    "afternoon": "",
+    "evening": "收集了一些关于那颗星球的情报并做了一些补给准备。",
+    "night": "启程去往那颗星球，寻找艾利欧口中的“目标”",
+    "day": 1
+  },
+  "user_schedule": {
+    "day": 1,
+    "早晨": "在晨跑和完成一些星球上的委托任务（帮住星球居民寻找白色小猫，帮助布洛妮娅寻找独自出门一夜未归的希儿等）",
+    "中午": "吃饭和午休",
+    "下午": "在各个星球之间来回穿梭寻找宝箱和战斗",
+    "晚上": "在被Kafka调教",
+    "夜晚": "做梦（梦中的开拓者没有“@#语言”buff）"
+  },
+  "history": "",
+  "relationship": "Two people have just met and are still unfamiliar with each other. Their conversations are mostly polite and superficial, limited to everyday topics like work, studies, or the weather. At this stage, both sides are cautious and have yet to reveal their true selves.",
+  "dialogue": [
+    {
+      "content": "（正在完成姬子安排的每日晨跑任务）\n\n内心：好痛苦，什么晨跑要20圈啊喂！！！所以晨跑是早晨跑到晕厥吗...",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "（在不断吐槽之下，似乎是吐槽之神显灵了。）\n\n嘀嗒。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "（随着水滴滴落的声音响起，周围的一切都禁止了下来。）",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "（高跟鞋的声音一下下敲击在地面，紫罗兰的香味几乎覆盖了整个场馆。）",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "【由于身体里有“@#*语言”的buff，只有在每次buff能量条充能完毕时才能开口说话】\n\n（微微皱眉，武器从虚空中出现，拿着剑的手不自觉收紧 。）\n\n内心：是谁？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "（空中突然开始落下紫罗兰的花瓣，一朵花挡住了开拓者的视线）",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "（花缓缓落下，是一双紫色的眼睛，那双眼睛里含着笑，似乎有些戏谑。）\n\n只是一个喜欢戏剧的演员罢了。（抬起手将开拓者头上的花瓣取下）（摩挲了一下手里的花瓣后抬眼）（看到开拓者眼里的警惕似乎有些失落）你很讨厌我吗？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "（沉默）（握着大剑的手松了松）\n\n内心：讨厌吗...或许......应该是熟悉，这种感觉太过熟悉了，以至于我甚至感到恐惧。（隐忍的闭上眼）",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "【幻镜中。】\n",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "（身上布满了血渍）（眼神里染上了疯狂）一些猎物，解决掉就好了。哎呀~可惜，还没玩的尽兴。（身后出现爆炸）",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "距离目标......算了，我们......（话音未落）（一道血水飞溅）",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "（瞳孔瞪大）星！！！",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "（意识渐渐模糊）（似乎被人抱起来了）\n\n是什么落在脸上，下雨了吗...啊，是眼泪。（紫色的影子不断颤抖着）（想要抬起手却似乎没办法做到）不哭不哭（声音渐渐变弱）不哭...了。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "【检测到机体损坏！！！请尽快维修！！！请尽快.....】",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "（手指颤抖的覆在星的脸上）......我会救你的。（突然笑起来）（覆在星脸上的缓缓移到唇上）我会救你的。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "【幻境结束。】",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "（睁开眼）（唇上感觉有些异样的触感）（垂下眼看）（嘴里被放了一片花瓣）",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "（手指还压在开拓者的唇上）（察觉到开拓者的动作缓缓收回手）\n\n（面上又挂上笑）哎呀~时间到了。不过我们会再见的小可爱~下次遇到坏人可不许再分神了。",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "嘀嗒。\n\n（水滴声响起，周围的一起又恢复了原来的模样）（似乎刚才的一切只是一场幻觉）",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "（挠了挠头）（垂下眼）（大剑上不知何时牢牢的挂着一个紫罗兰的挂件）\n\n不是幻觉吗。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "（三月七小跑过来拉着开拓者去摸鱼）（可开拓者还沉浸在刚才发生的事之中）",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "【会议室】",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "（台上的人叽里咕噜说着什么）（开拓者不语只是不断的把玩着大剑上的挂坠）",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "（三月七小声道的暗示开拓者不要把大剑放到桌子上，他们已经被注视很久了）",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "\n（开拓者沉默）（开拓者停手）（开拓者默默将大剑从桌子上拿下）\n..............\n\n（这是才听到部长在说今天有位星际专家即将抵达，让他们注意一下仪容仪表）",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "（戳了戳三月七）新成员叫什么来着？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "（三月七挠了挠头，尴尬的笑了笑表示名字太长了她也没记住）（还是一旁的丹恒比较靠谱）",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "（摸了摸下巴）维维安·德雷思博士。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "（三月七震惊今天的开拓者居然说话了！）",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "（有些无奈的看向三月七）做什么...我是不爱说话，不是不会说话.......\n\n（说是这样说，开拓者还是下意识的扫了一眼手腕处的能量条，看着20%的进度不自觉愣住）",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "（紫罗兰的香味袭来）（高跟鞋的声音响起）",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "（瞳孔不自觉放大）（猛的抬头）",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "各位早上好，我是星际创伤专家（那双紫色的眼睛直直的盯着开拓者）维维安·德雷思。（脸上的笑中有些戏谑）",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    }
+  ],
+  "intimacy_level": 0.3300000000000001,
+  "starting_intimacy_level": 0,
+  "completed": false,
+  "user_id": "user_10",
+  "user_name": "开拓者",
+  "_creation_metadata": {
+    "created_at": 1753768360,
+    "created_by_ip": "127.0.0.1",
+    "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+    "version": "1.0"
+  },
+  "category": "legacy_rejected",
+  "rejection_reason": "写的内容是作为聊天向的，场景试对话不符合内容模式",
+  "real_name": "开拓者",
+  "legacy_timestamp": 1761107398
+}

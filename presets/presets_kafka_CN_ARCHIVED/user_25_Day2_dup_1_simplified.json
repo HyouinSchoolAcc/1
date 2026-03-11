@@ -1,0 +1,147 @@
+{
+  "character_schedule": {
+    "afternoon": "假扮成统治家族女儿的顾问。她聪明、苦闷且无聊。正合适。",
+    "day": 2,
+    "evening": "植入了一个暗示，即'自由'和'母亲的期望'是不相容的。女儿情绪激烈，发誓了要加入反叛军。",
+    "morning": "托银狼去调查了下星核位置，具体地点在一个很深的地下部位，里面有个反有机物种的防护罩，且使用协议目前还不明了在谁控制权里",
+    "night": "这个小姑娘真好懂，轻轻一推就倒了。不知道那孩子是不是也这么容易看透？应该不会，那才好玩。",
+    "noon": "出去逛逛，观察统治阶层关系树"
+  },
+  "user_schedule": {
+    "day": 2,
+    "morning": "宿醉的他头晕脑胀，早上十点半被迫起床吃药",
+    "noon": "中午十二点半，老戏码，被迫起床上班",
+    "afternoon": "今天接到新人offer，无情拒绝，进怪诞社的标准一定是要怪诞，正经人不要",
+    "evening": "工作状态欠佳，准时下班回家休息"
+  },
+  "history": "",
+  "relationship": "Continuing relationship from previous interactions.",
+  "dialogue": [
+    {
+      "content": "醒了吗，感觉身体怎样",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "喲——居然还会嘘寒问暖？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "被普通问候一句就觉得稀奇？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "我只是不想看你宿醉后出糗罢了",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "难不成 你还盼我有其他举动？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "不敢不敢",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "今天，需要怪诞的灵感来作为交易吗？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "今天没什么状态 不需要",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "不过 你想问什么 随意吧",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "我倒是没什么想问的",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "不过今天发生了一件趣事",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "统治家族的女儿，居然发了誓要加入反叛军",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": " 啊？那统治军不是炸了吗？外患未除，内乱已至",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "是的 无趣的世界 总该迎来一些趣事来当调味剂",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "我赞成",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "在我看来 循规蹈矩的艺术世界 需要一些怪诞的元素来点缀",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "我渐渐明白你的意思了",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "如果你真能和我产生共鸣 要不加入我们怪诞社？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "...这才是真正目的吗？",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "打消这个念头吧 姐姐没空陪你玩",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "content": "别这么快下定论嘛",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "没回复，睡觉了？",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "好吧，晚安",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    }
+  ],
+  "intimacy_level": 0.7000000000000002,
+  "starting_intimacy_level": 0.47000000000000014,
+  "completed": false,
+  "user_name": "林京",
+  "character_name": "Kafka",
+  "category": "legacy_rejected",
+  "assessment_timestamp": "2025-09-03T18:21:38.718Z",
+  "problems_count": 1,
+  "rejection_timestamp": "2025-09-03T18:21:38.718Z",
+  "real_name": "林佳",
+  "legacy_timestamp": 1761107398
+}

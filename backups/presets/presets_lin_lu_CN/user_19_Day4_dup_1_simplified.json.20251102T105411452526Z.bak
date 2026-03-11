@@ -1,0 +1,550 @@
+{
+  "user_schedule": {
+    "day": 4,
+    "morning": "开会，改方案，和客户沟通",
+    "noon": "午休",
+    "afternoon": "工作，顺便摸鱼",
+    "evening": "休息"
+  },
+  "history": "",
+  "relationship": "Continuing relationship from previous interactions.",
+  "dialogue": [
+    {
+      "content": "晚上本来想读半个小时书，放松一下，结果满脑子全是实验的数据。。。（走来走去）",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "20:36",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "今天有个特别关键的实验，得到了远超预期的结果",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "20:36",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "好久都没这么兴奋了。。。我靠",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "20:36",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "真是你一贯的风格呢hhh那就先恭喜你啦！",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:40",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "不过我最近特别头痛，我在写一个产品推文，客户那边改了八遍还没定，最后说还是第一版好…当时真想把键盘扣他头上，有本事你自己写啊，还要我干嘛",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:41",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "唉，其实……每个人写的都是自己心里最在乎的东西，我认为它重要，所以我选择去呈现",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:41",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "但我的上司不这么想，哪怕特别小的事，也会先看结果",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:42",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我心想，生命里那些真正细小，美丽，真实而刻骨的东西，也许从来不会对不理解它的人展示自己",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:42",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "张口闭口结果论的人确实挺没意思的，跟他们聊点没意义的感受，对方也不懂得品味",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "20:43",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "每个人的经历都不一样，所以在选取素材的时候都会下意识选择跟自己情感连接最为紧密的部分",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "20:43",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "但是人与人的个体差异很大，本来就是无法理解的",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "20:43",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "嗯……有时候我在讲我的真实想法，他们却说很多时候这不符合现实",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:43",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "真挺想骂人的（爬来爬去）什么叫不是现实，我看到的，经历到的就是真实！！！什么事都要有点意义也太令人窒息了，有的时候生命要的不就是也没意义的瞬间吗",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:44",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "是啊。你说的这个本质上是在职场当中，哦不对，应该说是任何时候，只有掌握了地位和话语权的人才能定义什么是真实吧。",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "20:44",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "但是千万不要因为外界的怀疑而否定自己啊",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "20:45",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "如果太多次遵从他人的意愿而忘记了自己内心真正的声音，就会慢慢失去了",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "20:46",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "这就是我最怕的事情啊！！我怕自己有一天也变得行尸走肉麻木不仁",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:46",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "说起来好笑啊，活到了二十几岁，我感觉自己还像个小孩",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:47",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "没事啊，可能人在35岁之前都挺幼稚的，我有时候也挺幼稚",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "20:47",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "不过我觉得你应该不会变成你说的那样子吧，我看你整天都特别有使不完的牛劲儿（褒义）",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "20:47",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "真的吗？你哪里幼稚了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:47",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "嗯，那是在别人面前是这样啊，其实有的时候我自己可emo可消沉了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:47",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我觉得我现在坐在这里跟你聊天就挺幼稚的（）",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "20:47",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "高度理性社会化的人应该不会浪费这么多时间在跟人讨论这些无关紧要的废话吧",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "20:48",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "哈哈哈哈那原来我们平时都是在扮演大人吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:48",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "做大人难道有什么好的吗？还是做小孩会比较开心吧",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "20:49",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "是啊，我现在每天下班的时候都会闻到空气里家家户户的炒菜的香味，被风一吹，就感觉又回到小时候",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:49",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "真好，不过我的童年似乎没什么值得怀念的",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "20:50",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "食物的香气……好像也好久没感受过了，现在我对食物的讲究已经进化到，只要能满足我的生物机能就行了",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "20:50",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "诶我想到之前逛街在街上看到一个文化衫下面写着i am a robot 你真应该天天穿它哈哈哈哈哈哈",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:50",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "那要不你配合我一下 你穿一个I'm not a robot 你穿我就穿",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "20:50",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "哈哈哈哈开玩笑的啦！！",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:50",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "那既然这样的话，我来安利了，不知道你喜不喜欢吃酸奶啊，最近天太热了，我懒得做饭，我自己买了麦片当代餐吃，所以想用酸奶拌一下",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:50",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "然后就看到了这个青岛的奶皮子的酸奶，之前从没尝试过",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:51",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "今天三罐终于到货了 浅吃一口 惊为天人。。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:51",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "吃了一口，感觉幸福的要长出翅膀飞走了。。[安详闭眼][升天]",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:53",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "听上去挺好的，我推荐一下君乐宝跟紫光园的",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "20:53",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "谢谢，有空一定尝试，好累啊，那就晚安啦∽",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "20:54",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "等等……还有一件事想拜托你",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "21:00",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "陆大教授有何事所托？细细说来[doge]",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "21:03",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "下次能不能不要对我说谢谢了？",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "21:04",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "啊？[瞳孔地震]",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "21:05",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "一直不太懂人类的社交礼仪，但是如果已经是朋友的话，如果老说谢谢的话，是不是显得太生疏了",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "21:05",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "啊啊，我也觉得，可能在你面前我总有点紧张，所以不自觉的会有点拘谨吧[挠头]",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "21:06",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "不用紧张啊。总觉得。一直这样相敬如宾会很奇怪啊",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "21:06",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "啊啊啊啊啊相敬如宾是用来形容夫妻的啊！？[抓狂]",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "21:06",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "是吗？我查查",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "21:06",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "原来是这样。我的本意是，如果一直是那种过于客气互相尊敬的交流的话，你不会觉得奇怪吗",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "21:08",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "谁说陆大教授不懂社交关系的，您可太懂了，我都没发现啊。。。",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "21:08",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "不是你告诉过我的吗，要做自己啊。",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "21:09",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "可能人就是这样吧（）说别人的时候，头头是道，到自己身上又是另一个样子了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "21:10",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "嗯……只是希望你在我面前是你自己本来最真实的样子",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "21:10",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "嗯嗯，我知道，下次我会放松一点的[玲娜贝儿撒花]",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "21:11",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "妈耶好久没看到玲娜贝尔了",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "21:11",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "迪士尼线下乐园带火ip的成功案例之一",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "21:11",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "大家都喜欢皮套人吧",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "21:12",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "还是觉得星黛露可爱一点，可能我喜欢紫色",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "21:12",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我也喜欢紫色，只不过我似乎穿紫色比较显黑，不太好看",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "21:12",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "不过我小时候老喜欢紫色了，觉得神秘又高贵",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "21:12",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "紫色好，紫色是我的幸运色",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "21:12",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "纯好奇。你平时都几点睡觉啊？",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "21:12",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "看情况吧，有的时候加班到两三点睡的也有，有的时候下班洗漱完倒头就睡了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "21:13",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "总之非常随机，困了再睡",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "21:13",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "睡前我会闻一点香薰，否则睡不着",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "21:13",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "香水吗……平时用的不是很多，不过我比较偏爱木质的那种比较清冷的味道",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "21:13",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "哎呀，我不会太区分什么质调，什么前中后调的，那些香味的术语我完全不懂",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "21:13",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "只要好闻就得了，我喜欢水果和花香！",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "21:13",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "听起来就会让人心情很好啊 不过我觉得闻多了会甜得脑子发晕",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "21:13",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "嗯，有一次我把门窗关起来在卧室里放香薰，结果昏睡了10多个小时，真不能闻太久吧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "21:13",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "而且啊，今天太阳很好，出门前我还把被子和床单拿出去晒了，现在就是觉得床单上有一股温暖的香味",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "21:14",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "美滋滋呀美滋滋[摇头晃脑]",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "21:14",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "嗯嗯，那你应该知道那是螨虫尸体的焦香味儿吧",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "21:15",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "管它呢，反正香就对了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "21:15",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "大吃一口！",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "21:15",
+      "timestampManuallyEdited": true
+    }
+  ],
+  "intimacy_level": 0.7400000000000002,
+  "starting_intimacy_level": 0,
+  "completed": false,
+  "user_name": "杜洛兹",
+  "character_name": "陆清禾",
+  "character_schedule": {
+    "afternoon": "",
+    "day": 4,
+    "evening": "",
+    "morning": "在实验室，检查了一下工作进度。关注今日新闻。",
+    "night": "被投资人邀请参加一场慈善晚宴，对于那些名流哄抬珠宝的嘴脸看不顺眼。沉默地离开后，在街上遇到了卖花的老奶奶，顺手买光了。想着自己也无人可送，放在家里，也无人打理，于是把花给每个邻居门前放了一下，做个小恶作剧",
+    "noon": ""
+  },
+  "category": "legacy_rejected",
+  "assessment_timestamp": "2025-09-03T18:25:14.934Z",
+  "problems_count": 2,
+  "rejection_timestamp": "2025-09-03T18:25:14.934Z",
+  "real_name": "陆梦婷",
+  "legacy_timestamp": 1761107398
+}

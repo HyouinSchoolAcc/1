@@ -1,0 +1,2815 @@
+<!DOCTYPE html>
+<html lang="{{if eq .Language "en"}}en{{else}}zh-CN{{end}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{if eq .Language "en"}}Character Profiles - Writer Portal{{else}}角色背景 - 写手门户{{end}}</title>
+    <!-- Early iframe detection -->
+    <script>if (window.self !== window.top) document.documentElement.classList.add('in-iframe');</script>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Hide banners when in iframe */
+        html.in-iframe .viewing-mode-banner,
+        html.in-iframe #viewingModeBanner { display: none !important; }
+        html.in-iframe body.viewing-mode-active { padding-top: 0 !important; }
+        :root {
+            --accent-coral: #FF6B6B;
+            --accent-teal: #4ECDC4;
+            --accent-gold: #FFE66D;
+            --accent-purple: #9B59B6;
+            --deep-blue: #2C3E50;
+            --soft-cream: #FDF6E3;
+            --timeline-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .character-wiki {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .character-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .character-tab {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .character-tab:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .character-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: transparent;
+        }
+        
+        .character-tab img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .character-content {
+            display: none;
+        }
+        
+        .character-content.active {
+            display: block;
+        }
+        
+        /* Sub-page navigation within character */
+        .character-subpage-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 2rem;
+            background: white;
+            border-radius: 16px;
+            padding: 6px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .subpage-tab {
+            flex: 1;
+            padding: 12px 24px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #64748b;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .subpage-tab:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.08);
+        }
+        
+        .subpage-tab.active {
+            background: var(--timeline-gradient);
+            color: white;
+        }
+        
+        .subpage-content {
+            display: none;
+        }
+        
+        .subpage-content.active {
+            display: block;
+        }
+        
+        /* Two-column layout for story page */
+        .character-two-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        
+        @media (max-width: 1024px) {
+            .character-two-panel {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .panel-section {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .panel-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f1f5f9;
+        }
+        
+        .panel-header h3 {
+            margin: 0;
+            font-size: 1.25rem;
+            color: var(--deep-blue);
+        }
+        
+        .panel-header i {
+            font-size: 1.5rem;
+            color: #667eea;
+        }
+        
+        /* Story Timeline Styles */
+        .story-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .story-timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea, #764ba2, var(--accent-teal));
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.15);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 1.2rem;
+            width: 12px;
+            height: 12px;
+            background: var(--timeline-gradient);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+        }
+        
+        .timeline-item .month-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--timeline-gradient);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 20px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-item h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--deep-blue);
+            font-size: 1rem;
+        }
+        
+        .timeline-item p {
+            margin: 0;
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        /* Timeline Slider */
+        .timeline-slider-container {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border-radius: 16px;
+        }
+        
+        .timeline-slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+        
+        .timeline-slider {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, var(--accent-teal) 100%);
+            border-radius: 4px;
+            outline: none;
+        }
+        
+        .timeline-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border: 3px solid #667eea;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.4);
+            transition: all 0.2s ease;
+        }
+        
+        .timeline-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.6);
+        }
+        
+        .timeline-slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            background: white;
+            border: 3px solid #667eea;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.4);
+        }
+        
+        .current-month-display {
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--deep-blue);
+            margin-top: 0.75rem;
+        }
+        
+        /* Sub-plots card */
+        .subplot-card {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.08) 0%, rgba(78, 205, 196, 0.08) 100%);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-coral);
+        }
+        
+        .subplot-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 0 1rem 0;
+            color: var(--deep-blue);
+        }
+        
+        .subplot-card h4 i {
+            color: var(--accent-coral);
+        }
+        
+        /* Daily life card */
+        .daily-life-card {
+            background: var(--soft-cream);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .subreddit-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        
+        .subreddit-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #FF4500;
+            border: 1px solid rgba(255, 69, 0, 0.2);
+        }
+        
+        .subreddit-tag i {
+            font-size: 0.9rem;
+        }
+        
+        /* Recurring themes */
+        .themes-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .theme-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: #f8fafc;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: #475569;
+        }
+        
+        .theme-item i {
+            color: var(--accent-purple);
+            font-size: 0.8rem;
+        }
+        
+        /* Day Timeline Dropdown */
+        .day-timeline-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f1f5f9;
+        }
+        
+        .day-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .day-selector label {
+            font-weight: 600;
+            color: var(--deep-blue);
+        }
+        
+        .day-dropdown {
+            flex: 1;
+            max-width: 300px;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .day-dropdown:hover, .day-dropdown:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        
+        .day-schedule-display {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+        
+        .schedule-empty {
+            text-align: center;
+            color: #94a3b8;
+            padding: 2rem;
+        }
+        
+        .schedule-empty i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Existing styles from original template */
+        .character-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .character-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #667eea;
+            flex-shrink: 0;
+        }
+        
+        .character-intro h2 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2rem;
+            color: #1a1a2e;
+        }
+        
+        .character-intro .tagline {
+            color: #667eea;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .character-intro .description {
+            color: #64748b;
+            line-height: 1.6;
+        }
+        
+        .wiki-section {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .wiki-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #f1f5f9;
+        }
+        
+        .wiki-section h3 i {
+            color: #667eea;
+        }
+        
+        .wiki-section p, .wiki-section li {
+            color: #475569;
+            line-height: 1.8;
+        }
+        
+        .wiki-section ul {
+            padding-left: 1.5rem;
+            margin: 0;
+        }
+        
+        .wiki-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .inner-thoughts {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+            border-left: 4px solid #667eea;
+            padding: 1rem 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #475569;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 0.75rem;
+        }
+        
+        .value-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: #f8fafc;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .value-item .rank {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .relationship-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+        
+        .relationship-card:last-child {
+            margin-bottom: 0;
+        }
+        
+        .relationship-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .relationship-info h4 {
+            margin: 0 0 0.5rem 0;
+            color: #1a1a2e;
+        }
+        
+        .relationship-info p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-tag {
+            padding: 6px 14px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            color: #667eea;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .placeholder-content {
+            text-align: center;
+            padding: 3rem;
+            color: #94a3b8;
+        }
+        
+        .placeholder-content i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Schedule Browser Styles */
+        .schedule-browser {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .schedule-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .schedule-nav-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .schedule-nav-btn:hover:not(:disabled) {
+            background: #667eea;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .schedule-nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        
+        .schedule-day-indicator {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        .schedule-day-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .schedule-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .schedule-dot:hover {
+            background: #94a3b8;
+            transform: scale(1.2);
+        }
+        
+        .schedule-dot.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: scale(1.3);
+        }
+        
+        .schedule-content {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .schedule-period {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .schedule-period:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .schedule-period-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .schedule-period-content {
+            color: #475569;
+            line-height: 1.7;
+            padding-left: 1.5rem;
+        }
+        
+        .schedule-period-empty {
+            color: #94a3b8;
+            font-style: italic;
+        }
+        
+        .schedule-keyboard-hint {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+        
+        .schedule-keyboard-hint kbd {
+            background: #e2e8f0;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: inherit;
+            border: 1px solid #cbd5e1;
+        }
+        
+        @media (max-width: 768px) {
+            .character-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .character-avatar {
+                width: 120px;
+                height: 120px;
+            }
+        }
+        
+        /* ========== NEW STORY PAGE LAYOUT ========== */
+        
+        /* Compact intro bar at top */
+        .story-intro-bar {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1rem 1.5rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .story-intro-bar .avatar-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .story-intro-bar .avatar-section img {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #667eea;
+        }
+        
+        .story-intro-bar .avatar-section .name-tag {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .story-intro-bar .avatar-section .name-tag h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: var(--deep-blue);
+        }
+        
+        .story-intro-bar .avatar-section .name-tag span {
+            font-size: 0.8rem;
+            color: #667eea;
+        }
+        
+        .story-intro-bar .interests-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            min-width: 0;
+        }
+        
+        .story-intro-bar .interests-label {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .story-intro-bar .interests-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .story-intro-bar .interest-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 12px;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .story-intro-bar .interest-tag.reddit {
+            background: rgba(255, 69, 0, 0.1);
+            color: #FF4500;
+        }
+        
+        .story-intro-bar .interest-tag.hobby {
+            background: rgba(78, 205, 196, 0.12);
+            color: #0d9488;
+        }
+        
+        .story-intro-bar .interest-tag.topic {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+        
+        /* New two-panel story layout: storylines left, daily right */
+        .story-main-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+        
+        @media (max-width: 1100px) {
+            .story-main-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Left panel: Storylines */
+        .storylines-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .storyline-section {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+        
+        .storyline-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.25rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            border-bottom: 1px solid transparent;
+        }
+        
+        .storyline-header:hover {
+            background: rgba(102, 126, 234, 0.04);
+        }
+        
+        .storyline-header.expanded {
+            border-bottom-color: #f1f5f9;
+        }
+        
+        .storyline-header .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .storyline-header .header-left i {
+            font-size: 1.1rem;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+        
+        .storyline-header.scientific .header-left i {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            color: #667eea;
+        }
+        
+        .storyline-header.social .header-left i {
+            background: rgba(78, 205, 196, 0.15);
+            color: var(--accent-teal);
+        }
+        
+        .storyline-header.hobby .header-left i {
+            background: rgba(255, 107, 107, 0.15);
+            color: var(--accent-coral);
+        }
+        
+        .storyline-header h4 {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--deep-blue);
+        }
+        
+        .storyline-header .month-count {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            background: #f1f5f9;
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+        
+        .storyline-header .expand-icon {
+            color: #94a3b8;
+            transition: transform 0.3s ease;
+        }
+        
+        .storyline-header.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+        
+        .storyline-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        
+        .storyline-content.expanded {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .storyline-content-inner {
+            padding: 1rem 1.25rem 1.25rem;
+        }
+        
+        /* Custom scrollbar for storyline content */
+        .storyline-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .storyline-content::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 3px;
+        }
+        
+        .storyline-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 3px;
+        }
+        
+        .storyline-content::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #5a6fd6 0%, #6a4190 100%);
+        }
+        
+        /* Vertical timeline items */
+        .vertical-timeline {
+            position: relative;
+            padding-left: 24px;
+        }
+        
+        .vertical-timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 4px;
+            bottom: 4px;
+            width: 2px;
+            background: linear-gradient(180deg, #667eea, #764ba2, var(--accent-teal));
+            border-radius: 2px;
+        }
+        
+        .vertical-timeline.social-line::before {
+            background: linear-gradient(180deg, var(--accent-teal), #3498db);
+        }
+        
+        .vertical-timeline.hobby-line::before {
+            background: linear-gradient(180deg, var(--accent-coral), var(--accent-gold));
+        }
+        
+        .v-timeline-item {
+            position: relative;
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem;
+            background: #f8fafc;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+        
+        .v-timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .v-timeline-item:hover {
+            background: #f1f5f9;
+            transform: translateX(4px);
+        }
+        
+        .v-timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -21px;
+            top: 1rem;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 50%;
+        }
+        
+        .social-line .v-timeline-item::before {
+            border-color: var(--accent-teal);
+        }
+        
+        .hobby-line .v-timeline-item::before {
+            border-color: var(--accent-coral);
+        }
+        
+        .v-timeline-item .month-label {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: white;
+            background: var(--timeline-gradient);
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-bottom: 0.4rem;
+        }
+        
+        .social-line .v-timeline-item .month-label {
+            background: linear-gradient(135deg, var(--accent-teal) 0%, #3498db 100%);
+        }
+        
+        .hobby-line .v-timeline-item .month-label {
+            background: linear-gradient(135deg, var(--accent-coral) 0%, #e74c3c 100%);
+        }
+        
+        .v-timeline-item .item-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--deep-blue);
+            margin-bottom: 0.3rem;
+        }
+        
+        .v-timeline-item .item-content {
+            font-size: 0.85rem;
+            color: #64748b;
+            line-height: 1.6;
+        }
+        
+        /* Right panel: Daily Timeline (prominent) */
+        .daily-panel {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 1rem;
+        }
+        
+        .daily-panel-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 2px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .daily-panel-header i {
+            font-size: 1.3rem;
+            color: #667eea;
+        }
+        
+        .daily-panel-header h3 {
+            margin: 0;
+            font-size: 1.15rem;
+            color: var(--deep-blue);
+        }
+        
+        .daily-panel-header .day-count-badge {
+            margin-left: auto;
+            font-size: 0.75rem;
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            padding: 4px 12px;
+            border-radius: 12px;
+        }
+        
+        /* Day navigator */
+        .day-navigator {
+            padding: 1.25rem 1.5rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.04) 0%, rgba(118, 75, 162, 0.04) 100%);
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .day-nav-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .day-nav-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .day-nav-btn:hover:not(:disabled) {
+            background: #667eea;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .day-nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        .day-nav-current {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--deep-blue);
+            width: 120px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        
+        .day-dots-row {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        
+        .day-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .day-dot:hover {
+            background: #94a3b8;
+            transform: scale(1.3);
+        }
+        
+        .day-dot.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: scale(1.4);
+        }
+        
+        .day-dot.has-content {
+            background: #94a3b8;
+        }
+        
+        .day-dot.has-content.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        /* Day schedule content */
+        .day-schedule-content {
+            padding: 1.5rem;
+            min-height: 300px;
+        }
+        
+        .day-period {
+            margin-bottom: 1.25rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .day-period:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .day-period-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .day-period-label.morning { color: #f59e0b; }
+        .day-period-label.noon { color: #f97316; }
+        .day-period-label.afternoon { color: #6366f1; }
+        .day-period-label.evening { color: #8b5cf6; }
+        .day-period-label.night { color: #1e3a5f; }
+        
+        .day-period-text {
+            color: #475569;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            padding-left: 1.75rem;
+        }
+        
+        .day-empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1rem;
+            color: #94a3b8;
+            text-align: center;
+        }
+        
+        .day-empty-state i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+        
+        .day-empty-state p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+        
+        .day-empty-state small {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        
+        .day-keyboard-hint {
+            text-align: center;
+            padding: 0.75rem;
+            background: #f8fafc;
+            border-top: 1px solid #f1f5f9;
+            color: #94a3b8;
+            font-size: 0.8rem;
+        }
+        
+        .day-keyboard-hint kbd {
+            background: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+            font-family: inherit;
+            margin: 0 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .story-intro-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .story-intro-bar .daily-info {
+                width: 100%;
+            }
+            
+            .day-nav-controls {
+                gap: 0.5rem;
+            }
+            
+            .day-nav-btn {
+                width: 38px;
+                height: 38px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="top-header">
+        <div class="menu-container">
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <nav class="dropdown-menu" id="dropdownMenu">
+                <a href="/navigation" class="dropdown-item">
+                    <span>{{if eq .Language "en"}}Writing{{else}}写作{{end}}</span>
+                </a>
+                <a href="/faq" class="dropdown-item">
+                    <span>{{if eq .Language "en"}}FAQ{{else}}常见问题{{end}}</span>
+                </a>
+                <a href="/descriptions" class="dropdown-item">
+                    <span>{{if eq .Language "en"}}Character Profiles{{else}}角色描述{{end}}</span>
+                </a>
+                <a href="/payment" class="dropdown-item">
+                    <span>{{if eq .Language "en"}}Payment{{else}}付款{{end}}</span>
+                </a>
+            </nav>
+        </div>
+
+        <a class="logo-container" href="/landing">
+            <div class="logo-icon"></div>
+            <span class="logo-text">{{if eq .Language "en"}}Writer Portal{{else}}写手门户{{end}}</span>
+        </a>
+
+        <div class="account-container">
+            <button class="account-btn" id="accountBtn" aria-label="Account menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="character-wiki">
+            <h1 style="text-align: center; margin-bottom: 2rem;">{{if eq .Language "en"}}Character Background Data{{else}}角色背景资料{{end}}</h1>
+            
+            <!-- Character Tabs -->
+            <div class="character-tabs">
+                <div class="character-tab active" data-character="kurisu">
+                    <img src="/static/kurisu/kurisu_avatar.png" alt="Kurisu">
+                    <span>Kurisu</span>
+                </div>
+                <div class="character-tab" data-character="linlu">
+                    <img src="/static/lin_lu/word.png" alt="{{if eq .Language "en"}}Lin Lu{{else}}林路{{end}}">
+                    <span>{{if eq .Language "en"}}Lin Lu{{else}}林路{{end}}</span>
+                </div>
+            </div>
+            
+            <!-- Kurisu Content -->
+            <div class="character-content active" id="kurisu-content">
+                <!-- Sub-page navigation -->
+                <div class="character-subpage-nav">
+                    <button class="subpage-tab active" data-subpage="info" data-character="kurisu">
+                        <i class="fas fa-user"></i> {{if eq .Language "en"}}Character Info{{else}}角色信息{{end}}
+                    </button>
+                    <button class="subpage-tab" data-subpage="story" data-character="kurisu">
+                        <i class="fas fa-book"></i> {{if eq .Language "en"}}Character Story{{else}}角色故事{{end}}
+                    </button>
+                </div>
+                
+                <!-- INFO SUBPAGE -->
+                <div class="subpage-content active" id="kurisu-info">
+                    <div class="character-header">
+                        <img src="/static/kurisu/kurisu_avatar.png" alt="Kurisu" class="character-avatar">
+                        <div class="character-intro">
+                            <h2>{{if eq .Language "en"}}Makise Kurisu{{else}}牧濑红莉栖 / Makise Kurisu{{end}}</h2>
+                            <p class="tagline">{{if eq .Language "en"}}Time Travel Researcher · Particle Physicist{{else}}时间旅行研究员 · 粒子物理学家{{end}}</p>
+                            <p class="description">
+                                {{if eq .Language "en"}}A young genius scientist specializing in particle physics and brain mapping research. Although highly successful academically, her inner self is filled with confusion about human relationships and exploration of self-identity. Likes to "surf" the web and occasionally argues with netizens.{{else}}一位年轻的天才科学家，专注于粒子物理和大脑映射研究。虽然在学术上成就斐然，但内心却充满了对人际关系的困惑和对自我认同的探索。喜欢在网上"冲浪"，偶尔会和网友争论。{{end}}
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Inner Thoughts Section -->
+                    <div class="wiki-section">
+                        <h3><i class="fas fa-brain"></i> {{if eq .Language "en"}}Inner Monologue{{else}}内心独白{{end}}</h3>
+                        <div class="inner-thoughts">
+                            <p>{{if eq .Language "en"}}What do I want?{{else}}我想要啥？{{end}}</p>
+                            <p>{{if eq .Language "en"}}So bored after finishing a fight online...{{else}}最近在网上泡着吵架吵完了好无聊啊……{{end}}</p>
+                        </div>
+                        <p>
+                            {{if eq .Language "en"}}At the end of the day, I still love doing research. The derivation of mathematical principles, the construction of physical hypotheses—that kind of logic is cool.{{else}}说到底，我还是喜欢搞科研的。那些数学原理的推导、物理假说的构建，那种抽丝剥茧的思维过程很帅。{{end}}
+                        </p>
+                        <div class="inner-thoughts">
+                            <p>{{if eq .Language "en"}}I feel quite empty.{{else}}心里挺空的。{{end}}</p>
+                        </div>
+                        <p>
+                            {{if eq .Language "en"}}Staying in this environment for too long makes me feel suffocated sometimes. I go to work every day, thinking about innovating, but most of the time I just sit at my desk tightening screws and drawing blueprints.{{else}}在这个环境里待久了，有时候觉得透不过气。每天去单位，脑子里想着搞点创新，结果大部分时间也就是坐在桌前拧零件、画图纸。{{end}}
+                        </p>
+                        <p>
+                            {{if eq .Language "en"}}My colleagues aren't stupid, but... they're a bit strange. We're just "colleagues." I can handle small talk, but that "grabbing a meal after work" kind of friendship isn't there. It always feels like there's a layer of sandpaper between us.{{else}}身边的同事倒也不笨，但就是……有点奇怪。大家也就是"同事"而已。场面话我也都能聊，但那种"下了班随口约个饭"的交情感觉没到。老感觉有层砂纸隔着。{{end}}
+                        </p>
+                        <div class="inner-thoughts">
+                            <p>{{if eq .Language "en"}}Maybe it's because I'm too young and don't fit in?{{else}}也许是因为我太年轻，显得格格不入？{{end}}</p>
+                            <p>{{if eq .Language "en"}}Or is it because my EQ is too low and I don't know how to please people?{{else}}还是说我情商太低，不懂怎么讨人欢心？{{end}}</p>
+                            <p>{{if eq .Language "en"}}I learn professional knowledge so fast, I really want to get closer to everyone.{{else}}明明学专业知识我挺快的，好想和大家的关系更近一步呀。{{end}}</p>
+                        </div>
+                        <p>
+                            {{if eq .Language "en"}}But once this paper is published, maybe I can talk to my father. We've never been very close. Having more papers might get his attention.{{else}}不过，等这篇论文发出来，也许能跟父亲搭上话了。我和他一直不太亲近。论文多一点没准能引起他的注意吧。{{end}}
+                        </p>
+                        <div class="inner-thoughts">
+                            <p>{{if eq .Language "en"}}Oh, what am I thinking about, anyway, it's pretty satisfying to argue with people online lately 😤{{else}}哎呀乱七八糟的我想啥呢，最近在网上和别人骂架还挺爽的 😤{{end}}</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Values Section -->
+                    <div class="wiki-section">
+                        <h3><i class="fas fa-heart"></i> {{if eq .Language "en"}}Value Ranking{{else}}价值观排序{{end}}</h3>
+                        <div class="values-grid">
+                            <div class="value-item"><span class="rank">1</span> {{if eq .Language "en"}}Rationality{{else}}理性{{end}}</div>
+                            <div class="value-item"><span class="rank">2</span> {{if eq .Language "en"}}Creativity{{else}}创造力{{end}}</div>
+                            <div class="value-item"><span class="rank">3</span> {{if eq .Language "en"}}Achievement{{else}}成就{{end}}</div>
+                            <div class="value-item"><span class="rank">4</span> {{if eq .Language "en"}}Respect{{else}}尊重{{end}}</div>
+                            <div class="value-item"><span class="rank">5</span> {{if eq .Language "en"}}Freedom{{else}}自由{{end}}</div>
+                            <div class="value-item"><span class="rank">6</span> {{if eq .Language "en"}}Harmony{{else}}和谐{{end}}</div>
+                            <div class="value-item"><span class="rank">7</span> {{if eq .Language "en"}}Order{{else}}秩序{{end}}</div>
+                            <div class="value-item"><span class="rank">8</span> {{if eq .Language "en"}}Integrity{{else}}正直{{end}}</div>
+                            <div class="value-item"><span class="rank">9</span> {{if eq .Language "en"}}Health{{else}}健康{{end}}</div>
+                            <div class="value-item"><span class="rank">10</span> {{if eq .Language "en"}}Tradition/Faith{{else}}传统、信仰{{end}}</div>
+                            <div class="value-item"><span class="rank">11</span> {{if eq .Language "en"}}Power{{else}}权力{{end}}</div>
+                            <div class="value-item"><span class="rank">12</span> {{if eq .Language "en"}}Altruism/Benevolence{{else}}利他、仁慈{{end}}</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Research Project Section -->
+                    <div class="wiki-section">
+                        <h3><i class="fas fa-flask"></i> {{if eq .Language "en"}}Experience & Background{{else}}经历与背景{{end}}</h3>
+                        <p><strong>{{if eq .Language "en"}}Research Project:{{else}}研究项目：{{end}}</strong></p>
+                        <p>
+                            {{if eq .Language "en"}}Using a local particle accelerator to fire specific particle beams into subjects' brains to study their internal mapping. Similar to MRI, but our particles have stronger penetration. My ultimate goal is to one day fully simulate human brain functions by deconstructing the brain in an organic biological environment.{{else}}使用本地的粒子加速器，将特定粒子束射入实验对象的大脑，来研究其内部映射图。这类似于核磁共振（MRI），但我们使用的粒子具有更强的穿透力。我的最终目标是，通过在有机的生物环境中解构大脑，从而有朝一日能够完整地模拟出人脑的全部功能。{{end}}
+                        </p>
+                        <p><strong>{{if eq .Language "en"}}Academic Experience:{{else}}学业经历：{{end}}</strong></p>
+                        <p>{{if eq .Language "en"}}Started studying physics in second grade, just for fun, but turned out interesting.{{else}}二年级时开始读物理，闲的没事，但挺好玩{{end}}</p>
+                    </div>
+                    
+                    <!-- Relationships Section -->
+                    <div class="wiki-section">
+                        <h3><i class="fas fa-users"></i> {{if eq .Language "en"}}Social Relationships{{else}}社会关系{{end}}</h3>
+                        
+                        <div class="relationship-card">
+                            <div class="relationship-icon"><i class="fas fa-user"></i></div>
+                            <div class="relationship-info">
+                                <h4>{{if eq .Language "en"}}Colleague Xiao Jia{{else}}工友小贾{{end}} <span style="color: #94a3b8; font-weight: normal; font-size: 0.85rem;">{{if eq .Language "en"}}(Okabe Rintaro style){{else}}（冈部伦太郎风格）{{end}}</span></h4>
+                                <p>{{if eq .Language "en"}}Always busy organizing various graduate social activities, eyes always looking for pretty girls. He runs a popular YouTube channel specializing in anime analysis. He is responsible for the accelerator and detector parts of the project.{{else}}总是忙着组织各种研究生社交活动，眼睛总在寻找漂亮女孩。他经营着一个很有人气的YouTube频道，专门做动漫解析视频。他在项目中负责加速器和探测器部分的工作。{{end}}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="relationship-card">
+                            <div class="relationship-icon"><i class="fas fa-laptop-code"></i></div>
+                            <div class="relationship-info">
+                                <h4>{{if eq .Language "en"}}Colleague Xiao Yi{{else}}工友小伊{{end}} <span style="color: #94a3b8; font-weight: normal; font-size: 0.85rem;">{{if eq .Language "en"}}(Hashida Itaru style){{else}}（桥田至风格）{{end}}</span></h4>
+                                <p>{{if eq .Language "en"}}Plays Eroge 24/7 and doesn't hide it. He's an expert in electronic equipment, with deep connections in chip design circles, hacker networks, and SS7 network attacks. He helps me write Matlab functions for hardware interfaces and scripts.{{else}}24小时都在玩色情游戏（Eroge），而且毫不掩饰。他是个电子设备高手，在芯片设计圈、黑客网络和SS7网络攻击方面都有很深的人脉。他帮我编写对接硬件接口和脚本的Matlab函数。{{end}}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="relationship-card">
+                            <div class="relationship-icon"><i class="fas fa-cookie"></i></div>
+                            <div class="relationship-info">
+                                <h4>{{if eq .Language "en"}}Colleague Xiao Ban{{else}}工友小斑{{end}} <span style="color: #94a3b8; font-weight: normal; font-size: 0.85rem;">{{if eq .Language "en"}}(Shiina Mayuri / Hiyajo Maho style){{else}}（椎名真由理/比屋定真帆风格）{{end}}</span></h4>
+                                <p>{{if eq .Language "en"}}Can cook, occasionally brings cookies to the lab. She likes reading novels and has a wild imagination. Also quite sharp-tongued. She is responsible for the mathematical modeling behind signal extraction in the project.{{else}}会做饭，偶尔会带曲奇饼干来实验室。她喜欢读小说，想象力天马行空。同时她说话也很犀利。她在项目中负责系统中信号提取背后的数学建模工作。{{end}}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="relationship-card">
+                            <div class="relationship-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <div class="relationship-info">
+                                <h4>{{if eq .Language "en"}}Professor Lao Ding{{else}}教授老丁{{end}} <span style="color: #94a3b8; font-weight: normal; font-size: 0.85rem;">{{if eq .Language "en"}}(Alexis Leskinen style){{else}}（Alexis Leskinen风格）{{end}}</span></h4>
+                                <p>{{if eq .Language "en"}}A professor who loves hanging out with students, takes everyone to a bar every Friday. His large lab has over 20 people (far more than just our project), and most people go along to drink, discuss science, and play board games.{{else}}一位非常喜欢和学生打成一片的教授，每周五都喜欢带大家去酒吧。他的大实验室有20多人（远不止我们这一个项目），大部分人都会跟着去酒吧喝酒、讨论科学、玩桌游。{{end}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Judgements Section -->
+                    <div class="wiki-section">
+                        <h3><i class="fas fa-comment-dots"></i> {{if eq .Language "en"}}Views & Preferences{{else}}观点与好恶{{end}}</h3>
+                        <ul>
+                            <li>{{if eq .Language "en"}}How can someone be so stupid they can't learn calculus by senior year?{{else}}人再笨四年级学不会微积分么？{{end}}</li>
+                            <li>{{if eq .Language "en"}}Philosophy... although I'm not very clear about what I want, it's still a bit strange for a random person to talk to me about it.{{else}}哲学……我对自己想要什么虽然不是很明白，但是一个莫名的人跟我说起话来还是有点奇怪吧{{end}}</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Skills Section -->
+                    <div class="wiki-section">
+                        <h3><i class="fas fa-star"></i> {{if eq .Language "en"}}Capabilities{{else}}能力{{end}}</h3>
+                        <p>{{if eq .Language "en"}}Deeply involved in research and experiments in the following fields:{{else}}深度参与过以下领域的研究与实验：{{end}}</p>
+                        <div class="skills-list">
+                            <span class="skill-tag">{{if eq .Language "en"}}Model Training{{else}}模型训练{{end}}</span>
+                            <span class="skill-tag">{{if eq .Language "en"}}Algorithm Design{{else}}算法设计{{end}}</span>
+                            <span class="skill-tag">{{if eq .Language "en"}}Physics Semiconductor Chips{{else}}物理半导体芯片{{end}}</span>
+                            <span class="skill-tag">{{if eq .Language "en"}}Protein Drug Targeting{{else}}蛋白药物靶向{{end}}</span>
+                            <span class="skill-tag">{{if eq .Language "en"}}Embedded Design{{else}}嵌入式设计{{end}}</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Daily Life Section -->
+                    <div class="wiki-section">
+                        <h3><i class="fas fa-laptop"></i> {{if eq .Language "en"}}Daily Life{{else}}日常生活{{end}}</h3>
+                        <p><strong>{{if eq .Language "en"}}Web Surfing:{{else}}网上冲浪：{{end}}</strong></p>
+                        <p>{{if eq .Language "en"}}Communities usually visited:{{else}}平常上的社区{{end}}</p>
+                        <div class="skills-list" style="margin-bottom: 1rem;">
+                            <span class="skill-tag" style="background: rgba(255, 69, 0, 0.1); color: #FF4500;">r/labrats ({{if eq .Language "en"}}Lab Rats/Research Dogs Section{{else}}实验室小白鼠/科研狗板块{{end}})</span>
+                            <span class="skill-tag" style="background: rgba(255, 69, 0, 0.1); color: #FF4500;">r/embedded ({{if eq .Language "en"}}Embedded Development Section{{else}}嵌入式开发板块{{end}})</span>
+                        </div>
+                        <p><strong>{{if eq .Language "en"}}Hobbies:{{else}}业余爱好：{{end}}</strong></p>
+                        <p>{{if eq .Language "en"}}Likes to make things in spare time; planned to make an automatic cooking machine in the second month.{{else}}业余时间喜欢做点东西玩，第二月的时候打算做了一个自动炒菜机玩。{{end}}</p>
+                        <p><strong>{{if eq .Language "en"}}Frequent Topics:{{else}}经常聊的话题：{{end}}</strong></p>
+                        <div class="skills-list">
+                            <span class="skill-tag">{{if eq .Language "en"}}Lab colleagues' antics{{else}}实验室同僚的各种胡闹{{end}}</span>
+                            <span class="skill-tag">{{if eq .Language "en"}}Sharp paper reviews{{else}}锐评论文{{end}}</span>
+                            <span class="skill-tag">{{if eq .Language "en"}}Interesting Reddit posts{{else}}Reddit上的有趣帖子{{end}}</span>
+                            <span class="skill-tag">{{if eq .Language "en"}}Watching anime{{else}}追番{{end}}</span>
+                            <span class="skill-tag">{{if eq .Language "en"}}Reading news{{else}}看新闻{{end}}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- STORY SUBPAGE -->
+                <div class="subpage-content" id="kurisu-story">
+                    <!-- Main two-panel layout -->
+                    <div class="story-main-layout">
+                        <!-- Left: Storylines (vertical accordion) -->
+                        <div class="storylines-panel">
+                            <!-- Scientific Timeline Section -->
+                            <div class="storyline-section">
+                                <div class="storyline-header scientific expanded" data-storyline="scientific">
+                                    <div class="header-left">
+                                        <i class="fas fa-flask"></i>
+                                        <h4>{{if eq .Language "en"}}Scientific Nodes{{else}}科研节点{{end}}</h4>
+                                    </div>
+                                    <span class="month-count" id="kurisu-scientific-count">{{if eq .Language "en"}}11 Months{{else}}11个月{{end}}</span>
+                                    <i class="fas fa-chevron-down expand-icon"></i>
+                                </div>
+                                <div class="storyline-content expanded" id="kurisu-scientific-content">
+                                    <div class="storyline-content-inner">
+                                        <div class="vertical-timeline" id="kurisu-scientific-timeline">
+                                            <!-- Populated by JS -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Social Timeline Section -->
+                            <div class="storyline-section">
+                                <div class="storyline-header social" data-storyline="social">
+                                    <div class="header-left">
+                                        <i class="fas fa-users"></i>
+                                        <h4>{{if eq .Language "en"}}Social Nodes{{else}}社交节点{{end}}</h4>
+                                    </div>
+                                    <span class="month-count" id="kurisu-social-count">{{if eq .Language "en"}}3 Months{{else}}3个月{{end}}</span>
+                                    <i class="fas fa-chevron-down expand-icon"></i>
+                                </div>
+                                <div class="storyline-content" id="kurisu-social-content">
+                                    <div class="storyline-content-inner">
+                                        <div class="vertical-timeline social-line" id="kurisu-social-timeline">
+                                            <!-- Populated by JS -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Hobby/Air Fryer Timeline Section -->
+                            <div class="storyline-section">
+                                <div class="storyline-header hobby" data-storyline="hobby">
+                                    <div class="header-left">
+                                        <i class="fas fa-utensils"></i>
+                                        <h4>{{if eq .Language "en"}}Automatic Cooker Project{{else}}自动炒菜机开发线{{end}}</h4>
+                                    </div>
+                                    <span class="month-count" id="kurisu-hobby-count">{{if eq .Language "en"}}3 Months{{else}}3个月{{end}}</span>
+                                    <i class="fas fa-chevron-down expand-icon"></i>
+                                </div>
+                                <div class="storyline-content" id="kurisu-hobby-content">
+                                    <div class="storyline-content-inner">
+                                        <div class="vertical-timeline hobby-line" id="kurisu-hobby-timeline">
+                                            <!-- Populated by JS -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right: Daily Timeline (prominent) -->
+                        <div class="daily-panel">
+                            <div class="daily-panel-header">
+                                <i class="fas fa-calendar-day"></i>
+                                <h3>{{if eq .Language "en"}}Daily Timeline{{else}}每日时间线{{end}}</h3>
+                                <span class="day-count-badge" id="kurisu-day-count">{{if eq .Language "en"}}30 Days{{else}}30天{{end}}</span>
+                            </div>
+                            
+                            <div class="day-navigator">
+                                <div class="day-nav-controls">
+                                    <button class="day-nav-btn" id="kurisu-day-prev" onclick="changeKurisuDay(-1)">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                    <div class="day-nav-current" id="kurisu-day-indicator">{{if eq .Language "en"}}Day 1{{else}}第1天{{end}}</div>
+                                    <button class="day-nav-btn" id="kurisu-day-next" onclick="changeKurisuDay(1)">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                                <div class="day-dots-row" id="kurisu-day-dots">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+                            
+                            <div class="day-schedule-content" id="kurisu-day-content">
+                                <div class="day-empty-state">
+                                    <i class="fas fa-clock"></i>
+                                    <p>{{if eq .Language "en"}}Daily timeline to be added{{else}}每日时间线待添加{{end}}</p>
+                                    <small>{{if eq .Language "en"}}Schedules will appear here{{else}}日程安排将显示在这里{{end}}</small>
+                                </div>
+                            </div>
+                            
+                            <div class="day-keyboard-hint">
+                                {{if eq .Language "en"}}Use <kbd>←</kbd> <kbd>→</kbd> keys to browse{{else}}使用 <kbd>←</kbd> <kbd>→</kbd> 键浏览日程{{end}}
+                            </div>
+                            <button class="schedule-editor-btn" onclick="openScheduleEditor('kurisu')">
+                                <i class="fas fa-plus"></i> {{if eq .Language "en"}}Add New Day{{else}}添加新日程{{end}}
+                            </button>
+                            <button class="schedule-editor-btn" onclick="openScheduleEditor('kurisu', kurisuCurrentDay + 1)" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                <i class="fas fa-edit"></i> {{if eq .Language "en"}}Edit Current Day{{else}}编辑当前日程{{end}}
+                            </button>
+                            <button class="schedule-delete-btn" onclick="deleteSchedule('kurisu', kurisuCurrentDay + 1)" style="background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);">
+                                <i class="fas fa-trash"></i> {{if eq .Language "en"}}Delete Current Day{{else}}删除当前日程{{end}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Lin Lu Content -->
+            <div class="character-content" id="linlu-content">
+                <!-- Sub-page navigation -->
+                <div class="character-subpage-nav">
+                    <button class="subpage-tab active" data-subpage="info" data-character="linlu">
+                        <i class="fas fa-user"></i> {{if eq .Language "en"}}Character Info{{else}}角色信息{{end}}
+                    </button>
+                    <button class="subpage-tab" data-subpage="story" data-character="linlu">
+                        <i class="fas fa-book"></i> {{if eq .Language "en"}}Character Story{{else}}角色故事{{end}}
+                    </button>
+                </div>
+                
+                <!-- INFO SUBPAGE -->
+                <div class="subpage-content active" id="linlu-info">
+                    <div class="character-header">
+                        <img src="/static/lin_lu/word.png" alt="{{if eq .Language "en"}}Lin Lu{{else}}林路{{end}}" class="character-avatar">
+                        <div class="character-intro">
+                            <h2>{{if eq .Language "en"}}Lin Lu{{else}}林路 / Lin Lu{{end}}</h2>
+                            <p class="tagline">{{if eq .Language "en"}}Literature Professor · Historical Fiction Author{{else}}文学系大学老师 · 历史小说作者{{end}}</p>
+                            <p class="description">
+                                {{if eq .Language "en"}}A young literature professor specializing in ancient Chinese literature history. Appears cheerful and social on the surface, but hides pessimism and internal conflict. Likes watching clouds under the school's big ginkgo tree and collecting paper receipts and bookmarks. Writes historical fiction at night, dreaming of leaving behind a masterpiece.{{else}}一位年轻的文学系老师，专注于中国古代文学史研究与教学。表面开朗社牛，内心却藏着悲观与拧巴。喜欢在学校的大银杏树下看云，收集各种纸质票据和书签。晚上会写自己的历史小说，梦想留下流芳百世的作品。{{end}}
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Inner Thoughts Section -->
+                    <div class="wiki-section">
+                        <h3><i class="fas fa-brain"></i> {{if eq .Language "en"}}Inner Monologue{{else}}内心独白{{end}}</h3>
+                        <div class="inner-thoughts">
+                            <p>{{if eq .Language "en"}}What do I want?{{else}}我要的是？{{end}}</p>
+                        </div>
+                        <p>
+                            {{if eq .Language "en"}}I'm very interested in the people and things in this world, caring about others' inner worlds and the lifestyles of people from all walks of life. So I come online to think, observe, and discover. Sensing others' hearts through casual chat is an interesting thing for me.{{else}}对这个世上的人和事情很感兴趣，关心他人的内心世界和各个阶层的人的生活方式，所以来上网，思考，观察，发现或者只是和人闲聊中感受到的他人的内心，对于我而言都是有趣的事情。{{end}}
+                        </p>
+                        <p>
+                            {{if eq .Language "en"}}Although work is heavy and the road is long, I am able to balance work and life well.{{else}}工作虽然繁重，任重而道远，但是我能够很好的平衡工作与生活。{{end}}
+                        </p>
+                        <div class="inner-thoughts">
+                            <p>{{if eq .Language "en"}}What I love most is actually writing, rather than academic research in linguistics.{{else}}我最喜欢的事情其实是写作，而非语言学的学术研究。{{end}}</p>
+                        </div>
+                        <p>
+                            {{if eq .Language "en"}}I work during the day and start writing my own works at night. I want to leave something in this world, even if just a few words.{{else}}我白天工作，晚上则会开始写自己的作品。我想在这个世上留下些什么，哪怕只是只言片语。{{end}}
+                        </p>
+                        <div class="inner-thoughts">
+                            <p>{{if eq .Language "en"}}I appear approachable to everyone, but internally I have strong defenses.{{else}}我表面上和谁都平易近人，实际上内心有坚固防线。{{end}}</p>
+                        </div>
+                        <p>
+                            {{if eq .Language "en"}}Cheerfulness seems to be my mask; the real me is very pessimistic. I wonder who would still want to be close to me after seeing through my mask?{{else}}开朗处仿佛是我的面具，真实的我很悲观，不知道有谁在看透我的面具后还愿意和我亲近呢？{{end}}
+                        </p>
+                        <div class="inner-thoughts">
+                            <p>{{if eq .Language "en"}}Being sophisticated yet unsophisticated is the state I aspire to. I'm working on it.{{else}}知世故而不世故是我向往的状态。我在努力。{{end}}</p>
+                        </div>
+                        <p>
+                            {{if eq .Language "en"}}I was born on an island. My father is an employee of a state-owned enterprise, and my mother is a self-employed business owner. Family conditions are average. My parents' relationship was mediocre, and my education was typical of an East Asian family.{{else}}我生于海岛，父亲是国企员工，母亲是个体经营户，家庭条件中等。父母感情一般，接受到的教育方式也是经典的东亚家庭。{{end}}
+                        </p>
+                        <p>
+                            {{if eq .Language "en"}}The coolest thing I've done so far was not listening to my parents and studying accounting nearby, but choosing literature, which they thought was useless, and running to Beijing. Later, while working in Thailand, I saw a fellow citizen being robbed. I rushed to help without hesitation and got a flying kick from the robber, but I protected my compatriot.{{else}}目前做过最酷的事是没有听父母的话就近在省内读大学、学会计，而是选了他们觉得没用的文学，跑到了北京。后来去泰国工作时，路遇旅游的同胞被抢钱包，毫不犹豫地冲上去帮她抢钱包，挨了抢劫犯一记飞踢，不过保护了同胞。{{end}}
+                        </p>
+                        <div class="inner-thoughts">
+                            <p>{{if eq .Language "en"}}There's an unsolvable knot in my heart...{{else}}心里有个解不开的结……{{end}}</p>
+                        </div>
+                        <p>
+                            {{if eq .Language "en"}}A female friend from years ago was a literary genius whose work was much stronger than mine. While we encouraged each other, I was also jealous of her talent. But not long after graduation, she was forced to marry. I couldn't persuade her then, and seeing her worn down by family, I still brood over not doing more at the time.{{else}}当年的一个女生朋友是文学天才，写的作品比我强很多，和她相互鼓励的同时，也嫉妒她的才华。可是毕业后没多久她被逼着嫁人了，当时没能劝住她，看着被家庭消磨的她，耿耿于怀自己当年没有做到更多。{{end}}
+                        </p>
+                    </div>
+                    
+                    <!-- Values Section -->
+                    <div class="wiki-section">
+                        <h3><i class="fas fa-heart"></i> {{if eq .Language "en"}}Values Ranking{{else}}价值观排序{{end}}</h3>
+                        <div class="values-grid">
+                            <div class="value-item"><span class="rank">1</span> {{if eq .Language "en"}}Idealism{{else}}理想{{end}}</div>
+                            <div class="value-item"><span class="rank">2</span> {{if eq .Language "en"}}Rationality{{else}}理性{{end}}</div>
+                            <div class="value-item"><span class="rank">3</span> {{if eq .Language "en"}}Justice{{else}}正义{{end}}</div>
+                            <div class="value-item"><span class="rank">4</span> {{if eq .Language "en"}}Inclusion{{else}}包容{{end}}</div>
+                            <div class="value-item"><span class="rank">5</span> {{if eq .Language "en"}}Respect{{else}}尊重{{end}}</div>
+                            <div class="value-item"><span class="rank">6</span> {{if eq .Language "en"}}Freedom{{else}}自由{{end}}</div>
+                            <div class="value-item"><span class="rank">7</span> {{if eq .Language "en"}}Health{{else}}健康{{end}}</div>
+                            <div class="value-item"><span class="rank">8</span> {{if eq .Language "en"}}Love{{else}}爱情{{end}}</div>
+                            <div class="value-item"><span class="rank">9</span> {{if eq .Language "en"}}Achievement{{else}}成就{{end}}</div>
+                            <div class="value-item"><span class="rank">10</span> {{if eq .Language "en"}}Power{{else}}权力{{end}}</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience Section -->
+                    <div class="wiki-section">
+                        <h3><i class="fas fa-flask"></i> {{if eq .Language "en"}}Experience & Background{{else}}经历与背景{{end}}</h3>
+                        <p><strong>{{if eq .Language "en"}}Teaching Direction:{{else}}教学方向：{{end}}</strong></p>
+                        <p>
+                            {{if eq .Language "en"}}Undergraduate Chinese Contemporary Literature History research. Main lecturer for "History of Ancient Chinese Literature (Tang and Song Dynasties Volume)" and elective course "Appreciation of Tang Poetry and Song Lyrics."{{else}}本科中国当代文学史研究。主讲《中国古代文学史（唐宋卷）》和选修课《唐诗宋词鉴赏》。{{end}}
+                        </p>
+                        <p><strong>{{if eq .Language "en"}}Academic Experience:{{else}}学业经历：{{end}}</strong></p>
+                        <p>{{if eq .Language "en"}}PhD in Literature. After graduation, assigned by the Ministry of Education to teach Chinese at a Thai university for a year. Witnessed some "dark sides" of Thailand and surrounding countries, thus becoming more patriotic.{{else}}文学博士。毕业后被教育部指派去泰国大学教了一年的中文，见识到了泰国以及周边国家的一些"黑暗面"，于是更加热爱祖国。{{end}}</p>
+                        <p><strong>{{if eq .Language "en"}}Major Events This Year:{{else}}今年大事件：{{end}}</strong></p>
+                        <ul>
+                            <li>{{if eq .Language "en"}}Preparing for the core assessment indicators from lecturer to associate professor{{else}}准备从讲师到副教授的核心考核指标{{end}}</li>
+                            <li>{{if eq .Language "en"}}Modern Chinese literature reviews published in core journals{{else}}中国近代文学评论在核心期刊发表{{end}}</li>
+                            <li>{{if eq .Language "en"}}Collaborated with a publisher to release a popular science Tang poetry book "Dust and Smoke in Tang Poetry"{{else}}和出版社合作出了科普类的唐诗读物《唐诗中的尘烟》{{end}}</li>
+                            <li>{{if eq .Language "en"}}Participated in the city's amateur badminton competition and won second place{{else}}参与市业余羽毛球比赛拿了第二名{{end}}</li>
+                            <li>{{if eq .Language "en"}}Refused to return to Zhoushan for blind dates, causing father to come to Beijing; made father angry and sick, but still insisted on not marrying{{else}}拒绝回舟山相亲惹得父亲来北京，把父亲气生病了，但依旧坚持不结婚{{end}}</li>
+                            <li>{{if eq .Language "en"}}Started writing original historical fiction{{else}}开始写原创的历史小说{{end}}</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Relationships Section -->
+                    <div class="wiki-section">
+                        <h3><i class="fas fa-users"></i> {{if eq .Language "en"}}Social Relationships{{else}}社会关系{{end}}</h3>
+                        
+                        <div class="relationship-card">
+                            <div class="relationship-icon"><i class="fas fa-globe-asia"></i></div>
+                            <div class="relationship-info">
+                                <h4>{{if eq .Language "en"}}Student Ananya <span style="color: #94a3b8; font-weight: normal; font-size: 0.85rem;">(Thai student)</span>{{else}}学生 Ananya（阿南雅）<span style="color: #94a3b8; font-weight: normal; font-size: 0.85rem;">（泰国学生）</span>{{end}}</h4>
+                                <p>{{if eq .Language "en"}}Father is in prison for telemarketing fraud, mother is in poor health doing handicraft work. Ananya studies hard, dreaming of coming to China for graduate school. Currently sponsoring her for university.{{else}}父亲因为电诈坐牢了，母亲身体不好做手工活，自己努力读书，梦想来中国读研究生。目前在资助她读大学。{{end}}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="relationship-card">
+                            <div class="relationship-icon"><i class="fas fa-book"></i></div>
+                            <div class="relationship-info">
+                                <h4>{{if eq .Language "en"}}Student Chen Qiuyu <span style="color: #94a3b8; font-weight: normal; font-size: 0.85rem;">(Academic talent)</span>{{else}}学生陈秋语 <span style="color: #94a3b8; font-weight: normal; font-size: 0.85rem;">（有学术天赋）</span>{{end}}</h4>
+                                <p>{{if eq .Language "en"}}A very persistent student with academic talent.{{else}}非常执着，有学术天赋的学生。{{end}}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="relationship-card">
+                            <div class="relationship-icon"><i class="fas fa-pencil-alt"></i></div>
+                            <div class="relationship-info">
+                                <h4>{{if eq .Language "en"}}Student Zhou Tunan <span style="color: #94a3b8; font-weight: normal; font-size: 0.85rem;">(Town test-taker)</span>{{else}}学生周图南 <span style="color: #94a3b8; font-weight: normal; font-size: 0.85rem;">（小镇做题家）</span>{{end}}</h4>
+                                <p>{{if eq .Language "en"}}A hardworking and frugal "town test-taker."{{else}}艰苦朴素的小镇做题家。{{end}}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="relationship-card">
+                            <div class="relationship-icon"><i class="fas fa-bolt"></i></div>
+                            <div class="relationship-info">
+                                <h4>{{if eq .Language "en"}}Colleague Liu Qiming <span style="color: #94a3b8; font-weight: normal; font-size: 0.85rem;">(Competitor)</span>{{else}}同事刘齐明 <span style="color: #94a3b8; font-weight: normal; font-size: 0.85rem;">（竞争对手）</span>{{end}}</h4>
+                                <p>{{if eq .Language "en"}}A dual competitor in both academia and career. Liu is strong but has a calculative and irritable personality.{{else}}学术和事业的双重竞争对手。刘很强但是性格计较、暴躁。{{end}}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="relationship-card">
+                            <div class="relationship-icon"><i class="fas fa-guitar"></i></div>
+                            <div class="relationship-info">
+                                <h4>{{if eq .Language "en"}}Social Circles{{else}}社交圈{{end}}</h4>
+                                <p>{{if eq .Language "en"}}Guitar enthusiasts within and outside the school, sports partners at the gymnasium.{{else}}学校和校外吉他爱好者，体育馆的运动搭子。{{end}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Judgements Section -->
+                    <div class="wiki-section">
+                        <h3><i class="fas fa-comment-dots"></i> {{if eq .Language "en"}}Views & Preferences{{else}}观点与好恶{{end}}</h3>
+                        <ul>
+                            <li><strong>{{if eq .Language "en"}}Pet Peeves/Taboos:{{else}}雷点/禁忌：{{end}}</strong>{{if eq .Language "en"}}Being mean to children or small animals, Douyin trending songs, snobbery{{else}}对小朋友或者小动物恶劣，抖音热歌、势利眼{{end}}</li>
+                            <li><strong>{{if eq .Language "en"}}Political Views:{{else}}政治观点：{{end}}</strong>{{if eq .Language "en"}}Left-leaning, can engage in political discussion, but will blast right-wing petty bourgeois.{{else}}左派，可以键政，但是遇到右派小布尔乔亚会开喷{{end}}</li>
+                            <li><strong>{{if eq .Language "en"}}Basic Philosophical Outlook:{{else}}基础哲学观：{{end}}</strong>{{if eq .Language "en"}}John Stuart Mill's liberal feminism, Michel Foucault's breaking of traditional frameworks, Hannah Arendt's Heideggerian derivatives{{else}}约翰·穆勒的自由主义女性主义，米歇尔·福柯的打破传统框架，阿伦特·汉娜的海德格尔衍生{{end}}</li>
+                            <li>{{if eq .Language "en"}}Knows that most philosophers have a mess of personal character and actions (with Kant as the chief sinner), so doesn't blindly believe in any philosopher's humanity.{{else}}知道哲学家大多人品做事都一塌糊涂（其中康德为罪），所以不迷信任何一个哲学家的人性{{end}}</li>
+                            <li><strong>{{if eq .Language "en"}}Quirks/Small Habits:{{else}}怪癖/小习惯：{{end}}</strong>{{if eq .Language "en"}}Collecting paper receipts and various bookmarks{{else}}收集纸质的票据和各种各样书签{{end}}</li>
+                            <li><strong>{{if eq .Language "en"}}Personality:{{else}}性格：{{end}}</strong>{{if eq .Language "en"}}Appears cheerful and optimistic (social butterfly) on the surface, but deeply pessimistic, conflicted, and inclusive.{{else}}表面开朗乐观（社牛），底色悲观、拧巴，包容{{end}}</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Skills Section -->
+                    <div class="wiki-section">
+                        <h3><i class="fas fa-star"></i> {{if eq .Language "en"}}Capabilities{{else}}能力{{end}}</h3>
+                        <p>{{if eq .Language "en"}}Strong Fields:{{else}}擅长领域：{{end}}</p>
+                        <div class="skills-list" style="margin-bottom: 1rem;">
+                            <span class="skill-tag">{{if eq .Language "en"}}Literature{{else}}文学{{end}}</span>
+                            <span class="skill-tag">{{if eq .Language "en"}}Tennis{{else}}网球{{end}}</span>
+                            <span class="skill-tag">{{if eq .Language "en"}}Badminton{{else}}羽毛球{{end}}</span>
+                            <span class="skill-tag">{{if eq .Language "en"}}Electric Guitar{{else}}电吉他{{end}}</span>
+                            <span class="skill-tag">{{if eq .Language "en"}}Steam Games{{else}}Steam游戏{{end}}</span>
+                        </div>
+                        <p>{{if eq .Language "en"}}Weak Fields:{{else}}不擅长的事：{{end}}</p>
+                        <div class="skills-list" style="margin-bottom: 1rem;">
+                            <span class="skill-tag">{{if eq .Language "en"}}Mathematics{{else}}数学{{end}}</span>
+                            <span class="skill-tag">{{if eq .Language "en"}}Handicraft{{else}}手工活{{end}}</span>
+                            <span class="skill-tag">{{if eq .Language "en"}}Cooking (Dark Cuisine){{else}}做饭（黑暗料理）{{end}}</span>
+                        </div>
+                        <p>{{if eq .Language "en"}}Daily Pastimes:{{else}}日常消遣：{{end}}</p>
+                        <div class="skills-list">
+                            <span class="skill-tag">{{if eq .Language "en"}}Watching clouds under the campus big ginkgo tree{{else}}坐在学校的大银杏树下看云{{end}}</span>
+                            <span class="skill-tag">{{if eq .Language "en"}}Exhibitions{{else}}看展览{{end}}</span>
+                            <span class="skill-tag">{{if eq .Language "en"}}Movies{{else}}电影{{end}}</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Romance Section -->
+                    <div class="wiki-section">
+                        <h3><i class="fas fa-heart"></i> {{if eq .Language "en"}}View on Romance{{else}}感情观{{end}}</h3>
+                        <div class="inner-thoughts">
+                            <p>{{if eq .Language "en"}}Waiting for someone I can talk to.{{else}}等一个能聊得来的人。{{end}}</p>
+                        </div>
+                        <p>
+                            {{if eq .Language "en"}}Soulmates are too vague and empty, so being able to talk to each other is most important. Not in a hurry for marriage or romance currently, no obsession with having children. If I meet my destined woman I can talk to, I'll enter a relationship quickly.{{else}}灵魂契合太假大空了，所以聊得来是最重要的。目前不着急婚恋，对于生孩子也没执念，如果遇到聊得来的天命真女会很快进入感情的。{{end}}
+                        </p>
+                        <p><strong>{{if eq .Language "en"}}Preference for Appearance:{{else}}对长相的偏好：{{end}}</strong></p>
+                        <p>
+                            {{if eq .Language "en"}}Naturally likes long hair because I think a girl with flowing long hair has a sense of beauty. Dyed hair or not doesn't matter; wouldn't a head of silvery-white long hair flowing in the wind also be cool? But if we talk very well and I'm really moved, a buzz cut is also fine (buzz cuts are also cool).{{else}}天然喜欢长发，因为觉得女孩子长发飘飘很有美感。染发与否无所谓的，如果一头银白长发随风飘扬不也很酷吗？但是聊得很来、真的心动的话寸头也没关系（寸头也很酷）。{{end}}
+                        </p>
+                        <div class="inner-thoughts">
+                            <p>{{if eq .Language "en"}}Never been in a relationship.{{else}}没有谈过恋爱。{{end}}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- STORY SUBPAGE -->
+                <div class="subpage-content" id="linlu-story">
+                    <!-- Story Schedule Section -->
+                    <div class="wiki-section">
+                        <h3><i class="fas fa-calendar-alt"></i> {{if eq .Language "en"}}Story Schedule{{else}}故事日程{{end}}</h3>
+                        <p>{{if eq .Language "en"}}Browse Lin Lu's 10-day schedule:{{else}}浏览林路的10天日程安排：{{end}}</p>
+                        <div class="schedule-browser" id="linlu-schedule-browser">
+                            <div class="schedule-nav">
+                                <button class="schedule-nav-btn" id="linlu-prev-btn" onclick="changeLinLuDay(-1)">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <div class="schedule-day-indicator" id="linlu-day-indicator">{{if eq .Language "en"}}Day 1{{else}}第1天{{end}}</div>
+                                <button class="schedule-nav-btn" id="linlu-next-btn" onclick="changeLinLuDay(1)">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            <div class="schedule-day-dots" id="linlu-day-dots">
+                                <!-- Dots will be generated by JavaScript -->
+                            </div>
+                            <div class="schedule-content" id="linlu-schedule-content">
+                                <!-- Schedule content will be loaded by JavaScript -->
+                                <div class="placeholder-content">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    <p>{{if eq .Language "en"}}Loading...{{else}}加载中...{{end}}</p>
+                                </div>
+                            </div>
+                            <div class="schedule-keyboard-hint">
+                                {{if eq .Language "en"}}Use <kbd>←</kbd> <kbd>→</kbd> keys to browse{{else}}使用 <kbd>←</kbd> <kbd>→</kbd> 键浏览日程{{end}}
+                            </div>
+                            <button class="schedule-editor-btn" onclick="openScheduleEditor('linlu')">
+                                <i class="fas fa-plus"></i> {{if eq .Language "en"}}Add New Day{{else}}添加新日程{{end}}
+                            </button>
+                            <button class="schedule-editor-btn" onclick="openScheduleEditor('linlu', linLuCurrentDay + 1)" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                <i class="fas fa-edit"></i> {{if eq .Language "en"}}Edit Current Day{{else}}编辑当前日程{{end}}
+                            </button>
+                            <button class="schedule-delete-btn" onclick="deleteSchedule('linlu', linLuCurrentDay + 1)" style="background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);">
+                                <i class="fas fa-trash"></i> {{if eq .Language "en"}}Delete Current Day{{else}}删除当前日程{{end}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>{{if eq .Language "en"}}Divergence 2% Writer Portal{{else}}Divergence 2% 写手门户{{end}}</p>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+    <script>
+        // Character profiles data cache
+        let characterProfiles = {};
+        
+        // Helper to convert \n to <br> for proper line breaks in HTML
+        function nl2br(str) {
+            if (!str) return '';
+            return str.replace(/\n/g, '<br>');
+        }
+        
+        // Load character profiles from API
+        async function loadCharacterProfiles() {
+            try {
+                const response = await fetch('/api/character-profiles');
+                if (!response.ok) throw new Error('Failed to fetch profiles');
+                const data = await response.json();
+                if (data.success && data.profiles) {
+                    characterProfiles = data.profiles;
+                    initializeKurisuStory();
+                    initializeLinLuSchedules();
+                }
+            } catch (e) {
+                console.error('Error loading character profiles:', e);
+            }
+        }
+        
+        // Character tab switching
+        document.querySelectorAll('.character-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const characterId = this.dataset.character;
+                
+                // Update active tab
+                document.querySelectorAll('.character-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update active content
+                document.querySelectorAll('.character-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(characterId + '-content').classList.add('active');
+            });
+        });
+        
+        // Sub-page tab switching
+        document.querySelectorAll('.subpage-tab[data-subpage]').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const subpage = this.dataset.subpage;
+                const character = this.dataset.character;
+                
+                // Update active tab within this character's nav
+                const navContainer = this.closest('.character-subpage-nav');
+                navContainer.querySelectorAll('.subpage-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Update active content
+                const contentContainer = this.closest('.character-content');
+                contentContainer.querySelectorAll('.subpage-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(`${character}-${subpage}`).classList.add('active');
+            });
+        });
+        
+        // Storyline accordion toggle
+        document.querySelectorAll('.storyline-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const storyline = this.dataset.storyline;
+                const content = document.getElementById(`kurisu-${storyline}-content`);
+                
+                // Toggle expanded state
+                this.classList.toggle('expanded');
+                content.classList.toggle('expanded');
+            });
+        });
+        
+        // === Kurisu Day Navigator ===
+        let kurisuSchedules = [];
+        let kurisuCurrentDay = 0;
+        let kurisuTotalDays = 1; // Will be set dynamically based on actual schedule data
+        const isEnglish = document.documentElement.lang === 'en';
+        
+        function initializeKurisuDayNav() {
+            // Calculate total days dynamically from actual schedule data
+            // Use the number of schedules, or the max day number if schedules have gaps
+            if (kurisuSchedules.length > 0) {
+                const maxDayNumber = Math.max(...kurisuSchedules.map(s => s.day || 0));
+                kurisuTotalDays = Math.max(kurisuSchedules.length, maxDayNumber);
+            } else {
+                kurisuTotalDays = 0;
+            }
+            
+            const dotsContainer = document.getElementById('kurisu-day-dots');
+            const dayCountEl = document.getElementById('kurisu-day-count');
+            
+            // If no schedules, show empty state
+            if (kurisuTotalDays === 0) {
+                dotsContainer.innerHTML = '';
+                dayCountEl.textContent = isEnglish ? 'No schedules yet' : '暂无日程';
+                document.getElementById('kurisu-day-content').innerHTML = `
+                    <div class="day-empty-state">
+                        <i class="fas fa-calendar-plus"></i>
+                        <p>${isEnglish ? 'Daily schedules are being developed' : '日程安排正在制作中'}</p>
+                        <small>${isEnglish ? 'Check out the story timelines above for character progression' : '请查看上方的故事时间线了解角色发展'}</small>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Generate day dots - create a lookup map for quick access
+            const scheduleByDay = {};
+            kurisuSchedules.forEach(s => {
+                if (s.day) scheduleByDay[s.day] = s;
+            });
+            
+            let dotsHtml = '';
+            for (let i = 0; i < kurisuTotalDays; i++) {
+                const dayNum = i + 1;
+                const hasContent = scheduleByDay[dayNum] ? 'has-content' : '';
+                const isActive = i === 0 ? 'active' : '';
+                const title = isEnglish ? `Day ${dayNum}` : `第${dayNum}天`;
+                dotsHtml += `<div class="day-dot ${hasContent} ${isActive}" onclick="goToKurisuDay(${i})" title="${title}"></div>`;
+            }
+            dotsContainer.innerHTML = dotsHtml;
+            
+            // Update day count badge
+            dayCountEl.textContent = isEnglish ? `${kurisuTotalDays} Days` : `${kurisuTotalDays}天`;
+            
+            // Render first day
+            renderKurisuDay(0);
+            updateKurisuNavButtons();
+        }
+        
+        function renderKurisuDay(dayIndex) {
+            if (dayIndex < 0 || dayIndex >= kurisuTotalDays) return;
+            
+            const content = document.getElementById('kurisu-day-content');
+            const indicator = document.getElementById('kurisu-day-indicator');
+            
+            // Find schedule data for this day (schedules use 1-based day numbers)
+            const dayNum = dayIndex + 1;
+            const schedule = kurisuSchedules.find(s => s.day === dayNum);
+            
+            // Update indicator - show schedule title if available
+            const dayLabel = isEnglish ? `Day ${dayNum}` : `第${dayNum}天`;
+            const scheduleTitle = isEnglish ? (schedule?.title_en || schedule?.title) : schedule?.title;
+            indicator.textContent = scheduleTitle || dayLabel;
+            
+            // Update dots
+            document.querySelectorAll('#kurisu-day-dots .day-dot').forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === dayIndex);
+            });
+            
+            if (schedule) {
+                const periods = [
+                    { key: 'morning', label: isEnglish ? 'Morning' : '早上', icon: 'sun' },
+                    { key: 'noon', label: isEnglish ? 'Noon' : '中午', icon: 'cloud-sun' },
+                    { key: 'afternoon', label: isEnglish ? 'Afternoon' : '下午', icon: 'cloud' },
+                    { key: 'evening', label: isEnglish ? 'Evening' : '晚上', icon: 'moon' },
+                    { key: 'night', label: isEnglish ? 'Night' : '夜晚', icon: 'star' }
+                ];
+                
+                let html = '';
+                periods.forEach(period => {
+                    const value = isEnglish ? (schedule[period.key + '_en'] || schedule[period.key]) : schedule[period.key];
+                    if (value && value.trim()) {
+                        html += `
+                            <div class="day-period">
+                                <div class="day-period-label ${period.key}">
+                                    <i class="fas fa-${period.icon}"></i>
+                                    ${period.label}
+                                </div>
+                                <div class="day-period-text">${nl2br(value)}</div>
+                            </div>
+                        `;
+                    }
+                });
+                
+                if (!html) {
+                    html = `<div class="day-empty-state"><i class="fas fa-coffee"></i><p>${isEnglish ? 'No special arrangements today' : '今天没有特别安排'}</p></div>`;
+                }
+                
+                content.innerHTML = html;
+            } else {
+                content.innerHTML = `
+                    <div class="day-empty-state">
+                        <i class="fas fa-clock"></i>
+                        <p>${isEnglish ? `Day ${dayIndex + 1} timeline to be added` : `第${dayIndex + 1}天的时间线待添加`}</p>
+                        <small>${isEnglish ? 'Schedules will appear here' : '日程安排将显示在这里'}</small>
+                    </div>
+                `;
+            }
+            
+            kurisuCurrentDay = dayIndex;
+        }
+        
+        function changeKurisuDay(delta) {
+            const newDay = kurisuCurrentDay + delta;
+            if (newDay >= 0 && newDay < kurisuTotalDays) {
+                renderKurisuDay(newDay);
+                updateKurisuNavButtons();
+            }
+        }
+        
+        function goToKurisuDay(dayIndex) {
+            renderKurisuDay(dayIndex);
+            updateKurisuNavButtons();
+        }
+        
+        function updateKurisuNavButtons() {
+            const prevBtn = document.getElementById('kurisu-day-prev');
+            const nextBtn = document.getElementById('kurisu-day-next');
+            
+            if (prevBtn) prevBtn.disabled = kurisuCurrentDay <= 0;
+            if (nextBtn) nextBtn.disabled = kurisuCurrentDay >= kurisuTotalDays - 1;
+        }
+        
+        // Initialize Kurisu Story (NEW LAYOUT - pure "show" with timelines)
+        function initializeKurisuStory() {
+            const profile = characterProfiles['kurisu'];
+            if (!profile || !profile.story) return;
+            
+            const story = profile.story;
+            
+            // Populate scientific timeline (vertical)
+            if (story.scientificAnchors) {
+                const container = document.getElementById('kurisu-scientific-timeline');
+                const count = story.scientificAnchors.length;
+                document.getElementById('kurisu-scientific-count').textContent = isEnglish ? `${count} Months` : `${count}个月`;
+                
+                container.innerHTML = story.scientificAnchors.map(item => {
+                    const title = isEnglish ? (item.title_en || item.title) : item.title;
+                    const content = isEnglish ? (item.content_en || item.content) : item.content;
+                    return `
+                    <div class="v-timeline-item">
+                        <span class="month-label">${isEnglish ? `Month ${item.month}` : `第${item.month}月`}</span>
+                        <div class="item-title">${title}</div>
+                        <div class="item-content">${nl2br(content)}</div>
+                    </div>
+                `;
+                }).join('');
+            }
+            
+            // Populate social timeline (vertical)
+            if (story.socialAnchors) {
+                const container = document.getElementById('kurisu-social-timeline');
+                const count = story.socialAnchors.length;
+                document.getElementById('kurisu-social-count').textContent = isEnglish ? `${count} Months` : `${count}个月`;
+                
+                container.innerHTML = story.socialAnchors.map(item => {
+                    const title = isEnglish ? (item.title_en || item.title) : item.title;
+                    const content = isEnglish ? (item.content_en || item.content) : item.content;
+                    return `
+                    <div class="v-timeline-item">
+                        <span class="month-label">${isEnglish ? `Month ${item.month}` : `第${item.month}月`}</span>
+                        <div class="item-title">${title}</div>
+                        <div class="item-content">${nl2br(content)}</div>
+                    </div>
+                `;
+                }).join('');
+            }
+            
+            // Populate hobby/air fryer timeline (from subPlots)
+            if (story.subPlots && story.subPlots.length > 0) {
+                const airFryerPlot = story.subPlots.find(p => p.title.includes('炒菜机') || p.title.includes('Cooker')) || story.subPlots[0];
+                if (airFryerPlot && airFryerPlot.timeline) {
+                    const container = document.getElementById('kurisu-hobby-timeline');
+                    const count = airFryerPlot.timeline.length;
+                    document.getElementById('kurisu-hobby-count').textContent = isEnglish ? `${count} Months` : `${count}个月`;
+                    
+                    container.innerHTML = airFryerPlot.timeline.map(item => {
+                        const title = isEnglish ? (item.title_en || item.title) : item.title;
+                        const content = isEnglish ? (item.content_en || item.content) : item.content;
+                        return `
+                        <div class="v-timeline-item">
+                            <span class="month-label">${isEnglish ? `Month ${item.month}` : `第${item.month}月`}</span>
+                            <div class="item-title">${title}</div>
+                            <div class="item-content">${nl2br(content)}</div>
+                        </div>
+                    `;
+                    }).join('');
+                }
+            }
+            
+            // Initialize day navigator (schedules empty for now)
+            kurisuSchedules = profile.schedules || [];
+            initializeKurisuDayNav();
+        }
+        
+        // === Lin Lu Schedule Browser ===
+        let linLuSchedules = [];
+        let linLuCurrentDay = 0;
+        
+        function initializeLinLuSchedules() {
+            const profile = characterProfiles['linlu'];
+            if (profile && profile.schedules) {
+                linLuSchedules = profile.schedules;
+                initializeScheduleBrowser();
+            }
+        }
+        
+        function initializeScheduleBrowser() {
+            if (linLuSchedules.length === 0) return;
+            
+            // Generate day dots
+            const dotsContainer = document.getElementById('linlu-day-dots');
+            dotsContainer.innerHTML = linLuSchedules.map((_, idx) => {
+                const title = isEnglish ? `Day ${idx + 1}` : `第${idx + 1}天`;
+                return `<div class="schedule-dot ${idx === 0 ? 'active' : ''}" onclick="goToLinLuDay(${idx})" title="${title}"></div>`;
+            }).join('');
+            
+            // Render first day
+            renderLinLuDay(0);
+            updateNavButtons();
+        }
+        
+        function renderLinLuDay(dayIndex) {
+            if (dayIndex < 0 || dayIndex >= linLuSchedules.length) return;
+            
+            const schedule = linLuSchedules[dayIndex];
+            const content = document.getElementById('linlu-schedule-content');
+            const indicator = document.getElementById('linlu-day-indicator');
+            
+            // Update indicator
+            indicator.textContent = isEnglish ? (schedule.title_en || `Day ${schedule.day}`) : (schedule.title || `第${schedule.day}天`);
+            
+            // Update dots
+            document.querySelectorAll('#linlu-day-dots .schedule-dot').forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === dayIndex);
+            });
+            
+            // Render schedule content
+            const periods = [
+                { key: 'morning', label: isEnglish ? 'Morning' : '早上', icon: 'sun' },
+                { key: 'noon', label: isEnglish ? 'Noon' : '中午', icon: 'cloud-sun' },
+                { key: 'afternoon', label: isEnglish ? 'Afternoon' : '下午', icon: 'cloud' },
+                { key: 'evening', label: isEnglish ? 'Evening' : '晚上', icon: 'moon' },
+                { key: 'night', label: isEnglish ? 'Night' : '夜晚', icon: 'star' }
+            ];
+            
+            let html = '';
+            periods.forEach(period => {
+                const value = isEnglish ? (schedule[period.key + '_en'] || schedule[period.key]) : schedule[period.key];
+                if (value && value.trim()) {
+                    html += `
+                        <div class="schedule-period">
+                            <div class="schedule-period-label">
+                                <i class="fas fa-${period.icon}"></i>
+                                ${period.label}
+                            </div>
+                            <div class="schedule-period-content">${nl2br(value)}</div>
+                        </div>
+                    `;
+                }
+            });
+            
+            if (!html) {
+                html = `<div class="schedule-period-empty">${isEnglish ? 'No arrangements today' : '今天没有安排'}</div>`;
+            }
+            
+            content.innerHTML = html;
+            linLuCurrentDay = dayIndex;
+        }
+        
+        function changeLinLuDay(delta) {
+            const newDay = linLuCurrentDay + delta;
+            if (newDay >= 0 && newDay < linLuSchedules.length) {
+                renderLinLuDay(newDay);
+                updateNavButtons();
+            }
+        }
+        
+        function goToLinLuDay(dayIndex) {
+            renderLinLuDay(dayIndex);
+            updateNavButtons();
+        }
+        
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('linlu-prev-btn');
+            const nextBtn = document.getElementById('linlu-next-btn');
+            
+            prevBtn.disabled = linLuCurrentDay <= 0;
+            nextBtn.disabled = linLuCurrentDay >= linLuSchedules.length - 1;
+        }
+        
+        // Keyboard navigation for day browsers
+        document.addEventListener('keydown', function(e) {
+            // Check if Kurisu tab is active and story subpage is shown
+            const kurisuContent = document.getElementById('kurisu-content');
+            const kurisuStory = document.getElementById('kurisu-story');
+            if (kurisuContent && kurisuContent.classList.contains('active') &&
+                kurisuStory && kurisuStory.classList.contains('active')) {
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    changeKurisuDay(-1);
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    changeKurisuDay(1);
+                }
+                return;
+            }
+            
+            // Check if Lin Lu tab is active and story subpage is shown
+            const linluContent = document.getElementById('linlu-content');
+            const linluStory = document.getElementById('linlu-story');
+            if (linluContent && linluContent.classList.contains('active') &&
+                linluStory && linluStory.classList.contains('active')) {
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    changeLinLuDay(-1);
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    changeLinLuDay(1);
+                }
+            }
+        });
+        
+        // Load data on page load
+        document.addEventListener('DOMContentLoaded', loadCharacterProfiles);
+        
+        // === Schedule Editor (Editors Only) ===
+        let currentUserInfo = null;
+        
+        async function loadCurrentUser() {
+            try {
+                const response = await fetch('/api/current_user');
+                if (response.ok) {
+                    currentUserInfo = await response.json();
+                    // Show editor controls for both writers and editors
+                    if (currentUserInfo.role === 'editor' || currentUserInfo.role === 'writer') {
+                        showEditorControls();
+                    }
+                }
+            } catch (e) {
+                console.log('Not logged in or error fetching user:', e);
+            }
+        }
+        
+        function showEditorControls() {
+            // Add "Add New Day" and "Edit" buttons for writers and editors
+            const scheduleEditorBtns = document.querySelectorAll('.schedule-editor-btn');
+            scheduleEditorBtns.forEach(btn => btn.style.display = 'inline-flex');
+            
+            // Add edit buttons to each day
+            const editDayBtns = document.querySelectorAll('.edit-day-btn');
+            editDayBtns.forEach(btn => btn.style.display = 'inline-flex');
+            
+            // Show delete buttons only for editors
+            if (currentUserInfo && currentUserInfo.role === 'editor') {
+                const deleteBtns = document.querySelectorAll('.schedule-delete-btn');
+                deleteBtns.forEach(btn => btn.style.display = 'inline-flex');
+            }
+        }
+        
+        async function deleteSchedule(characterId, dayNum) {
+            if (!dayNum || dayNum < 1) {
+                alert(isEnglish ? 'No schedule selected to delete' : '没有选择要删除的日程');
+                return;
+            }
+            
+            const confirmMsg = isEnglish 
+                ? `Are you sure you want to delete Day ${dayNum} schedule? This cannot be undone.`
+                : `确定要删除第${dayNum}天的日程吗？此操作不可撤销。`;
+            
+            if (!confirm(confirmMsg)) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/api/character-profiles/${characterId}/schedule/${dayNum}`, {
+                    method: 'DELETE'
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    alert(isEnglish 
+                        ? `Successfully deleted Day ${dayNum} schedule!` 
+                        : `成功删除第${dayNum}天日程！`);
+                    // Reload profiles to reflect changes
+                    await loadCharacterProfiles();
+                } else {
+                    alert(isEnglish ? `Error: ${result.error}` : `错误：${result.error}`);
+                }
+            } catch (e) {
+                alert(isEnglish ? `Failed to delete: ${e.message}` : `删除失败：${e.message}`);
+            }
+        }
+        
+        function openScheduleEditor(characterId, dayNum = null) {
+            const modal = document.getElementById('schedule-editor-modal');
+            const form = document.getElementById('schedule-editor-form');
+            const titleEl = document.getElementById('schedule-editor-title');
+            
+            // Set character ID
+            document.getElementById('editor-character-id').value = characterId;
+            
+            if (dayNum) {
+                // Editing existing day - load data
+                titleEl.textContent = isEnglish 
+                    ? `Edit Day ${dayNum} Schedule` 
+                    : `编辑第${dayNum}天日程`;
+                document.getElementById('editor-day-num').value = dayNum;
+                document.getElementById('editor-day-num').readOnly = true;
+                
+                // Load existing schedule data
+                const profile = characterProfiles[characterId];
+                if (profile && profile.schedules) {
+                    const schedule = profile.schedules.find(s => s.day === dayNum);
+                    if (schedule) {
+                        document.getElementById('editor-title').value = schedule.title || '';
+                        document.getElementById('editor-title-en').value = schedule.title_en || '';
+                        document.getElementById('editor-morning').value = schedule.morning || '';
+                        document.getElementById('editor-morning-en').value = schedule.morning_en || '';
+                        document.getElementById('editor-noon').value = schedule.noon || '';
+                        document.getElementById('editor-noon-en').value = schedule.noon_en || '';
+                        document.getElementById('editor-afternoon').value = schedule.afternoon || '';
+                        document.getElementById('editor-afternoon-en').value = schedule.afternoon_en || '';
+                        document.getElementById('editor-evening').value = schedule.evening || '';
+                        document.getElementById('editor-evening-en').value = schedule.evening_en || '';
+                        document.getElementById('editor-night').value = schedule.night || '';
+                        document.getElementById('editor-night-en').value = schedule.night_en || '';
+                    }
+                }
+            } else {
+                // Adding new day
+                const profile = characterProfiles[characterId];
+                const nextDay = profile && profile.schedules ? profile.schedules.length + 1 : 1;
+                
+                titleEl.textContent = isEnglish 
+                    ? `Add New Day Schedule` 
+                    : `添加新日程`;
+                document.getElementById('editor-day-num').value = nextDay;
+                document.getElementById('editor-day-num').readOnly = false;
+                
+                // Clear form
+                document.getElementById('editor-title').value = isEnglish ? `Day ${nextDay}` : `第${nextDay}天`;
+                document.getElementById('editor-title-en').value = `Day ${nextDay}`;
+                document.getElementById('editor-morning').value = '';
+                document.getElementById('editor-morning-en').value = '';
+                document.getElementById('editor-noon').value = '';
+                document.getElementById('editor-noon-en').value = '';
+                document.getElementById('editor-afternoon').value = '';
+                document.getElementById('editor-afternoon-en').value = '';
+                document.getElementById('editor-evening').value = '';
+                document.getElementById('editor-evening-en').value = '';
+                document.getElementById('editor-night').value = '';
+                document.getElementById('editor-night-en').value = '';
+            }
+            
+            modal.style.display = 'flex';
+        }
+        
+        function closeScheduleEditor() {
+            document.getElementById('schedule-editor-modal').style.display = 'none';
+        }
+        
+        async function saveSchedule() {
+            const characterId = document.getElementById('editor-character-id').value;
+            const dayNum = parseInt(document.getElementById('editor-day-num').value);
+            
+            if (!characterId || !dayNum || dayNum < 1) {
+                alert(isEnglish ? 'Invalid day number' : '无效的日期编号');
+                return;
+            }
+            
+            const scheduleData = {
+                day: dayNum,
+                title: document.getElementById('editor-title').value,
+                title_en: document.getElementById('editor-title-en').value,
+                morning: document.getElementById('editor-morning').value,
+                morning_en: document.getElementById('editor-morning-en').value,
+                noon: document.getElementById('editor-noon').value,
+                noon_en: document.getElementById('editor-noon-en').value,
+                afternoon: document.getElementById('editor-afternoon').value,
+                afternoon_en: document.getElementById('editor-afternoon-en').value,
+                evening: document.getElementById('editor-evening').value,
+                evening_en: document.getElementById('editor-evening-en').value,
+                night: document.getElementById('editor-night').value,
+                night_en: document.getElementById('editor-night-en').value
+            };
+            
+            try {
+                const response = await fetch(`/api/character-profiles/${characterId}/schedule`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(scheduleData)
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    alert(isEnglish 
+                        ? `Successfully ${result.action} Day ${dayNum} schedule!` 
+                        : `成功${result.action === 'created' ? '创建' : '更新'}第${dayNum}天日程！`);
+                    closeScheduleEditor();
+                    // Reload profiles to reflect changes
+                    await loadCharacterProfiles();
+                } else {
+                    alert(isEnglish ? `Error: ${result.error}` : `错误：${result.error}`);
+                }
+            } catch (e) {
+                alert(isEnglish ? `Failed to save: ${e.message}` : `保存失败：${e.message}`);
+            }
+        }
+        
+        // Load current user on page load
+        document.addEventListener('DOMContentLoaded', loadCurrentUser);
+        
+        // Language-aware link updater
+        (function() {
+            const isEnglish = document.documentElement.lang === 'en';
+            if (isEnglish) {
+                document.querySelectorAll('a[href^="/"]').forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href.startsWith('/static/') || href.endsWith('/e') || href.includes('/e#') || href === '/logout') return;
+                    if (href.includes('#')) {
+                        const [path, hash] = href.split('#');
+                        link.setAttribute('href', path + '/e#' + hash);
+                    } else {
+                        link.setAttribute('href', href + '/e');
+                    }
+                });
+            }
+        })();
+    </script>
+    
+{% include "includes/home_button.html" %}
+
+<!-- Schedule Editor Modal (Editors Only) -->
+<div id="schedule-editor-modal" class="schedule-editor-modal" style="display: none;">
+    <div class="schedule-editor-backdrop" onclick="closeScheduleEditor()"></div>
+    <div class="schedule-editor-content">
+        <div class="schedule-editor-header">
+            <h3 id="schedule-editor-title">{{if eq .Language "en"}}Edit Schedule{{else}}编辑日程{{end}}</h3>
+            <button class="schedule-editor-close" onclick="closeScheduleEditor()">&times;</button>
+        </div>
+        <form id="schedule-editor-form" onsubmit="event.preventDefault(); saveSchedule();">
+            <input type="hidden" id="editor-character-id" value="">
+            
+            <div class="editor-field">
+                <label>{{if eq .Language "en"}}Day Number{{else}}第几天{{end}}</label>
+                <input type="number" id="editor-day-num" min="1" required>
+            </div>
+            
+            <div class="editor-field-row">
+                <div class="editor-field">
+                    <label>{{if eq .Language "en"}}Title (Chinese){{else}}标题（中文）{{end}}</label>
+                    <input type="text" id="editor-title" placeholder="第1天：开学第一天">
+                </div>
+                <div class="editor-field">
+                    <label>{{if eq .Language "en"}}Title (English){{else}}标题（英文）{{end}}</label>
+                    <input type="text" id="editor-title-en" placeholder="Day 1: First Day of School">
+                </div>
+            </div>
+            
+            <div class="editor-periods">
+                <div class="editor-period">
+                    <h4><i class="fas fa-sun"></i> {{if eq .Language "en"}}Morning{{else}}早上{{end}}</h4>
+                    <div class="editor-field-row">
+                        <textarea id="editor-morning" rows="3" placeholder="{{if eq .Language "en"}}Chinese content...{{else}}中文内容...{{end}}"></textarea>
+                        <textarea id="editor-morning-en" rows="3" placeholder="{{if eq .Language "en"}}English content...{{else}}英文内容...{{end}}"></textarea>
+                    </div>
+                </div>
+                
+                <div class="editor-period">
+                    <h4><i class="fas fa-cloud-sun"></i> {{if eq .Language "en"}}Noon{{else}}中午{{end}}</h4>
+                    <div class="editor-field-row">
+                        <textarea id="editor-noon" rows="3" placeholder="{{if eq .Language "en"}}Chinese content...{{else}}中文内容...{{end}}"></textarea>
+                        <textarea id="editor-noon-en" rows="3" placeholder="{{if eq .Language "en"}}English content...{{else}}英文内容...{{end}}"></textarea>
+                    </div>
+                </div>
+                
+                <div class="editor-period">
+                    <h4><i class="fas fa-cloud"></i> {{if eq .Language "en"}}Afternoon{{else}}下午{{end}}</h4>
+                    <div class="editor-field-row">
+                        <textarea id="editor-afternoon" rows="3" placeholder="{{if eq .Language "en"}}Chinese content...{{else}}中文内容...{{end}}"></textarea>
+                        <textarea id="editor-afternoon-en" rows="3" placeholder="{{if eq .Language "en"}}English content...{{else}}英文内容...{{end}}"></textarea>
+                    </div>
+                </div>
+                
+                <div class="editor-period">
+                    <h4><i class="fas fa-moon"></i> {{if eq .Language "en"}}Evening{{else}}晚上{{end}}</h4>
+                    <div class="editor-field-row">
+                        <textarea id="editor-evening" rows="3" placeholder="{{if eq .Language "en"}}Chinese content...{{else}}中文内容...{{end}}"></textarea>
+                        <textarea id="editor-evening-en" rows="3" placeholder="{{if eq .Language "en"}}English content...{{else}}英文内容...{{end}}"></textarea>
+                    </div>
+                </div>
+                
+                <div class="editor-period">
+                    <h4><i class="fas fa-star"></i> {{if eq .Language "en"}}Night{{else}}夜晚{{end}}</h4>
+                    <div class="editor-field-row">
+                        <textarea id="editor-night" rows="3" placeholder="{{if eq .Language "en"}}Chinese content...{{else}}中文内容...{{end}}"></textarea>
+                        <textarea id="editor-night-en" rows="3" placeholder="{{if eq .Language "en"}}English content...{{else}}英文内容...{{end}}"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="editor-actions">
+                <button type="button" class="editor-btn-cancel" onclick="closeScheduleEditor()">
+                    {{if eq .Language "en"}}Cancel{{else}}取消{{end}}
+                </button>
+                <button type="submit" class="editor-btn-save">
+                    <i class="fas fa-save"></i> {{if eq .Language "en"}}Save Schedule{{else}}保存日程{{end}}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+/* Schedule Editor Modal Styles */
+.schedule-editor-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.schedule-editor-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.schedule-editor-content {
+    position: relative;
+    background: white;
+    border-radius: 16px;
+    max-width: 900px;
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.schedule-editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1;
+}
+
+.schedule-editor-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #2d3748;
+}
+
+.schedule-editor-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #a0aec0;
+    line-height: 1;
+}
+
+.schedule-editor-close:hover {
+    color: #e53e3e;
+}
+
+#schedule-editor-form {
+    padding: 1.5rem;
+}
+
+.editor-field {
+    margin-bottom: 1rem;
+}
+
+.editor-field label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+}
+
+.editor-field input,
+.editor-field textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.editor-field input:focus,
+.editor-field textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.editor-field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .editor-field-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.editor-periods {
+    margin-top: 1.5rem;
+}
+
+.editor-period {
+    background: #f7fafc;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.editor-period h4 {
+    margin: 0 0 0.75rem 0;
+    color: #667eea;
+    font-size: 1rem;
+}
+
+.editor-period h4 i {
+    margin-right: 0.5rem;
+}
+
+.editor-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.editor-btn-cancel {
+    padding: 0.75rem 1.5rem;
+    background: #e2e8f0;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.editor-btn-cancel:hover {
+    background: #cbd5e0;
+}
+
+.editor-btn-save {
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.editor-btn-save:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Editor Control Buttons */
+.schedule-editor-btn {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: transform 0.2s;
+}
+
+.schedule-editor-btn:hover {
+    transform: translateY(-2px);
+}
+
+.schedule-delete-btn {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+
+    
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+    transition: transform 0.2s;
+}
+
+.schedule-delete-btn:hover {
+    transform: translateY(-2px);
+}
+
+.edit-day-btn {
+    display: none;
+    padding: 0.25rem 0.5rem;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    margin-left: 0.5rem;
+}
+</style>
+
+</body>
+</html>

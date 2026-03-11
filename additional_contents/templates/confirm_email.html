@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Confirmation - Writer Portal</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+    <style>
+        .confirmation-container {
+            max-width: 520px;
+            margin: 100px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .confirmation-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .confirmation-icon.success {
+            background: #e6f7e6;
+        }
+
+        .confirmation-icon.error {
+            background: #ffe6e6;
+        }
+
+        .confirmation-icon.loading {
+            background: #e6f0ff;
+        }
+
+        .confirmation-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .confirmation-message {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .confirmation-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .confirmation-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-container">
+        <div class="confirmation-icon loading" id="icon">
+            <div class="spinner"></div>
+        </div>
+        
+        <div class="confirmation-header">
+            <h1 id="title">Confirming Your Email...</h1>
+        </div>
+        
+        <div class="confirmation-message" id="message">
+            Please wait while we verify your email address.
+        </div>
+        
+        <div id="actionContainer"></div>
+    </div>
+
+    <script>
+        // Get token from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+
+        const icon = document.getElementById('icon');
+        const title = document.getElementById('title');
+        const message = document.getElementById('message');
+        const actionContainer = document.getElementById('actionContainer');
+
+        if (!token) {
+            showError('Invalid Confirmation Link', 'The confirmation link is invalid or incomplete. Please check your email and try again.');
+        } else {
+            confirmEmail(token);
+        }
+
+        async function confirmEmail(token) {
+            try {
+                const response = await fetch(`/confirm-email?token=${encodeURIComponent(token)}`, {
+                    method: 'POST',
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showSuccess(
+                        'Email Confirmed!',
+                        `Welcome, ${escapeHtml(data.username)}! Your account has been successfully created. You can now log in and start writing.`
+                    );
+                    actionContainer.innerHTML = '<a href="/login/e" class="confirmation-btn">Go to Login</a>';
+                } else {
+                    showError('Confirmation Failed', data.error || 'Unable to confirm your email. The link may have expired or is invalid.');
+                    actionContainer.innerHTML = '<a href="/register" class="confirmation-btn">Register Again</a>';
+                }
+            } catch (error) {
+                showError('Network Error', 'Unable to connect to the server. Please check your internet connection and try again.');
+            }
+        }
+
+        function showSuccess(titleText, messageText) {
+            icon.className = 'confirmation-icon success';
+            icon.innerHTML = '✓';
+            title.textContent = titleText;
+            message.textContent = messageText;
+        }
+
+        function showError(titleText, messageText) {
+            icon.className = 'confirmation-icon error';
+            icon.innerHTML = '✗';
+            title.textContent = titleText;
+            message.textContent = messageText;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
+

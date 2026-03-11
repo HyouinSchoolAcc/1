@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(go mod:*)",
+      "Bash(go build:*)",
+      "Bash(timeout:*)",
+      "Bash(./run_debug.sh:*)",
+      "Bash(chmod:*)",
+      "Bash(./create_test_users.sh:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,89 @@
+<style>
+  .video-dropdown-item:hover:not(:disabled) {
+    background: #f0f0f0 !important;
+    color: #e05585 !important;
+  }
+</style>
+<!-- main_panel.html: 顶部功能栏 - Compact toggle bar -->
+<div id="banner" class="banner-toggle-bar d-flex align-items-center justify-content-between px-2" style="background:#f8f9fa; border-bottom:1px solid #dee2e6; min-height: 36px;">
+  <button id="toggleSidebarBtn" class="btn btn-sm btn-link text-decoration-none p-1" style="font-size: 0.875rem; color: #495057;" title="{{if eq .Language "en"}}Toggle Left Sidebar{{else}}切换左侧栏{{end}}">◀</button>
+  <button id="toggleChecklistBtn" class="btn btn-sm btn-link text-decoration-none p-1" style="font-size: 0.875rem; color: #495057;" title="{{if eq .Language "en"}}Toggle Right Sidebar{{else}}切换右侧栏{{end}}">▶</button>
+</div>
+<div id="dayNavBar" class="mt-2"></div>
+<div id="structuredWriterAddTurnControls" class="text-center my-3">
+  <button id="btnAddStructuredWriterCharacterTurn" class="btn pink-text-button">{{if eq .Language "en"}}Character Speaks First{{else}}角色先说{{end}}</button>
+  <button id="btnAddStructuredWriterUserTurn" class="btn pink-text-button">{{if eq .Language "en"}}User Speaks First{{else}}用户先说{{end}}</button>
+</div>
+<div id="conversation" style="padding-bottom: 10px;"></div>
+
+<div id="controlsStructuredWriter" class="controls-bar" style="display: flex; flex-wrap: wrap; gap: 0.75rem; padding: 1rem 1.25rem; background: #f8f9fa; border-top: 1px solid #dee2e6; align-items: center;">
+  <!-- Left side: Action buttons -->
+  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; flex: 1; min-width: 0;">
+    <button id="btnStickerPicker"
+            class="btn pink-text-button"
+            onclick="showStickerPicker()"
+            style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; font-size: 0.875rem;">
+      <span>😊</span><span>{{if eq .Language "en"}}Add Sticker{{else}}添加贴纸{{end}}</span>
+    </button>
+    <button id="btnDownloadDialogueImage"
+            class="btn pink-text-button"
+            onclick="downloadDialogueImage()"
+            style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; font-size: 0.875rem;">
+      <span>🖼️</span><span>{{if eq .Language "en"}}Generate Image{{else}}生成图片{{end}}</span>
+    </button>
+    <!-- Video dropdown -->
+    <div class="video-dropdown" style="position: relative; display: inline-block;">
+      <button id="btnVideoDropdown"
+              class="btn pink-text-button"
+              onclick="toggleVideoDropdown()"
+              style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; font-size: 0.875rem;">
+        <span>🎬</span><span>{{if eq .Language "en"}}Video{{else}}视频{{end}}</span><span style="font-size:0.6rem;margin-left:0.15rem;">▲</span>
+      </button>
+      <div id="videoDropdownMenu" style="display:none; position:absolute; bottom:100%; left:0; z-index:1050; min-width:180px; background:#fff; border:1px solid #dee2e6; border-radius:0.5rem; box-shadow:0 4px 16px rgba(0,0,0,0.13); padding:0.35rem 0; margin-bottom:0.25rem;">
+        <button class="video-dropdown-item" onclick="generateVideo()" style="display:flex;align-items:center;gap:0.5rem;width:100%;padding:0.5rem 1rem;border:none;background:none;cursor:pointer;font-size:0.85rem;color:#333;text-align:left;">
+          <span>🔄</span><span>{{if eq .Language "en"}}Generate Video{{else}}生成视频{{end}}</span>
+        </button>
+        <button class="video-dropdown-item" onclick="previewVideo()" style="display:flex;align-items:center;gap:0.5rem;width:100%;padding:0.5rem 1rem;border:none;background:none;cursor:pointer;font-size:0.85rem;color:#333;text-align:left;">
+          <span>▶️</span><span>{{if eq .Language "en"}}Preview Video{{else}}预览视频{{end}}</span>
+        </button>
+        <button id="btnDownloadVideo" class="video-dropdown-item" onclick="downloadVideo()" disabled style="display:flex;align-items:center;gap:0.5rem;width:100%;padding:0.5rem 1rem;border:none;background:none;cursor:pointer;font-size:0.85rem;color:#999;text-align:left;opacity:0.5;">
+          <span>⬇️</span><span>{{if eq .Language "en"}}Download Video{{else}}下载视频{{end}}</span>
+        </button>
+      </div>
+    </div>
+    <button id="btnCopyConversation"
+            class="btn pink-text-button"
+            title="{{if eq .Language "en"}}Copy all conversation contents{{else}}复制所有对话内容{{end}}"
+            style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; font-size: 0.875rem;">
+      <span>📋</span><span>{{if eq .Language "en"}}Copy Dialogue{{else}}复制对话{{end}}</span>
+    </button>
+    <!-- Backup dropup -->
+    <div class="backup-dropup" style="position: relative; display: inline-block;">
+      <button id="btnBackupDropup"
+              class="btn pink-text-button"
+              onclick="toggleBackupDropup()"
+              style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; font-size: 0.875rem;">
+        <span>💾</span><span>{{if eq .Language "en"}}Backup{{else}}备份{{end}}</span><span style="font-size:0.6rem;margin-left:0.15rem;">▲</span>
+      </button>
+      <div id="backupDropupMenu" style="display:none; position:absolute; bottom:100%; left:0; z-index:1050; min-width:200px; background:#fff; border:1px solid #dee2e6; border-radius:0.5rem; box-shadow:0 4px 16px rgba(0,0,0,0.13); padding:0.35rem 0; margin-bottom:0.25rem;">
+        <button class="video-dropdown-item" onclick="downloadLocalBackup()" style="display:flex;align-items:center;gap:0.5rem;width:100%;padding:0.5rem 1rem;border:none;background:none;cursor:pointer;font-size:0.85rem;color:#333;text-align:left;">
+          <span>⬇️</span><span>{{if eq .Language "en"}}Download Backup{{else}}下载备份{{end}}</span>
+        </button>
+        <button class="video-dropdown-item" onclick="document.getElementById('importBackupFileInput').click()" style="display:flex;align-items:center;gap:0.5rem;width:100%;padding:0.5rem 1rem;border:none;background:none;cursor:pointer;font-size:0.85rem;color:#333;text-align:left;">
+          <span>📂</span><span>{{if eq .Language "en"}}Import Backup{{else}}导入备份{{end}}</span>
+        </button>
+      </div>
+      <input type="file" id="importBackupFileInput" accept=".json" style="display:none;" onchange="importLocalBackup(event)">
+    </div>
+  </div>
+  <!-- Right side: Save & QC buttons -->
+  <div style="display: flex; gap: 0.75rem; align-items: center; flex-shrink: 0;">
+    <button id="btnMarkInWorks" class="btn btn-info" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; font-size: 0.875rem; white-space: nowrap;">
+      <span id="inWorksButtonIcon">🔨</span>
+      <span id="inWorksButtonText">{{if eq .Language "en"}}In Works{{else}}进行中{{end}}</span>
+    </button>
+    <button id="btnSaveStructuredWriter" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1.25rem; font-size: 0.875rem; font-weight: 600; background: linear-gradient(135deg, #FF6699 0%, #e05585 100%); border: none; white-space: nowrap;">
+      <span>💾</span><span>{{if eq .Language "en"}}Save{{else}}保存{{end}}</span>
+    </button>
+  </div>
+</div>

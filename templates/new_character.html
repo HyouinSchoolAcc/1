@@ -1,0 +1,2016 @@
+<!DOCTYPE html>
+<html lang="{{if eq .Language "en"}}en{{else}}zh-CN{{end}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{if eq .Language "en"}}New Character - Writer Portal{{else}}新角色 - 写手门户{{end}}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+    <style>
+        .new-character-container {
+            display: flex;
+            height: calc(100vh - 60px);
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /* Left Column - Navigation */
+        .left-column {
+            width: 25%;
+            background: #f8f9fa;
+            border-right: 2px solid #dee2e6;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-section {
+            flex: 1;
+            margin-bottom: 20px;
+        }
+
+        /* Account Section at bottom of left column */
+        .account-section {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            border: 2px solid #667eea;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            margin-top: auto;
+            flex-shrink: 0;
+        }
+
+        .account-section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 12px;
+            text-align: center;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .account-info {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .user-status {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin: 0;
+            padding: 4px 0;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: #495057;
+            font-size: 1.05rem;
+            margin: 0;
+            padding: 4px 0;
+        }
+
+        .login-link-btn, .logout-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white !important;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-align: center;
+            text-decoration: none !important;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 6px rgba(102,126,234,0.3);
+            box-sizing: border-box;
+            line-height: 1.4;
+        }
+
+        .login-link-btn:hover, .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(102,126,234,0.4);
+            color: white !important;
+            text-decoration: none !important;
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+        }
+
+        .logout-btn:hover {
+            background: linear-gradient(135deg, #5a6268 0%, #495057 100%);
+            box-shadow: 0 4px 10px rgba(108, 117, 125, 0.4);
+        }
+
+        .nav-item {
+            padding: 15px 20px;
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #495057;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .nav-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-item.locked {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .nav-item.locked:hover {
+            transform: none;
+        }
+
+        .nav-item .lock-badge {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #dc3545;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Middle Column - Content/Discussion */
+        .middle-column {
+            width: 50%;
+            background: white;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-header {
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .content-header h2 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .content-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .section-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .section-content.locked {
+            pointer-events: none;
+        }
+
+        .section-locked-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(102, 126, 234, 0.95);
+            color: white;
+            padding: 30px 50px;
+            border-radius: 16px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-align: center;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+
+        .section-locked-overlay .lock-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        /* Discord-like discussion styling */
+        .discussion-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .discussion-message {
+            display: flex;
+            gap: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            background: #f8f9fa;
+            transition: background 0.2s ease;
+        }
+
+        .discussion-message:hover {
+            background: #e9ecef;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .message-content {
+            flex: 1;
+        }
+
+        .message-author {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 5px;
+        }
+
+        .message-timestamp {
+            font-size: 0.75rem;
+            color: #6c757d;
+            margin-left: 8px;
+        }
+
+        .message-text {
+            color: #495057;
+            line-height: 1.5;
+        }
+
+        .message-input-container {
+            padding: 20px;
+            border-top: 2px solid #dee2e6;
+            background: #f8f9fa;
+        }
+
+        .message-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .send-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: transform 0.2s ease;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Right Column - Characters & Poll */
+        .right-column {
+            width: 25%;
+            background: #f8f9fa;
+            border-left: 2px solid #dee2e6;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .characters-header {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .character-list {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .character-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .character-card:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+
+        .character-card.selected {
+            border: 2px solid #667eea;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        }
+
+        .character-name {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .character-author {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-bottom: 8px;
+        }
+
+        .character-author-label {
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .character-preview {
+            font-size: 0.9rem;
+            color: #495057;
+            line-height: 1.4;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        /* Current Creations Section */
+        .current-creations-section {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .section-header {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 15px;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .creations-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .empty-creations {
+            text-align: center;
+            padding: 20px;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .empty-creations p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .creation-item {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .creation-item:hover {
+            background: #e9ecef;
+            border-color: #667eea;
+            transform: translateX(-3px);
+        }
+
+        .creation-item-name {
+            font-weight: 600;
+            color: #495057;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .creation-item-preview {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .creation-item-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .creation-item-author {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+
+        .creation-item-votes {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+            color: #667eea;
+        }
+
+        .vote-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0;
+            line-height: 1;
+            transition: transform 0.2s;
+        }
+
+        .vote-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .vote-btn.voted {
+            color: #667eea;
+        }
+
+        .creation-item-actions {
+            display: flex;
+            gap: 5px;
+            margin-top: 8px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 5px;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .edit-action-btn {
+            background: #667eea;
+            color: white;
+        }
+
+        .edit-action-btn:hover {
+            background: #5568d3;
+        }
+
+        .delete-action-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        .delete-action-btn:hover {
+            background: #c82333;
+        }
+
+        /* Character Detail Modal */
+        .character-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .character-modal.active {
+            display: flex;
+        }
+
+        .character-modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .character-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .character-modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .character-modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #888;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .character-modal-close:hover {
+            color: #333;
+        }
+
+        .character-detail-section {
+            margin-bottom: 20px;
+        }
+
+        .character-detail-label {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .character-detail-text {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 12px;
+            line-height: 1.6;
+            color: #495057;
+            white-space: pre-wrap;
+        }
+
+        /* Add New Characters Section */
+        .add-new-section {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .toggle-create-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(102,126,234,0.3);
+        }
+
+        .toggle-create-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102,126,234,0.4);
+        }
+
+        .toggle-create-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Character Description Display */
+        .character-description-display {
+            display: none;
+        }
+
+        .character-description-display.active {
+            display: block;
+        }
+
+        .description-section {
+            margin-bottom: 25px;
+        }
+
+        .description-label {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .description-text {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            line-height: 1.6;
+            color: #495057;
+        }
+
+        .description-text ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .description-text ul li {
+            margin-bottom: 8px;
+        }
+
+        .close-description-btn {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .close-description-btn:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        /* Story Timeline */
+        .timeline-header {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .timeline-item {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .timeline-day {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .timeline-task {
+            color: #495057;
+            line-height: 1.5;
+        }
+
+        /* Character Description Section Styles */
+        .character-description-content {
+            line-height: 1.6;
+            color: #495057;
+        }
+
+        /* Character Creation Form Styles */
+        .character-creation-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 2px solid #667eea;
+            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.2);
+        }
+
+        .creation-form-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .form-sublabel {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #555;
+            font-size: 0.9rem;
+            margin-left: 16px;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .background-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #dee2e6;
+        }
+
+        .background-section .form-label {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            color: #667eea;
+        }
+
+        .submit-character-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(102,126,234,0.3);
+        }
+
+        .submit-character-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102,126,234,0.4);
+        }
+
+        .submit-character-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .login-prompt {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            color: #6c757d;
+        }
+
+        .login-prompt a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-prompt a:hover {
+            text-decoration: underline;
+        }
+
+        /* Make general discussion more compact */
+        .discussion-container.compact {
+            gap: 10px;
+        }
+
+        .discussion-container.compact .discussion-message {
+            padding: 8px;
+        }
+
+        .discussion-container.compact .message-avatar {
+            width: 35px;
+            height: 35px;
+            font-size: 0.85rem;
+        }
+
+        .discussion-container.compact .message-author {
+            font-size: 0.9rem;
+        }
+
+        .discussion-container.compact .message-text {
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Header -->
+    <header class="top-header">
+        <div class="menu-container">
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <nav class="dropdown-menu" id="dropdownMenu">
+                <a href="{{if eq .Language "en"}}/navigation/e{{else}}/navigation{{end}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                        <path d="M2 2l7.586 7.586"></path>
+                        <circle cx="11" cy="11" r="2"></circle>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Writing{{else}}写作{{end}}</span>
+                </a>
+                <a href="{{if eq .Language "en"}}/faq/e{{else}}/faq{{end}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    <span>{{if eq .Language "en"}}FAQ{{else}}常见问题{{end}}</span>
+                </a>
+                <a href="{{if eq .Language "en"}}/descriptions/e{{else}}/descriptions{{end}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Character Background{{else}}角色背景{{end}}</span>
+                </a>
+                <a href="{{if eq .Language "en"}}/payment/e{{else}}/payment{{end}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Payment{{else}}支付{{end}}</span>
+                </a>
+                <a href="/store" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Store{{else}}商店{{end}}</span>
+                </a>
+                {{if .LoggedIn}}
+                <a href="/profile/{{.CurrentUser}}" class="dropdown-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>{{if eq .Language "en"}}My Profile{{else}}我的主页{{end}}</span>
+                </a>
+                {{end}}
+</nav>
+        </div>
+        
+        <a class="logo-container" href="{{if eq .Language "en"}}/landing/e{{else}}/landing{{end}}">
+            <div class="logo-icon"></div>
+            <span class="logo-text">{{if eq .Language "en"}}Writer Portal{{else}}写手门户{{end}}</span>
+        </a>
+        
+        <div class="account-container">
+            <button class="account-btn" id="accountBtn" aria-label="Account menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </button>
+            <div class="account-dropdown" id="accountDropdown">
+                <div class="account-dropdown-header">
+                    <span class="account-name">{{if eq .Language "en"}}Guest{{else}}访客{{end}}</span>
+                </div>
+                <a href="{{if eq .Language "en"}}/login/e{{else}}/login{{end}}" class="account-dropdown-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                        <polyline points="10 17 15 12 10 7"></polyline>
+                        <line x1="15" y1="12" x2="3" y2="12"></line>
+                    </svg>
+                    <span>{{if eq .Language "en"}}Login{{else}}登录{{end}}</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Three-Column Container -->
+    <div class="new-character-container">
+        <!-- Left Column: Navigation -->
+        <div class="left-column">
+            <div class="nav-section">
+                <div class="nav-item active" data-section="general">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; margin-right: 10px;">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    {{if eq .Language "en"}}General Discussion{{else}}综合讨论{{end}}
+                </div>
+                <div class="nav-item locked" data-section="story" id="storyNavItem">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; margin-right: 10px;">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                    {{if eq .Language "en"}}Story{{else}}故事{{end}}
+                    <span class="lock-badge">🔒</span>
+                </div>
+                <div class="nav-item locked" data-section="character-description" id="characterDescNavItem">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; margin-right: 10px;">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    {{if eq .Language "en"}}Character Description{{else}}角色描述{{end}}
+                    <span class="lock-badge">🔒</span>
+                </div>
+            </div>
+
+            <!-- Account Section at Bottom -->
+            <div class="account-section">
+                <div class="account-section-title">{{if eq .Language "en"}}Account{{else}}账户{{end}}</div>
+                <div class="account-info" id="accountInfo">
+                    <!-- Will be populated by JavaScript -->
+                    <div class="user-status">{{if eq .Language "en"}}Loading...{{else}}加载中...{{end}}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Column: Content -->
+        <div class="middle-column">
+            <div class="content-header">
+                <h2 id="contentTitle">{{if eq .Language "en"}}General Discussion{{else}}综合讨论{{end}}</h2>
+            </div>
+            <div class="content-body" id="contentBody">
+                <!-- Character Creation Form (at top, only shown when toggled in General section) -->
+                <div class="character-creation-section" id="characterCreationSection" style="display: none;">
+                    <div class="creation-form-title">✍️ {{if eq .Language "en"}}Create Your Character{{else}}创建你的角色{{end}}</div>
+                    
+                    <div id="characterCreationArea">
+                        <!-- Login prompt if not logged in -->
+                        <div class="login-prompt" id="loginPromptCreation" style="display: none;">
+                            <p>{{if eq .Language "en"}}Please <a href="/login/e">log in</a> to create a character.{{else}}请<a href="/login">登录</a>以创建角色。{{end}}</p>
+                        </div>
+
+                        <!-- Character creation form if logged in -->
+                        <form id="characterCreationForm" onsubmit="submitNewCharacter(event)" style="display: none;">
+                            <!-- Name Section -->
+                            <div class="form-group">
+                                <label class="form-label">1. {{if eq .Language "en"}}Character Name{{else}}角色名称{{end}} *</label>
+                                <input type="text" id="newCharacterName" class="form-input" 
+                                       placeholder="{{if eq .Language "en"}}Enter your character's name{{else}}输入角色名称{{end}}" required>
+                            </div>
+
+                            <!-- Background Section -->
+                            <div class="background-section">
+                                <div class="form-label">2. {{if eq .Language "en"}}Background{{else}}背景{{end}}</div>
+                                
+                                <div class="form-group">
+                                    <label class="form-sublabel">{{if eq .Language "en"}}Values{{else}}价值观{{end}}</label>
+                                    <textarea id="newCharacterValues" class="form-textarea" 
+                                              placeholder="{{if eq .Language "en"}}What does this character value most?{{else}}这个角色最重视什么？{{end}}" required></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-sublabel">{{if eq .Language "en"}}Experiences{{else}}经历{{end}}</label>
+                                    <textarea id="newCharacterExperiences" class="form-textarea" 
+                                              placeholder="{{if eq .Language "en"}}What key experiences shaped this character?{{else}}哪些关键经历塑造了这个角色？{{end}}" required></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-sublabel">{{if eq .Language "en"}}Judgements{{else}}判断{{end}}</label>
+                                    <textarea id="newCharacterJudgements" class="form-textarea" 
+                                              placeholder="{{if eq .Language "en"}}How does this character judge others?{{else}}这个角色如何评判他人？{{end}}" required></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-sublabel">{{if eq .Language "en"}}Abilities{{else}}能力{{end}}</label>
+                                    <textarea id="newCharacterAbilities" class="form-textarea" 
+                                              placeholder="{{if eq .Language "en"}}What special skills or talents do they possess?{{else}}他们拥有什么特殊技能或才能？{{end}}" required></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Story Section -->
+                            <div class="form-group">
+                                <label class="form-label">3. {{if eq .Language "en"}}Story{{else}}故事{{end}} *</label>
+                                <textarea id="newCharacterStory" class="form-textarea" 
+                                          placeholder="{{if eq .Language "en"}}Describe the character's overall story and narrative arc...{{else}}描述角色的整体故事和叙事弧线...{{end}}" required></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-character-btn" id="submitCharacterBtn">{{if eq .Language "en"}}Create Character{{else}}创建角色{{end}}</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- General Section (Discord Discussion) -->
+                <div id="generalContent" class="section-content">
+                    <div class="discussion-container compact" id="generalDiscussionContainer">
+                        <div class="discussion-message">
+                            <div class="message-avatar">ED</div>
+                            <div class="message-content">
+                                <div>
+                                    <span class="message-author">{{if eq .Language "en"}}Editor{{else}}编辑{{end}}</span>
+                                    <span class="message-timestamp">{{if eq .Language "en"}}Today at 9:00 AM{{else}}今天 9:00{{end}}</span>
+                                </div>
+                                <div class="message-text">
+                                    {{if eq .Language "en"}}Welcome! Share your character ideas and feedback here.{{else}}欢迎！在这里分享你的角色创意和反馈。{{end}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Story Section (Discord Discussion) -->
+                <div id="storyContent" class="section-content locked" style="display: none;">
+                    <div class="section-locked-overlay">
+                        <div class="lock-icon">🔒</div>
+                        <div>{{if eq .Language "en"}}Unlocks February 1st, 2025{{else}}2025年2月1日解锁{{end}}</div>
+                    </div>
+                    <div class="discussion-container" id="storyDiscussionContainer">
+                        <div class="discussion-message">
+                            <div class="message-avatar">WR</div>
+                            <div class="message-content">
+                                <div>
+                                    <span class="message-author">{{if eq .Language "en"}}Writer{{else}}写手{{end}}</span>
+                                    <span class="message-timestamp">{{if eq .Language "en"}}Today at 10:00 AM{{else}}今天 10:00{{end}}</span>
+                                </div>
+                                <div class="message-text">
+                                    {{if eq .Language "en"}}Let's start planning the story arc. What should happen on Day 1?{{else}}让我们开始规划故事线。第一天应该发生什么？{{end}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="discussion-message">
+                            <div class="message-avatar">ED</div>
+                            <div class="message-content">
+                                <div>
+                                    <span class="message-author">{{if eq .Language "en"}}Editor{{else}}编辑{{end}}</span>
+                                    <span class="message-timestamp">{{if eq .Language "en"}}Today at 10:15 AM{{else}}今天 10:15{{end}}</span>
+                                </div>
+                                <div class="message-text">
+                                    {{if eq .Language "en"}}I think we should start with a strong hook - something that immediately grabs attention and establishes the setting.{{else}}我认为我们应该从一个强有力的开头开始——能立刻吸引注意力并建立场景的内容。{{end}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Character Description Section -->
+                <div id="characterDescriptionContent" class="section-content character-description-content locked" style="display: none;">
+                    <div class="section-locked-overlay">
+                        <div class="lock-icon">🔒</div>
+                        <div>{{if eq .Language "en"}}Unlocks February 1st, 2025{{else}}2025年2月1日解锁{{end}}</div>
+                    </div>
+                    <div class="description-section">
+                        <div class="description-label">{{if eq .Language "en"}}Overview{{else}}概述{{end}}</div>
+                        <div class="description-text">
+                            {{if eq .Language "en"}}This section provides information about the overall character development process. Writers can create their own character concepts, discuss them in the general section, and collaborate on bringing them to life.{{else}}本节提供关于角色开发整体流程的信息。写手可以创建自己的角色概念，在综合讨论区讨论它们，并协作将它们变为现实。{{end}}
+                        </div>
+                    </div>
+
+                    <div class="description-section">
+                        <div class="description-label">{{if eq .Language "en"}}How to Create a Character{{else}}如何创建角色{{end}}</div>
+                        <div class="description-text">
+                            <ul>
+                                {{if eq .Language "en"}}
+                                <li>Think about your character's core traits and backstory</li>
+                                <li>Define their motivations and goals</li>
+                                <li>Consider how they interact with others</li>
+                                <li>Share your concept in the General Discussion</li>
+                                <li>Get feedback from other writers and editors</li>
+                                {{else}}
+                                <li>思考角色的核心特质和背景故事</li>
+                                <li>定义他们的动机和目标</li>
+                                <li>考虑他们如何与他人互动</li>
+                                <li>在综合讨论区分享你的概念</li>
+                                <li>获取其他写手和编辑的反馈</li>
+                                {{end}}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="description-section">
+                        <div class="description-label">{{if eq .Language "en"}}Character Development Tips{{else}}角色发展技巧{{end}}</div>
+                        <div class="description-text">
+                            <ul>
+                                {{if eq .Language "en"}}
+                                <li>Start with a clear concept or archetype</li>
+                                <li>Add unique traits that make them memorable</li>
+                                <li>Give them flaws and vulnerabilities</li>
+                                <li>Consider their relationships with other characters</li>
+                                <li>Think about how they'll grow throughout the story</li>
+                                {{else}}
+                                <li>从一个清晰的概念或原型开始</li>
+                                <li>添加使他们令人难忘的独特特质</li>
+                                <li>赋予他们缺点和弱点</li>
+                                <li>考虑他们与其他角色的关系</li>
+                                <li>思考他们在故事中如何成长</li>
+                                {{end}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message Input (visible in General and Story sections) -->
+            <div class="message-input-container" id="messageInputContainer">
+                <textarea class="message-input" id="messageInput" placeholder="{{if eq .Language "en"}}Type your message here...{{else}}在这里输入消息...{{end}}"></textarea>
+                <button class="send-btn" onclick="sendMessage()">{{if eq .Language "en"}}Send Message{{else}}发送消息{{end}}</button>
+            </div>
+        </div>
+
+        <!-- Right Column: Characters & Poll -->
+        <div class="right-column">
+            <div id="rightColumnContent">
+                <!-- General Section: Current Creations & Add New Characters -->
+                <div id="generalRightContent">
+                    <!-- Current Creations Section -->
+                    <div class="current-creations-section">
+                        <div class="section-header">{{if eq .Language "en"}}Current Creations{{else}}当前作品{{end}}</div>
+                        <div class="creations-list" id="creationsList">
+                            <div class="empty-creations">
+                                <p>{{if eq .Language "en"}}No characters created yet.{{else}}暂无已创建的角色。{{end}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add New Characters Section -->
+                    <div class="add-new-section">
+                        <div class="section-header">{{if eq .Language "en"}}Add New Characters{{else}}添加新角色{{end}}</div>
+                        <button class="toggle-create-btn" id="toggleCreateBtn" onclick="toggleCharacterCreation()">
+                            <span id="toggleBtnText">{{if eq .Language "en"}}Show Character Creator{{else}}显示角色创建器{{end}}</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Story Section: Timeline -->
+                <div id="storyRightContent" style="display: none;">
+                    <div class="timeline-header">{{if eq .Language "en"}}Story Timeline{{else}}故事时间线{{end}}</div>
+                    <div class="timeline-item">
+                        <div class="timeline-day">{{if eq .Language "en"}}Day 1{{else}}第1天{{end}}</div>
+                        <div class="timeline-task">{{if eq .Language "en"}}Character awakens in an unfamiliar location with no memory of how they got there.{{else}}角色在一个陌生的地方醒来，不记得自己是如何到达那里的。{{end}}</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-day">{{if eq .Language "en"}}Day 2{{else}}第2天{{end}}</div>
+                        <div class="timeline-task">{{if eq .Language "en"}}Discovers a cryptic message that hints at a larger conspiracy.{{else}}发现一条神秘的信息，暗示着更大的阴谋。{{end}}</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-day">{{if eq .Language "en"}}Day 3{{else}}第3天{{end}}</div>
+                        <div class="timeline-task">{{if eq .Language "en"}}Meets a mysterious stranger who claims to know about their past.{{else}}遇到一个神秘的陌生人，声称了解他们的过去。{{end}}</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-day">{{if eq .Language "en"}}Day 4{{else}}第4天{{end}}</div>
+                        <div class="timeline-task">{{if eq .Language "en"}}Uncovers the first piece of evidence about their true identity.{{else}}发现关于他们真实身份的第一条线索。{{end}}</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-day">{{if eq .Language "en"}}Day 5{{else}}第5天{{end}}</div>
+                        <div class="timeline-task">{{if eq .Language "en"}}Faces a moral dilemma that tests their core values.{{else}}面临一个考验他们核心价值观的道德困境。{{end}}</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-day">{{if eq .Language "en"}}Day 6{{else}}第6天{{end}}</div>
+                        <div class="timeline-task">{{if eq .Language "en"}}Discovers an underground network of people with similar experiences.{{else}}发现一个有类似经历的人组成的地下网络。{{end}}</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-day">{{if eq .Language "en"}}Day 7{{else}}第7天{{end}}</div>
+                        <div class="timeline-task">{{if eq .Language "en"}}Confronts the person responsible for their memory loss.{{else}}面对导致他们失忆的人。{{end}}</div>
+                    </div>
+                </div>
+
+                <!-- Character Description Section: Quick Info -->
+                <div id="characterDescRightContent" style="display: none;">
+                    <div class="timeline-header">{{if eq .Language "en"}}Quick Info{{else}}快速信息{{end}}</div>
+                    <div class="timeline-item">
+                        <div class="timeline-day">{{if eq .Language "en"}}Purpose{{else}}目的{{end}}</div>
+                        <div class="timeline-task">{{if eq .Language "en"}}This section provides guidance on character creation and development.{{else}}本节提供角色创建和发展的指导。{{end}}</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-day">{{if eq .Language "en"}}Collaboration{{else}}协作{{end}}</div>
+                        <div class="timeline-task">{{if eq .Language "en"}}Writers can create characters, discuss them, and get feedback from the community.{{else}}写手可以创建角色、讨论它们，并获取社区的反馈。{{end}}</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-day">{{if eq .Language "en"}}Process{{else}}流程{{end}}</div>
+                        <div class="timeline-task">{{if eq .Language "en"}}Share your ideas in General Discussion and refine them through collaboration.{{else}}在综合讨论区分享你的想法，并通过协作完善它们。{{end}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Character Detail Modal -->
+    <div class="character-modal" id="characterDetailModal">
+        <div class="character-modal-content">
+            <div class="character-modal-header">
+                <h3 class="character-modal-title" id="modalCharacterName">{{if eq .Language "en"}}Character Name{{else}}角色名称{{end}}</h3>
+                <button class="character-modal-close" onclick="closeCharacterDetailModal()">×</button>
+            </div>
+            
+            <div id="characterDetailContent">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+    <script>
+        // Language setting from server
+        const currentLang = '{{.Language}}';
+        const isEnglish = currentLang === 'en';
+
+        // Localized strings
+        const i18n = {
+            generalDiscussion: isEnglish ? 'General Discussion' : '综合讨论',
+            storyDiscussion: isEnglish ? 'Story Discussion' : '故事讨论',
+            characterDevGuide: isEnglish ? 'Character Development Guide' : '角色发展指南',
+            showCharacterCreator: isEnglish ? 'Show Character Creator' : '显示角色创建器',
+            showDiscussion: isEnglish ? 'Show Discussion' : '显示讨论',
+            createCharacter: isEnglish ? 'Create Character' : '创建角色',
+            updateCharacter: isEnglish ? 'Update Character' : '更新角色',
+            creating: isEnglish ? 'Creating...' : '创建中...',
+            updating: isEnglish ? 'Updating...' : '更新中...',
+            role: isEnglish ? 'Role' : '角色',
+            logout: isEnglish ? 'Logout' : '退出',
+            notLoggedIn: isEnglish ? 'Not logged in' : '未登录',
+            login: isEnglish ? 'Login' : '登录',
+            noCharacters: isEnglish ? 'No characters created yet.' : '暂无已创建的角色。',
+            edit: isEnglish ? 'Edit' : '编辑',
+            delete: isEnglish ? 'Delete' : '删除',
+            by: isEnglish ? 'By' : '作者',
+            createdBy: isEnglish ? 'Created by' : '创建者',
+            values: isEnglish ? 'Values' : '价值观',
+            experiences: isEnglish ? 'Experiences' : '经历',
+            judgements: isEnglish ? 'Judgements' : '判断',
+            abilities: isEnglish ? 'Abilities' : '能力',
+            story: isEnglish ? 'Story' : '故事',
+            pleaseLoginToCreate: isEnglish ? 'Please log in to create a character.' : '请登录以创建角色。',
+            pleaseLoginToPost: isEnglish ? 'Please log in to post messages.' : '请登录以发送消息。',
+            sectionLocked: isEnglish ? 'This section is locked until February 1st, 2025.' : '此版块将于2025年2月1日解锁。',
+            confirmLogout: isEnglish ? 'Are you sure you want to logout?' : '确定要退出登录吗？',
+            confirmDelete: isEnglish ? 'Are you sure you want to delete this character?' : '确定要删除这个角色吗？',
+            characterCreated: isEnglish ? 'Character created successfully!' : '角色创建成功！',
+            characterUpdated: isEnglish ? 'Character updated successfully!' : '角色更新成功！',
+            characterDeleted: isEnglish ? 'Character deleted successfully!' : '角色删除成功！',
+            errorCreating: isEnglish ? 'Error creating character' : '创建角色时出错',
+            errorUpdating: isEnglish ? 'Error updating character' : '更新角色时出错',
+            errorDeleting: isEnglish ? 'Error deleting character. Please try again.' : '删除角色时出错，请重试。',
+            errorSaving: isEnglish ? 'Error saving character. Please try again.' : '保存角色时出错，请重试。',
+            failedToSend: isEnglish ? 'Failed to send message. Please try again.' : '发送消息失败，请重试。',
+            characterNotFound: isEnglish ? 'Character not found' : '未找到角色',
+            canOnlyEditOwn: isEnglish ? 'You can only edit your own characters' : '您只能编辑自己的角色',
+            todayAt: isEnglish ? 'Today at' : '今天'
+        };
+
+        // Toggle state for character creation
+        let isCreationMode = false;
+
+        // Store loaded characters
+        let allCharacters = [];
+
+        // Check and update lock status for sections
+        function checkSectionLocks() {
+            const unlockDate = new Date('2026-02-01T00:00:00');
+            const now = new Date();
+            
+            if (now >= unlockDate) {
+                // Unlock Story section
+                const storyContent = document.getElementById('storyContent');
+                const storyNavItem = document.getElementById('storyNavItem');
+                if (storyContent) {
+                    storyContent.classList.remove('locked');
+                    const overlay = storyContent.querySelector('.section-locked-overlay');
+                    if (overlay) overlay.remove();
+                }
+                if (storyNavItem) {
+                    storyNavItem.classList.remove('locked');
+                    const badge = storyNavItem.querySelector('.lock-badge');
+                    if (badge) badge.remove();
+                }
+                
+                // Unlock Character Description section
+                const charDescContent = document.getElementById('characterDescriptionContent');
+                const charDescNavItem = document.getElementById('characterDescNavItem');
+                if (charDescContent) {
+                    charDescContent.classList.remove('locked');
+                    const overlay = charDescContent.querySelector('.section-locked-overlay');
+                    if (overlay) overlay.remove();
+                }
+                if (charDescNavItem) {
+                    charDescNavItem.classList.remove('locked');
+                    const badge = charDescNavItem.querySelector('.lock-badge');
+                    if (badge) badge.remove();
+                }
+            }
+        }
+
+        // Toggle between discussion and character creation
+        function toggleCharacterCreation() {
+            isCreationMode = !isCreationMode;
+            
+            const discussionContainer = document.getElementById('generalDiscussionContainer');
+            const messageInputContainer = document.getElementById('messageInputContainer');
+            const characterCreationSection = document.getElementById('characterCreationSection');
+            const toggleBtn = document.getElementById('toggleBtnText');
+            
+            if (isCreationMode) {
+                // Show character creation, hide discussion
+                discussionContainer.style.display = 'none';
+                messageInputContainer.style.display = 'none';
+                characterCreationSection.style.display = 'block';
+                toggleBtn.textContent = i18n.showDiscussion;
+            } else {
+                // Show discussion, hide character creation
+                discussionContainer.style.display = 'flex';
+                messageInputContainer.style.display = 'block';
+                characterCreationSection.style.display = 'none';
+                toggleBtn.textContent = i18n.showCharacterCreator;
+            }
+        }
+
+        // User authentication state
+        let currentUser = null;
+
+        // Check current user login status
+        async function checkUserAuth() {
+            try {
+                const response = await fetch('/api/current_user');
+                const data = await response.json();
+                currentUser = data;
+                updateCharacterCreationUI();
+                updateAccountSection();
+                
+                // Load existing characters if logged in
+                if (currentUser && currentUser.logged_in) {
+                    loadExistingCharacters();
+                }
+            } catch (error) {
+                console.error('Error checking auth:', error);
+                currentUser = null;
+                updateCharacterCreationUI();
+                updateAccountSection();
+            }
+        }
+
+        // Update account section based on login status
+        function updateAccountSection() {
+            const accountInfo = document.getElementById('accountInfo');
+            const loginPath = isEnglish ? '/login/e' : '/login';
+            
+            if (currentUser && currentUser.logged_in) {
+                // User is logged in
+                accountInfo.innerHTML = `
+                    <div class="user-name">${escapeHtml(currentUser.username || 'User')}</div>
+                    <div class="user-status">${i18n.role}: ${escapeHtml(currentUser.role || 'writer')}</div>
+                    <button class="logout-btn" onclick="handleLogout()">${i18n.logout}</button>
+                `;
+            } else {
+                // User is not logged in - save current page for redirect
+                const currentPath = window.location.pathname + window.location.search;
+                const loginUrl = `${loginPath}?redirect=${encodeURIComponent(currentPath)}`;
+                
+                accountInfo.innerHTML = `
+                    <div class="user-status">${i18n.notLoggedIn}</div>
+                    <a href="${loginUrl}" class="login-link-btn">${i18n.login}</a>
+                `;
+            }
+        }
+
+        // Handle logout
+        function handleLogout() {
+            if (confirm(i18n.confirmLogout)) {
+                window.location.href = '/logout';
+            }
+        }
+
+        let userVotedIds = new Set();
+
+        // Load existing characters from API
+        async function loadExistingCharacters() {
+            try {
+                const response = await fetch('/api/user-characters');
+                const data = await response.json();
+                
+                if (data.success && data.characters) {
+                    allCharacters = data.characters;
+                    userVotedIds = new Set(data.voted_ids || []);
+                    const creationsList = document.getElementById('creationsList');
+                    
+                    // Remove empty state
+                    const emptyState = creationsList.querySelector('.empty-creations');
+                    if (emptyState) {
+                        emptyState.remove();
+                    }
+                    
+                    // Clear existing items
+                    creationsList.innerHTML = '';
+                    
+                    // Add each character to the list
+                    if (data.characters.length > 0) {
+                        data.characters.forEach(char => {
+                            creationsList.appendChild(createCharacterListItem(char));
+                        });
+                    } else {
+                        creationsList.innerHTML = `<div class="empty-creations"><p>${i18n.noCharacters}</p></div>`;
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading characters:', error);
+            }
+        }
+
+        // Create character list item
+        function createCharacterListItem(character) {
+            const isOwner = currentUser && currentUser.user_id === character.creator_id;
+            const isEditor = currentUser && currentUser.role === 'editor';
+            const canEdit = isOwner || isEditor;
+            const votes = character.votes || 0;
+            const hasVoted = userVotedIds.has(character.id);
+            
+            const item = document.createElement('div');
+            item.className = 'creation-item';
+            item.setAttribute('data-character-id', character.id);
+            
+            let actionsHTML = '';
+            if (canEdit) {
+                actionsHTML = `
+                    <div class="creation-item-actions">
+                        <button class="action-btn edit-action-btn" onclick="event.stopPropagation(); editCharacter('${character.id}')">${i18n.edit}</button>
+                        ${isOwner ? `<button class="action-btn delete-action-btn" onclick="event.stopPropagation(); deleteCharacter('${character.id}')">${i18n.delete}</button>` : ''}
+                    </div>
+                `;
+            }
+            
+            item.innerHTML = `
+                <div class="creation-item-name">${escapeHtml(character.name)}</div>
+                <div class="creation-item-preview">${escapeHtml((character.story || '').substring(0, 50))}...</div>
+                <div class="creation-item-meta">
+                    <span class="creation-item-author">${i18n.by} ${escapeHtml(character.creator_name)}</span>
+                    <div class="creation-item-votes">
+                        <button class="vote-btn ${hasVoted ? 'voted' : ''}" onclick="event.stopPropagation(); voteCharacter('${character.id}')">
+                            ${hasVoted ? '❤️' : '🤍'}
+                        </button>
+                        <span id="vote-count-${character.id}">${votes}</span>
+                    </div>
+                </div>
+                ${actionsHTML}
+            `;
+            
+            // Add click handler to view details
+            item.addEventListener('click', () => viewCharacterDetails(character.id));
+            
+            return item;
+        }
+
+        // Update character creation UI based on auth status
+        function updateCharacterCreationUI() {
+            const loginPrompt = document.getElementById('loginPromptCreation');
+            const creationForm = document.getElementById('characterCreationForm');
+            
+            if (currentUser && currentUser.logged_in) {
+                loginPrompt.style.display = 'none';
+                creationForm.style.display = 'block';
+            } else {
+                loginPrompt.style.display = 'block';
+                creationForm.style.display = 'none';
+            }
+        }
+
+        // Submit new character
+        async function submitNewCharacter(event) {
+            event.preventDefault();
+            
+            const isLoggedIn = currentUser && (currentUser.logged_in === true || currentUser.user_id);
+            if (!isLoggedIn) {
+                alert(i18n.pleaseLoginToCreate);
+                return;
+            }
+            
+            const form = document.getElementById('characterCreationForm');
+            const editingId = form.getAttribute('data-editing-id');
+            const isEditing = !!editingId;
+            
+            const characterData = {
+                name: document.getElementById('newCharacterName').value,
+                values: document.getElementById('newCharacterValues').value,
+                experiences: document.getElementById('newCharacterExperiences').value,
+                judgements: document.getElementById('newCharacterJudgements').value,
+                abilities: document.getElementById('newCharacterAbilities').value,
+                story: document.getElementById('newCharacterStory').value
+            };
+            
+            try {
+                const submitBtn = document.getElementById('submitCharacterBtn');
+                submitBtn.disabled = true;
+                submitBtn.textContent = isEditing ? i18n.updating : i18n.creating;
+                
+                const url = isEditing ? `/api/user-characters/${editingId}` : '/api/user-characters';
+                const method = isEditing ? 'PUT' : 'POST';
+                
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(characterData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    alert(isEditing ? i18n.characterUpdated : i18n.characterCreated);
+                    form.reset();
+                    form.removeAttribute('data-editing-id');
+                    submitBtn.textContent = i18n.createCharacter;
+                    
+                    // Reload characters list
+                    await loadExistingCharacters();
+                    
+                    // Toggle back to discussion view
+                    if (isCreationMode) {
+                        toggleCharacterCreation();
+                    }
+                } else {
+                    alert(data.error || (isEditing ? i18n.errorUpdating : i18n.errorCreating));
+                }
+            } catch (error) {
+                console.error('Error saving character:', error);
+                alert(i18n.errorSaving);
+            } finally {
+                const submitBtn = document.getElementById('submitCharacterBtn');
+                submitBtn.disabled = false;
+                if (!form.getAttribute('data-editing-id')) {
+                    submitBtn.textContent = i18n.createCharacter;
+                }
+            }
+        }
+
+        // View character details
+        function viewCharacterDetails(characterId) {
+            const character = allCharacters.find(c => c.id === characterId);
+            if (!character) {
+                console.error('Character not found:', characterId);
+                return;
+            }
+            
+            const modal = document.getElementById('characterDetailModal');
+            const modalTitle = document.getElementById('modalCharacterName');
+            const modalContent = document.getElementById('characterDetailContent');
+            
+            modalTitle.textContent = character.name;
+            
+            modalContent.innerHTML = `
+                <div class="character-detail-section">
+                    <div class="character-detail-label">${i18n.createdBy}</div>
+                    <div class="character-detail-text">${escapeHtml(character.creator_name)}</div>
+                </div>
+                
+                <div class="character-detail-section">
+                    <div class="character-detail-label">${i18n.values}</div>
+                    <div class="character-detail-text">${escapeHtml(character.values)}</div>
+                </div>
+                
+                <div class="character-detail-section">
+                    <div class="character-detail-label">${i18n.experiences}</div>
+                    <div class="character-detail-text">${escapeHtml(character.experiences)}</div>
+                </div>
+                
+                <div class="character-detail-section">
+                    <div class="character-detail-label">${i18n.judgements}</div>
+                    <div class="character-detail-text">${escapeHtml(character.judgements)}</div>
+                </div>
+                
+                <div class="character-detail-section">
+                    <div class="character-detail-label">${i18n.abilities}</div>
+                    <div class="character-detail-text">${escapeHtml(character.abilities)}</div>
+                </div>
+                
+                <div class="character-detail-section">
+                    <div class="character-detail-label">${i18n.story}</div>
+                    <div class="character-detail-text">${escapeHtml(character.story)}</div>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+        }
+
+        // Close character detail modal
+        function closeCharacterDetailModal() {
+            document.getElementById('characterDetailModal').classList.remove('active');
+        }
+
+        // Edit character
+        async function editCharacter(characterId) {
+            const character = allCharacters.find(c => c.id === characterId);
+            if (!character) {
+                alert(i18n.characterNotFound);
+                return;
+            }
+            
+            // Check ownership - editors can edit any character
+            const isOwner = currentUser && currentUser.user_id === character.creator_id;
+            const isEditor = currentUser && currentUser.role === 'editor';
+            if (!isOwner && !isEditor) {
+                alert(i18n.canOnlyEditOwn);
+                return;
+            }
+            
+            // Fill the form with character data
+            document.getElementById('newCharacterName').value = character.name;
+            document.getElementById('newCharacterValues').value = character.values;
+            document.getElementById('newCharacterExperiences').value = character.experiences;
+            document.getElementById('newCharacterJudgements').value = character.judgements;
+            document.getElementById('newCharacterAbilities').value = character.abilities;
+            document.getElementById('newCharacterStory').value = character.story;
+            
+            // Store character ID for update
+            document.getElementById('characterCreationForm').setAttribute('data-editing-id', characterId);
+            document.getElementById('submitCharacterBtn').textContent = i18n.updateCharacter;
+            
+            // Show the creation form
+            if (!isCreationMode) {
+                toggleCharacterCreation();
+            }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Delete character
+        async function deleteCharacter(characterId) {
+            if (!confirm(i18n.confirmDelete)) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/api/user-characters/${characterId}`, {
+                    method: 'DELETE',
+                    headers: {'Content-Type': 'application/json'}
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    alert(i18n.characterDeleted);
+                    // Reload characters
+                    await loadExistingCharacters();
+                } else {
+                    alert(data.error || i18n.errorDeleting);
+                }
+            } catch (error) {
+                console.error('Error deleting character:', error);
+                alert(i18n.errorDeleting);
+            }
+        }
+
+        // Vote on character
+        async function voteCharacter(characterId) {
+            if (!currentUser || !currentUser.logged_in) {
+                alert(i18n.pleaseLoginToCreate || 'Please log in first');
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/user-characters/${characterId}/vote`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'}
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    if (data.voted) {
+                        userVotedIds.add(characterId);
+                    } else {
+                        userVotedIds.delete(characterId);
+                    }
+
+                    const voteCountEl = document.getElementById(`vote-count-${characterId}`);
+                    if (voteCountEl) voteCountEl.textContent = data.count;
+
+                    const item = document.querySelector(`[data-character-id="${characterId}"]`);
+                    const voteBtn = item?.querySelector('.vote-btn');
+                    if (voteBtn) {
+                        voteBtn.classList.toggle('voted', data.voted);
+                        voteBtn.textContent = data.voted ? '❤️' : '🤍';
+                    }
+                }
+            } catch (error) {
+                console.error('Error voting:', error);
+            }
+        }
+
+        // HTML escape function
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Section navigation
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Check if section is locked
+                if (this.classList.contains('locked')) {
+                    alert(i18n.sectionLocked);
+                    return;
+                }
+                
+                // Remove active class from all nav items
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Hide all content sections
+                document.querySelectorAll('.section-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                
+                // Get section type
+                const section = this.getAttribute('data-section');
+                
+                // Update header and show appropriate content
+                const contentTitle = document.getElementById('contentTitle');
+                const messageInputContainer = document.getElementById('messageInputContainer');
+                
+                // Hide all right column content
+                document.getElementById('generalRightContent').style.display = 'none';
+                document.getElementById('storyRightContent').style.display = 'none';
+                document.getElementById('characterDescRightContent').style.display = 'none';
+                
+                // Reset toggle state when switching sections
+                const characterCreationSection = document.getElementById('characterCreationSection');
+                const discussionContainer = document.getElementById('generalDiscussionContainer');
+                const toggleBtn = document.getElementById('toggleBtnText');
+                
+                if (section === 'general') {
+                    contentTitle.textContent = i18n.generalDiscussion;
+                    document.getElementById('generalContent').style.display = 'block';
+                    messageInputContainer.style.display = 'block';
+                    document.getElementById('generalRightContent').style.display = 'block';
+                    
+                    // Reset to discussion mode
+                    isCreationMode = false;
+                    discussionContainer.style.display = 'flex';
+                    characterCreationSection.style.display = 'none';
+                    toggleBtn.textContent = i18n.showCharacterCreator;
+                } else if (section === 'story') {
+                    contentTitle.textContent = i18n.storyDiscussion;
+                    document.getElementById('storyContent').style.display = 'block';
+                    messageInputContainer.style.display = 'block';
+                    document.getElementById('storyRightContent').style.display = 'block';
+                    characterCreationSection.style.display = 'none';
+                    
+                    // Load story messages if not already loaded
+                    const storyContainer = document.getElementById('storyDiscussionContainer');
+                    if (storyContainer && storyContainer.children.length <= 2) {
+                        loadMessages('story');
+                    }
+                } else if (section === 'character-description') {
+                    contentTitle.textContent = i18n.characterDevGuide;
+                    document.getElementById('characterDescriptionContent').style.display = 'block';
+                    messageInputContainer.style.display = 'none';
+                    document.getElementById('characterDescRightContent').style.display = 'block';
+                    characterCreationSection.style.display = 'none';
+                }
+            });
+        });
+
+        // Send message functionality
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Check if user is logged in
+            if (!currentUser || !currentUser.user_id) {
+                alert(i18n.pleaseLoginToPost);
+                return;
+            }
+            
+            // Determine which discussion container to use
+            const activeSection = document.querySelector('.nav-item.active').getAttribute('data-section');
+            let container;
+            let section;
+            
+            if (activeSection === 'general') {
+                container = document.getElementById('generalDiscussionContainer');
+                section = 'general';
+            } else if (activeSection === 'story') {
+                container = document.getElementById('storyDiscussionContainer');
+                section = 'story';
+            }
+            
+            if (!container) return;
+            
+            // Disable input while sending
+            input.disabled = true;
+            
+            try {
+                // Send message to server
+                const response = await fetch('/api/newcharacter-messages', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        section: section,
+                        content: message
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to send message');
+                }
+                
+                // Add message to UI
+                const now = new Date();
+                const timeStr = `${i18n.todayAt} ${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
+                
+                const messageHtml = `
+                    <div class="discussion-message">
+                        <div class="message-avatar">${currentUser.username.substring(0, 2).toUpperCase()}</div>
+                        <div class="message-content">
+                            <div>
+                                <span class="message-author">${escapeHtml(currentUser.username)}</span>
+                                <span class="message-timestamp">${timeStr}</span>
+                            </div>
+                            <div class="message-text">${escapeHtml(message)}</div>
+                        </div>
+                    </div>
+                `;
+                
+                container.insertAdjacentHTML('beforeend', messageHtml);
+                input.value = '';
+                
+                // Scroll to bottom of content-body (the actual scrollable container)
+                const contentBody = document.getElementById('contentBody');
+                if (contentBody) {
+                    contentBody.scrollTop = contentBody.scrollHeight;
+                }
+            } catch (error) {
+                console.error('Error sending message:', error);
+                alert(i18n.failedToSend);
+            } finally {
+                input.disabled = false;
+            }
+        }
+
+        // Allow Enter to send message (Shift+Enter for new line)
+        document.getElementById('messageInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Auto-scroll to bottom when typing in message input
+        document.getElementById('messageInput').addEventListener('focus', function() {
+            scrollContentToBottom();
+        });
+
+        document.getElementById('messageInput').addEventListener('input', function() {
+            scrollContentToBottom();
+        });
+
+        // Helper function to scroll content body to bottom
+        function scrollContentToBottom() {
+            const contentBody = document.getElementById('contentBody');
+            if (contentBody) {
+                contentBody.scrollTop = contentBody.scrollHeight;
+            }
+        }
+
+        // Load messages for a section
+        async function loadMessages(section) {
+            try {
+                const response = await fetch(`/api/newcharacter-messages?section=${section}`);
+                const data = await response.json();
+                
+                if (data.success && data.messages) {
+                    const containerId = section === 'general' ? 'generalDiscussionContainer' : 'storyDiscussionContainer';
+                    const container = document.getElementById(containerId);
+                    
+                    if (container) {
+                        // Clear existing messages (keep only system messages if any)
+                        const systemMessages = container.querySelectorAll('.discussion-message');
+                        
+                        // Add loaded messages
+                        data.messages.forEach(msg => {
+                            const messageDate = new Date(msg.created_at);
+                            const timeStr = `${messageDate.toLocaleDateString()} at ${messageDate.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}`;
+                            
+                            const messageHtml = `
+                                <div class="discussion-message">
+                                    <div class="message-avatar">${msg.username.substring(0, 2).toUpperCase()}</div>
+                                    <div class="message-content">
+                                        <div>
+                                            <span class="message-author">${escapeHtml(msg.username)}</span>
+                                            <span class="message-timestamp">${timeStr}</span>
+                                        </div>
+                                        <div class="message-text">${escapeHtml(msg.content)}</div>
+                                    </div>
+                                </div>
+                            `;
+                            
+                            container.insertAdjacentHTML('beforeend', messageHtml);
+                        });
+                        
+                        // Scroll to bottom after loading messages
+                        setTimeout(() => scrollContentToBottom(), 100);
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading messages:', error);
+            }
+        }
+
+        // Initialize on page load
+        checkSectionLocks();
+        checkUserAuth();
+        // Character creation section starts hidden (general discussion shown by default)
+        document.getElementById('characterCreationSection').style.display = 'none';
+        // Load general messages
+        loadMessages('general');
+    </script>
+    
+{% include "includes/home_button.html" %}
+<script src="/static/js/impersonation.js"></script>
+</body>
+</html>

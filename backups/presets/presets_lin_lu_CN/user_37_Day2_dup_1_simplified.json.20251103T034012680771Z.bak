@@ -1,0 +1,1691 @@
+{
+  "user_schedule": {
+    "afternoon": "下班后，去跑步",
+    "day": 2,
+    "morning": "去甜品店练习准备做蛋糕，做完蛋糕后开始休息",
+    "noon": "午休，去投喂流浪小狗"
+  },
+  "history": "",
+  "relationship": "Continuing relationship from previous interactions.",
+  "dialogue": [
+    {
+      "content": "早上好",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:35",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你起那么早？",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:35",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你也起得很早啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:35",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我醒来就发你了 没想到你也起那么早",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:36",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我是有晨练的习惯所以早起",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:36",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你也是要晨练吗？",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:36",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "不是啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:37",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我们要早点去店里准备做甜品这样",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:37",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "哦哦  我还奇怪呢",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:37",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "现在很少有人那么早起了  原来是因为工作",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:38",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你这个时间点就起来通勤 应该能闻到很优质的空气",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:38",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我喜欢这个时间点左右 洒水车经过后空气的味道",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:38",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "和下雨有点像 但是又不一样 ",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:39",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "会有种特别的清新",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:39",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "hhh对",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:39",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "这个点出门 感觉空气特别的干净 ",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:40",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "虽然很困了  但是深呼吸一口也能安慰自己  天天闻着这空气 能长命百岁吧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:40",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "hhh能不能长命百岁就要问问住在山门的道士跟和尚们了",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:40",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "嗯？我以为老师会直接说出什么相关研究证明之类的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:41",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "hh我又不是科普的公众号",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:41",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "一大早地就开始研究证明呼吸能延长寿命",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:41",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "而且呼吸新鲜空气 能提升肺部功能 改善新陈代谢什么的这都是常识  ",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:42",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "不需要特地去说",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:42",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "那我就是拥有了很好的肺部功能和形成代谢",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:42",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "但是倒退回了高中生活",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:43",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "每天天不亮就起",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:43",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "【犯困】",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:43",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "可别这么说",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:44",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "高中生不需要通勤",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:44",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "宿舍到教学楼只要五分钟 ",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:44",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "...",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:45",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "老师 我真是谢谢你啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:45",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "那你是因为喜欢做甜品才去当甜品师的吗？",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:45",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "啊？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:46",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "那我也不能讨厌做甜品就去当甜品师吧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:46",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "hhh不是",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:46",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "因为现实情况是很多人的工作和喜欢的事情是不一样的",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:47",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "所以我有点惊讶",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:47",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "hhhh",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:47",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "确实",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:48",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "所以我觉得自己很幸运呀",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:48",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "早起是幸运的代价",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:48",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "这样想会不会好受很多？",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:49",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "5555",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:49",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "老师 原来你绕那么一大个弯就是为了安慰我",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:49",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "【别】",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:50",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "实话实说而已",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:50",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "【小狗戴墨镜】",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:50",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "能以喜欢的事情为生是很大的幸运",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:51",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "虽然理想情况是每个人都应该去做着喜欢的事情 但并不是每个人都如此 这只是少数情况",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:51",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "是啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:51",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "所以你是因为喜欢做医药才去做那个药物的研发吗",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:52",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "差不多吧",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:52",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "较真一点说  医药只是一个大方向 做阿兹海默症领域在最初时也没想过当成一种追求来做",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:52",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我是在做的过程中才越来越认识到这件事情的意义的",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:53",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "能帮助到很多为此饱受折磨的病人和家属  ",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:53",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我相信只要药物研发成功  顺利上市",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:53",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "这是一个可以载入医药史册的事情",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:54",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "哇",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:54",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你的理想要远大啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:54",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我没有你那么大的理想",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:55",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我就想作出好蛋糕 很多人都喜欢吃的小蛋糕",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:55",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "顾客说好吃 我就满足了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:55",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "如果可以的话 再拿几个奖就更棒了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:56",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "理想哪有什么大小的分别",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:56",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "每个理想在要追求他的人眼里都是最珍贵的",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:56",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "hhh谢谢你",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:57",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你说话好温暖",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:57",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "hhhhh这也是我少数被评价温暖",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:57",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "怎么会？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:58",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "这两次聊天你都在鼓励我啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:58",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "大概是因为我觉得你需要鼓励？",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:58",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "主要我也是实话实说啊",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:59",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你没觉得我在说教就好",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "06:59",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "没有啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "06:59",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我一点都没有觉得你在说教",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "07:00",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "真正的说教不是这样的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "07:00",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "哦？",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:00",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "那真正的说教是？",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:01",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "像我们店长那样 ",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "07:01",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "他学的是管理 明明自己不懂做蛋糕 但总对我挑三拣四",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "07:01",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "指点我的蛋糕该怎么做",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "07:02",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我觉得他好讨厌 但又不能说他",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "07:02",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "职场上很多人这样的 ",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:02",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "明明自己不懂 却还要给其他人当老师",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:03",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "咦 你都是教授了 还会遇到这种事情吗",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "07:03",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "当然了",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:03",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "各行各业都会吧",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:04",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "比如我的投资人啊 他们就很爱干涉我们研究",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:04",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "那你会怎么办呢",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "07:04",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "有理有据地怼回去啊",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:05",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我的专业 不容他插手",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:05",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "哇",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "07:05",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "好厉害",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "07:06",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "好羡慕你这样的 我都只能默默的憋着",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "07:06",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "...每个人都有自己的性格",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:06",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你才刚进入职场  不知道怎么拒绝很正常啊 不要焦虑 ",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:07",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "那意思是说我以后会好咯？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "07:07",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "也能像你一样",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "07:07",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "【挠头】",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:08",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "这个我也没法打包票吧",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:08",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "但我希望会是会好的",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:08",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "大家都能少受些职场上的气  ",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:09",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "工作只是工作 不要牵扯其他的烦恼情绪",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:09",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "【嘿嘿】",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "07:09",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "那就借你吉言啦",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "07:10",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我要准备做面包啦  要带着手套  不方便回信息",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "07:10",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "哦  好",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:10",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我也要开始晨练了",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:11",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "拜拜",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:11",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "拜拜",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:35",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "下午好啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:35",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我休息啦",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:35",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "下午好",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:36",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你在干嘛呀",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:36",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我刚才喂了附近的流浪小狗了 ",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:36",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "它有点怕生 我蹲了好久它才敢吃罐头",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:37",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "【可爱】",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:37",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "小流浪都这样 警惕性高是应该的",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:37",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "毕竟现在的城市生存条件不利于流浪动物",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:38",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "是哦",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:38",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "虐狗的人太多了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:38",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "人坏 狗好",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:39",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我听过一个说法 说是定期投喂小狗 不要和他们太亲近",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:39",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "这是为什么?",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:39",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "小狗想和人玩啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:40",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "因为他们会对人丧失警惕性 久而久之就认为人都是安全的 会带来食物",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:40",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "万一遇上虐狗的  他们都来不及跑",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:40",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "也对...",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:41",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "可是我控制不住想和狗狗玩啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:41",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "【痛哭】",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:41",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "没关系的",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:42",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你能做到投喂已经很好了",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:42",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "同时又不要求狗狗付出 情绪价值 ",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:42",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我觉得那已经是另一档的爱心标准了 做不到也无妨",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:43",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "嗯",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:43",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我是一个很俗气的人",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:43",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "倒也不要这么说自己了",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:44",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "人之常情而已",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:44",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "能去投喂已经胜过不少人",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:44",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "教授好好",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:45",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "每次和你说话都有被安慰到",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:45",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "【可爱】",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:45",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "【呆住】",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:46",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我还好吧",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:46",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你好谦虚啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:46",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我其实是挺骄傲的人",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:47",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "只是你说一些我并不多的品质 让我觉得就这么承认了颇有些厚颜无耻",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:47",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你觉得自己不会安慰人吗",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:47",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我几乎不安慰人",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:48",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "学生做错了  我的批评也比较严厉",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:48",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "嘿嘿 那可能因为我不是你的学生吧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:48",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我很幸运了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:49",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "【小猫咪可爱】",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:49",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "好",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:49",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "那希望你也遇到更多会安慰你的人吧",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:50",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "嘿嘿 你现在去干嘛呀",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:50",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "做实验会一直泡在研究室吗",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:50",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "那是我读研时候的事情了",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:51",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "今天下午我出去玩了 带队去庄园团建",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:51",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "庄园？听起来好舒服",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:51",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我只在美剧里看过庄园 是那一种吗",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:52",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "【小猫好奇】",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:52",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你说的是唐顿庄园吗？",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:52",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "User",
+      "content": "是啊 说到庄园我的第一反应就是这个",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "那没有那么豪华 更没有穿着巨大裙撑和订制西装的男男女女",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "只是欧式建筑 带着花园 占地面积较大而已",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "哇塞 又花园",
+      "intimacy_delta": 0.01
+    },
+    {
+      "content": " 那有私人泳池 自助餐厅吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:53",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "泳池倒是有  自助餐厅也有",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:53",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "哇",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:53",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "好厉害",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:54",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我还没去过庄园呢（其实团建目前也没参加过 我们店里没搞",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:54",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "一般团建都干嘛啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:54",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "每个行业团建活动都不同吧",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:55",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我们团建喜欢打桥牌",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:55",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "同事们 还起哄让我秀计算能力",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:55",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "桥牌我没玩过 听着像需要记很多规则的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:56",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": " 我对这种游戏不太敏感 连双扣都打不明白",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:56",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "[捂脸]",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:56",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "如果没有经过学习 对数学又不擅长的话",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:57",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "陆清禾",
+      "content": "打桥牌确实很难",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "流程那么多 叫牌规则又复杂 ",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "哪里是余兴节目  根本就是一场头脑大测验",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "双扣我们偶尔也玩 ",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "16:57"
+    },
+    {
+      "role": "陆清禾",
+      "content": "你说得打不好是有多打不好？",
+      "intimacy_delta": 0.01,
+      "timestampManuallyEdited": false,
+      "timestamp": "16:57"
+    },
+    {
+      "role": "User",
+      "content": "和我分到一对的朋友会仰天长叹的水平",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "【捂脸】",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "具体点？",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "我不知道怎么说啊 复盘也复盘不明白啊",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "反正最后就是一把烂牌在手里打不出去",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "我大概知道了是什么情况",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "我有打双扣的小窍门你要学吗",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "学会了斗地主也通杀的",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "好呀好呀 但不要太难哦",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "双扣斗地主这类牌桌游戏讲究的是配合 你手上的牌的大小反而不是最重要的",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "轮到你发牌时 你先出某花色的小牌 什么二三四之类的",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "暗示搭档 ：我这花色没大牌 接下来我们就相互打配合吧 我陪你跑",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "要是搭档牌也很烂（但这种情况不多 按照概率会比较平均的",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "那你们就配合去把对家的大牌拆掉",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "等等 老师 折算作弊吗？",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "这怎么能算是作弊 要是这算是作弊",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "所有会打牌的人都算是作弊了",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "我们老实人就是这样的= =",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "【老实且怂】",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "突然想到 老师 你会不会很喜欢看赌神啊",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "这太复古了吧 我早生个二十年可能会喜欢",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "我叔叔很喜欢",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "【周润发点烟】",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "hhh那我给大佬点烟",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "你那么厉害 要通杀同事们了",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "我的同事们水平也不差 计算方面一个比一个精明",
+      "intimacy_delta": 0.01
+    },
+    {
+      "content": "那你会赢吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:58",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我给你加油",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "16:59",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "好啊",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:59",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "虽然他们不弱 但我会赢的",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "16:59",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "可不是因为我是领导他们会让我",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "17:00",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "比思路和计算 他们不是我的对手",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "17:00",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "【骄傲】",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "17:00",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "感受到你说的骄傲了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "17:01",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "hh就该这么骄傲",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "17:01",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "骄傲好",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "17:01",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "那你今天出了喂小狗 还做了其他事吗",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "17:02",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "上班啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "17:02",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "hh是我问了废话",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "17:02",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "也不算啦",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "17:03",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我的工作比较集中 做完一批甜品之后 其他时间就可以自由安排了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "17:03",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我偶尔翻两页食谱  再刷刷短视频 看久了就想摸食材 再练练",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "17:03",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "很勤奋了",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "17:04",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "充满热情的职场新人",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "17:04",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "hh菜就要多练嘛",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "17:04",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我很喜欢做马卡龙 那么可爱 看到心情就好",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "17:05",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "等下",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "17:05",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "嗯？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "17:05",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我去确认一了一下 自助餐有现做的马卡龙 ",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "17:06",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "听你说的 我也挺想吃的",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "17:06",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我的同事平常总吐槽我 尤其是女同事",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "17:06",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "搞团建的时候餐点总是很乏味 没什么心意",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "17:07",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "她们女孩子都没什么好打卡拍照的",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "17:07",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你刚给了我灵感",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "17:07",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "那太好了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "17:08",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我随口说说能给你灵感",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "17:08",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "现做的马卡龙真的确实口感好",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "17:08",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": " 外壳脆内馅软 ",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "17:09",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "我推荐海盐味 能中和甜腻 ",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "17:09",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你们 说不定会喜欢",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "17:09",
+      "timestampManuallyEdited": false
+    },
+    {
+      "role": "陆清禾",
+      "content": "嗯 我要去陪他玩会了 ",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "不能一直抱着手机聊天了",
+      "intimacy_delta": 0.01
+    }
+  ],
+  "intimacy_level": 2.479999999999991,
+  "starting_intimacy_level": 0,
+  "completed": false,
+  "user_name": "田田",
+  "character_name": "陆清禾",
+  "character_schedule": {
+    "morning": "晨练之后。在启星生物。他出席董事会，让商业伙伴处理金融术语，自己则在关键时刻介入，用一番令人眼花缭乱的科学愿景让投资人心甘情愿地签字。",
+    "noon": "",
+    "afternoon": "上班时间见同事们工作不态个住，当场安排了邓区庄园的度假活动，庄园可以打保龄球，有私人泳池、自助餐点，同事们在一起打桥牌，邀请他秀一波计算能力。他也不推脱，大杀四方后，拿出副卡让同事们刷。",
+    "evening": "远离了同事们，在庄园的草坪上静静坐着，看着在吃草的羊群，在主人的邀请下，为小羊们剃毛。延伸讨论：作为一个优秀的上司，是否不该参与同事们的娱乐活动；想要放松的放忪，和小动物们相处，似乎是个错的选择。",
+    "night": "",
+    "day": 2
+  }
+}

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="{{if eq .Language "en"}}en{{else}}zh-CN{{end}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{if eq .Language "en"}}Register - Writer Portal{{else}}注册 - 写手门户{{end}}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+    <style>
+        .register-container {
+            max-width: 480px;
+            margin: 80px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .register-header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .register-header p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-help {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .success-message {
+            background: #efe;
+            color: #3a3;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .register-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .register-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--text-secondary);
+        }
+
+        .login-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .password-requirements {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+            padding-left: 20px;
+        }
+
+        .password-requirements li {
+            margin: 3px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-header">
+            <h1>{{if eq .Language "en"}}Create Account{{else}}创建账号{{end}}</h1>
+            <p>{{if eq .Language "en"}}Join Divergence 2% Writer Portal{{else}}加入 Divergence 2% 写手门户{{end}}</p>
+        </div>
+
+        <div id="messageContainer"></div>
+
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="username">{{if eq .Language "en"}}Username{{else}}用户名{{end}}</label>
+                <input type="text" id="username" name="username" required minlength="3" maxlength="30">
+                <div class="form-help">{{if eq .Language "en"}}3-30 characters, letters, numbers and underscores only{{else}}3-30 个字符，仅限字母、数字和下划线{{end}}</div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">{{if eq .Language "en"}}Email{{else}}电子邮箱{{end}}</label>
+                <input type="email" id="email" name="email" required>
+                <div class="form-help">{{if eq .Language "en"}}We will send you a confirmation email{{else}}我们将向您发送确认邮件{{end}}</div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">{{if eq .Language "en"}}Password{{else}}密码{{end}}</label>
+                <input type="password" id="password" name="password" required minlength="8">
+                <ul class="password-requirements">
+                    <li>{{if eq .Language "en"}}At least 8 characters{{else}}至少 8 个字符{{end}}</li>
+                    <li>{{if eq .Language "en"}}Include letters and numbers{{else}}包含字母和数字{{end}}</li>
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">{{if eq .Language "en"}}Confirm Password{{else}}确认密码{{end}}</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+
+            <button type="submit" class="register-btn" id="registerBtn">{{if eq .Language "en"}}Create Account{{else}}创建账号{{end}}</button>
+        </form>
+
+        <div class="login-link">
+            {{if eq .Language "en"}}Already have an account? <a href="/login/e">Login now</a>{{else}}已有账号？<a href="/login">立即登录</a>{{end}}
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('registerForm');
+        const messageContainer = document.getElementById('messageContainer');
+        const registerBtn = document.getElementById('registerBtn');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Clear previous messages
+            messageContainer.innerHTML = '';
+
+            // Validate username format
+            if (!/^[a-zA-Z0-9_]{3,30}$/.test(username)) {
+                showError({{if eq .Language "en"}}'Username must be 3-30 characters, letters, numbers and underscores only'{{else}}'用户名必须是 3-30 个字符，只能包含字母、数字和下划线'{{end}});
+                return;
+            }
+
+            // Validate password match
+            if (password !== confirmPassword) {
+                showError({{if eq .Language "en"}}'Passwords do not match'{{else}}'两次输入的密码不一致'{{end}});
+                return;
+            }
+
+            // Validate password strength
+            if (password.length < 8) {
+                showError({{if eq .Language "en"}}'Password must be at least 8 characters'{{else}}'密码必须至少 8 个字符'{{end}});
+                return;
+            }
+
+            // Disable button during request
+            registerBtn.disabled = true;
+            registerBtn.textContent = {{if eq .Language "en"}}'Creating account...'{{else}}'正在创建账号...'{{end}};
+
+            try {
+                const registerUrl = {{if eq .Language "en"}}'/register/e'{{else}}'/register'{{end}};
+                const response = await fetch(registerUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, email, password }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showSuccess({{if eq .Language "en"}}'Account created successfully! Redirecting to login page...'{{else}}'账号创建成功！正在跳转到登录页面...'{{end}});
+                    form.reset();
+                    // Redirect to login after 2 seconds (with language preservation)
+                    setTimeout(() => {
+                        window.location.href = {{if eq .Language "en"}}'/login/e'{{else}}'/login'{{end}};
+                    }, 2000);
+                } else {
+                    showError(data.error || {{if eq .Language "en"}}'Registration failed, please try again'{{else}}'注册失败，请重试'{{end}});
+                }
+            } catch (error) {
+                showError({{if eq .Language "en"}}'Network error, please try again'{{else}}'网络错误，请重试'{{end}});
+            } finally {
+                registerBtn.disabled = false;
+                registerBtn.textContent = {{if eq .Language "en"}}'Create Account'{{else}}'创建账号'{{end}};
+            }
+        });
+
+        function showError(message) {
+            messageContainer.innerHTML = `<div class="error-message">${escapeHtml(message)}</div>`;
+        }
+
+        function showSuccess(message) {
+            messageContainer.innerHTML = `<div class="success-message">${escapeHtml(message)}</div>`;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
+

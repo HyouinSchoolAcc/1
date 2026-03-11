@@ -1,0 +1,46 @@
+{
+  "character_schedule": {
+    "day": 14,
+    "早晨": "启动加速器，校准设备参数，准备实验。",
+    "下午": "进行时间旅行理论研究，分析实验数据。",
+    "晚上": "通过阅读科学论文或观看轻松娱乐来放松身心。"
+  },
+  "user_schedule": {
+    "day": 14,
+    "morning": "坐飞机回美国，和公司的人盖章，改劳动合同",
+    "noon": "去机场的时候机票被吞了，印度人预订机票的时候也没想到不让大陆的人出境",
+    "afternoon": "坐飞机，掏了9600",
+    "evening": "坐飞机"
+  },
+  "history": "",
+  "relationship": "Continuing relationship from previous interactions.",
+  "dialogue": [
+    {
+      "role": "User",
+      "content": "我好冷…..",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "今天过的好不开心",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "555555",
+      "intimacy_delta": 0.01
+    }
+  ],
+  "intimacy_level": 0.03000000000000025,
+  "starting_intimacy_level": 0,
+  "completed": false,
+  "user_name": "刘跃泽",
+  "character_name": "Kurisu",
+  "category": "legacy_rejected",
+  "rejection_reason": "",
+  "assessment_timestamp": "2025-08-25T17:31:58.228Z",
+  "problems_count": 7,
+  "rejection_timestamp": "2025-08-25T17:31:58.228Z",
+  "real_name": "刘跃泽",
+  "legacy_timestamp": 1761107397
+}

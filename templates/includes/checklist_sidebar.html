@@ -1,0 +1,323 @@
+<!-- Writer Checklist Sidebar - NO TOP HEADER -->
+<div class="checklist-content p-3">
+  
+  <!-- 1. 背景设定 SECTION (Collapsible) -->
+  <div class="character-background-section mb-4" style="border: 2px solid #007bff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.08);">
+    <div class="character-background-header" id="character-background-toggle" style="background: linear-gradient(to right, #e3f2fd, #f8f9fa); cursor: pointer; padding: 0.75rem 1rem; border-bottom: 1px solid #dee2e6; transition: all 0.3s ease;">
+      <h6 class="mb-0 d-flex justify-content-between align-items-center">
+        <span style="color: #495057; font-weight: 600;">
+          <i class="fas fa-user me-2" style="color: #007bff;"></i>{{if eq .Language "en"}}Background Setting Character Background{{else}}背景设定 Character Background{{end}}
+        </span>
+        <i class="fas fa-chevron-right toggle-icon" style="color: #007bff; transition: transform 0.3s ease;"></i>
+      </h6>
+    </div>
+    
+    <div class="character-background-content" id="character-background-content" style="display: none;">
+      <div class="character-background-body p-3" style="background-color: #fafbfc;">
+        <!-- Background Section -->
+        <div class="about-item mb-3" style="background: white; border-left: 4px solid #007bff; border-radius: 6px; padding: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+          <h6 class="about-title" style="color: #007bff; margin-bottom: 0.5rem;">
+            <i class="fas fa-book-open me-2"></i>{{if eq .Language "en"}}Background{{else}}背景 (Background){{end}}
+          </h6>
+          <div class="about-description" id="character-background" style="margin: 0; font-size: 0.9rem; line-height: 1.6; color: #495057;">
+            <!-- Background content will be dynamically loaded based on selected character -->
+          </div>
+        </div>
+
+        <!-- Personality Section -->
+        <div class="about-item mb-3" style="background: white; border-left: 4px solid #28a745; border-radius: 6px; padding: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+          <h6 class="about-title" style="color: #28a745; margin-bottom: 0.5rem;">
+            <i class="fas fa-heart me-2"></i>{{if eq .Language "en"}}Personality{{else}}性格特质 (Personality){{end}}
+          </h6>
+          <div class="about-description" id="character-personality" style="margin: 0; font-size: 0.85rem; line-height: 1.6; white-space: pre-wrap; color: #495057;">
+            <!-- Personality content will be dynamically loaded based on selected character -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 当日设定 SECTION (Collapsible) - Contains schedules, history, intimacy from banner -->
+  <div class="daily-settings-section mb-4" style="border: 2px solid #28a745; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.08);">
+    <div class="daily-settings-header" id="daily-settings-toggle" style="background: linear-gradient(to right, #d4edda, #f8f9fa); cursor: pointer; padding: 0.75rem 1rem; border-bottom: 1px solid #dee2e6; transition: all 0.3s ease;">
+      <h6 class="mb-0 d-flex justify-content-between align-items-center">
+        <span style="color: #495057; font-weight: 600;">
+          <i class="fas fa-calendar-day me-2" style="color: #28a745;"></i>{{if eq .Language "en"}}Daily Settings Daily Settings{{else}}当日设定 Daily Settings{{end}}
+        </span>
+        <i class="fas fa-chevron-right toggle-icon" style="color: #28a745; transition: transform 0.3s ease;"></i>
+      </h6>
+    </div>
+    
+    <div class="daily-settings-content" id="daily-settings-content" style="display: none;">
+      <div class="daily-settings-body p-3" style="background-color: #fafbfc;">
+        <!-- Content from banner will be moved here dynamically -->
+        <div id="daily-settings-banner-content">
+          <!-- This will be populated by JavaScript with banner content (character_schedule, user_schedule, history, intimacy) -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 评论区 SECTION (Collapsible) - Comments section -->
+  <div class="comments-section mb-4" style="border: 2px solid #17a2b8; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.08);">
+    <div class="comments-header" id="comments-toggle" style="background: linear-gradient(to right, #d1ecf1, #f8f9fa); cursor: pointer; padding: 0.75rem 1rem; border-bottom: 1px solid #dee2e6; transition: all 0.3s ease;">
+      <h6 class="mb-0 d-flex justify-content-between align-items-center">
+        <span style="color: #495057; font-weight: 600;">
+          <i class="fas fa-comments me-2" style="color: #17a2b8;"></i>{{if eq .Language "en"}}Comments Section{{else}}评论区 Comments Section{{end}}
+        </span>
+        <i class="fas fa-chevron-right toggle-icon" style="color: #17a2b8; transition: transform 0.3s ease;"></i>
+      </h6>
+    </div>
+    
+    <div class="comments-content" id="comments-content" style="display: none;">
+      <div class="comments-body p-3" style="background-color: #fafbfc;">
+        <!-- Comments Display Area -->
+        <div id="comments-display-area" style="max-height: 300px; overflow-y: auto; margin-bottom: 1rem; padding: 0.5rem; background: white; border-radius: 6px;">
+          <div id="comments-list" style="font-size: 0.85rem;">
+            <!-- Comments will be displayed here -->
+            <div class="text-muted text-center" style="padding: 1rem;">
+              <i class="fas fa-comment-slash me-2"></i>{{if eq .Language "en"}}No comments yet{{else}}暂无评论{{end}}
+            </div>
+          </div>
+        </div>
+        
+        <!-- Comment Input Area -->
+        <div class="comment-input-area">
+          <!-- Author Name Input (shown for non-logged-in users) -->
+          <div class="comment-author-area mb-2" id="comment-author-area" style="display: none;">
+            <label for="comment-author-name" style="font-size: 0.8rem; color: #6c757d; margin-bottom: 0.25rem; display: block;">
+              <i class="fas fa-user me-1"></i>{{if eq .Language "en"}}Your Name (optional):{{else}}你的名字 (可选):{{end}}
+            </label>
+            <input 
+              type="text"
+              id="comment-author-name" 
+              class="form-control form-control-sm" 
+              placeholder="{{if eq .Language "en"}}Anonymous{{else}}匿名{{end}}" 
+              style="font-size: 0.8rem;"
+            />
+          </div>
+          <!-- Sentence Reference Selector -->
+          <div class="sentence-reference-selector mb-2">
+            <label for="comment-sentence-ref" style="font-size: 0.8rem; color: #6c757d; margin-bottom: 0.25rem; display: block;">
+              <i class="fas fa-quote-left me-1"></i>{{if eq .Language "en"}}Linked to dialogue sentence (optional):{{else}}关联到对话句 (可选):{{end}}
+            </label>
+            <select 
+              id="comment-sentence-ref" 
+              class="form-select form-select-sm" 
+              style="font-size: 0.8rem;"
+            >
+              <option value="">-- {{if eq .Language "en"}}No specific sentence{{else}}不关联特定句子{{end}} --</option>
+              <!-- Options will be populated dynamically -->
+            </select>
+          </div>
+          
+          <textarea 
+            id="comment-input" 
+            class="form-control form-control-sm" 
+            placeholder="{{if eq .Language "en"}}Write your comment...{{else}}写下你的评论...{{end}}" 
+            rows="3" 
+            style="font-size: 0.85rem; margin-bottom: 0.5rem; resize: vertical;"
+          ></textarea>
+          <button 
+            id="btn-submit-comment" 
+            class="btn btn-primary btn-sm w-100" 
+            style="font-size: 0.85rem;"
+          >
+            <i class="fas fa-paper-plane me-1"></i>{{if eq .Language "en"}}Submit Comment{{else}}提交评论{{end}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 评判区 SECTION (Collapsible) - Renamed from 评判规范 -->
+  
+  <div class="rubric-section mb-4" style="border: 2px solid #667eea; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.08);">
+    <div class="rubric-header" id="rubric-toggle" style="background: linear-gradient(to right, #f8f9fa, #e9ecef); cursor: pointer; padding: 0.75rem 1rem; border-bottom: 1px solid #dee2e6; transition: all 0.3s ease;">
+      <h6 class="mb-0 d-flex justify-content-between align-items-center">
+        <span style="color: #495057; font-weight: 600;">
+          <i class="fas fa-clipboard-check me-2" style="color: #667eea;"></i>{{if eq .Language "en"}}Evaluation Area Evaluation Area{{else}}评判区 Evaluation Area{{end}}
+          
+        </span>
+        <i class="fas fa-chevron-right toggle-icon" style="color: #667eea; transition: transform 0.3s ease;"></i>
+      </h6>
+    </div>
+    
+    <div class="rubric-content" id="rubric-content" style="display: none;">
+      <div class="rubric-body p-3" style="background-color: #fafbfc;">
+
+        <!-- SUB-SECTION 1: 统一内容标记 (Unified Content Marking) -->
+        <div class="quality-checks-subsection">
+          <h6 style="color: #667eea; font-weight: 600; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #667eea;">
+            <i class="fas fa-check-double me-2"></i>{{if eq .Language "en"}}Quality Evaluation Quality Evaluation{{else}}统一内容标记 - Quality Evaluation{{end}}
+          </h6>
+
+          <!-- Quality Checklist -->
+          <div class="checklist-section mb-3" style="background: white; border-radius: 6px; padding: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+            <h6 class="section-title mb-3" style="color: #28a745; font-size: 0.9rem;">
+              <i class="fas fa-star me-2"></i>{{if eq .Language "en"}}Quality Check{{else}}质量检查{{end}}
+            </h6>
+            
+            <div class="checklist-item mb-2">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="check-character-consistency">
+                <label class="form-check-label" for="check-character-consistency" style="font-size: 0.85rem;">
+                  {{if eq .Language "en"}}Character Consistency{{else}}角色一致性{{end}}
+                </label>
+              </div>
+              <div class="item-description">
+                <small class="text-muted" style="font-size: 0.75rem;">{{if eq .Language "en"}}Character personality, speech, and behavior remain consistent{{else}}角色性格、说话方式、行为模式保持一致{{end}}</small>
+              </div>
+              <div class="reason-input mt-2" id="reason-check-character-consistency" style="display: none;">
+                <textarea class="form-control form-control-sm" placeholder="{{if eq .Language "en"}}Please specify the reason...{{else}}请说明未达标的具体原因...{{end}}" rows="2" style="font-size: 0.8rem;"></textarea>
+              </div>
+            </div>
+
+            <div class="checklist-item mb-2">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="check-dialogue-natural">
+                <label class="form-check-label" for="check-dialogue-natural" style="font-size: 0.85rem;">
+                  {{if eq .Language "en"}}Natural Dialogue{{else}}对话自然流畅{{end}}
+                </label>
+              </div>
+              <div class="item-description">
+                <small class="text-muted" style="font-size: 0.75rem;">{{if eq .Language "en"}}Dialogue fits real communication habits, no stiffness{{else}}对话符合真实交流习惯，无生硬感{{end}}</small>
+              </div>
+              <div class="reason-input mt-2" id="reason-check-dialogue-natural" style="display: none;">
+                <textarea class="form-control form-control-sm" placeholder="{{if eq .Language "en"}}Please specify the reason...{{else}}请说明未达标的具体原因...{{end}}" rows="2" style="font-size: 0.8rem;"></textarea>
+              </div>
+            </div>
+
+            <div class="checklist-item mb-2">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="check-context-coherent">
+                <label class="form-check-label" for="check-context-coherent" style="font-size: 0.85rem;">
+                  {{if eq .Language "en"}}Context Coherence{{else}}情景连贯性{{end}}
+                </label>
+              </div>
+              <div class="item-description">
+                <small class="text-muted" style="font-size: 0.75rem;">{{if eq .Language "en"}}Dialogue matches character and user schedules{{else}}对话内容与角色日程、用户日程相符{{end}}</small>
+              </div>
+              <div class="reason-input mt-2" id="reason-check-context-coherent" style="display: none;">
+                <textarea class="form-control form-control-sm" placeholder="{{if eq .Language "en"}}Please specify the reason...{{else}}请说明未达标的具体原因...{{end}}" rows="2" style="font-size: 0.8rem;"></textarea>
+              </div>
+            </div>
+
+            <div class="checklist-item mb-2">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="check-emotional-depth">
+                <label class="form-check-label" for="check-emotional-depth" style="font-size: 0.85rem;">
+                  {{if eq .Language "en"}}Emotional Depth{{else}}情感深度{{end}}
+                </label>
+              </div>
+              <div class="item-description">
+                <small class="text-muted" style="font-size: 0.75rem;">{{if eq .Language "en"}}Rich and layered emotional expression{{else}}角色情感表达丰富，有层次感{{end}}</small>
+              </div>
+              <div class="reason-input mt-2" id="reason-check-emotional-depth" style="display: none;">
+                <textarea class="form-control form-control-sm" placeholder="{{if eq .Language "en"}}Please specify the reason...{{else}}请说明未达标的具体原因...{{end}}" rows="2" style="font-size: 0.8rem;"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Technical Requirements Section -->
+          <div class="checklist-section mb-3" style="background: white; border-radius: 6px; padding: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+            <h6 class="section-title mb-3" style="color: #17a2b8; font-size: 0.9rem;">
+              <i class="fas fa-cog me-2"></i>{{if eq .Language "en"}}Technical Requirements{{else}}技术要求{{end}}
+            </h6>
+            
+            <div class="checklist-item mb-2">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="check-timestamp-accurate">
+                <label class="form-check-label" for="check-timestamp-accurate" style="font-size: 0.85rem;">
+                  {{if eq .Language "en"}}Accurate Timestamps{{else}}时间戳准确{{end}}
+                </label>
+              </div>
+              <div class="item-description">
+                <small class="text-muted" style="font-size: 0.75rem;">{{if eq .Language "en"}}Timestamps are logical and reasonable{{else}}对话时间戳设置合理，符合逻辑{{end}}</small>
+              </div>
+              <div class="reason-input mt-2" id="reason-check-timestamp-accurate" style="display: none;">
+                <textarea class="form-control form-control-sm" placeholder="{{if eq .Language "en"}}Please specify the reason...{{else}}请说明未达标的具体原因...{{end}}" rows="2" style="font-size: 0.8rem;"></textarea>
+              </div>
+            </div>
+
+            <div class="checklist-item mb-2">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="check-intimacy-appropriate">
+                <label class="form-check-label" for="check-intimacy-appropriate" style="font-size: 0.85rem;">
+                  {{if eq .Language "en"}}Reasonable Intimacy{{else}}亲密度变化合理{{end}}
+                </label>
+              </div>
+              <div class="item-description">
+                <small class="text-muted" style="font-size: 0.75rem;">{{if eq .Language "en"}}Intimacy changes match dialogue and relationship{{else}}亲密度增减符合对话内容和关系发展{{end}}</small>
+              </div>
+              <div class="reason-input mt-2" id="reason-check-intimacy-appropriate" style="display: none;">
+                <textarea class="form-control form-control-sm" placeholder="{{if eq .Language "en"}}Please specify the reason...{{else}}请说明未达标的具体原因...{{end}}" rows="2" style="font-size: 0.8rem;"></textarea>
+              </div>
+            </div>
+
+            <div class="checklist-item mb-2">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="check-format-correct">
+                <label class="form-check-label" for="check-format-correct" style="font-size: 0.85rem;">
+                  {{if eq .Language "en"}}Standard Format{{else}}格式规范{{end}}
+                </label>
+              </div>
+              <div class="item-description">
+                <small class="text-muted" style="font-size: 0.75rem;">{{if eq .Language "en"}}Character labels and content format meet requirements{{else}}角色标识、内容格式符合要求{{end}}</small>
+              </div>
+              <div class="reason-input mt-2" id="reason-check-format-correct" style="display: none;">
+                <textarea class="form-control form-control-sm" placeholder="{{if eq .Language "en"}}Please specify the reason...{{else}}请说明未达标的具体原因...{{end}}" rows="2" style="font-size: 0.8rem;"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quality Status -->
+          <div class="checklist-section mb-3" style="background: white; border-radius: 6px; padding: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+            <h6 class="section-title mb-3" style="color: #6f42c1; font-size: 0.9rem;">
+              <i class="fas fa-chart-bar me-2"></i>{{if eq .Language "en"}}Quality Status{{else}}质量状态{{end}}
+            </h6>
+            
+            <div class="score-display mb-3" style="display: flex; align-items: center; gap: 1rem;">
+              <div class="score-circle" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; width: 60px; height: 60px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                <span id="checklist-score" style="font-size: 1.25rem; font-weight: 700;">0</span>
+                <small style="font-size: 0.65rem;">{{if eq .Language "en"}}Issues{{else}}问题{{end}}</small>
+              </div>
+              <div class="score-label" style="flex: 1;">
+                <div class="score-text" id="score-text" style="font-size: 1rem; font-weight: 600; color: #28a745;">{{if eq .Language "en"}}Approvable{{else}}可批准{{end}}</div>
+                <small class="text-muted" style="font-size: 0.8rem;">{{if eq .Language "en"}}Quality:{{else}}质量度:{{end}} <span id="score-percentage">100%</span></small>
+              </div>
+            </div>
+
+            <div class="progress mb-3" style="height: 8px; border-radius: 4px; background: #e9ecef;">
+              <div class="progress-bar" role="progressbar" id="score-progress" style="width: 100%; background: linear-gradient(to right, #28a745, #20c997); border-radius: 4px;"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="checklist-actions" style="margin-top: 1.5rem;">
+    <div class="current-day-info mb-3" style="background: #f8f9fa; padding: 0.75rem; border-radius: 6px; border-left: 3px solid #667eea;">
+      <small style="color: #495057; font-weight: 500;">
+        <i class="fas fa-calendar-day me-2" style="color: #667eea;"></i>
+        {{if eq .Language "en"}}Current Assessment:{{else}}当前评判:{{end}} <span id="current-day-display" style="font-weight: 600; color: #667eea;">{{if eq .Language "en"}}Please select a file{{else}}请选择文件{{end}}</span>
+      </small>
+    </div>
+    
+    <button class="btn btn-success btn-sm w-100 mb-2" id="btn-approve-day" style="font-weight: 600; padding: 0.6rem;">
+      <i class="fas fa-check-circle me-1"></i>{{if eq .Language "en"}}Approve This Day{{else}}批准此天{{end}}
+    </button>
+    <button class="btn btn-warning btn-sm w-100 mb-2" id="btn-mark-needs-changes" style="font-weight: 600; padding: 0.6rem;">
+      <i class="fas fa-exclamation-triangle me-1"></i>{{if eq .Language "en"}}Mark Needs Changes{{else}}标记需要修改{{end}}
+    </button>
+    <button class="btn btn-outline-secondary btn-sm w-100 mb-2" id="btn-reset-checklist" style="padding: 0.6rem;">
+      <i class="fas fa-undo me-1"></i>{{if eq .Language "en"}}Reset Checklist{{else}}重置清单{{end}}
+    </button>
+    <button class="btn btn-outline-info btn-sm w-100" id="btn-export-checklist" style="padding: 0.6rem;">
+      <i class="fas fa-download me-1"></i>{{if eq .Language "en"}}Export Assessment{{else}}导出评估{{end}}
+    </button>
+  </div>
+</div>

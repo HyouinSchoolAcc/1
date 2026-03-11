@@ -1,0 +1,124 @@
+STICKER/EMOTE ELEMENTS GUIDE
+============================
+This document explains all the files and code sections needed for sticker/emote functionality.
+
+FILES TO COPY:
+==============
+
+1. GO FILES:
+------------
+internal/web/api.go
+  - Lines 96-98: Sticker API route registration
+    * r.Get("/api/stickers", a.handleGetStickers)
+    * r.Post("/api/stickers/validate", writerAuth(a.handleValidateSticker))
+  
+  - Lines 2974-2999: handleGetStickers function
+    * Returns list of all available stickers with metadata
+    * Reads from stickers/stickers_map.json
+  
+  - Lines 3001-3043: handleValidateSticker function
+    * Validates sticker exists before saving
+    * Checks both map file and physical file existence
+
+internal/web/router.go
+  - Lines 186-187: Sticker file serving route
+    * r.Handle("/static/stickers/*", ...)
+    * Serves sticker GIF files from stickers/ directory
+
+Supporting files (needed for compilation):
+  - internal/web/app.go
+  - internal/web/config.go
+  - internal/web/models.go
+  - internal/web/middleware.go
+  - internal/web/auth.go
+  - internal/web/handlers.go
+  - internal/web/templates.go
+  - internal/web/language_middleware.go
+  - cmd/server/main.go
+  - go.mod
+  - go.sum
+
+2. HTML FILES:
+--------------
+templates/writing_main.html
+  - Lines 2413-2453: Sticker display rendering
+    * Checks if turnData.content_type === 'sticker'
+    * Creates sticker container with image and info
+  
+  - Lines 8507-8600: Sticker JavaScript functionality
+    * availableStickers array
+    * loadStickers() - fetches from /api/stickers
+    * showStickerPicker() - displays modal
+    * hideStickerPicker() - closes modal
+    * selectStickerRole() - sets User/Character role
+    * renderStickerGrid() - displays sticker grid
+    * selectSticker() - adds sticker to conversation
+  
+  - Lines 8288, 8302, 8318: Help text mentioning stickers
+
+templates/includes/modals.html
+  - Lines 675-704: Sticker CSS styles
+    * .sticker-grid
+    * .sticker-item
+    * .sticker-emotion
+  
+  - Lines 732-752: Sticker Picker Modal HTML
+    * Modal overlay with sticker grid
+    * Role selection buttons (User/Character)
+    * Loading message
+
+templates/includes/main_panel.html
+  - Lines 16-20: Sticker button
+    * Button with onclick="showStickerPicker()"
+    * Displays "Add Sticker" / "添加贴纸"
+
+3. STICKER DATA:
+----------------
+stickers/stickers_map.json
+  - Maps sticker filenames to metadata
+  - Format: { "filename.gif": { "emotion": "...", "description": "..." } }
+
+stickers/GIFs/
+  - Directory containing all sticker GIF image files
+  - Referenced by stickers_map.json
+
+API ENDPOINTS:
+==============
+GET /api/stickers
+  - Returns: { "success": true, "stickers": [...] }
+  - Each sticker: { "filename", "emotion", "description", "url" }
+
+POST /api/stickers/validate
+  - Requires: writer/editor authentication
+  - Body: { "filename": "..." }
+  - Returns: { "success": true, "filename", "emotion", "description" }
+
+ROUTES:
+=======
+/static/stickers/*
+  - Serves sticker GIF files
+  - Maps to stickers/ directory
+
+FRONTEND INTEGRATION:
+=====================
+1. Button in main panel calls showStickerPicker()
+2. Modal loads stickers via /api/stickers
+3. User selects sticker and role (User/Character)
+4. selectSticker() sends POST to conversation API with:
+   {
+     "role": "User" | "Character",
+     "content_type": "sticker",
+     "sticker": {
+       "filename": "...",
+       "emotion": "...",
+       "description": "..."
+     }
+   }
+5. Sticker is displayed in conversation with image and metadata
+
+DEPENDENCIES:
+=============
+- Go Chi router (github.com/go-chi/chi/v5)
+- File serving capabilities
+- JSON parsing
+- Authentication middleware (for validate endpoint)

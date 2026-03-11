@@ -1,0 +1,76 @@
+{
+  "_creation_metadata": {
+    "created_at": 1736438400,
+    "created_by_ip": "127.0.0.1",
+    "created_by_user_agent": "admin2 - sample data from landing page",
+    "version": "1.0"
+  },
+  "abilities": "",
+  "assessment_timestamp": 0,
+  "category": "passed",
+  "character_name": "Kurisu",
+  "comments": [],
+  "completed": false,
+  "dialogue": [
+    {
+      "content": "阿巴",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "14:00"
+    },
+    {
+      "content": "阿巴",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:01"
+    },
+    {
+      "content": "你是人么？",
+      "intimacy_delta": 0.01,
+      "reasoning_chain": "好吧刚可能确实冒犯到他了",
+      "role": "Kurisu",
+      "timestamp": "14:02"
+    },
+    {
+      "content": "你是鬼么？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:03"
+    },
+    {
+      "content": "我是恶鬼~小孩子小心被我吃掉~嗷呜~",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "14:04"
+    },
+    {
+      "content": "你学啥的？",
+      "intimacy_delta": 0.01,
+      "role": "Kurisu",
+      "timestamp": "14:05"
+    },
+    {
+      "content": "咋这么问，很冒犯啊亲",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "14:06"
+    }
+  ],
+  "experiences": "",
+  "history": "对方已下线",
+  "intimacy_level": 0.07,
+  "is_sample_data": true,
+  "judgements": "",
+  "problems_count": 0,
+  "real_name": "样本用户",
+  "relationship": "Two people have just met and are still unfamiliar with each other. Their conversations are mostly polite and superficial, limited to everyday topics like work, studies, or the weather. At this stage, both sides are cautious and have yet to reveal their true selves.",
+  "sample_title": "初次见面（失败）",
+  "starting_intimacy_level": 0,
+  "user_id": "user_1000",
+  "user_name": "样本用户",
+  "user_schedule": {
+    "day": 1,
+    "下午": "首页示例：初次见面（失败）"
+  },
+  "values": ""
+}

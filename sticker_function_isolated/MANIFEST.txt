@@ -1,0 +1,40 @@
+Sticker Function Transfer Package - File Manifest
+Generated: Wed Jan 28 03:14:30 PM CST 2026
+
+FILES INCLUDED:
+================
+
+Backend Go Files:
+- cmd/server/main.go
+- internal/web/api.go (sticker handlers at lines 2974-2999, 3001-3043)
+- internal/web/router.go (sticker route at lines 186-187)
+- internal/web/app.go
+- internal/web/config.go
+- internal/web/models.go
+- internal/web/middleware.go
+- internal/web/auth.go
+- internal/web/handlers.go
+- internal/web/templates.go
+- internal/web/language_middleware.go
+
+Frontend Template Files:
+- templates/writing_main.html (sticker JS: lines 8507-8602, display: 2413-2453)
+- templates/includes/modals.html (sticker modal: lines 732-752, CSS: 675-704)
+- templates/includes/main_panel.html (sticker button: lines 16-20)
+
+Sticker Data:
+- stickers/stickers_map.json
+- stickers/GIFs/* (all GIF files)
+
+Configuration:
+- go.mod
+- go.sum
+
+Documentation:
+- STICKER_ELEMENTS_GUIDE.txt
+- STICKER_FUNCTIONS_ANALYSIS.md
+- README_TRANSFER.md
+- MANIFEST.txt
+
+TOTAL FILES: 28
+TOTAL SIZE: 2.5M

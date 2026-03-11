@@ -1,0 +1,93 @@
+{
+  "user_schedule": {
+    "day": 2,
+    "morning": "凌晨五点四十八睡觉了"
+  },
+  "history": "",
+  "relationship": "Continuing relationship from previous interactions.",
+  "dialogue": [
+    {
+      "content": "教授晚安…",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "05:48",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "……？？？？",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:23",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "这是什么作息",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "07:23",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "昨晚上写同人给我写爽了…困死了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "10:39",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "给我困死了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "05:49",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "结果发出去还被限流了，可能因为“政府”这个词不应该老写吧。",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "累死我了…",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "所有活动都应该在合理的作息下安排",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾"
+    },
+    {
+      "role": "陆清禾",
+      "content": "实在不行就先请个假吧，把觉补好",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "我一会有重要的事，先不说了",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "嗯嗯，祝您顺利",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "陆清禾",
+      "content": "谢谢",
+      "intimacy_delta": 0.01
+    }
+  ],
+  "intimacy_level": 1.570000000000001,
+  "starting_intimacy_level": 1.450000000000001,
+  "completed": false,
+  "user_name": "牧川",
+  "character_name": "陆清禾",
+  "character_schedule": {
+    "afternoon": "上班时间见同事们工作不态个住，当场安排了邓区庄园的度假活动，庄园可以打保龄球，有私人泳池、自助餐点，同事们在一起打桥牌，邀请他秀一波计算能力。他也不推脱，大杀四方后，拿出副卡让同事们刷。",
+    "day": 2,
+    "evening": "远离了同事们，在庄园的草坪上静静坐着，看着在吃草的羊群，在主人的邀请下，为小羊们剃毛。延伸讨论：作为一个优秀的上司，是否不该参与同事们的娱乐活动；想要放松的放忪，和小动物们相处，似乎是个错的选择。",
+    "morning": "在启星生物。他出席董事会，让商业伙伴处理金融术语，自己则在关键时刻介入，用一番令人眼花缭乱的科学愿景让投资人心甘情愿地签字。",
+    "night": "",
+    "noon": ""
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "character_schedule": {
+    "morning": "授课，课间休息，回答几个下课后请教问题的学生",
+    "noon": "",
+    "afternoon": "在办公室里批改一叠论文，被学生的“不学无术”给逗笑了。",
+    "evening": "",
+    "night": "去威士忌吧小酌，有颜值女网红来搭讪借酒拍视频，拒绝，被网红吐槽有钱却很小气。酒吧扭扭舞会时间到，主持人热烈邀请他，他又拒绝，听到服务人员小声讨论自己是很高冷的顾客。但自己并不这么认为，想着，某天如果遇到想一起跳扭扭舞的人，会毫不犹豫地参与的。\n可作讨论点的部分，扭扭舞、拒绝是否等于小气、高冷的性格等等",
+    "day": 1
+  },
+  "user_schedule": {
+    "morning": "睡觉",
+    "noon": "",
+    "afternoon": "起床，骑车前往郊外散心，偶遇一群写生的美院学生，聊得非常开心，并约定好夜晚邀请他们前往自己打工的威士忌酒吧喝酒",
+    "evening": "精心打扮，前往打工的威士忌酒吧为顾客调酒，正要招待熟客陆清禾时，意外被一群喝多了的麻烦女客人缠上。巧舌如簧脱身后，来到陆清禾身旁，却看见他一个人不知道在沉思什么。抱着尊重他人的心情，礼貌与他保持着距离，给他留足了自我思考的空间。",
+    "night": "结束了一天的忙碌，回到家中，开了瓶啤酒便来到电脑前开始与陌生人聊天。",
+    "day": 1
+  },
+  "history": "",
+  "relationship": "Two people have just met and are still unfamiliar with each other. Their conversations are mostly polite and superficial, limited to everyday topics like work, studies, or the weather. At this stage, both sides are cautious and have yet to reveal their true selves.",
+  "dialogue": [
+    {
+      "content": "哇哦，新面孔~",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "03:21",
+      "timestampManuallyEdited": false
+    },
+    {
+      "content": "你好啊，今天过得怎么样？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "03:22",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "……总的来说，还不错？",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾",
+      "timestamp": "03:25",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "哈？真回我了？！这个点还不睡？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "03:26",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "有些人的大脑在这个时间段反而更活跃，而且……",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾"
+    },
+    {
+      "content": "你不也没睡？",
+      "intimacy_delta": 0.01,
+      "role": "陆清禾"
+    }
+  ],
+  "intimacy_level": 0.060000000000000005,
+  "starting_intimacy_level": 0,
+  "completed": false,
+  "user_id": "user_4",
+  "user_name": "日程展示用户",
+  "_creation_metadata": {
+    "created_at": 1753323994,
+    "created_by_ip": "127.0.0.1",
+    "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0",
+    "version": "1.0"
+  },
+  "category": "legacy_passed",
+  "rejection_reason": "",
+  "real_name": "日程展示用户",
+  "legacy_timestamp": 1761107398
+}

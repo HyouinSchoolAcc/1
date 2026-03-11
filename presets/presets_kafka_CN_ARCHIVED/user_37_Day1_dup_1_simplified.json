@@ -1,0 +1,60 @@
+{
+  "user_schedule": {
+    "day": 1,
+    "下午": "上班，给捐款人打电话被捐款人骂了，打电话间隙被领导催业绩，质疑自己人生的意义。",
+    "夜晚": "下班回家路上买了关东煮和啤酒，刚刚看完日本电影《睡觉的笨蛋》"
+  },
+  "history": "",
+  "relationship": "Two people have just met and are still unfamiliar with each other. Their conversations are mostly polite and superficial, limited to everyday topics like work, studies, or the weather. At this stage, both sides are cautious and have yet to reveal their true selves.",
+  "dialogue": [
+    {
+      "content": "这个破班真TM上够了！",
+      "intimacy_delta": 0.01,
+      "role": "User"
+    },
+    {
+      "content": "世界如此美好，你却如此暴躁……\n",
+      "intimacy_delta": 0.01,
+      "role": "Kafka"
+    },
+    {
+      "role": "User",
+      "content": "对不起。我并不想伪装自己，但也不想对你展示一个暴躁的形象。还是晚些时候再聊好了。",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "Kafka",
+      "content": "那好吧，不知道你发生了什么，只能祝你快些调整好自己。",
+      "intimacy_delta": 0.01
+    },
+    {
+      "role": "User",
+      "content": "嗯，谢谢！我会的！",
+      "intimacy_delta": 0.01
+    }
+  ],
+  "intimacy_level": 0.05,
+  "starting_intimacy_level": 0,
+  "completed": false,
+  "user_id": "user_37",
+  "user_name": "拉米兹",
+  "real_name": "刘盼",
+  "_creation_metadata": {
+    "created_at": 1756280412,
+    "created_by_ip": "127.0.0.1",
+    "created_by_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
+    "version": "1.0"
+  },
+  "character_schedule": {
+    "morning": "一次似乎是遭遇了意外的星际跃迁，让卡芙卡掉入了这个陌生的世界。她在这个阴雨连绵的破败城市内四处游荡，而且不知为何失去了自己的能力。\n在疲惫和困惑之下，她在一处隐蔽处恢复精力，同时也暗暗好奇，她是否距离她所追逐的恐惧更近了一步。\n就在这时，一个背着旧吉他包，捏着几张纸币，看起来像是本地青年的家伙注意到了她。",
+    "noon": "",
+    "afternoon": "",
+    "evening": "收集了一些关于那颗星球的情报并做了一些补给准备。",
+    "night": "启程去往那颗星球，寻找艾利欧口中的“目标”",
+    "day": 1
+  },
+  "category": "rejected",
+  "assessment_timestamp": "2025-11-21T09:50:47.658Z",
+  "problems_count": 1,
+  "rejection_timestamp": "2025-11-21T09:50:47.658Z"
+}
