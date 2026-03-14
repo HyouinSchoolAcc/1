@@ -6,7 +6,8 @@
     "version": "1.0"
   },
   "abilities": "",
-  "category": "pending",
+  "assessment_timestamp": 1773371752,
+  "category": "rejected",
   "character_name": "林路",
   "comments": [],
   "completed": false,
@@ -525,7 +526,32 @@
   "judgements": "",
   "personnel_id": "20260304064645",
   "personnel_username": "Dr",
+  "problems_count": 3,
+  "quality_checklist": {
+    "checklist": {
+      "check-character-consistency": false,
+      "check-context-coherent": true,
+      "check-dialogue-natural": true,
+      "check-emotional-depth": true,
+      "check-format-correct": false,
+      "check-intimacy-appropriate": true,
+      "check-timestamp-accurate": false
+    },
+    "last_updated": "2026-03-12T22:18:21-05:00",
+    "reasons": {
+      "check-character-consistency": "很有耐心，但是 角色完全没表达欲",
+      "check-context-coherent": "",
+      "check-dialogue-natural": "",
+      "check-emotional-depth": "",
+      "check-format-correct": "思维链缺失",
+      "check-intimacy-appropriate": "",
+      "check-timestamp-accurate": "没有时间戳"
+    },
+    "selected_trait": "",
+    "updated_by": "2601:240:8300:6f90:3d5f:111:fd25:35c9"
+  },
   "real_name": "邓睿",
+  "rejection_timestamp": 1773371752,
   "relationship": "Two people have just met and are still unfamiliar with each other. Their conversations are mostly polite and superficial, limited to everyday topics like work, studies, or the weather. At this stage, both sides are cautious and have yet to reveal their true selves.",
   "starting_intimacy_level": 0,
   "user_id": "user_6",

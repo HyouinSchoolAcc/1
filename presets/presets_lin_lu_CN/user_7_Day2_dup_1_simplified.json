@@ -9,760 +9,1180 @@
     "night": "",
     "noon": ""
   },
-  "comments": [],
+  "comments": [
+    {
+      "author": "123",
+      "text": "今天他的心情放松一点，她聊起了一些自己的工作，还有对我产生了兴趣，我觉得我讲话不用像第一天那么小心翼翼了。",
+      "timestamp": "2026/3/12 06:04:13"
+    }
+  ],
   "completed": false,
   "dialogue": [
     {
-      "content": "你昨晚怎么一直不回我？",
+      "content": "在吗",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我好烦 我想死了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:00",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "快来安慰我!!!",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:01",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "在没人安慰我就死了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "晚上好，陌生人",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:02",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "请问你发生什么事了？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你怎么那么晚才回我？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:03",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我刚才在工作啊",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你还有工作吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:04",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "呃，我不是学生，是在工作的人",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我不是这个意思，我是问你们机器人还要工作吗？你的工作不就是随时随地的安慰我吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:05",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你好像误解了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我不是恋爱APP上的电子机器人",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "好吧，我以为你事呢",
+      "intimacy_delta": 0.01,
+      "reasoning_chain": "知道乙游对很多女性玩家而言非常重要，尊重她们的喜好，打错男主角名字是不尊重他人爱好的行为，要道歉",
+      "role": "林路",
+      "timestamp": "00:06",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你可能是被某些APP给迷惑了吧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:07",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "不过这不重要",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:07",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你心情这么糟糕，发生什么事了？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:08",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我看到前男友的朋友圈官宣文案",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:08",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我受不了了，发就发吧，为什么不屏蔽我？还要让我看到",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:09",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你和前男友是刚分手不久吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:09",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我们已经分手半年了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:10",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你说他是不是故意刺激我，想让我去找他",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:10",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "可能他发的是假的，只是朋友不是女朋友",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:11",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我觉得分手半年了，他应该不会再来故意发什么刺激你吧",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:11",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "这个过程中一直有拉扯吗？一直在联系？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:12",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "没有正式分手之后，我们有半年没说过话了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:12",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "那已经半年没说过话了，我觉得正常人就算是想破冰，也不会想出这种法子吧",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:12",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "这只是把人往外推远的方法",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:12",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你不懂他很幼稚",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:12",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "他就是有可能做出这种事情的",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:13",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "容我问一句，他那么幼稚，为什么还对他念念不忘？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:16",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "有的人就是说不清哪里好啊，但想忘就是忘不掉",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:16",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你现在很纠结吧",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:18",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "是啊，这不是明摆着吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:18",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我如果是你的话，我可能会直接去问他?",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:18",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "什么意思？问他是不是真的谈恋爱了吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:19",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我应该会委婉试探吧",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:19",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "祝福他和他的女朋友之类的",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:19",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "如果只是激将法，那他就会说明情况，我大概能够判断",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:19",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "那是怎么讲啊？我不要面子啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:20",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "[[sticker:uploads/upload_1771863236904060751.jpg]]",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:20",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我没招了",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:20",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我也没有这方面经历啊，想不出一个万全之策",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:21",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "哎呀，你怎么那么废啊？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:21",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "一般这种情况不会来当我的军师，给我提很多的主意吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:21",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "人各有所长",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:22",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我不擅长处理恋爱中的问题，这很正常吧",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:22",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "别骂我了 [[sticker:uploads/upload_1773039819028767700.png]]",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:22",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "好吧",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:23",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我就是好难受，好难受啊",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:25",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你爱安慰我啊",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:25",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "硬邦邦的安慰吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:25",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "不了解任何具体情况，直接开始安慰吗？",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:26",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "这样会有效果吗",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:26",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你是理工男人社吗？为什么讲话这么的冷漠？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:27",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "我是文的不能再文的文科生了",
+      "intimacy_delta": 0.01,
+      "role": "林路",
+      "timestamp": "00:28",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "你们文科生不是很擅长说那些经典语录吗？",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:35",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "整点金句",
+      "intimacy_delta": 0.01,
+      "role": "User",
+      "timestamp": "00:50",
+      "timestampManuallyEdited": true
+    },
+    {
+      "content": "没有，硬说我说不出来",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "09:15",
       "timestampManuallyEdited": true
     },
     {
-      "content": "不会说睡着真的睡着了吧？",
+      "content": "随随便便的说点金句，就以为能够安慰到别人，我觉得这是很不负责任的事情",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "09:18",
       "timestampManuallyEdited": true
     },
     {
-      "content": "？",
+      "content": "只是为了体现自己肚子里那点墨水",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "09:45",
       "timestampManuallyEdited": true
     },
     {
-      "content": "玩消失？",
+      "content": "..",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "09:45",
       "timestampManuallyEdited": true
     },
     {
-      "content": "没消失，人还在",
+      "content": "你怎么那么会拒绝啊？跟你沟通好难啊，我只是想得到一些安慰",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:03",
       "timestampManuallyEdited": true
     },
     {
-      "content": "不回你是因为刚才在上课",
+      "content": "要不你还是和我说说你跟你男朋友到底发生了什么？",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:03",
       "timestampManuallyEdited": true
     },
     {
-      "content": "老师上课玩手机也太离谱了吧",
+      "content": "是他做了对不起你的事吗？",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:03",
       "timestampManuallyEdited": true
     },
     {
-      "content": "好吧",
+      "content": "嗯，我看到他在社交软件上聊骚",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:07",
       "timestampManuallyEdited": true
     },
     {
-      "content": "你课上完了吗？",
+      "content": "而且他还给擦边女主播刷礼物",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:07",
       "timestampManuallyEdited": true
     },
     {
-      "content": "嗯，今天的课已经上完了",
+      "content": "所以被你发现了，他就成为前男友了？",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:07",
       "timestampManuallyEdited": true
     },
     {
-      "content": "你想聊，就聊个五毛的吧",
+      "content": "没有啊，我们前后还拉扯了小半年",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:08",
       "timestampManuallyEdited": true
     },
     {
-      "content": "聊一块的行不行？",
+      "content": "果然就是拉扯的越久越难以忘记吗",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:08",
       "timestampManuallyEdited": true
     },
     {
-      "content": " 请打到我的收款码里",
+      "content": "因为他都已经这么渣了，但你还是忘不了他",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:08",
       "timestampManuallyEdited": true
     },
     {
-      "content": "hhh捞男",
+      "content": "为什么不怼我？",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:08",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我还没有要蜜雪冰城",
+      "content": "不给我说，他都已经那样了，你为什么还要跟他拉扯小半年？",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:08",
       "timestampManuallyEdited": true
     },
     {
-      "content": "等我要了蜜雪冰城再说我捞",
+      "content": "我好像没有立场说这种话吧",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:08",
       "timestampManuallyEdited": true
     },
     {
-      "content": "hhhh真的假的？你不会真的让女人给你点蜜雪冰城吧？",
+      "content": "有时候谈恋爱就是会让人神志不清，没法当机立断啊",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:15",
       "timestampManuallyEdited": true
     },
     {
-      "content": "啊？",
+      "content": "是啊",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:15",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我是在玩那个梗啊",
+      "content": "我身边的朋友都把我骂死了，可我就是听不见",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:15",
       "timestampManuallyEdited": true
     },
     {
-      "content": "男生说女生捞",
+      "content": "我朋友也只是旁观者清",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:16",
       "timestampManuallyEdited": true
     },
     {
-      "content": "问捞他什么了",
+      "content": "怎么去让一个旁观者带入到当事人的立场呢？",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:16",
       "timestampManuallyEdited": true
     },
     {
-      "content": "答：蜜雪冰城柠檬水",
+      "content": "[[sticker:uploads/upload_1771863316186415804.jpg]]",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:17",
       "timestampManuallyEdited": true
     },
     {
-      "content": "hhhh我想起来了",
+      "content": "对了，聊了那么多，还没问怎么给你备注呢？",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:17",
       "timestampManuallyEdited": true
     },
     {
-      "content": "问你个问题啊",
+      "content": "哦，我网名芝芝，你给我备注芝芝就行",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:17",
       "timestampManuallyEdited": true
     },
     {
-      "content": "迪丽热巴和古力娜扎要是给你做女朋友，你会选哪个人？",
+      "content": "hhhh那不等于不需要备注吗？",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:18",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我谁啊？我还在这选上？",
+      "content": "所以你就叫林路，你的真名？",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:20",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我配吗我？",
+      "content": "是啊，我实名上网冲浪",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:20",
       "timestampManuallyEdited": true
     },
     {
-      "content": "hhhh你回答还挺有自知之明的",
+      "content": "你不怕被人发现吗？",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:20",
       "timestampManuallyEdited": true
     },
     {
-      "content": "做白日梦也要有个限度啊",
+      "content": "我好像不是什么见不得光的人",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:21",
       "timestampManuallyEdited": true
     },
     {
-      "content": "那不管别的，就从审美上来说。",
+      "content": "我也不上网聊骚，也没有女朋友来网上考验我有没有劈腿",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:21",
       "timestampManuallyEdited": true
     },
     {
-      "content": "你觉得哪个更漂亮？",
+      "content": "用真名无所谓啊",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:21",
       "timestampManuallyEdited": true
     },
     {
-      "content": "都很漂亮，我都不配评",
+      "content": "我怀疑你在内涵我",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:21",
       "timestampManuallyEdited": true
     },
     {
-      "content": "服",
+      "content": "我是不是这辈子忘不了他？",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:21",
       "timestampManuallyEdited": true
     },
     {
-      "content": "求生意识那么强？",
+      "content": "不管别人说什么话题，我都会想起他，明明已经过去半年了",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:22",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我是真的这么觉得",
+      "content": "冤枉啊，真没有",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:22",
       "timestampManuallyEdited": true
     },
     {
-      "content": "各有各的美啊！轮得到我说三道四了吗？",
+      "content": "他是你的初恋吗？",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:22",
       "timestampManuallyEdited": true
     },
     {
-      "content": "那你硬是要选呢，就说你个人审美好了",
+      "content": "不是啊，他是我第二个男朋友",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:23",
       "timestampManuallyEdited": true
     },
     {
-      "content": "硬是要选的话，就古力娜扎吧",
+      "content": "初恋都已经忘记了，还担心忘不了他这个老二吗？",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:23",
       "timestampManuallyEdited": true
     },
     {
-      "content": "为什么是古力娜扎？",
+      "content": "可是他不一样，真的不一样",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:23",
       "timestampManuallyEdited": true
     },
     {
-      "content": "你觉得他哪里漂亮？",
+      "content": "我跟初恋没有这么深的感情纠葛",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:24",
       "timestampManuallyEdited": true
     },
     {
-      "content": "审美啊，说不清",
+      "content": "因为初恋 没给你那么多伤害啊",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:25",
       "timestampManuallyEdited": true
     },
     {
-      "content": "可能是我不大能get到风情很浓的长相？",
+      "content": "初恋应该不是劈腿了、撩骚被抓到了才成为你的前男友吧",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:26",
       "timestampManuallyEdited": true
     },
     {
-      "content": "好吧",
+      "content": "是因为异地之类的原因分开的吗？",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:26",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我比较喜欢迪丽热巴",
+      "content": "嗯，我和初恋是异地上大学分开的",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:26",
       "timestampManuallyEdited": true
     },
     {
-      "content": "人各有所好",
+      "content": "你怎么知道？好好好。",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:27",
       "timestampManuallyEdited": true
     },
     {
-      "content": "所以为什么问我这个，是因为你前男友吗？",
+      "content": "因为你没有说一句初恋的坏话",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:27",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我操，怎么又给你猜中了？",
+      "content": "也没有抱怨天下男人都是一般黑，所以我觉得你和初恋时的恋爱应该还挺平静美好的",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:28",
       "timestampManuallyEdited": true
     },
     {
-      "content": "你昨天就三句话不离前男友啊",
+      "content": "是啊，我初恋是个好人，只是那时候我们都太年轻了",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:28",
       "timestampManuallyEdited": true
     },
     {
-      "content": "不管绕出去去多大一个圈，你总能绕到他身上。",
+      "content": "那时太年轻了？",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:29",
       "timestampManuallyEdited": true
     },
     {
-      "content": "前男友早上发朋友圈说他的女朋友长得很像迪丽热巴",
+      "content": "你现在多大？",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:29",
       "timestampManuallyEdited": true
     },
     {
-      "content": "....",
+      "content": "23",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:30",
       "timestampManuallyEdited": true
     },
     {
-      "content": "[[sticker:uploads/upload_1771863346075176886.jpg]]",
+      "content": "现在也很年轻啊",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:30",
       "timestampManuallyEdited": true
     },
     {
-      "content": "挺会做梦的",
+      "content": "刚看到你这句话，我以为你至少奔三了",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:31",
       "timestampManuallyEdited": true
     },
     {
-      "content": "白日梦想家",
+      "content": "才23呢，一辈子好长，怎么会一辈子忘不了一个伤害了你的人？",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:32",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我也觉得差远了",
+      "content": "可如果能忘记的话，为什么我现在那么心痛？",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:32",
       "timestampManuallyEdited": true
     },
     {
-      "content": "你要不要看看照片？",
+      "content": "我感觉我这辈子不会再和其他人有这么深的情感关系了",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:33",
       "timestampManuallyEdited": true
     },
     {
-      "content": "不了吧",
+      "content": "不会在一起经历那些事了，不会让我一直记得",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:33",
       "timestampManuallyEdited": true
     },
     {
-      "content": "这人家隐私",
+      "content": "感情里对你的伤害不能纳入情感里吧‘",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:34",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我还是不窥探了",
+      "content": "伤害就是伤害",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:34",
       "timestampManuallyEdited": true
     },
     {
-      "content": "如果我硬是要分享给你呢？",
+      "content": "什么意思？",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:35",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我也不会看",
+      "content": "你说明白点，我听不懂",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:35",
       "timestampManuallyEdited": true
     },
     {
-      "content": "好吧",
+      "content": "呃...我的意思是说，你现在对他念念不忘的原因，可能就是因为他伤害你太多了",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:35",
       "timestampManuallyEdited": true
     },
     {
-      "content": "你是反驳型人格吗？",
+      "content": "因为他太混蛋了，他做的太不是人事了，所以你刻骨铭心",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:35",
       "timestampManuallyEdited": true
     },
     {
-      "content": "嗯？从哪里看出来的呢？",
+      "content": "但是一个伤害你的混蛋有什么好记得的？或许你忘不掉的不是对这个人的感情",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:36",
       "timestampManuallyEdited": true
     },
     {
-      "content": "你回忆一下昨天我跟你聊的天，哪里像反驳新人格了？",
+      "content": "我说人就是会记得自己被狠狠伤害的事情啊，可能有时候会分不清了，以为是留恋",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:36",
       "timestampManuallyEdited": true
     },
     {
-      "content": "昨天你处处都在反驳我啊",
+      "content": "真的吗",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:37",
       "timestampManuallyEdited": true
     },
     {
-      "content": "你根本一点都不配合我",
+      "content": "我不知道",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:37",
       "timestampManuallyEdited": true
     },
     {
-      "content": "...",
+      "content": "真的假的？我说的也不算数啊",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:37",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我觉得我只是有主见",
+      "content": "现在可能也想不明白吧，等心里稍微好受点了再考虑复杂的事情",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:37",
       "timestampManuallyEdited": true
     },
     {
-      "content": "反驳型人格早和你吵起来了",
+      "content": "总是会有答案的，前提是只要不死|",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:38",
       "timestampManuallyEdited": true
     },
     {
-      "content": "好吧，那你觉得我有公主病吗？",
+      "content": "我开玩笑的",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:38",
       "timestampManuallyEdited": true
     },
     {
-      "content": "绝对没有",
+      "content": "我只是说想死但我又不会真的死",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:39",
       "timestampManuallyEdited": true
     },
     {
-      "content": "才短短一天不到，你怎么判断的？I",
+      "content": "都什么年代了，还有这么多恋爱脑的人吗？",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:39",
       "timestampManuallyEdited": true
     },
     {
-      "content": "有公主病的人，会允许这么一个渣男伤害自己吗？",
+      "content": "有",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:39",
       "timestampManuallyEdited": true
     },
     {
-      "content": "有公主病的人会坚持看前任的朋友圈，给自己找不自在吗？",
+      "content": "你见过？",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:39",
       "timestampManuallyEdited": true
     },
     {
-      "content": "那我要怎么做？",
+      "content": "我有一个朋友..",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:40",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我没法指教别人怎么做",
+      "content": "？？？你说的朋友该不会就是你自己吧？",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:40",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我只能说如果是我的话，我就算不把他给删好友，也会屏蔽他的朋友圈",
+      "content": "hhhh开玩笑呢",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:41",
       "timestampManuallyEdited": true
     },
     {
-      "content": "其实我中途屏蔽过他，但实在太好奇了，又打开了",
+      "content": "去年我去青岛旅行的时候住酒店",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:42",
       "timestampManuallyEdited": true
     },
     {
-      "content": "别勉强自己了",
+      "content": "半夜特别吵，楼上噼里啪啦",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:42",
       "timestampManuallyEdited": true
     },
     {
-      "content": "听起来你好像是放弃我了一样",
+      "content": "我忍了十几分钟，实在受不了了，去找前台投诉",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:55",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我讨厌听到这种话",
+      "content": "前台告诉我是一个女生在房间里面闹自杀，她的男朋友在外面劝她，怎么都劝不过来",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:55",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我是真的没有办法啊",
+      "content": "然后男朋友就找酒店的人开门进去，发现女朋友倒在浴缸里面，一池子的血",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:56",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我也不是情感专家，也不好为人师",
+      "content": "他们忙着送医，又害怕，这才吵",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:56",
       "timestampManuallyEdited": true
     },
     {
-      "content": "说多了你又不开心，说深了你又觉得有爹味",
+      "content": "...",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:56",
       "timestampManuallyEdited": true
     },
     {
-      "content": "可我要是对你置之不理，我真担心你emo想不开",
+      "content": "好神经",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:56",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我们聊点别的话题吧",
+      "content": "我觉得好奇妙。",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:57",
       "timestampManuallyEdited": true
     },
     {
-      "content": "那你来想话题",
+      "content": "只是普普通通住个宿而已，就会遇到这种情节",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:57",
       "timestampManuallyEdited": true
     },
     {
-      "content": "南京最近天气好吗？",
+      "content": "所以我刚看你发给我的这个信息，特别害怕",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:58",
       "timestampManuallyEdited": true
     },
     {
-      "content": "hhh好烂的话题啊",
+      "content": "我一看时间，我特别担心你在这短短几分钟里面就真的出什么事",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:58",
       "timestampManuallyEdited": true
     },
     {
-      "content": "所以天气到底好不好呢？",
+      "content": "你是什么圣父吗",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:58",
       "timestampManuallyEdited": true
     },
     {
-      "content": "还行，今天大晴天",
+      "content": "我对你而言只是个网友",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "10:58",
       "timestampManuallyEdited": true
     },
     {
-      "content": "太棒了，我喜欢晴天",
+      "content": "网友就算是真出了什么事情也和你没关系啊",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:59",
       "timestampManuallyEdited": true
     },
     {
-      "content": "今天天蓝吗？",
+      "content": "不对，甚至于我们刚才都没成为网友，只是给你发个信息",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:59",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我没注意",
+      "content": "互联网上有那么多人，当你给我发信息的时候，我觉得我们就产生交集了",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:08",
       "timestampManuallyEdited": true
     },
     {
-      "content": "那你要不要去窗户口看看?？",
+      "content": "你偏偏选中了我来发",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:08",
       "timestampManuallyEdited": true
     },
     {
-      "content": "北京连着阴天三天了",
+      "content": "还好你马上回我了",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:08",
       "timestampManuallyEdited": true
     },
     {
-      "content": "啊，原来你在北京吗？",
+      "content": "要是你没回我，在等你回的时间里，我忍不住会担心受怕",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:09",
       "timestampManuallyEdited": true
     },
     {
-      "content": "哇，你好会抓重点",
+      "content": "你人真好啊",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:10",
       "timestampManuallyEdited": true
     },
     {
-      "content": "有当侦探的潜质",
+      "content": "到时候我前男友能像你这么一样关心我就好了",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:10",
       "timestampManuallyEdited": true
     },
     {
-      "content": "不然我怎么一下子刷到男友在聊骚呢？",
+      "content": "真心喜欢的人，会关心你",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:10",
       "timestampManuallyEdited": true
     },
     {
-      "content": "hhhh服了",
+      "content": "你觉得前男友爱过我吗？？",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:11",
       "timestampManuallyEdited": true
     },
     {
-      "content": "又跟你说回来了",
+      "content": "我不知道啊",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:01",
       "timestampManuallyEdited": true
     },
     {
-      "content": "快去看看天空吧",
+      "content": "你只告诉了我，他聊骚劈腿",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:12",
       "timestampManuallyEdited": true
     },
     {
-      "content": "看了看了",
+      "content": "这个前提一出来，我就觉得这种人不会爱人",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:15",
       "timestampManuallyEdited": true
     },
     {
-      "content": "今天天好蓝啊",
+      "content": "可是他跟我说了一些海誓山盟，好真挚啊",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:15",
       "timestampManuallyEdited": true
     },
     {
-      "content": "真好",
+      "content": "或许吧",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:15",
       "timestampManuallyEdited": true
     },
     {
-      "content": "今天天气哪种蓝呢？",
+      "content": "在说爱的时候总有这么短暂，自己是真的相信的",
       "intimacy_delta": 0.01,
       "reasoning_chain": "不是在没话找话，因为用户一直陷在抑郁情绪里，我觉得让用户关注景色和自然能够放松心情",
       "role": "林路",
@@ -770,371 +1190,371 @@
       "timestampManuallyEdited": true
     },
     {
-      "content": "就是天蓝，蓝还有分很多种吗？",
+      "content": "应该也不至于是个纯骗子吧？",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:16",
       "timestampManuallyEdited": true
     },
     {
-      "content": "嗯",
+      "content": "纯骗子你肯定分得出来",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:17",
       "timestampManuallyEdited": true
     },
     {
-      "content": "多云的天气，天空的蓝有点发灰",
+      "content": "也难说",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:17",
       "timestampManuallyEdited": true
     },
     {
-      "content": "夏天的大晴天，天空的蓝很明艳，像是宝石",
+      "content": "我觉得我一谈恋爱智商就下降",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:17",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我还真没有注意过",
+      "content": "你能说出这句话，也还好了，没有蠢到人神共愤",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:18",
       "timestampManuallyEdited": true
     },
     {
-      "content": "那有空的时候关心一下天空吧",
+      "content": "其实我多少知道一些",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:18",
       "timestampManuallyEdited": true
     },
     {
-      "content": "天空比人的心情辽阔多了",
+      "content": "但我就是想不开，看不透，会钻进去",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:18",
       "timestampManuallyEdited": true
     },
     {
-      "content": "哇，这些真的品出一点你学文学的意思了",
+      "content": "哎呀，钻牛角尖也是很正常的",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:19",
       "timestampManuallyEdited": true
     },
     {
-      "content": "好带感",
+      "content": "你总共才谈两段",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:20",
       "timestampManuallyEdited": true
     },
     {
-      "content": "hhh你别这样",
+      "content": "以后有经验了，肯定一次比一次好。",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:20",
       "timestampManuallyEdited": true
     },
     {
-      "content": "弄得我有点不好意思",
+      "content": "真的吗",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "10:20",
       "timestampManuallyEdited": true
     },
     {
-      "content": "哎呀，别这么害羞嘛",
+      "content": "其实我很担心我以后是不是就不会付出那么多真心了？",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:21",
       "timestampManuallyEdited": true
     },
     {
-      "content": "你是很害羞的人设吗？",
+      "content": "我对以后的男朋友会充满了怀疑和不信任，我就再也找不到那种美好的单纯的恋爱状态",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:21",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我没有人设",
+      "content": "我觉得不会..",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:22",
       "timestampManuallyEdited": true
     },
     {
-      "content": "对了，你现在在上班吗？",
+      "content": "我始终相信一个好的人，本心是好的，收获的过程也会是好的",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:22",
       "timestampManuallyEdited": true
     },
     {
-      "content": "你可以这么摸鱼吗？",
+      "content": "你完全不用担心你失去了真心，你本来就有啊",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:22",
       "timestampManuallyEdited": true
     },
     {
-      "content": "没关系",
+      "content": "[[sticker:uploads/upload_1771863377550213826.jpg]]",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:30",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我们工作很闲，只要不被领导抓到就没事了。",
+      "content": "真的吗？",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:30",
       "timestampManuallyEdited": true
     },
     {
-      "content": "[[sticker:uploads/upload_1771889411526272897.jpg]]",
+      "content": "我发现你很爱问别人，真的假的？",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:30",
       "timestampManuallyEdited": true
     },
     {
-      "content": "这表情终于有了用武之地",
+      "content": "别人说的真的假的？不一定靠谱啊",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:31",
       "timestampManuallyEdited": true
     },
     {
-      "content": "hhhh",
+      "content": "就算我的口头禅吧",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:35",
       "timestampManuallyEdited": true
     },
     {
-      "content": "你好多可爱的小表情啊",
+      "content": "随便问问",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:35",
       "timestampManuallyEdited": true
     },
     {
-      "content": "都是哪里来的？",
+      "content": "那你说这个口头禅的时候",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:35",
       "timestampManuallyEdited": true
     },
     {
-      "content": "从女生那里搞到的？",
+      "content": "会不会真的有人信誓旦旦的去跟你保证什么？",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:35",
       "timestampManuallyEdited": true
     },
     {
-      "content": "芝芝侦探思维又上线了吗？",
+      "content": "然后你会相信吗？",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:36",
       "timestampManuallyEdited": true
     },
     {
-      "content": "从学生群里偷的",
+      "content": "会啊",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:37",
       "timestampManuallyEdited": true
     },
     {
-      "content": "笑死了",
+      "content": "比如我的前男友",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:38",
       "timestampManuallyEdited": true
     },
     {
-      "content": "为师不尊，就一天到晚从同学那里偷点小表情是吧？",
+      "content": "前男友好像是乌斯莫比环啊，说了一圈又绕回来了",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:38",
       "timestampManuallyEdited": true
     },
     {
-      "content": "[[sticker:uploads/upload_1771863292462455369.jpg]]",
+      "content": "hhhhh",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:39",
       "timestampManuallyEdited": true
     },
     {
-      "content": "拜托，不要举报我",
+      "content": "你说话蛮有趣",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:39",
       "timestampManuallyEdited": true
     },
     {
-      "content": "hhhh",
+      "content": "嘿嘿，文科生的天赋",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:39",
       "timestampManuallyEdited": true
     },
     {
-      "content": "那你要给我什么好处？",
+      "content": "[[sticker:uploads/upload_1771863377550213826.jpg]]",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:39",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我好像也给不了什么好处？",
+      "content": "hhhh你到底是学什么专业的？",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:40",
       "timestampManuallyEdited": true
     },
     {
-      "content": "你想语文提分吗？",
+      "content": "文学",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:40",
       "timestampManuallyEdited": true
     },
     {
-      "content": "hhhh神经",
+      "content": "汉语言文学吗？",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:41",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我早不是学生了",
+      "content": "嗯~",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:41",
       "timestampManuallyEdited": true
     },
     {
-      "content": "那我来的不巧",
+      "content": "听说这行很难找工作",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:41",
       "timestampManuallyEdited": true
     },
     {
-      "content": "早几年我就直接进行一个辅导",
+      "content": "你找到工作了吗？",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:42",
       "timestampManuallyEdited": true
     },
     {
-      "content": "那所以现在你能给我什么好处？",
+      "content": "听张雪峰说的吗？",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:42",
       "timestampManuallyEdited": true
     },
     {
-      "content": "在我不困的前提下",
+      "content": "不过他说的也是现实情况，文科就业确实不乐观",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:43",
       "timestampManuallyEdited": true
     },
     {
-      "content": "如果你很emo想找人闲聊天，我会尽量陪你聊",
+      "content": "我刚和你说了，我在工作啊",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:43",
       "timestampManuallyEdited": true
     },
     {
-      "content": "？这也算好处啊",
+      "content": "哦哦，没想那么多",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:43",
       "timestampManuallyEdited": true
     },
     {
-      "content": "你爱聊不聊",
+      "content": "你可能兼职写网文小说什么的，我觉得说话也不是很正式的工作。",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:43",
       "timestampManuallyEdited": true
     },
     {
-      "content": "是这么个道理",
+      "content": "我不是无业游民",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:45",
       "timestampManuallyEdited": true
     },
     {
-      "content": "但其他的我也不能给你啊",
+      "content": "我是老师",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:45",
       "timestampManuallyEdited": true
     },
     {
-      "content": "你们男人最精了，最会算计了",
+      "content": "语文老师吗？",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:45",
       "timestampManuallyEdited": true
     },
     {
-      "content": "好！",
+      "content": "小学还是初中？",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:45",
       "timestampManuallyEdited": true
     },
     {
-      "content": "好什么？",
+      "content": "大学",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:45",
       "timestampManuallyEdited": true
     },
     {
-      "content": "听不懂我在怼你吗？",
+      "content": "啊",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:45",
       "timestampManuallyEdited": true
     },
     {
-      "content": "你继续保持这个思维，以后就不会轻易被男的骗了",
+      "content": "失敬失敬",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:46",
       "timestampManuallyEdited": true
     },
     {
-      "content": "这还不是好事一桩吗？",
+      "content": "没事没事",
       "intimacy_delta": 0.01,
       "role": "林路",
       "timestamp": "11:46",
       "timestampManuallyEdited": true
     },
     {
-      "content": "...",
+      "content": "全国那么多大学，总要有人去当大学老师啊，不是什么特别了不起的事情",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:46",
       "timestampManuallyEdited": true
     },
     {
-      "content": "我怎么感觉你在阴阳怪气我？",
+      "content": "[[sticker:uploads/upload_1772965119809152500.gif]]",
       "intimacy_delta": 0.01,
       "role": "User",
       "timestamp": "11:46",
@@ -3421,8 +3841,8 @@
   ],
   "experiences": "",
   "history": "",
-  "intimacy_level": 6.869999999999941,
-  "judgements": "",
+  "intimacy_level": 6,
+  "judgements": "她为了前男友情绪非常低落，提到自杀，我担心她做出冲动的事情，所以一直回复他消息。这其中我要注意，不要和他讲道理，说服他，为了防止她做出冲动的事情，我尽量包容她，安慰她。目前判断她处在抑郁情绪中，情绪起伏不定。",
   "personnel_id": "20260109132020",
   "personnel_username": "123",
   "relationship": "Continuing relationship from previous interactions.",

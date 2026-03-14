@@ -2502,7 +2502,8 @@ body.collapsed.checklist-collapsed #mainPanel {
   font-weight: 500;
 }
 
-.dropdown-item:hover {
+.dropdown-item:hover,
+.dropdown-item.active {
   background: var(--accent-light);
   color: var(--primary);
 }
@@ -2550,6 +2551,71 @@ body.collapsed.checklist-collapsed #mainPanel {
   color: var(--primary);
   letter-spacing: 0.02em;
 }
+
+/* Header avatar, points, user button, dropdown - for shared header_nav */
+.header-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+.header-points {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+.header-user-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 50px;
+  border: 2px solid var(--border-light);
+  background: var(--bg-white);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+.header-user-btn:hover {
+  border-color: var(--primary);
+  background: var(--accent-light);
+}
+.account-dropdown-user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: 0.5rem;
+}
+.account-dropdown-user .header-avatar {
+  width: 40px;
+  height: 40px;
+  font-size: 1rem;
+}
+.account-points-row {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+/* Border classes for avatar (XP tier) */
+.border-silver { border: 2px solid #c0c0c0; }
+.border-gold { border: 2px solid #ffd700; }
+.border-gradient { border: 2px solid transparent; background: linear-gradient(var(--bg-white), var(--bg-white)) padding-box, linear-gradient(135deg, #c0c0c0, #ffd700) border-box; }
+.border-rainbow { border: 2px solid transparent; background: linear-gradient(var(--bg-white), var(--bg-white)) padding-box, linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8f00ff) border-box; }
+.border-legend { border: 2px solid #9333ea; box-shadow: 0 0 8px rgba(147, 51, 234, 0.4); }
+.border-none { border: 2px solid transparent; }
 
 /* Account Menu */
 .account-container {

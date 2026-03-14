@@ -1,30 +1,17 @@
 {
   "_creation_metadata": {
-    "created_at": 1773060379,
-    "created_by_ip": "223.166.218.103",
+    "created_at": 1773221465,
+    "created_by_ip": "180.165.6.254",
     "created_by_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0",
     "version": "1.0"
   },
   "abilities": "",
-  "category": "in_works",
   "character_name": "林路",
-  "comments": [],
   "completed": false,
-  "dialogue": [
-    {
-      "content": "测试写手界面",
-      "intimacy_delta": 0.01,
-      "role": "林路"
-    },
-    {
-      "content": "换行，图片生成",
-      "intimacy_delta": 0.01,
-      "role": "User"
-    }
-  ],
+  "dialogue": [],
   "experiences": "",
   "history": "",
-  "intimacy_level": 0.02,
+  "intimacy_level": 0,
   "judgements": "",
   "personnel_id": "20251226035531",
   "personnel_username": "林友德",
@@ -32,7 +19,7 @@
   "relationship": "Two people have just met and are still unfamiliar with each other. Their conversations are mostly polite and superficial, limited to everyday topics like work, studies, or the weather. At this stage, both sides are cautious and have yet to reveal their true selves.",
   "starting_intimacy_level": 0,
   "user_id": "user_9",
-  "user_name": "test2",
+  "user_name": "测试员",
   "user_schedule": {
     "day": 1,
     "早晨": "1"

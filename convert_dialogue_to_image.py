@@ -17,21 +17,34 @@ BUBBLE_COLOR_USER = (255, 255, 255)
 TEXT_COLOR = (0, 0, 0)
 BG_COLOR = (245, 245, 245)
 
-# 自动优先使用常见中文字体
-FONT_PATHS = [
+# Auto-detect Chinese fonts (Windows + Linux)
+import platform as _platform
+FONT_PATHS = []
+if _platform.system() == "Windows":
+    _wf = os.path.join(os.environ.get("WINDIR", r"C:\Windows"), "Fonts")
+    FONT_PATHS += [
+        os.path.join(_wf, "msyh.ttc"),
+        os.path.join(_wf, "msyhbd.ttc"),
+        os.path.join(_wf, "simhei.ttf"),
+        os.path.join(_wf, "simsun.ttc"),
+        os.path.join(_wf, "meiryo.ttc"),
+        os.path.join(_wf, "segoeui.ttf"),
+    ]
+FONT_PATHS += [
     "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
     "/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc",
     "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc",
     "/usr/share/fonts/truetype/arphic/ukai.ttc",
     "/usr/share/fonts/truetype/arphic/uming.ttc",
-    "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"  # 兜底
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
 ]
+FONT_PATH = None
 for path in FONT_PATHS:
     if os.path.exists(path):
         FONT_PATH = path
         break
-else:
-    raise RuntimeError("No suitable font found for Chinese text! 请安装 Noto Sans CJK 或文泉驿字体。")
+if FONT_PATH is None:
+    raise RuntimeError("No suitable font found for Chinese text!")
 
 
 def load_dialogue(json_path):

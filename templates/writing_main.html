@@ -462,12 +462,24 @@
         }, 30000);
       },
       
+      // Counter to suppress DOM textarea syncing during day transitions.
+      // When switching days, the DOM still shows the OLD day's textareas while
+      // currentWriterFileData already holds the NEW day's data. Syncing in this
+      // state would overwrite the new day's dialogue content with old text,
+      // corrupting the file and making roles appear swapped.
+      // A counter (not boolean) is used so nested/rapid transitions are safe.
+      _domSyncSuppressCount: 0,
+
+      suppressDomSync()  { this._domSyncSuppressCount++; },
+      resumeDomSync()    { this._domSyncSuppressCount = Math.max(0, this._domSyncSuppressCount - 1); },
+
       // Backup current dialogue to localStorage
       backupToLocalStorage() {
         if (!currentWriterFile || !currentWriterFileData) return;
         
         // Sync textarea content before backup to capture any unsaved edits
-        if (currentWriterFileData.dialogue) {
+        // SKIP syncing when DOM sync is suppressed (day transition in progress)
+        if (currentWriterFileData.dialogue && this._domSyncSuppressCount === 0) {
           const conversationEl = document.getElementById("conversation");
           if (conversationEl) {
             const turnElements = conversationEl.querySelectorAll('.structured-writer-turn');
@@ -664,9 +676,12 @@
       },
       
       // Main save function with offline resilience
-      async saveWithResilience(saveData) {
-        // Always backup first
-        this.backupToLocalStorage();
+      // options.skipBackup: if true, skip backupToLocalStorage (used during day transitions)
+      async saveWithResilience(saveData, options) {
+        // Backup first, unless explicitly skipped (e.g. during day transition)
+        if (!(options && options.skipBackup)) {
+          this.backupToLocalStorage();
+        }
         
         if (!this.isOnline) {
           // Offline: queue the save
@@ -853,6 +868,11 @@
     let currentWriterFileData = { dialogue: [] };
     let structuredWriterLastRole = null;
     let userInfoData = {}; // Store user info from JSON files
+    // Guard counter: incremented every time a new day is selected.
+    // When a fetch completes, it checks this value matches what was current
+    // when the fetch started. If not, a newer day was selected and the
+    // response is stale and must be discarded.
+    let _daySwitchGeneration = 0;
 
     // --- DOM Elements (Consolidated) ---
     const bodyEl = document.body;
@@ -967,39 +987,15 @@ function normalizeTimeInput(timeStr) {
         }
       });
 
-      // Only disable action buttons for non-editors (sidebar remains readable for rubric info)
-      editorOnlyButtons.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-          if (!canEdit()) {
-            el.style.opacity = '0.5';
-            el.style.pointerEvents = 'none';
-            el.title = languageMode === 'en' ? 'Editor access required' : '需要编辑权限';
-          } else {
-            el.style.opacity = '1';
-            el.style.pointerEvents = 'auto';
-            el.title = '';
-          }
-        }
-      });
-
-      // Also disable checklist checkboxes and trait selection for non-editors
+      // Hide the entire evaluation area (rubric section + action buttons) for non-editors
+      const rubricSection = document.querySelector('#checklistSidebar .rubric-section');
+      const checklistActions = document.querySelector('#checklistSidebar .checklist-actions');
       if (!canEdit()) {
-        document.querySelectorAll('#checklistSidebar .form-check-input').forEach(checkbox => {
-          checkbox.disabled = true;
-          checkbox.style.opacity = '0.6';
-        });
-        document.querySelectorAll('#checklistSidebar .trait-option').forEach(trait => {
-          trait.style.pointerEvents = 'none';
-        });
+        if (rubricSection) rubricSection.style.display = 'none';
+        if (checklistActions) checklistActions.style.display = 'none';
       } else {
-        document.querySelectorAll('#checklistSidebar .form-check-input').forEach(checkbox => {
-          checkbox.disabled = false;
-          checkbox.style.opacity = '1';
-        });
-        document.querySelectorAll('#checklistSidebar .trait-option').forEach(trait => {
-          trait.style.pointerEvents = 'auto';
-        });
+        if (rubricSection) rubricSection.style.display = '';
+        if (checklistActions) checklistActions.style.display = '';
       }
 
       // For writers viewing "passed" category content, make it read-only
@@ -1135,6 +1131,8 @@ function normalizeTimeInput(timeStr) {
 
           renderWriterFileBrowser();
           attachHoverCardToElements();
+          // If a file is currently selected, restore sidebar expansion to it
+          restoreSidebarExpansionState();
 
           // Banner now only contains toggle buttons - content removed per user request
           // if (Object.keys(data).length > 0) {
@@ -1493,20 +1491,37 @@ function normalizeTimeInput(timeStr) {
           // Expand the user's versions
           dupCollapse.show();
           
-          // After expansion, auto-expand first version and load first day
+          // If the currently loaded file already belongs to this user,
+          // re-expand to the active version+day instead of jumping to the first day.
+          const isCurrentUser = currentWriterFile && currentWriterFile.user_id === userId && currentWriterFile.dup_id && currentWriterFile.day_str;
+
           setTimeout(() => {
-            // Get first version (dup)
-            const firstDupId = Object.keys(filesToDisplay[userId]).sort((a,b) => a.localeCompare(b, undefined, {numeric: true, sensitivity: 'base'}))[0];
-            if (!firstDupId) return;
+            // Decide which version and day to expand/select
+            const targetDupId = isCurrentUser ? currentWriterFile.dup_id
+              : Object.keys(filesToDisplay[userId]).sort((a,b) => a.localeCompare(b, undefined, {numeric: true, sensitivity: 'base'}))[0];
+            if (!targetDupId) return;
             
-            const firstDayContainer = document.getElementById(`days-${userId}-${firstDupId}`);
-            if (firstDayContainer) {
-              const dayCollapse = bootstrap.Collapse.getInstance(firstDayContainer) || new bootstrap.Collapse(firstDayContainer, {toggle: false});
+            const targetDayContainer = document.getElementById(`days-${userId}-${targetDupId}`);
+            if (targetDayContainer) {
+              const dayCollapse = bootstrap.Collapse.getInstance(targetDayContainer) || new bootstrap.Collapse(targetDayContainer, {toggle: false});
               dayCollapse.show();
               
-              // Load the first day's file
+              // If the current file is already for this user, just highlight
+              // the existing day — do NOT reload it.
+              if (isCurrentUser) {
+                setTimeout(() => {
+                  const dayElement = document.querySelector(`[data-day-key="${userId}-${currentWriterFile.dup_id}-${currentWriterFile.day_str}"]`);
+                  if (dayElement) {
+                    document.querySelectorAll('#writerFileBrowser .list-group-item-action.active').forEach(el => el.classList.remove('active'));
+                    dayElement.classList.add('active');
+                  }
+                }, 150);
+                return;
+              }
+
+              // Otherwise, load the first day for a new user
               setTimeout(() => {
-                const firstDayStr = Object.keys(filesToDisplay[userId][firstDupId])
+                const firstDayStr = Object.keys(filesToDisplay[userId][targetDupId])
                   .sort((a, b) => {
                     const numA = parseInt(a.replace(/[^0-9]/g, ''), 10);
                     const numB = parseInt(b.replace(/[^0-9]/g, ''), 10);
@@ -1514,13 +1529,13 @@ function normalizeTimeInput(timeStr) {
                   })[0];
                 
                 if (firstDayStr) {
-                  const firstDayData = filesToDisplay[userId][firstDupId][firstDayStr];
+                  const firstDayData = filesToDisplay[userId][targetDupId][firstDayStr];
                   if (firstDayData && firstDayData.filename) {
                     // Simulate clicking on the first day
-                    selectStructuredWriterDayFile(null, firstDayData.filename, userId, firstDupId, firstDayStr);
+                    selectStructuredWriterDayFile(null, firstDayData.filename, userId, targetDupId, firstDayStr);
                     
                     // Highlight the selected day in the UI
-                    const dayElement = document.querySelector(`[data-day-key="${userId}-${firstDupId}-${firstDayStr}"]`);
+                    const dayElement = document.querySelector(`[data-day-key="${userId}-${targetDupId}-${firstDayStr}"]`);
                     if (dayElement) {
                       document.querySelectorAll('#writerFileBrowser .list-group-item-action.active').forEach(el => el.classList.remove('active'));
                       dayElement.classList.add('active');
@@ -1759,6 +1774,45 @@ function normalizeTimeInput(timeStr) {
           }
         }, 100);
       }
+    }
+
+    // Re-expand sidebar to show the currently selected day after a re-render.
+    // Called after renderWriterFileBrowser() so the user doesn't lose context.
+    function restoreSidebarExpansionState() {
+      if (!currentWriterFile || !currentWriterFile.user_id) return;
+      const userId = currentWriterFile.user_id;
+      const dupId = currentWriterFile.dup_id;
+      const dayStr = currentWriterFile.day_str;
+      if (!userId || !dupId || !dayStr) return;
+
+      setTimeout(() => {
+        try {
+          // 1. Expand user level
+          const dupContainer = document.getElementById(`dups-${userId}`);
+          if (dupContainer) {
+            const dupCollapse = bootstrap.Collapse.getInstance(dupContainer) || new bootstrap.Collapse(dupContainer, { toggle: false });
+            dupCollapse.show();
+          }
+
+          // 2. Expand version (dup) level
+          const dayContainer = document.getElementById(`days-${userId}-${dupId}`);
+          if (dayContainer) {
+            const dayCollapse = bootstrap.Collapse.getInstance(dayContainer) || new bootstrap.Collapse(dayContainer, { toggle: false });
+            dayCollapse.show();
+          }
+
+          // 3. Highlight the active day
+          const dayElement = document.querySelector(`[data-day-key="${userId}-${dupId}-${dayStr}"]`);
+          if (dayElement) {
+            document.querySelectorAll('#writerFileBrowser .list-group-item-action.active').forEach(el => el.classList.remove('active'));
+            dayElement.classList.add('active');
+            // Scroll the element into view within the sidebar
+            dayElement.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          }
+        } catch (e) {
+          console.warn('[Sidebar] Failed to restore expansion state:', e);
+        }
+      }, 150);
     }
 
     function updateUserDialogueCount(userId) {
@@ -2000,7 +2054,54 @@ function normalizeTimeInput(timeStr) {
         if (targetListItem) targetListItem.classList.add('active');
       }
 
-      currentWriterFile = { filename, user_id: userId, dup_id: dupId, day_str: dayStr };
+      // ── Cancel any pending debounced saves for the OLD day ──
+      if (intimacySaveTimeout) {
+        clearTimeout(intimacySaveTimeout);
+        intimacySaveTimeout = null;
+      }
+
+      // ── Auto-save the CURRENT day before switching ──
+      // Sync textareas first, then fire a background save so edits are not lost.
+      if (currentWriterFile.filename && currentWriterFileData && currentWriterFileData.dialogue) {
+        syncAllTextareasToDialogue();
+        const dialogueToSave = (currentWriterFileData.dialogue || []).filter(
+          t => (t.content && t.content.trim() !== "") || t.content_type === 'sticker'
+        );
+        const isComplete = chkWriterMarkComplete ? chkWriterMarkComplete.checked : false;
+        const autoSavePayload = {
+          filename: currentWriterFile.filename,
+          preset_set: presetSet,
+          dialogue_list: dialogueToSave,
+          is_complete: isComplete,
+          history: currentWriterFileData.history,
+          values: currentWriterFileData.values,
+          experiences: currentWriterFileData.experiences,
+          judgements: currentWriterFileData.judgements,
+          abilities: currentWriterFileData.abilities,
+          intimacy_level: currentWriterFileData.intimacy_level,
+          starting_intimacy_level: currentWriterFileData.starting_intimacy_level,
+          comments: currentWriterFileData.comments || []
+        };
+        // Fire-and-forget save; skipBackup because we're about to replace data
+        OfflineResilience.saveWithResilience(autoSavePayload, { skipBackup: true })
+          .catch(e => console.warn('[DaySwitch] Auto-save of previous day failed:', e));
+        console.log(`[DaySwitch] Auto-saved ${currentWriterFile.filename} before switching to ${filename}`);
+      }
+
+      // ── Increment generation BEFORE updating anything else ──
+      const thisGeneration = ++_daySwitchGeneration;
+
+      // Suppress DOM→data syncing while loading a new day.
+      // The DOM still shows the OLD day's textareas; syncing now would
+      // overwrite the new day's dialogue with old content.
+      OfflineResilience.suppressDomSync();
+
+      // IMPORTANT: Do NOT update currentWriterFile yet — keep it pointing
+      // at the old day so that any timed saves (intimacy debounce, backup
+      // timer) that fire during the fetch still target the correct file.
+      // We store the target info locally and apply it only when the
+      // response arrives AND the generation still matches.
+      const pendingFile = { filename, user_id: userId, dup_id: dupId, day_str: dayStr };
 
       fetch("/load_writer_file_content", {
         method: "POST",
@@ -2012,6 +2113,18 @@ function normalizeTimeInput(timeStr) {
       })
       .then(r => r.ok ? r.json() : r.json().then(err => Promise.reject(err)))
       .then(async (data) => {
+        // ── Stale-response guard ──
+        // If the user clicked another day while this fetch was in-flight,
+        // _daySwitchGeneration will have been incremented again and
+        // thisGeneration will no longer match.  Discard this response.
+        if (thisGeneration !== _daySwitchGeneration) {
+          console.warn(`[DaySwitch] Discarding stale response for ${filename} (gen ${thisGeneration} vs current ${_daySwitchGeneration})`);
+          OfflineResilience.resumeDomSync();
+          return;
+        }
+
+        // NOW it is safe to commit the new file reference
+        currentWriterFile = pendingFile;
         currentWriterFileData = data;
         if (!currentWriterFileData.dialogue) currentWriterFileData.dialogue = [];
         if (chkWriterMarkComplete) { chkWriterMarkComplete.checked = data.completed || false; }
@@ -2045,12 +2158,18 @@ function normalizeTimeInput(timeStr) {
         // Auto-fetch character schedule from profiles if not present in file
         await ensureCharacterSchedule();
         
+        // Auto-copy profile fields from previous day if empty
+        await autoCopyProfileFromPreviousDay();
+        
         // Recalculate total intimacy from utterances
         recalculateIntimacyFromUtterances();
         
         renderStructuredWriterBanner();
         renderStructuredWriterDayNavBar();
         renderStructuredWriterConversation();
+
+        // DOM now matches currentWriterFileData — safe to resume syncing
+        OfflineResilience.resumeDomSync();
         
         updateVerticalIntimacyBar();
         
@@ -2065,10 +2184,12 @@ function normalizeTimeInput(timeStr) {
         }
       }).catch(e => {
         console.error("Err load writer content:", e);
-        // Banner now only contains toggle buttons - errors shown in console
-        // bannerEl.innerHTML = `<div class="alert alert-danger">Err load ${filename}: ${e.message || e}</div>`;
-        conversationEl.innerHTML = "";
-        dayNavBarEl.innerHTML = "";
+        // Only clear the editor if this is still the active request
+        if (thisGeneration === _daySwitchGeneration) {
+          conversationEl.innerHTML = "";
+          dayNavBarEl.innerHTML = "";
+        }
+        OfflineResilience.resumeDomSync();
       });
     }
 
@@ -3077,8 +3198,16 @@ function normalizeTimeInput(timeStr) {
               flipFront.classList.add('hidden');
               flipBack.classList.add('active');
               flipBtn.classList.add('is-flipped');
+              // After the back panel becomes visible, auto-resize the textarea
+              // so all content is shown (scrollHeight is 0 while display:none).
               const rcTextarea = flipBack.querySelector('textarea');
-              if (rcTextarea) rcTextarea.focus();
+              if (rcTextarea) {
+                rcTextarea.style.height = 'auto';
+                rcTextarea.style.height = rcTextarea.scrollHeight + 'px';
+                rcTextarea.focus();
+              }
+              // Clear minHeight after a frame so it doesn't constrain the panel
+              requestAnimationFrame(() => { flipBack.style.minHeight = ''; });
             } else {
               flipBack.style.minHeight = '';
               flipFront.classList.remove('hidden');
@@ -3560,6 +3689,9 @@ function normalizeTimeInput(timeStr) {
               renderWriterFileBrowser();
               attachHoverCardToElements();
               renderStructuredWriterDayNavBar();
+              // Re-expand sidebar to the currently active day so the user
+              // doesn't lose their navigation context after saving.
+              restoreSidebarExpansionState();
             }
           } else {
             alert(`Err save: ${result.error || 'Unknown error'}`);
@@ -4080,6 +4212,7 @@ function normalizeTimeInput(timeStr) {
             renderWriterFileBrowser();
             attachHoverCardToElements();
             renderStructuredWriterDayNavBar();
+            restoreSidebarExpansionState();
           }
           
           const successMsg = newCategory === "in_works"
@@ -6772,7 +6905,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       }
       
       // Populate form fields with current data
-              document.getElementById('editCharacterName').value = currentWriterFileData.user_name || '';
+      document.getElementById('editCharacterName').value = currentWriterFileData.user_name || '';
       document.getElementById('editUserName').value = currentWriterFileData.user_name || '';
       document.getElementById('editRealName').value = currentWriterFileData.real_name || '';
       document.getElementById('editCharacterSchedule').value = currentWriterFileData.character_schedule || '';
@@ -7698,14 +7831,18 @@ window.addEventListener("DOMContentLoaded", async () => {
       
       // Try to load from server first, then fallback to localStorage
       loadChecklistFromServer().then(serverData => {
-        if (serverData && serverData.has_data) {
-          console.log('Loaded checklist from server');
-          applyChecklistData(serverData.checklist, serverData.reasons);
-        } else {
-          // Fallback to localStorage
-          console.log('No server data, loading from localStorage');
-          loadChecklistFromLocalStorageFallback();
+        if (serverData && serverData.quality_checklist) {
+          const qc = serverData.quality_checklist;
+          // Check if quality_checklist has actual data (not empty object)
+          if (qc.checklist && Object.keys(qc.checklist).length > 0) {
+            console.log('Loaded checklist from server');
+            applyChecklistData(qc.checklist, qc.reasons);
+            return;
+          }
         }
+        // Fallback to localStorage
+        console.log('No server data, loading from localStorage');
+        loadChecklistFromLocalStorageFallback();
       }).catch(error => {
         console.error('Error loading from server, falling back to localStorage:', error);
         loadChecklistFromLocalStorageFallback();
@@ -8391,6 +8528,7 @@ window.addEventListener("DOMContentLoaded", async () => {
           
           // Refresh the file browser to show updated status
           renderWriterFileBrowser();
+          restoreSidebarExpansionState();
           
           // Show success message for approvals
           if (category === 'passed') {
@@ -8460,7 +8598,14 @@ window.addEventListener("DOMContentLoaded", async () => {
       };
       
       document.getElementById('editProfileFieldModalTitle').textContent = (languageMode === "en") ? `Edit ${labelMap[key] || key}` : `编辑 ${labelMap[key] || key}`;
-      document.getElementById('editProfileFieldContent').value = currentWriterFileData[key] || "";
+      
+      // Pre-fill with existing value; if empty, fall back to cached profile from /descriptions
+      // so the user can edit from the displayed text instead of starting blank.
+      let prefill = currentWriterFileData[key] || "";
+      if ((!prefill || prefill.trim() === '') && cachedCharacterProfile && cachedCharacterProfile[key]) {
+        prefill = cachedCharacterProfile[key];
+      }
+      document.getElementById('editProfileFieldContent').value = prefill;
       
       modal.style.display = 'flex';
     }
@@ -8510,6 +8655,83 @@ window.addEventListener("DOMContentLoaded", async () => {
       
       hideEditProfileFieldModal();
     };
+
+    // Auto-copy profile fields from previous day on load if all are empty
+    async function autoCopyProfileFromPreviousDay() {
+      if (!currentWriterFileData || !currentWriterFile.day_str) return;
+      
+      const profileFields = ['values', 'experiences', 'judgements', 'abilities'];
+      
+      // Check if ALL profile fields are empty
+      const allEmpty = profileFields.every(key => {
+        const val = currentWriterFileData[key];
+        return !val || (typeof val === 'string' && val.trim() === '');
+      });
+      
+      if (!allEmpty) return; // At least one field has data, no need to copy
+      
+      const currentDayNum = parseInt(currentWriterFile.day_str.replace('Day', ''));
+      if (currentDayNum <= 0) return; // Day 0 has no previous day
+      
+      const prevDayStr = `Day${currentDayNum - 1}`;
+      const prevDayData = structuredWriterFiles[currentWriterFile.user_id]?.[currentWriterFile.dup_id]?.[prevDayStr];
+      if (!prevDayData || !prevDayData.filename) return; // No previous day file
+      
+      try {
+        const response = await fetch("/load_writer_file_content", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            filename: prevDayData.filename,
+            preset_set: presetSet
+          })
+        });
+        const prevFileData = await response.json();
+        
+        // Copy profile fields from previous day
+        let copied = false;
+        profileFields.forEach(key => {
+          if (prevFileData[key] && prevFileData[key].trim() !== '') {
+            currentWriterFileData[key] = prevFileData[key];
+            copied = true;
+          }
+        });
+        
+        if (!copied) return; // Nothing to copy
+        
+        console.log(`[AutoCopy] Copied profile fields from ${prevDayStr} to ${currentWriterFile.day_str}`);
+        
+        // Save silently so the copied data persists
+        const dialogueToSave = (currentWriterFileData.dialogue || []).filter(t => (t.content && t.content.trim() !== "") || t.content_type === 'sticker');
+        const isComplete = chkWriterMarkComplete ? chkWriterMarkComplete.checked : false;
+        
+        const savePayload = {
+          filename: currentWriterFile.filename,
+          preset_set: presetSet,
+          dialogue_list: dialogueToSave,
+          is_complete: isComplete,
+          history: currentWriterFileData.history,
+          values: currentWriterFileData.values,
+          experiences: currentWriterFileData.experiences,
+          judgements: currentWriterFileData.judgements,
+          abilities: currentWriterFileData.abilities,
+          intimacy_level: currentWriterFileData.intimacy_level,
+          starting_intimacy_level: currentWriterFileData.starting_intimacy_level,
+          comments: currentWriterFileData.comments || []
+        };
+        
+        // skipBackup: true — DOM still shows previous day's textareas at this point;
+        // letting backupToLocalStorage run would corrupt dialogue data.
+        OfflineResilience.saveWithResilience(savePayload, { skipBackup: true })
+          .then(result => {
+            if (!result.success && !result.queued) {
+              console.warn('[AutoCopy] Failed to save copied profile fields');
+            }
+          });
+      } catch (err) {
+        console.warn('[AutoCopy] Could not load previous day for profile copy:', err);
+      }
+    }
 
     function copyProfileFromPreviousDay() {
         const currentDayNum = parseInt(currentWriterFile.day_str.replace('Day', ''));
@@ -9349,9 +9571,10 @@ window.addEventListener("DOMContentLoaded", async () => {
       <a href="#g-quickstart">2. 可以做什么</a>
       <a href="#g-roles">3. 不可以做什么</a>
       <a href="#g-writing">4. 写作规范与建议</a>
-      <a href="#g-samples">5. 示例与模板</a>
-      <a href="#g-faq">6. 常见问题（FAQ）</a>
-      <a href="#g-changelog">7. 变更日志</a>
+ <a href="#g-speedrun">5. 速成篇</a>
+      <a href="#g-samples">6. 示例与模板</a>
+      <a href="#g-faq">7. 常见问题（FAQ）</a>
+      <a href="#g-changelog">8. 变更日志</a>
     </nav>
 
     <!-- 右侧正文（全部可改） -->
@@ -9409,8 +9632,38 @@ window.addEventListener("DOMContentLoaded", async () => {
         </div>
       </section>
 
+ <section id="g-speedrun" class="guide-section">
+ <h3>5. 指南（速成篇）</h3>
+ <p>读完这一节你就能上手了——比泡面还快。（泡面要三分钟，这个大概……也要三分钟。好吧一样快。）</p>
+
+ <div class="note" style="margin:10px 0;">
+ <strong>写作背景设定——你们到底是什么关系？</strong>
+</div>
+ <ul>
+ <li><strong>1. 你们素不相识</strong> — 你们知道的只有对方的头像、网名和职业。没有共同回忆，没有「还记得上次……」你们就是刚在网上认识的。就像组装宜家家具，只不过组装的是感情。</li>
+ <li><strong>2. 认识的契机随角色而变</strong> — 红莉栖、林路都是因为想认识人所以上网。别想太多——他们看到一个人觉得「嗯挺有趣」，然后打了个招呼。就像你凌晨2点看了3小时奶酪纪录片一样——它就这么发生了。</li>
+ <li><strong>3. 聊天动力来自倾诉欲</strong> — 不是剧本，不是任务——是人类真实的交流需求。你知道那种有趣的事发生了你立刻就想告诉别人的感觉吗？就是那种劲儿。不是「我必须完成对话目标#47」。</li>
+ <li><strong>4. 三观必须符合角色设定</strong> — 读设定要像期末考试复习一样认真……只不过这个考试其实挺有趣的。如果红莉栖相信努力胜过天赋，她不会说「随便啦」——她会说「别废话了去把实验重新做一遍。」</li>
+</ul>
+
+ <div class="note" style="margin:10px 0;">
+ <strong>写作交付条款——怎么交付顶级作品</strong>
+</div>
+ <ul>
+ <li><strong>1. 时间精准对齐</strong> — 角色对时间敏感！明天有工作时注意时间（「不早了该睡了…」），周末时可以胡搅蛮缠（凌晨3点争论热狗算不算三明治），娱乐过后话变多想分享。<em>推荐最后做时间轴对齐</em>——输入时间按回车可以直接跳到下一个输入框。</li>
+ <li><strong>2. 补齐思维链</strong> — 角色有难以学会的想法时需要写出推理过程。例如：「早上了，我有点喜欢这个用户，给他发个早上好友好一下吧」「这个人话好多好烦人，爱答不理一下吧」「这个人好惨，我很能理解他，我想多跟他开导开导，因为我也经历过」</li>
+ <li><strong>3. 不许额外制造事件</strong> — 你不能像写肥皂剧一样随便「要是实验室着火了多有戏剧性」。如果想捏造事件，需先上报并沟通后加入日程表中。就像向编剧室提交剧情转折。</li>
+ <li><strong>4. 延续昨日看法</strong> — 需要在当日设定中填充「看法」。每日沟通中需要先把昨天对世界的看法及经历加入到新的一天中。真人不会每天失忆——昨天很糟就今天不开心，昨天很棒就还沉浸其中。人类是情感海绵，不是金鱼。</li>
+</ul>
+
+ <div class="ok" style="margin-top:10px;">
+ <strong>在哪里找到这些规则？</strong><br/>
+ 随时可以在这个按钮里重读（对，就是你现在点的这个粉色按钮），或者去 <strong>/guide</strong> 页面看完整交互版教程。收藏它。纹手臂上。怎么记得住怎么来。
+</div>
+</section>
+
       <section id="g-samples" class="guide-section">
-        <h3>5. 示例与模板</h3>
+        <h3>6. 示例与模板</h3>
         <p>可把下列片段复制为起手式，再替换细节：</p>
         <div class="code">
 【开场模板】<br/>
@@ -9419,7 +9672,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       </section>
 
       <section id="g-faq" class="guide-section">
-        <h3>6. 常见问题（FAQ）</h3>
+        <h3>7. 常见问题（FAQ）</h3>
         <p><strong>Q：</strong>什么时候用"用户日程"？<br/>
            <strong>A：</strong>当你需要安排一天的转场与节奏时，用它当"胶水"。</p>
         <p><strong>Q：</strong>能否改角色已设定？<br/>
@@ -9429,8 +9682,9 @@ window.addEventListener("DOMContentLoaded", async () => {
       </section>
 
       <section id="g-changelog" class="guide-section">
-        <h3>7. 变更日志</h3>
+        <h3>8. 变更日志</h3>
         <ul>
+          <li>3、14·v1.1：新增「速成篇」——写作背景设定 + 交付条款速查。</li>
           <li>8、14·v1.0：首版文字指南，支持目录、锚点、复制模板。</li>
         </ul>
       </section>
@@ -9478,9 +9732,10 @@ window.addEventListener("DOMContentLoaded", async () => {
       <a href="#ge-quickstart">2. What You CAN Do</a>
       <a href="#ge-roles">3. What You CAN'T Do</a>
       <a href="#ge-writing">4. Writing Standards</a>
-      <a href="#ge-samples">5. Samples & Templates</a>
-      <a href="#ge-faq">6. FAQ</a>
-      <a href="#ge-changelog">7. Changelog</a>
+ <a href="#ge-speedrun">5. Quick Start Rules</a>
+      <a href="#ge-samples">6. Samples & Templates</a>
+      <a href="#ge-faq">7. FAQ</a>
+      <a href="#ge-changelog">8. Changelog</a>
     </nav>
 
     <!-- Right Content -->
@@ -9538,8 +9793,38 @@ User: "haha normal schedule [doge]" 11:05<br/>
         </div>
       </section>
 
+ <section id="ge-speedrun" class="guide-section">
+ <h3>5. Quick Start Rules</h3>
+ <p>Read this and you're ready to go — faster than instant noodles. (Instant noodles take 3 minutes, this takes about... also 3 minutes. Okay, same speed.)</p>
+
+ <div class="note" style="margin:10px 0;">
+ <strong>Writing Context — What's the relationship?</strong>
+</div>
+ <ul>
+ <li><strong>1. You're STRANGERS</strong> — All you know is each other's avatar, username, and profession. No shared memories. No "remember when we..." You literally just met online. Like IKEA furniture assembly, but with feelings.</li>
+ <li><strong>2. How they met varies by character</strong> — Kurisu and Lin Lu are online because they genuinely want to meet people. Don't overthink it — they saw a profile, thought "hmm interesting," and said hi. Like how you ended up watching a 3-hour YouTube video about cheese at 2 AM.</li>
+ <li><strong>3. Chat motivation = desire to share</strong> — Not from a script, not a mission — from genuine human need to talk. That feeling when something funny happens and you IMMEDIATELY want to tell someone? That's the energy. Not "I must complete conversation objective #47."</li>
+ <li><strong>4. Worldview MUST match character settings</strong> — Read them like you're studying for a final exam... except this one's actually interesting. If Kurisu believes hard work beats talent, she won't say "ah whatever" — she'd say "stop whining and go run the experiment again."</li>
+</ul>
+
+ <div class="note" style="margin:10px 0;">
+ <strong>Delivery Terms — How to submit great work</strong>
+</div>
+ <ul>
+ <li><strong>1. Precise Time Alignment</strong> — Characters are time-sensitive! Work tomorrow → they notice the clock ("It's late, I should sleep..."). Weekend → pure chaos (3 AM debates about whether hot dogs are sandwiches ). After fun → chatty and want to share. <em>Do timeline alignment LAST</em> — type a time, hit Enter → auto-jump to next field.</li>
+ <li><strong>2. Show the Thought Chain</strong> — When a character has a hard-to-learn reaction, show the reasoning. E.g.: "It's morning, I kinda like this user, let me send good morning to be friendly." / "This person talks TOO much, let me be cold." / "This person had it rough, I really get it, I want to talk more because I've been there."</li>
+ <li><strong>3. NO Inventing Events</strong> — You can't just yeet events into existence like a soap opera ("wouldn't it be dramatic if the lab caught fire? "). Want to create a plot event? Propose it first, add to the schedule after approval. Like submitting a plot twist to the writers' room.</li>
+ <li><strong>4. Carry Over Yesterday's Views</strong> — Fill "opinions" in daily settings. Each new day should incorporate yesterday's worldview and experiences. Real people don't wake up with amnesia — terrible yesterday → grumpy today, great yesterday → still riding that high. Humans are emotional sponges, not goldfish.</li>
+</ul>
+
+ <div class="ok" style="margin-top:10px;">
+ <strong>Where to find these rules?</strong><br/>
+ You can always re-read them here (yes, this pink button you just clicked), or visit the <strong>/guide</strong> page for the full interactive tutorial. Bookmark it. Tattoo it on your arm. Whatever helps.
+</div>
+</section>
+
       <section id="ge-samples" class="guide-section">
-        <h3>5. Samples & Templates</h3>
+        <h3>6. Samples & Templates</h3>
         <p>You can copy the following snippets as openers, then replace details:</p>
         <div class="code">
 [Opening Template]<br/>
@@ -9548,7 +9833,7 @@ User: "haha normal schedule [doge]" 11:05<br/>
       </section>
 
       <section id="ge-faq" class="guide-section">
-        <h3>6. FAQ</h3>
+        <h3>7. FAQ</h3>
         <p><strong>Q:</strong> When to use "User Schedule"?<br/>
            <strong>A:</strong> When you need to arrange scene transitions and rhythms of a day, use it as "glue".</p>
         <p><strong>Q:</strong> Can I change pre-set character settings?<br/>
@@ -9558,8 +9843,9 @@ User: "haha normal schedule [doge]" 11:05<br/>
       </section>
 
       <section id="ge-changelog" class="guide-section">
-        <h3>7. Changelog</h3>
+        <h3>8. Changelog</h3>
         <ul>
+          <li>Mar 14 · v1.1: Added "Quick Start Rules" — writing context + delivery terms cheat sheet.</li>
           <li>Aug 14 · v1.0: First version of text guide, supporting TOC, anchors, and template copying.</li>
         </ul>
       </section>

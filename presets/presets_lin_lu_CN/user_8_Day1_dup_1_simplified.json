@@ -6,9 +6,29 @@
     "version": "1.0"
   },
   "abilities": "",
-  "category": "pending",
+  "assessment_timestamp": 1773372125,
+  "category": "rejected",
   "character_name": "林路",
-  "comments": [],
+  "comments": [
+    {
+      "author": "testeditor",
+      "sentenceRef": "7",
+      "text": "脑回路：“app？什么app？”她在说什么",
+      "timestamp": "2026/3/12 22:23:13"
+    },
+    {
+      "author": "testeditor",
+      "sentenceRef": "10",
+      "text": "太自恋了，用户还什么都没说",
+      "timestamp": "2026/3/12 22:23:34"
+    },
+    {
+      "author": "testeditor",
+      "sentenceRef": "13",
+      "text": "不明所以",
+      "timestamp": "2026/3/12 22:23:49"
+    }
+  ],
   "completed": false,
   "dialogue": [
     {
@@ -403,7 +423,32 @@
   "judgements": "",
   "personnel_id": "20260309071823",
   "personnel_username": "zero",
+  "problems_count": 4,
+  "quality_checklist": {
+    "checklist": {
+      "check-character-consistency": false,
+      "check-context-coherent": false,
+      "check-dialogue-natural": true,
+      "check-emotional-depth": true,
+      "check-format-correct": false,
+      "check-intimacy-appropriate": true,
+      "check-timestamp-accurate": false
+    },
+    "last_updated": "2026-03-12T22:24:35-05:00",
+    "reasons": {
+      "check-character-consistency": "陆教授上网没相亲压力",
+      "check-context-coherent": "开头莫名其妙",
+      "check-dialogue-natural": "",
+      "check-emotional-depth": "",
+      "check-format-correct": "没思维链",
+      "check-intimacy-appropriate": "",
+      "check-timestamp-accurate": "没时间戳"
+    },
+    "selected_trait": "",
+    "updated_by": "2601:240:8300:6f90:3d5f:111:fd25:35c9"
+  },
   "real_name": "zero",
+  "rejection_timestamp": 1773372125,
   "relationship": "Two people have just met and are still unfamiliar with each other. Their conversations are mostly polite and superficial, limited to everyday topics like work, studies, or the weather. At this stage, both sides are cautious and have yet to reveal their true selves.",
   "starting_intimacy_level": 0,
   "user_id": "user_8",

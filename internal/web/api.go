@@ -74,7 +74,7 @@ func (a *App) RegisterAPI(r chi.Router) {
 	r.Post("/auto_archive_old_items", writerAuth(a.handleAutoArchiveOldItems))
 	r.Post("/update_inner_thought_annotation", writerAuth(a.handleUpdateInnerThoughtAnnotation))
 	r.Post("/delete_inner_thought_annotation", writerAuth(a.handleDeleteInnerThoughtAnnotation))
-	r.Post("/save_checklist_data", writerAuth(a.handleSaveChecklistData))
+	r.Post("/save_checklist_data", editorAuth(a.handleSaveChecklistData))
 
 	// Writer/editor endpoints (in-works toggle, category changes)
 	r.Post("/update_qc_status", writerAuth(a.handleUpdateQCStatus))

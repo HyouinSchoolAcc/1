@@ -342,6 +342,16 @@ func RegisterRoutes(r chi.Router, cfg Config) {
 
 	log.Printf("✅Successfully loaded storyboard.html template")
 
+	demoTpl, err := loadGoTemplate(cfg.TemplatesDir, "demo.html")
+
+	if err != nil {
+
+		log.Fatalf("CRITICAL: failed to load demo.html template: %v", err)
+
+	}
+
+	log.Printf("✅Successfully loaded demo.html template")
+
 
 
 	profileTpl, err := loadGoTemplate(cfg.TemplatesDir, "profile.html")
@@ -487,6 +497,10 @@ func RegisterRoutes(r chi.Router, cfg Config) {
 	r.Get("/lounge", authMiddleware.RequireWriterOrEditor(app.handleLounge(loungeTpl)))
 
 
+
+	// Demo conversation page (public)
+
+	r.Get("/demo", app.handleTemplate(demoTpl))
 
 	// LLM Chat page (public)
 

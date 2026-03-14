@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - AI 对话演示</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0b0e14;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .phone-frame {
+            width: 390px;
+            height: 760px;
+            background: #1a1d24;
+            border-radius: 40px;
+            border: 3px solid #2a2d35;
+            box-shadow:
+                0 0 0 1px rgba(255,255,255,0.05),
+                0 25px 60px rgba(0,0,0,0.5),
+                0 0 120px rgba(99, 102, 241, 0.08);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Status bar */
+        .status-bar {
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            color: #9ca3af;
+            font-size: 12px;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        /* Chat header */
+        .chat-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 20px 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            flex-shrink: 0;
+        }
+
+        .back-arrow {
+            color: #6366f1;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .contact-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .contact-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .contact-info { flex: 1; }
+
+        .contact-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #e5e7eb;
+        }
+
+        .contact-status {
+            font-size: 11px;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #22c55e;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* Chat body */
+        .chat-body {
+            flex: 1;
+            padding: 16px 16px 8px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .chat-body::-webkit-scrollbar { width: 3px; }
+        .chat-body::-webkit-scrollbar-track { background: transparent; }
+        .chat-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+        /* Messages */
+        .msg-row {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            max-width: 85%;
+        }
+
+        .msg-row.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .msg-row.ai { align-self: flex-start; }
+        .msg-row.human { align-self: flex-end; flex-direction: row-reverse; }
+
+        .msg-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            flex-shrink: 0;
+            color: white;
+            font-weight: 600;
+            overflow: hidden;
+        }
+
+        .msg-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .msg-row.ai .msg-avatar {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        }
+
+        .msg-row.human .msg-avatar {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        .msg-bubble {
+            padding: 10px 14px;
+            border-radius: 18px;
+            font-size: 14.5px;
+            line-height: 1.6;
+            position: relative;
+            letter-spacing: 0.01em;
+        }
+
+        .msg-row.ai .msg-bubble {
+            background: #2a2d35;
+            color: #e5e7eb;
+            border-bottom-left-radius: 6px;
+        }
+
+        .msg-row.human .msg-bubble {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: #fff;
+            border-bottom-right-radius: 6px;
+        }
+
+        /* Typing indicator */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 12px 18px;
+        }
+
+        .typing-indicator span {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #6b7280;
+            animation: typing-bounce 1.4s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(1) { animation-delay: 0s; }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing-bounce {
+            0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Verification banner */
+        .verification-banner {
+            margin: 20px 12px 8px;
+            padding: 14px 16px;
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .verification-banner.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .verification-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(239, 68, 68, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: #ef4444;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .verification-text {
+            color: #f87171;
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* Input area */
+        .chat-input-area {
+            padding: 10px 16px 28px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .chat-input {
+            flex: 1;
+            background: #2a2d35;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 22px;
+            padding: 10px 16px;
+            color: #e5e7eb;
+            font-size: 14px;
+            outline: none;
+            font-family: inherit;
+            transition: border-color 0.2s ease;
+        }
+
+        .chat-input:focus {
+            border-color: rgba(99, 102, 241, 0.5);
+        }
+
+        .chat-input::placeholder {
+            color: #6b7280;
+        }
+
+        .chat-input:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .send-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.5;
+            transition: opacity 0.2s ease, transform 0.1s ease;
+        }
+
+        .send-btn.active {
+            opacity: 1;
+        }
+
+        .send-btn:active {
+            transform: scale(0.93);
+        }
+
+        .send-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.3;
+        }
+
+        /* Hint text */
+        .hint-text {
+            text-align: center;
+            color: #4b5563;
+            font-size: 11px;
+            padding: 6px 0 2px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .hint-text.visible { opacity: 1; }
+
+        /* Character-by-character reveal */
+        .msg-bubble .char {
+            opacity: 0;
+            transition: opacity 0.04s ease;
+        }
+        .msg-bubble .char.revealed {
+            opacity: 1;
+        }
+
+        /* Timestamp */
+        .timestamp {
+            text-align: center;
+            color: #4b5563;
+            font-size: 11px;
+            padding: 8px 0 4px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .timestamp.visible { opacity: 1; }
+
+        /* Reset button */
+        .reset-btn {
+            position: absolute;
+            top: 52px;
+            right: 20px;
+            background: rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            color: #818cf8;
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease, background 0.2s ease;
+            font-family: inherit;
+        }
+
+        .reset-btn.visible {
+            opacity: 1;
+        }
+
+        .reset-btn:hover {
+            background: rgba(99, 102, 241, 0.22);
+        }
+
+        /* Responsive */
+        @media (max-width: 420px) {
+            .phone-frame {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0;
+                border: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <!-- Status bar -->
+        <div class="status-bar">
+            <span id="clockDisplay">12:42</span>
+            <span></span>
+        </div>
+
+        <!-- Chat header -->
+        <div class="chat-header">
+            <div class="back-arrow">&#8249;</div>
+            <div class="contact-avatar">
+                <img src="/static/kurisu/kurisu_avatar.png" alt="Kurisu">
+            </div>
+            <div class="contact-info">
+                <div class="contact-name">板栗饭与龟派气功</div>
+                <div class="contact-status">
+                    <div class="status-dot"></div>
+                    在线
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat body -->
+        <div class="chat-body" id="chatBody">
+            <div class="timestamp visible" id="timestamp">今天 12:40</div>
+            <div class="hint-text" id="hintText">输入任意消息开始对话</div>
+        </div>
+
+        <!-- Reset button -->
+        <button class="reset-btn" id="resetBtn">重置</button>
+
+        <!-- Input area -->
+        <div class="chat-input-area">
+            <input class="chat-input" id="chatInput" placeholder="输入消息..." autocomplete="off" />
+            <button class="send-btn" id="sendBtn">&#10148;</button>
+        </div>
+    </div>
+
+    <script>
+        const KURISU_AVATAR = '/static/kurisu/kurisu_avatar.png';
+
+        const chatBody   = document.getElementById('chatBody');
+        const chatInput  = document.getElementById('chatInput');
+        const sendBtn    = document.getElementById('sendBtn');
+        const resetBtn   = document.getElementById('resetBtn');
+        const hintText   = document.getElementById('hintText');
+        const clockEl    = document.getElementById('clockDisplay');
+
+        // Scripted AI responses — each user message triggers the next batch
+        // Each entry is an array of items: strings for text, objects for stickers
+        const aiResponseBatches = [
+            // 1st user input → sticker then two messages
+            [
+                { sticker: '/static/stickers/uploads/upload_1770817471281213645.jpeg' },
+                '哈？你在说什么啊，我都听不懂',
+                '好了好了，不跟你说了，我去做实验了',
+            ],
+            // 2nd user input → no reply (Kurisu ignoring), verification triggers on 3rd
+            [],
+        ];
+
+        // After all scripted responses are used, show verification
+        const verifyMsg = '！你和用户不是朋友，请通过验证';
+
+        let responseIndex = 0;
+        let isProcessing  = false;
+
+        // Update clock to current time
+        function updateClock() {
+            const now = new Date();
+            clockEl.textContent = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+        }
+        updateClock();
+        setInterval(updateClock, 30000);
+
+        // Show the hint on load
+        setTimeout(() => hintText.classList.add('visible'), 500);
+
+        // Activate send button when input has text
+        chatInput.addEventListener('input', () => {
+            sendBtn.classList.toggle('active', chatInput.value.trim().length > 0);
+        });
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function scrollToBottom() {
+            chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: 'smooth' });
+        }
+
+        function createAiAvatar() {
+            return `<div class="msg-avatar"><img src="${KURISU_AVATAR}" alt="K"></div>`;
+        }
+
+        function addUserMessage(text) {
+            hintText.classList.remove('visible');
+            const row = document.createElement('div');
+            row.className = 'msg-row human';
+            row.innerHTML = `<div class="msg-avatar">你</div><div class="msg-bubble">${escapeHTML(text)}</div>`;
+            chatBody.appendChild(row);
+            scrollToBottom();
+            requestAnimationFrame(() => {
+                row.classList.add('visible');
+                scrollToBottom();
+            });
+        }
+
+        function escapeHTML(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function createTypingRow() {
+            const row = document.createElement('div');
+            row.className = 'msg-row ai visible';
+            row.innerHTML = `
+                ${createAiAvatar()}
+                <div class="msg-bubble">
+                    <div class="typing-indicator">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+            `;
+            return row;
+        }
+
+        function wrapChars(text) {
+            return text.split('').map(ch => {
+                const span = document.createElement('span');
+                span.className = 'char';
+                span.textContent = ch;
+                return span;
+            });
+        }
+
+        async function revealChars(bubble, chars) {
+            bubble.innerHTML = '';
+            chars.forEach(c => bubble.appendChild(c));
+            for (const ch of chars) {
+                ch.classList.add('revealed');
+                await sleep(40 + Math.random() * 30);
+            }
+        }
+
+        async function showAiResponse(text) {
+            // Show typing indicator
+            const typing = createTypingRow();
+            chatBody.appendChild(typing);
+            scrollToBottom();
+            await sleep(800 + Math.random() * 600 + text.length * 30);
+
+            // Replace with actual message
+            typing.remove();
+            const row = document.createElement('div');
+            row.className = 'msg-row ai';
+            const chars = wrapChars(text);
+            row.innerHTML = `${createAiAvatar()}<div class="msg-bubble"></div>`;
+            chatBody.appendChild(row);
+            requestAnimationFrame(() => {
+                row.classList.add('visible');
+                scrollToBottom();
+            });
+
+            const bubble = row.querySelector('.msg-bubble');
+            await revealChars(bubble, chars);
+        }
+
+        async function showAiSticker(src) {
+            // Show typing indicator
+            const typing = createTypingRow();
+            chatBody.appendChild(typing);
+            scrollToBottom();
+            await sleep(600 + Math.random() * 400);
+
+            typing.remove();
+            const row = document.createElement('div');
+            row.className = 'msg-row ai';
+            row.innerHTML = `${createAiAvatar()}<div class="msg-bubble" style="background:transparent;padding:0;"><img src="${src}" alt="sticker" style="max-width:140px;border-radius:8px;display:block;" onerror="this.style.display='none'"></div>`;
+            chatBody.appendChild(row);
+            requestAnimationFrame(() => {
+                row.classList.add('visible');
+                scrollToBottom();
+            });
+        }
+
+        async function showVerification() {
+            await sleep(600);
+            const banner = document.createElement('div');
+            banner.className = 'verification-banner';
+            banner.innerHTML = `
+                <div class="verification-icon">!</div>
+                <div class="verification-text">${verifyMsg}</div>
+            `;
+            chatBody.appendChild(banner);
+            scrollToBottom();
+            await sleep(80);
+            banner.classList.add('visible');
+        }
+
+        async function handleSend() {
+            const text = chatInput.value.trim();
+            if (!text || isProcessing) return;
+
+            isProcessing = true;
+            chatInput.value = '';
+            sendBtn.classList.remove('active');
+            chatInput.disabled = true;
+            sendBtn.disabled = true;
+
+            // Show user message
+            addUserMessage(text);
+
+            // Determine AI response
+            if (responseIndex < aiResponseBatches.length) {
+                const batch = aiResponseBatches[responseIndex];
+                for (const item of batch) {
+                    if (typeof item === 'object' && item.sticker) {
+                        await showAiSticker(item.sticker);
+                    } else {
+                        await showAiResponse(item);
+                    }
+                    await sleep(300);
+                }
+                responseIndex++;
+            } else {
+                // All scripted responses exhausted — show verification
+                await showVerification();
+                chatInput.disabled = true;
+                chatInput.placeholder = '对话已结束';
+                sendBtn.disabled = true;
+                resetBtn.classList.add('visible');
+                isProcessing = false;
+                return;
+            }
+
+            // Re-enable input
+            chatInput.disabled = false;
+            sendBtn.disabled = false;
+            chatInput.focus();
+            isProcessing = false;
+            resetBtn.classList.add('visible');
+        }
+
+        // Send on button click
+        sendBtn.addEventListener('click', handleSend);
+
+        // Send on Enter key
+        chatInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleSend();
+            }
+        });
+
+        // Play the opening exchange: user says "暴论1234566789", Kurisu replies
+        async function playOpening() {
+            isProcessing = true;
+            chatInput.disabled = true;
+            sendBtn.disabled = true;
+            hintText.classList.remove('visible');
+
+            await sleep(600);
+            addUserMessage('你就应该安慰我啊');
+            await sleep(400);
+            await showAiResponse('你咋闲的没事干想这么有的没的，多出去走走呗');
+
+            // Now enable input for user to continue
+            chatInput.disabled = false;
+            sendBtn.disabled = false;
+            chatInput.focus();
+            isProcessing = false;
+        }
+
+        // Reset conversation
+        resetBtn.addEventListener('click', () => {
+            responseIndex = 0;
+            isProcessing = false;
+            const existing = chatBody.querySelectorAll('.msg-row, .verification-banner');
+            existing.forEach(el => el.remove());
+            chatInput.disabled = false;
+            chatInput.placeholder = '输入消息...';
+            sendBtn.disabled = false;
+            resetBtn.classList.remove('visible');
+            playOpening();
+        });
+
+        // Auto-play opening on load
+        playOpening();
+    </script>
+</body>
+</html>

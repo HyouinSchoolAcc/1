@@ -316,6 +316,8 @@ CREATE TABLE IF NOT EXISTS user_profiles (
     equipped_profile_background TEXT NOT NULL DEFAULT '',
     equipped_banner TEXT NOT NULL DEFAULT '',
     equipped_profile_border TEXT NOT NULL DEFAULT '',
+    active_banner TEXT NOT NULL DEFAULT '',
+    active_background TEXT NOT NULL DEFAULT '',
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
